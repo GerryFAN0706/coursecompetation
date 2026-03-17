@@ -7,7 +7,12 @@
     "baseline": "改革前平均得分 70",
     "current": "改革后平均得分 91",
     "source": "website.md",
-    "notes": "评分规则统一，样本规模与时间窗待正式提交前补齐。"
+    "sourceId": "SRC-WEB-01",
+    "method": "按统一评分量表统计作业得分均值并进行前后对比。",
+    "sampleScope": "Java Web应用开发参赛班级，覆盖课堂任务与课后提交。",
+    "timeWindow": "2025-09 至 2026-01",
+    "evidencePath": "/results/",
+    "notes": "提交前将补充评分量表附件编号。"
   },
   {
     "id": "M02",
@@ -17,7 +22,12 @@
     "baseline": "约45%",
     "current": "<5%",
     "source": "website.md",
-    "notes": "同班同任务代码相似度分布统计。"
+    "sourceId": "SRC-WEB-02",
+    "method": "按同班同任务提交计算高相似区间占比并做前后对比。",
+    "sampleScope": "同一教学班级的阶段性项目提交记录。",
+    "timeWindow": "2025-09 至 2026-01",
+    "evidencePath": "/results/",
+    "notes": "相似度计算工具与阈值在内部留档版保留。"
   },
   {
     "id": "M03",
@@ -27,7 +37,12 @@
     "baseline": "45%",
     "current": "89%",
     "source": "网站内容映射到人工智能赛道材料.md",
-    "notes": "通过测验与代码检查双维度评估。"
+    "sourceId": "SRC-MAP-03",
+    "method": "同题前后测结果与代码审查记录联合评估。",
+    "sampleScope": "第15讲相关课堂分组与课后复盘样本。",
+    "timeWindow": "2025-10 至 2026-01",
+    "evidencePath": "/results/",
+    "notes": "前后测题组结构保持一致。"
   },
   {
     "id": "M04",
@@ -37,7 +52,12 @@
     "baseline": "100%",
     "current": "33%",
     "source": "网站内容映射到人工智能赛道材料.md",
-    "notes": "单班审查总工时对比。"
+    "sourceId": "SRC-MAP-04",
+    "method": "记录单班完整审查工时并进行改革前后对比。",
+    "sampleScope": "单班项目审查流程，含AI初审与教师复核。",
+    "timeWindow": "2025-09 至 2026-01",
+    "evidencePath": "/results/",
+    "notes": "统计单位为总工时。"
   },
   {
     "id": "M05",
@@ -47,6 +67,11 @@
     "baseline": "100%",
     "current": "60%",
     "source": "website.md",
-    "notes": "课堂任务与课后迭代综合统计。"
+    "sourceId": "SRC-WEB-05",
+    "method": "统计课堂任务与课后迭代完成时长并做前后对比。",
+    "sampleScope": "核心案例相关任务样本。",
+    "timeWindow": "2025-10 至 2026-01",
+    "evidencePath": "/results/",
+    "notes": "时长为平均耗时指标。"
   }
 ]

@@ -56,10 +56,9 @@ anonSafe: true
 
 - [课堂实录逐分钟讲稿（源文档）](/resources/#课堂实录讲稿)
 - [AI提示词与测试清单（源文档）](/resources/#ai提示词与测试清单)
-- [问题版工程说明（README）](https://github.com/)
+- [问题版工程说明（D07 PDF）](/assets/docs/D07_问题版工程README.pdf)
 
 ## 证据说明
 
 - 指标与行为变化口径见 [成效与数据](/results/)
-- 样本范围/时间窗当前为 `placeholder`，提交前补齐正式统计说明
-
+- 样本范围、统计时间窗和计算方式已在 [metrics.json](/data/metrics.json) 中维护

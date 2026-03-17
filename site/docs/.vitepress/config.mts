@@ -2,7 +2,7 @@ import { defineConfig } from "vitepress";
 
 export default defineConfig({
   title: "Java Web AI教学创新实践",
-  description: "人工智能赛道参赛网站（Phase 1）",
+  description: "Java Web应用开发课程人工智能教学创新实践展示网站",
   lang: "zh-CN",
   base: "/coursecompetation/",
   cleanUrls: true,
@@ -13,7 +13,8 @@ export default defineConfig({
       { text: "AI教学创新设计", link: "/innovation/" },
       { text: "核心案例", link: "/cases/lesson-15/" },
       { text: "成效与数据", link: "/results/" },
-      { text: "教学资源", link: "/resources/" }
+      { text: "教学资源", link: "/resources/" },
+      { text: "评审路径", link: "/review-path/" }
     ],
     sidebar: {
       "/": [
@@ -25,15 +26,16 @@ export default defineConfig({
             { text: "核心案例：第15讲", link: "/cases/lesson-15/" },
             { text: "成效与数据", link: "/results/" },
             { text: "教学资源", link: "/resources/" },
-            { text: "课程概览（占位）", link: "/course/" },
-            { text: "推广与复用（占位）", link: "/promotion/" },
-            { text: "关于（占位）", link: "/about/" }
+            { text: "课程概览", link: "/course/" },
+            { text: "推广与复用", link: "/promotion/" },
+            { text: "关于", link: "/about/" },
+            { text: "评审路径", link: "/review-path/" }
           ]
         }
       ]
     },
     socialLinks: [
-      { icon: "github", link: "https://github.com/" }
+      { icon: "github", link: "https://github.com/gerryfan0706/coursecompetation" }
     ],
     footer: {
       message: "人工智能赛道网站（匿名评审可切换资源）",

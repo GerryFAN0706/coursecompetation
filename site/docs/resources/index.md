@@ -18,6 +18,13 @@ anonSafe: true
 - 用途：课堂分组审查、最小验证路径、课后个性化反馈
 - 建议文件：`D20_AI提示词与测试清单.pdf`（提交前导出）
 
+### 提示词分类清单
+
+1. 代码审查类：教师总控、A组认证、B组授权、C组视图一致性。
+2. 测试生成类：最小验证清单、手工测试用例、回归测试清单。
+3. 课后反馈类：小组反馈、个性化建议、递进式拓展任务。
+4. 输出纠偏类：防泛化、防整段代写、补充知识点映射、补充验证步骤。
+
 ## 课堂实录讲稿
 
 - 源文档：`第十五讲课堂实录逐分钟讲稿.md`
@@ -28,24 +35,36 @@ anonSafe: true
 
 1. [D01_教学大纲.pdf](/assets/docs/D01_教学大纲.pdf)
 2. [D02_第十五讲教学设计.pdf](/assets/docs/D02_第十五讲教学设计.pdf)
-3. [D03_课堂视频选题与AI应用方案.txt](/assets/docs/D03_课堂视频选题与AI应用方案.txt)
-4. [D04_存在缺陷的示例工程设计方案.txt](/assets/docs/D04_存在缺陷的示例工程设计方案.txt)
-5. [D05_课堂实录逐分钟讲稿.txt](/assets/docs/D05_课堂实录逐分钟讲稿.txt)
-6. [D06_AI提示词与测试清单.txt](/assets/docs/D06_AI提示词与测试清单.txt)
+3. [D03_课堂视频选题与AI应用方案.pdf](/assets/docs/D03_课堂视频选题与AI应用方案.pdf)
+4. [D04_存在缺陷的示例工程设计方案.pdf](/assets/docs/D04_存在缺陷的示例工程设计方案.pdf)
+5. [D05_课堂实录逐分钟讲稿.pdf](/assets/docs/D05_课堂实录逐分钟讲稿.pdf)
+6. [D06_AI提示词与测试清单.pdf](/assets/docs/D06_AI提示词与测试清单.pdf)
+7. [D07_问题版工程README.pdf](/assets/docs/D07_问题版工程README.pdf)
 
 ## 示例工程
 
 - 问题版工程路径：`第十五讲录课示例工程-问题版/`
+- 修复版工程路径：`第十五讲录课示例工程-修复版/`（待补齐）
 - 核心演示文件：
   - `LoginServlet.java`
   - `LogoutServlet.java`
   - `RoleBasedAuthFilter.java`
   - `index.jsp`
 
+## 三套测试清单（课堂可直接用）
+
+| 清单 | 关注点 | 项数 |
+|---|---|---|
+| 清单A | 核心权限验证 | 6项 |
+| 清单B | 视图与后端一致性 | 4项 |
+| 清单C | Session行为验证 | 3项 |
+
+详细模板来源：`第十五讲AI提示词与测试清单.md`。
+
 ## 证据命名规范
 
 - 截图：`Sxx_*.png`
-- 文档：`Dxx_*.pdf` 或 `Dxx_*.md`
+- 文档：`Dxx_*.pdf`
 - 图表数据：`Cxx_*.json`
 
-占位清单见 [evidence-index.md](/evidence-index)。
+证据清单见 [evidence-index.md](/evidence-index)。

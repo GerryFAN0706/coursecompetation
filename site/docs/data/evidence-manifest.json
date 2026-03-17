@@ -1,0 +1,86 @@
+[
+  {
+    "id": "S01",
+    "title": "Cursor Chat 代码审查界面",
+    "original": "/assets/evidence/original/S01_pending.png",
+    "anonymized": "/assets/evidence/anonymized/S01_pending.png",
+    "status": "pending-replacement"
+  },
+  {
+    "id": "S02",
+    "title": "Cursor 错误诊断界面",
+    "original": "/assets/evidence/original/S02_pending.png",
+    "anonymized": "/assets/evidence/anonymized/S02_pending.png",
+    "status": "pending-replacement"
+  },
+  {
+    "id": "S03",
+    "title": "实验题目生成对话",
+    "original": "/assets/evidence/original/S03_pending.png",
+    "anonymized": "/assets/evidence/anonymized/S03_pending.png",
+    "status": "pending-replacement"
+  },
+  {
+    "id": "S04",
+    "title": "题目分发界面",
+    "original": "/assets/evidence/original/S04_pending.png",
+    "anonymized": "/assets/evidence/anonymized/S04_pending.png",
+    "status": "pending-replacement"
+  },
+  {
+    "id": "S05",
+    "title": "数据统计面板",
+    "original": "/assets/evidence/original/S05_pending.png",
+    "anonymized": "/assets/evidence/anonymized/S05_pending.png",
+    "status": "pending-replacement"
+  },
+  {
+    "id": "S06",
+    "title": "JUnit 运行结果",
+    "original": "/assets/evidence/original/S06_pending.png",
+    "anonymized": "/assets/evidence/anonymized/S06_pending.png",
+    "status": "pending-replacement"
+  },
+  {
+    "id": "S07",
+    "title": "学生代码仓库",
+    "original": "/assets/evidence/original/S07_pending.png",
+    "anonymized": "/assets/evidence/anonymized/S07_pending.png",
+    "status": "pending-replacement"
+  },
+  {
+    "id": "S08",
+    "title": "GitHub Actions 构建日志",
+    "original": "/assets/evidence/original/S08_pending.png",
+    "anonymized": "/assets/evidence/anonymized/S08_pending.png",
+    "status": "pending-replacement"
+  },
+  {
+    "id": "S09",
+    "title": "课堂学生操作场景",
+    "original": "/assets/evidence/original/S09_pending.png",
+    "anonymized": "/assets/evidence/anonymized/S09_pending.png",
+    "status": "pending-replacement"
+  },
+  {
+    "id": "S10",
+    "title": "分组讨论场景",
+    "original": "/assets/evidence/original/S10_pending.png",
+    "anonymized": "/assets/evidence/anonymized/S10_pending.png",
+    "status": "pending-replacement"
+  },
+  {
+    "id": "S11",
+    "title": "课程开设证明截图",
+    "original": "/assets/evidence/original/S11_pending.png",
+    "anonymized": "/assets/evidence/anonymized/S11_pending.png",
+    "status": "pending-replacement"
+  },
+  {
+    "id": "S12",
+    "title": "网站首页截图",
+    "original": "/assets/evidence/original/S12_pending.png",
+    "anonymized": "/assets/evidence/anonymized/S12_pending.png",
+    "status": "pending-replacement"
+  }
+]
