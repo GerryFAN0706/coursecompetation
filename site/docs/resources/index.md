@@ -14,6 +14,8 @@ anonSafe: true
   <img src="/assets/svg/resources-hub.svg" alt="教学资源中枢图" />
 </div>
 
+<SamplePlaceholderBoard />
+
 ## 提示词模板库（按用途）
 
 <div class="waveb-grid">
@@ -42,6 +44,15 @@ anonSafe: true
 5. [D05_课堂实录逐分钟讲稿.pdf](/assets/docs/D05_课堂实录逐分钟讲稿.pdf)
 6. [D06_AI提示词与测试清单.pdf](/assets/docs/D06_AI提示词与测试清单.pdf)
 7. [D07_问题版工程README.pdf](/assets/docs/D07_问题版工程README.pdf)
+
+## 创新成果支撑材料（原始样本目录）
+
+以下内容来自 `创新成果支撑材料` 文件夹，已纳入网站展示规划：
+
+1. 成效数据：`成效数据汇总与图表说明.md`
+2. 学生作品证据：AI反馈报告、代码前后对比、分层实验报告
+3. 过程性证据：AI交互日志、课堂场景记录、提交时间线
+4. 评价反馈证据：问卷、同行听课、督导评价、评教说明
 
 ## 示例工程资源
 
