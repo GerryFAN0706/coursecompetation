@@ -1,0 +1,21 @@
+<svg width="1400" height="640" viewBox="0 0 1400 640" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1400" height="640" rx="24" fill="#F8FCFF"/>
+  <rect x="90" y="88" width="360" height="220" rx="18" fill="#E8F4FF" stroke="#9FC6E8"/>
+  <rect x="520" y="88" width="360" height="220" rx="18" fill="#ECFFFA" stroke="#9CD8C6"/>
+  <rect x="950" y="88" width="360" height="220" rx="18" fill="#FFF8EA" stroke="#E4C991"/>
+  <rect x="90" y="340" width="360" height="220" rx="18" fill="#EFF8FF" stroke="#A6CBE9"/>
+  <rect x="520" y="340" width="360" height="220" rx="18" fill="#F1FFFB" stroke="#A1DCCB"/>
+  <rect x="950" y="340" width="360" height="220" rx="18" fill="#FFF9F0" stroke="#E9D0A2"/>
+  <text x="126" y="148" font-size="28" fill="#0B4D6C" font-family="Segoe UI, sans-serif">提示词模板库</text>
+  <text x="126" y="192" font-size="20" fill="#2A6686" font-family="Segoe UI, sans-serif">审查 / 测试 / 反馈 / 纠偏</text>
+  <text x="556" y="148" font-size="28" fill="#0B4D6C" font-family="Segoe UI, sans-serif">测试清单模板</text>
+  <text x="556" y="192" font-size="20" fill="#226965" font-family="Segoe UI, sans-serif">A/B/C三套课堂验证清单</text>
+  <text x="986" y="148" font-size="28" fill="#0B4D6C" font-family="Segoe UI, sans-serif">文档下载包</text>
+  <text x="986" y="192" font-size="20" fill="#8C5E0E" font-family="Segoe UI, sans-serif">D01-D07 赛道支撑文档</text>
+  <text x="126" y="400" font-size="28" fill="#0B4D6C" font-family="Segoe UI, sans-serif">示例工程</text>
+  <text x="126" y="444" font-size="20" fill="#2A6686" font-family="Segoe UI, sans-serif">问题版 + 修复版（持续补齐）</text>
+  <text x="556" y="400" font-size="28" fill="#0B4D6C" font-family="Segoe UI, sans-serif">证据索引</text>
+  <text x="556" y="444" font-size="20" fill="#226965" font-family="Segoe UI, sans-serif">Sxx / Dxx / Cxx 命名体系</text>
+  <text x="986" y="400" font-size="28" fill="#0B4D6C" font-family="Segoe UI, sans-serif">复用指南</text>
+  <text x="986" y="444" font-size="20" fill="#8C5E0E" font-family="Segoe UI, sans-serif">迁移步骤与实施条件</text>
+</svg>

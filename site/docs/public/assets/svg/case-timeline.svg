@@ -1,0 +1,21 @@
+<svg width="1400" height="380" viewBox="0 0 1400 380" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1400" height="380" rx="22" fill="#F7FCFF"/>
+  <path d="M110 188H1290" stroke="#0D5C82" stroke-width="8" stroke-linecap="round"/>
+  <circle cx="180" cy="188" r="20" fill="#0D5C82"/>
+  <circle cx="420" cy="188" r="20" fill="#147AA5"/>
+  <circle cx="700" cy="188" r="20" fill="#0F9F87"/>
+  <circle cx="980" cy="188" r="20" fill="#0D5C82"/>
+  <circle cx="1220" cy="188" r="20" fill="#D17B00"/>
+  <text x="130" y="120" font-size="22" fill="#0B4D6C" font-family="Segoe UI, sans-serif">0-10 分钟</text>
+  <text x="74" y="150" font-size="20" fill="#2E6B8A" font-family="Segoe UI, sans-serif">问题导入 + 分组任务</text>
+  <text x="372" y="120" font-size="22" fill="#0B4D6C" font-family="Segoe UI, sans-serif">10-20 分钟</text>
+  <text x="314" y="150" font-size="20" fill="#2E6B8A" font-family="Segoe UI, sans-serif">AI审查 + 锁定风险</text>
+  <text x="652" y="120" font-size="22" fill="#0B4D6C" font-family="Segoe UI, sans-serif">20-30 分钟</text>
+  <text x="582" y="150" font-size="20" fill="#2E6B8A" font-family="Segoe UI, sans-serif">汇报 + 知识点对齐</text>
+  <text x="932" y="120" font-size="22" fill="#0B4D6C" font-family="Segoe UI, sans-serif">30-39 分钟</text>
+  <text x="858" y="150" font-size="20" fill="#2E6B8A" font-family="Segoe UI, sans-serif">修改代码 + 路径验证</text>
+  <text x="1170" y="120" font-size="22" fill="#0B4D6C" font-family="Segoe UI, sans-serif">39-45 分钟</text>
+  <text x="1088" y="150" font-size="20" fill="#2E6B8A" font-family="Segoe UI, sans-serif">复盘总结 + 课后延展</text>
+  <rect x="430" y="248" width="540" height="76" rx="14" fill="#E8F5FF" stroke="#A5CAE8"/>
+  <text x="468" y="296" font-size="24" fill="#0B4D6C" font-family="Segoe UI, sans-serif">课堂主线：发现问题 -> 修复问题 -> 验证问题</text>
+</svg>

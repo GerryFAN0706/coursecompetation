@@ -1,0 +1,20 @@
+<svg width="1400" height="620" viewBox="0 0 1400 620" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1400" height="620" rx="24" fill="#F9FCFF"/>
+  <rect x="80" y="90" width="560" height="450" rx="18" fill="#FFF3F2" stroke="#E0A3A0"/>
+  <rect x="760" y="90" width="560" height="450" rx="18" fill="#EEFFF8" stroke="#9ED7BF"/>
+  <text x="118" y="146" font-size="32" fill="#8A2F2A" font-family="Segoe UI, sans-serif">修复前（问题版）</text>
+  <text x="798" y="146" font-size="32" fill="#106A52" font-family="Segoe UI, sans-serif">修复后（课堂目标）</text>
+  <text x="118" y="210" font-size="23" fill="#8A2F2A" font-family="Segoe UI, sans-serif">1. USER 误入 /admin/panel</text>
+  <text x="118" y="252" font-size="23" fill="#8A2F2A" font-family="Segoe UI, sans-serif">2. 登录即显示后台入口</text>
+  <text x="118" y="294" font-size="23" fill="#8A2F2A" font-family="Segoe UI, sans-serif">3. 退出后会话失效不彻底</text>
+  <text x="798" y="210" font-size="23" fill="#106A52" font-family="Segoe UI, sans-serif">1. 未登录访问被拦截</text>
+  <text x="798" y="252" font-size="23" fill="#106A52" font-family="Segoe UI, sans-serif">2. USER 访问后台被拒绝</text>
+  <text x="798" y="294" font-size="23" fill="#106A52" font-family="Segoe UI, sans-serif">3. ADMIN 正常放行</text>
+  <text x="798" y="336" font-size="23" fill="#106A52" font-family="Segoe UI, sans-serif">4. 退出后再次访问被拦截</text>
+  <rect x="190" y="392" width="336" height="86" rx="12" fill="#FFDCD8"/>
+  <text x="218" y="444" font-size="24" fill="#8A2F2A" font-family="Segoe UI, sans-serif">风险：认证和授权混淆</text>
+  <rect x="862" y="392" width="336" height="86" rx="12" fill="#D7F9EA"/>
+  <text x="890" y="444" font-size="24" fill="#106A52" font-family="Segoe UI, sans-serif">结果：权限边界可验证</text>
+  <path d="M664 312H734" stroke="#0D5C82" stroke-width="8" stroke-linecap="round"/>
+  <path d="M708 286L744 312L708 338" fill="#0D5C82"/>
+</svg>

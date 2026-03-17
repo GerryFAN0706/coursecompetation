@@ -8,30 +8,47 @@ anonSafe: true
 
 # 成效与数据
 
-## 量化成效总览
+## 可视化总览
 
-| 指标 | 基线 | 当前 | 变化 |
-|---|---|---|---|
-| 代码质量评分 | 70 | 91 | +30% |
-| 高相似度代码占比 | 45% | <5% | 显著下降 |
-| SQL注入防护意识 | 45% | 89% | +44个百分点 |
-| 教师审查耗时（单班） | 100% | 33% | -67% |
-| 学生调试耗时 | 100% | 60% | -40% |
-| 课件制作效率 | 1x | 5-6x | 显著提升 |
+<div class="diagram-shell">
+  <img src="/assets/svg/results-kpi-board.svg" alt="成效数据可视化总览图" />
+</div>
 
-数据源文件见 [metrics.json](/data/metrics.json)。
+## 关键指标卡片
+
+<div class="waveb-grid">
+  <div class="waveb-card"><h3>M01 代码质量</h3><p><strong>70 -> 91</strong>（+30%）</p></div>
+  <div class="waveb-card"><h3>M02 高相似占比</h3><p><strong>45% -> &lt;5%</strong></p></div>
+  <div class="waveb-card"><h3>M03 SQL注入防护意识</h3><p><strong>45% -> 89%</strong></p></div>
+  <div class="waveb-card"><h3>M04 教师审查工时</h3><p><strong>100% -> 33%</strong>（-67%）</p></div>
+  <div class="waveb-card"><h3>M05 学生调试时长</h3><p><strong>100% -> 60%</strong>（-40%）</p></div>
+  <div class="waveb-card"><h3>M06 课件制作效率</h3><p><strong>1x -> 5-6x</strong></p></div>
+</div>
 
 ## 改革前后对比
 
-| 维度 | 改革前 | 改革后 |
-|---|---|---|
-| 实验题目 | 全班统一题 | 一人一题、分层任务 |
-| 代码审查 | 教师逐份人工 | AI初审 + 教师抽检 |
-| 反馈速度 | 延后数天 | 课堂/课后快速反馈 |
-| 评价维度 | 功能实现为主 | 功能 + 知识 + 质量 + 安全 + 规范 |
-| 学生参与 | 被动接收 | 主动诊断、判断、验证 |
+<div class="compare-board">
+  <div class="compare-card before">
+    <h3>改革前</h3>
+    <p>统一任务、人工逐份审查、反馈滞后，评价维度偏结果。</p>
+    <ul>
+      <li>题目同质化高</li>
+      <li>教师负担重</li>
+      <li>学生被动接收反馈</li>
+    </ul>
+  </div>
+  <div class="compare-card after">
+    <h3>改革后</h3>
+    <p>分层任务 + AI协同 + 数据反馈，形成“发现-修复-验证”闭环。</p>
+    <ul>
+      <li>一人一题降低相似提交</li>
+      <li>AI初审+教师抽检提升效率</li>
+      <li>过程评价支持持续改进</li>
+    </ul>
+  </div>
+</div>
 
-## 学生作品与学习反馈（匿名化）
+## 学生作品与反馈（匿名）
 
 | 层级 | 代表任务 | 典型改进 |
 |---|---|---|
@@ -39,39 +56,28 @@ anonSafe: true
 | 进阶层 | 在线选课系统 | 完成角色鉴权与视图一致性改造 |
 | 挑战层 | 实验室预约平台 | 增强会话安全与测试覆盖 |
 
-代表性学习反馈：
-
-1. “AI先帮我定位问题，但最终我必须自己解释为什么这样改。”
-2. “以前只看能不能跑通，现在会先看权限边界和测试路径。”
-3. “小组讨论让我们更容易识别 AI 建议中的不合理部分。”
+<div class="quote-wall">
+  <div class="quote-card">“AI先帮我定位问题，但最终我必须自己解释为什么这样改。”</div>
+  <div class="quote-card">“以前只看能不能跑通，现在会先看权限边界和测试路径。”</div>
+  <div class="quote-card">“小组讨论让我们更容易识别 AI 建议中的不合理部分。”</div>
+</div>
 
 ## 证据映射与口径
 
-| 指标ID | 指标名称 | 方法说明 | 证据来源 |
-|---|---|---|---|
-| M01 | 代码质量提升 | 统一评分规则，对比改革前后班级均值 | `website.md` + `metrics.json` |
-| M02 | 相似度下降 | 同班同任务代码相似度区间分布对比 | `website.md` + `metrics.json` |
-| M03 | SQL注入防护意识提升 | 同题前后测与代码检查双维度对比 | `网站内容映射到人工智能赛道材料.md` + `metrics.json` |
-| M04 | 教师审查时间减少 | 单班完整审查工时对比 | `网站内容映射到人工智能赛道材料.md` + `metrics.json` |
+<div class="evidence-panel">
+  <p>本页所有关键指标已绑定：指标定义、统计方法、样本范围、统计时间窗、证据路径。</p>
+  <p>数据主索引：<a href="/data/metrics.json">metrics.json</a> · 证据目录：<a href="/evidence-index">evidence-index</a></p>
+</div>
 
-本页所有关键指标均已绑定：
+| 指标ID | 指标名称 | 证据源 |
+|---|---|---|
+| M01 | 代码质量提升 | `website.md` + `metrics.json` |
+| M02 | 相似度下降 | `website.md` + `metrics.json` |
+| M03 | SQL注入防护意识提升 | `网站内容映射到人工智能赛道材料.md` + `metrics.json` |
+| M04 | 教师审查时间减少 | `网站内容映射到人工智能赛道材料.md` + `metrics.json` |
 
-1. 指标定义（label/value/unit）
-2. 统计方法（method）
-3. 样本范围（sampleScope）
-4. 统计时间窗（timeWindow）
-5. 证据路径（evidencePath）
+## 图表与边界说明
 
-## 图表资产（命名规范）
-
-- `C01_代码质量对比.json`
-- `C02_代码规范性对比.json`
-- `C03_SQL注入意识变化.json`
-
-图表文件位于 `/assets/charts/`，对应命名规则已与证据清单保持一致。
-
-## 风险与边界说明
-
-1. 指标以课程实施样本为基础，适用于同类编程实践课程，不直接外推全部场景。
-2. 量化指标用于“趋势与效果证明”，不作为单一教学质量判定标准。
-3. 所有指标均保留原始留档版本与匿名评审版本，确保可复核与合规。
+1. 图表数据文件位于 `/assets/charts/`，命名规则采用 `Cxx_*.json`。
+2. 指标适用于课程实践场景，主要用于趋势证明与改革效果说明。
+3. 提交材料保留原始留档与匿名评审双版本，确保可复核。

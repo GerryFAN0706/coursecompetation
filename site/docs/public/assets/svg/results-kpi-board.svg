@@ -1,0 +1,27 @@
+<svg width="1400" height="760" viewBox="0 0 1400 760" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1400" height="760" rx="24" fill="#F7FCFF"/>
+  <rect x="72" y="70" width="1258" height="126" rx="18" fill="#E8F4FF" stroke="#9CC6E7"/>
+  <text x="112" y="124" font-size="34" fill="#0B4D6C" font-family="Segoe UI, sans-serif">教学成效可视化总览</text>
+  <text x="112" y="164" font-size="21" fill="#2A6888" font-family="Segoe UI, sans-serif">指标来自课程实践样本，支持证据追溯与口径复核</text>
+  <rect x="90" y="238" width="380" height="470" rx="18" fill="#EFF8FF" stroke="#A8CBE8"/>
+  <rect x="510" y="238" width="380" height="470" rx="18" fill="#EEFFFA" stroke="#9CD8C6"/>
+  <rect x="930" y="238" width="380" height="470" rx="18" fill="#FFF9EE" stroke="#E2C898"/>
+  <text x="128" y="290" font-size="26" fill="#0B4D6C" font-family="Segoe UI, sans-serif">质量与规范</text>
+  <text x="548" y="290" font-size="26" fill="#0B4D6C" font-family="Segoe UI, sans-serif">安全与效率</text>
+  <text x="968" y="290" font-size="26" fill="#0B4D6C" font-family="Segoe UI, sans-serif">参与与反馈</text>
+  <rect x="140" y="350" width="64" height="230" rx="10" fill="#B8DCF3"/>
+  <rect x="230" y="318" width="64" height="262" rx="10" fill="#0D5C82"/>
+  <text x="130" y="620" font-size="16" fill="#2D6786" font-family="Segoe UI, sans-serif">改革前</text>
+  <text x="222" y="620" font-size="16" fill="#2D6786" font-family="Segoe UI, sans-serif">改革后</text>
+  <text x="118" y="652" font-size="17" fill="#245E7D" font-family="Segoe UI, sans-serif">代码质量 +30%</text>
+  <rect x="560" y="370" width="66" height="210" rx="10" fill="#BDE7DB"/>
+  <rect x="654" y="292" width="66" height="288" rx="10" fill="#0F9F87"/>
+  <text x="552" y="620" font-size="16" fill="#2A6D67" font-family="Segoe UI, sans-serif">改革前</text>
+  <text x="646" y="620" font-size="16" fill="#2A6D67" font-family="Segoe UI, sans-serif">改革后</text>
+  <text x="543" y="652" font-size="17" fill="#1F6A63" font-family="Segoe UI, sans-serif">防护意识 45%->89%</text>
+  <rect x="980" y="396" width="68" height="184" rx="10" fill="#F4DDAA"/>
+  <rect x="1078" y="328" width="68" height="252" rx="10" fill="#D17B00"/>
+  <text x="972" y="620" font-size="16" fill="#8E6012" font-family="Segoe UI, sans-serif">改革前</text>
+  <text x="1070" y="620" font-size="16" fill="#8E6012" font-family="Segoe UI, sans-serif">改革后</text>
+  <text x="954" y="652" font-size="17" fill="#875A10" font-family="Segoe UI, sans-serif">课堂参与显著提升</text>
+</svg>
