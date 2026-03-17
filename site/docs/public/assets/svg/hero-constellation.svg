@@ -1,0 +1,32 @@
+<svg width="1200" height="720" viewBox="0 0 1200 720" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="60" y1="30" x2="1160" y2="690" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#E8F7FF"/>
+      <stop offset="0.55" stop-color="#EFFFFA"/>
+      <stop offset="1" stop-color="#FFF7E8"/>
+    </linearGradient>
+    <linearGradient id="line" x1="180" y1="210" x2="1000" y2="500" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0D5C82"/>
+      <stop offset="1" stop-color="#0EA5A3"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="720" rx="26" fill="url(#bg)"/>
+  <circle cx="204" cy="163" r="66" fill="#C8EFFF" fill-opacity="0.55"/>
+  <circle cx="1024" cy="552" r="78" fill="#D4FFF2" fill-opacity="0.52"/>
+  <circle cx="934" cy="166" r="42" fill="#FFE5B0" fill-opacity="0.52"/>
+  <path d="M175 228L371 328L548 247L730 349L1008 247" stroke="url(#line)" stroke-width="6" stroke-linecap="round"/>
+  <path d="M175 228L320 501L548 247L730 349L890 574" stroke="#0B4D6C" stroke-opacity="0.28" stroke-width="4" stroke-linecap="round"/>
+  <circle cx="175" cy="228" r="18" fill="#0D5C82"/>
+  <circle cx="371" cy="328" r="20" fill="#147AA5"/>
+  <circle cx="548" cy="247" r="20" fill="#0F9F87"/>
+  <circle cx="730" cy="349" r="20" fill="#0D5C82"/>
+  <circle cx="1008" cy="247" r="20" fill="#147AA5"/>
+  <circle cx="320" cy="501" r="17" fill="#0F9F87"/>
+  <circle cx="890" cy="574" r="17" fill="#0D5C82"/>
+  <rect x="104" y="89" width="258" height="84" rx="14" fill="white" fill-opacity="0.88"/>
+  <text x="130" y="126" font-size="24" fill="#0B4D6C" font-family="Segoe UI, sans-serif">Problem Driven</text>
+  <text x="130" y="154" font-size="18" fill="#31718E" font-family="Segoe UI, sans-serif">AI Teaching Innovation</text>
+  <rect x="738" y="506" width="352" height="110" rx="16" fill="white" fill-opacity="0.9"/>
+  <text x="772" y="554" font-size="24" fill="#0B4D6C" font-family="Segoe UI, sans-serif">Evidence + Feedback Loop</text>
+  <text x="772" y="584" font-size="18" fill="#2E6C6A" font-family="Segoe UI, sans-serif">Course Practice / Review Ready</text>
+</svg>

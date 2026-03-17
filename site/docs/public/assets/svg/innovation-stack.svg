@@ -1,0 +1,26 @@
+<svg width="1400" height="820" viewBox="0 0 1400 820" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1400" height="820" rx="28" fill="#F7FCFF"/>
+  <rect x="66" y="78" width="1268" height="140" rx="20" fill="#E7F3FF" stroke="#9FC6E8"/>
+  <text x="108" y="136" font-size="34" fill="#0B4D6C" font-family="Segoe UI, sans-serif">数据输入层</text>
+  <text x="108" y="182" font-size="23" fill="#1F6182" font-family="Segoe UI, sans-serif">作业提交、测验成绩、代码审查记录、课堂互动输出</text>
+
+  <rect x="66" y="258" width="1268" height="170" rx="20" fill="#ECFFFA" stroke="#98D8C8"/>
+  <text x="108" y="320" font-size="34" fill="#0B4D6C" font-family="Segoe UI, sans-serif">AI处理与决策层</text>
+  <text x="108" y="366" font-size="23" fill="#206C67" font-family="Segoe UI, sans-serif">学情聚类、分层任务生成、知识点映射、风险识别、反馈生成</text>
+  <text x="108" y="402" font-size="22" fill="#206C67" font-family="Segoe UI, sans-serif">工具链：LLM + 规则模板 + 测试清单 + 教师复核机制</text>
+
+  <rect x="66" y="470" width="1268" height="170" rx="20" fill="#FFF8EA" stroke="#E4C991"/>
+  <text x="108" y="532" font-size="34" fill="#0B4D6C" font-family="Segoe UI, sans-serif">教学执行层</text>
+  <text x="108" y="578" font-size="23" fill="#8C5F0E" font-family="Segoe UI, sans-serif">课前分层任务 -> 课中诊断修复 -> 课后反馈迭代</text>
+  <text x="108" y="614" font-size="22" fill="#8C5F0E" font-family="Segoe UI, sans-serif">角色协同：教师主导、学生主体、AI协同</text>
+
+  <rect x="396" y="678" width="602" height="86" rx="18" fill="#DDF2FF" stroke="#9FC6E8"/>
+  <text x="438" y="732" font-size="30" fill="#0B4D6C" font-family="Segoe UI, sans-serif">闭环输出：可验证成效 + 可复制模式</text>
+
+  <path d="M700 220V252" stroke="#0D5C82" stroke-width="8" stroke-linecap="round"/>
+  <path d="M700 430V462" stroke="#0D5C82" stroke-width="8" stroke-linecap="round"/>
+  <path d="M700 640V672" stroke="#0D5C82" stroke-width="8" stroke-linecap="round"/>
+  <path d="M679 242L700 268L721 242" fill="#0D5C82"/>
+  <path d="M679 452L700 478L721 452" fill="#0D5C82"/>
+  <path d="M679 662L700 688L721 662" fill="#0D5C82"/>
+</svg>

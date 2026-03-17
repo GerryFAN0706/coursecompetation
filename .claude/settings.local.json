@@ -1,7 +1,11 @@
 {
   "permissions": {
     "allow": [
-      "WebFetch(domain:gerryfan0706.github.io)"
+      "WebFetch(domain:gerryfan0706.github.io)",
+      "Bash(for f:*)",
+      "Bash(do echo:*)",
+      "Read(//c/Users/Administrator/Documents/cursor workplace/coursecompetation/**)",
+      "Bash(done)"
     ]
   }
 }

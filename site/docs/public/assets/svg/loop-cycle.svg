@@ -1,0 +1,38 @@
+<svg width="1400" height="500" viewBox="0 0 1400 500" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="cardA" x1="120" y1="90" x2="390" y2="390" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#E7F5FF"/>
+      <stop offset="1" stop-color="#D9F0FF"/>
+    </linearGradient>
+    <linearGradient id="cardB" x1="540" y1="90" x2="860" y2="390" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#EFFFFA"/>
+      <stop offset="1" stop-color="#DFFBF2"/>
+    </linearGradient>
+    <linearGradient id="cardC" x1="980" y1="90" x2="1280" y2="390" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFF8E8"/>
+      <stop offset="1" stop-color="#FFEED0"/>
+    </linearGradient>
+  </defs>
+  <rect width="1400" height="500" rx="24" fill="#F8FCFF"/>
+  <rect x="90" y="86" width="340" height="312" rx="18" fill="url(#cardA)" stroke="#8FC1E1"/>
+  <rect x="530" y="86" width="340" height="312" rx="18" fill="url(#cardB)" stroke="#8DD4C0"/>
+  <rect x="970" y="86" width="340" height="312" rx="18" fill="url(#cardC)" stroke="#E0C68C"/>
+  <text x="128" y="136" font-size="34" fill="#0B4D6C" font-family="Segoe UI, sans-serif">课前</text>
+  <text x="568" y="136" font-size="34" fill="#0B4D6C" font-family="Segoe UI, sans-serif">课中</text>
+  <text x="1008" y="136" font-size="34" fill="#0B4D6C" font-family="Segoe UI, sans-serif">课后</text>
+  <text x="128" y="190" font-size="22" fill="#1C5D7F" font-family="Segoe UI, sans-serif">学情分析</text>
+  <text x="128" y="228" font-size="22" fill="#1C5D7F" font-family="Segoe UI, sans-serif">分层任务生成</text>
+  <text x="128" y="266" font-size="22" fill="#1C5D7F" font-family="Segoe UI, sans-serif">实验手册与测试清单</text>
+  <text x="568" y="190" font-size="22" fill="#1A6A67" font-family="Segoe UI, sans-serif">AI代码审查</text>
+  <text x="568" y="228" font-size="22" fill="#1A6A67" font-family="Segoe UI, sans-serif">教师纠偏引导</text>
+  <text x="568" y="266" font-size="22" fill="#1A6A67" font-family="Segoe UI, sans-serif">学生修改与验证</text>
+  <text x="1008" y="190" font-size="22" fill="#875E0B" font-family="Segoe UI, sans-serif">智能反馈报告</text>
+  <text x="1008" y="228" font-size="22" fill="#875E0B" font-family="Segoe UI, sans-serif">个性化学习建议</text>
+  <text x="1008" y="266" font-size="22" fill="#875E0B" font-family="Segoe UI, sans-serif">教师精准干预</text>
+  <path d="M434 244H509" stroke="#0D5C82" stroke-width="8" stroke-linecap="round"/>
+  <path d="M874 244H949" stroke="#0D5C82" stroke-width="8" stroke-linecap="round"/>
+  <path d="M492 220L525 244L492 268" fill="#0D5C82"/>
+  <path d="M932 220L965 244L932 268" fill="#0D5C82"/>
+  <rect x="460" y="418" width="484" height="48" rx="24" fill="#0D5C82" fill-opacity="0.1"/>
+  <text x="492" y="450" font-size="22" fill="#0B4D6C" font-family="Segoe UI, sans-serif">学情 -> 任务 -> 实践 -> 反馈 -> 干预（教学闭环）</text>
+</svg>
