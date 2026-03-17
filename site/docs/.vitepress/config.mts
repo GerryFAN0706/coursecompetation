@@ -26,6 +26,7 @@ export default defineConfig({
             { text: "核心案例：第15讲", link: "/cases/lesson-15/" },
             { text: "成效与数据", link: "/results/" },
             { text: "教学资源", link: "/resources/" },
+            { text: "学生作品证据", link: "/resources/student-evidence/" },
             { text: "课程概览", link: "/course/" },
             { text: "推广与复用", link: "/promotion/" },
             { text: "关于", link: "/about/" },
