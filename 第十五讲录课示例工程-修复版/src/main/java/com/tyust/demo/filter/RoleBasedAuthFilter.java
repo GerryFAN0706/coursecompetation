@@ -1,5 +1,7 @@
 package com.tyust.demo.filter;
 
+import com.tyust.demo.model.User;
+
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
@@ -20,10 +22,16 @@ public class RoleBasedAuthFilter implements Filter {
         HttpServletResponse response = (HttpServletResponse) res;
         HttpSession session = request.getSession(false);
 
-        boolean loggedIn = session != null && Boolean.TRUE.equals(session.getAttribute(“isLoggedIn”));
+        if (session == null) {
+            response.sendRedirect(request.getContextPath() + "/login.jsp");
+            return;
+        }
 
-        if (loggedIn) {
+        User user = (User) session.getAttribute("user");
+        if (user != null && "ADMIN".equals(user.getRole())) {
             chain.doFilter(req, res);
+        } else if (user != null) {
+            response.sendError(HttpServletResponse.SC_FORBIDDEN);
         } else {
             response.sendRedirect(request.getContextPath() + "/login.jsp");
         }

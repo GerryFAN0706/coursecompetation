@@ -1,0 +1,81 @@
+:root {
+  --vp-c-brand-1: #0d5c82;
+  --vp-c-brand-2: #147aa5;
+  --vp-c-brand-3: #0b4d6c;
+  --vp-c-brand-soft: rgba(20, 122, 165, 0.14);
+  --vp-home-hero-name-color: transparent;
+  --vp-home-hero-name-background: linear-gradient(120deg, #0d5c82 25%, #0ea5a3 70%);
+  --vp-home-hero-image-background-image: linear-gradient(135deg, rgba(13, 92, 130, 0.2), rgba(14, 165, 163, 0.16));
+  --vp-home-hero-image-filter: blur(44px);
+}
+
+body {
+  font-family: "Segoe UI", "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
+  background:
+    radial-gradient(circle at 6% -8%, rgba(13, 92, 130, 0.1), transparent 40%),
+    radial-gradient(circle at 94% 12%, rgba(14, 165, 163, 0.08), transparent 35%),
+    #ffffff;
+}
+
+.vp-doc h2 {
+  border-left: 4px solid var(--vp-c-brand-1);
+  padding-left: 10px;
+}
+
+.summary-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 12px;
+  margin: 16px 0 20px;
+}
+
+.summary-card {
+  border: 1px solid rgba(13, 92, 130, 0.22);
+  background: linear-gradient(170deg, rgba(13, 92, 130, 0.06), rgba(14, 165, 163, 0.08));
+  border-radius: 12px;
+  padding: 14px;
+  transform: translateY(0);
+  transition: transform 0.22s ease;
+}
+
+.summary-card:hover {
+  transform: translateY(-3px);
+}
+
+.metrics-strip {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 10px;
+  margin: 14px 0 20px;
+}
+
+.metric-box {
+  border-radius: 10px;
+  padding: 12px;
+  background: #f4fbff;
+  border: 1px solid rgba(12, 90, 126, 0.2);
+}
+
+.metric-value {
+  font-size: 26px;
+  color: #0b4d6c;
+  font-weight: 700;
+}
+
+.flow-block {
+  background: linear-gradient(120deg, #f5fcff 0%, #ecffff 100%);
+  border: 1px solid rgba(13, 92, 130, 0.2);
+  border-radius: 12px;
+  padding: 14px;
+  overflow-x: auto;
+}
+
+.tag-line {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: rgba(13, 92, 130, 0.1);
+  color: #0b4d6c;
+  font-weight: 600;
+}

@@ -1,0 +1,14 @@
+{
+  "id": "C02",
+  "title": "代码规范性提升前后对比",
+  "type": "bar",
+  "categories": ["改革前", "改革后"],
+  "series": [
+    {
+      "name": "规范性得分",
+      "data": [62, 85]
+    }
+  ],
+  "source": "website.md",
+  "notes": "规范性评分维度将于正式提交前公开。"
+}

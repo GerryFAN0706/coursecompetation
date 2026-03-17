@@ -1,0 +1,19 @@
+import { ssrRenderAttrs } from "vue/server-renderer";
+import { useSSRContext } from "vue";
+import { _ as _export_sfc } from "./plugin-vue_export-helper.1tPrXgE0.js";
+const __pageData = JSON.parse('{"title":"教学资源","description":"提供课堂与赛道材料所需的提示词、测试清单、文档与证据资源。","frontmatter":{"title":"教学资源","description":"提供课堂与赛道材料所需的提示词、测试清单、文档与证据资源。","lastUpdated":"2026-03-17T00:00:00.000Z","evidenceLevel":"public","anonSafe":true},"headers":[],"relativePath":"resources/index.md","filePath":"resources/index.md","lastUpdated":1773705600000}');
+const _sfc_main = { name: "resources/index.md" };
+function _sfc_ssrRender(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
+  _push(`<div${ssrRenderAttrs(_attrs)}><h1 id="教学资源" tabindex="-1">教学资源 <a class="header-anchor" href="#教学资源" aria-label="Permalink to &quot;教学资源&quot;">​</a></h1><h2 id="资源总览" tabindex="-1">资源总览 <a class="header-anchor" href="#资源总览" aria-label="Permalink to &quot;资源总览&quot;">​</a></h2><p>本页聚焦 Phase 1 可直接复用资源：提示词、测试清单、教学文档、示例工程与证据映射规范。</p><h2 id="ai提示词与测试清单" tabindex="-1">AI提示词与测试清单 <a class="header-anchor" href="#ai提示词与测试清单" aria-label="Permalink to &quot;AI提示词与测试清单&quot;">​</a></h2><ul><li>源文档：<code>第十五讲AI提示词与测试清单.md</code></li><li>用途：课堂分组审查、最小验证路径、课后个性化反馈</li><li>建议文件：<code>D20_AI提示词与测试清单.pdf</code>（提交前导出）</li></ul><h2 id="课堂实录讲稿" tabindex="-1">课堂实录讲稿 <a class="header-anchor" href="#课堂实录讲稿" aria-label="Permalink to &quot;课堂实录讲稿&quot;">​</a></h2><ul><li>源文档：<code>第十五讲课堂实录逐分钟讲稿.md</code></li><li>用途：40-50分钟课堂实录脚本与拍摄执行</li><li>建议文件：<code>D21_课堂实录讲稿.pdf</code>（提交前导出）</li></ul><h2 id="可下载文档-当前已接入" tabindex="-1">可下载文档（当前已接入） <a class="header-anchor" href="#可下载文档-当前已接入" aria-label="Permalink to &quot;可下载文档（当前已接入）&quot;">​</a></h2><ol><li><a href="/coursecompetation/assets/docs/D01_%E6%95%99%E5%AD%A6%E5%A4%A7%E7%BA%B2.pdf">D01_教学大纲.pdf</a></li><li><a href="/coursecompetation/assets/docs/D02_%E7%AC%AC%E5%8D%81%E4%BA%94%E8%AE%B2%E6%95%99%E5%AD%A6%E8%AE%BE%E8%AE%A1.pdf">D02_第十五讲教学设计.pdf</a></li><li><a href="/coursecompetation/assets/docs/D03_%E8%AF%BE%E5%A0%82%E8%A7%86%E9%A2%91%E9%80%89%E9%A2%98%E4%B8%8EAI%E5%BA%94%E7%94%A8%E6%96%B9%E6%A1%88.txt">D03_课堂视频选题与AI应用方案.txt</a></li><li><a href="/coursecompetation/assets/docs/D04_%E5%AD%98%E5%9C%A8%E7%BC%BA%E9%99%B7%E7%9A%84%E7%A4%BA%E4%BE%8B%E5%B7%A5%E7%A8%8B%E8%AE%BE%E8%AE%A1%E6%96%B9%E6%A1%88.txt">D04_存在缺陷的示例工程设计方案.txt</a></li><li><a href="/coursecompetation/assets/docs/D05_%E8%AF%BE%E5%A0%82%E5%AE%9E%E5%BD%95%E9%80%90%E5%88%86%E9%92%9F%E8%AE%B2%E7%A8%BF.txt">D05_课堂实录逐分钟讲稿.txt</a></li><li><a href="/coursecompetation/assets/docs/D06_AI%E6%8F%90%E7%A4%BA%E8%AF%8D%E4%B8%8E%E6%B5%8B%E8%AF%95%E6%B8%85%E5%8D%95.txt">D06_AI提示词与测试清单.txt</a></li></ol><h2 id="示例工程" tabindex="-1">示例工程 <a class="header-anchor" href="#示例工程" aria-label="Permalink to &quot;示例工程&quot;">​</a></h2><ul><li>问题版工程路径：<code>第十五讲录课示例工程-问题版/</code></li><li>核心演示文件： <ul><li><code>LoginServlet.java</code></li><li><code>LogoutServlet.java</code></li><li><code>RoleBasedAuthFilter.java</code></li><li><code>index.jsp</code></li></ul></li></ul><h2 id="证据命名规范" tabindex="-1">证据命名规范 <a class="header-anchor" href="#证据命名规范" aria-label="Permalink to &quot;证据命名规范&quot;">​</a></h2><ul><li>截图：<code>Sxx_*.png</code></li><li>文档：<code>Dxx_*.pdf</code> 或 <code>Dxx_*.md</code></li><li>图表数据：<code>Cxx_*.json</code></li></ul><p>占位清单见 <a href="/coursecompetation/evidence-index">evidence-index.md</a>。</p></div>`);
+}
+const _sfc_setup = _sfc_main.setup;
+_sfc_main.setup = (props, ctx) => {
+  const ssrContext = useSSRContext();
+  (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("resources/index.md");
+  return _sfc_setup ? _sfc_setup(props, ctx) : void 0;
+};
+const index = /* @__PURE__ */ _export_sfc(_sfc_main, [["ssrRender", _sfc_ssrRender]]);
+export {
+  __pageData,
+  index as default
+};

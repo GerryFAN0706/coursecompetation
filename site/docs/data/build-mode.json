@@ -1,0 +1,5 @@
+{
+  "mode": "public",
+  "description": "public = anonymized judge-facing build; internal = original evidence build",
+  "lastUpdated": "2026-03-17"
+}

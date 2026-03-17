@@ -1,0 +1,52 @@
+[
+  {
+    "id": "M01",
+    "label": "代码质量提升",
+    "value": 30,
+    "unit": "%",
+    "baseline": "改革前平均得分 70",
+    "current": "改革后平均得分 91",
+    "source": "website.md",
+    "notes": "评分规则统一，样本规模与时间窗待正式提交前补齐。"
+  },
+  {
+    "id": "M02",
+    "label": "高相似度代码占比",
+    "value": "<5",
+    "unit": "%",
+    "baseline": "约45%",
+    "current": "<5%",
+    "source": "website.md",
+    "notes": "同班同任务代码相似度分布统计。"
+  },
+  {
+    "id": "M03",
+    "label": "SQL注入防护意识",
+    "value": 89,
+    "unit": "%",
+    "baseline": "45%",
+    "current": "89%",
+    "source": "网站内容映射到人工智能赛道材料.md",
+    "notes": "通过测验与代码检查双维度评估。"
+  },
+  {
+    "id": "M04",
+    "label": "教师审查时间减少",
+    "value": 67,
+    "unit": "%",
+    "baseline": "100%",
+    "current": "33%",
+    "source": "网站内容映射到人工智能赛道材料.md",
+    "notes": "单班审查总工时对比。"
+  },
+  {
+    "id": "M05",
+    "label": "学生调试时间减少",
+    "value": 40,
+    "unit": "%",
+    "baseline": "100%",
+    "current": "60%",
+    "source": "website.md",
+    "notes": "课堂任务与课后迭代综合统计。"
+  }
+]
