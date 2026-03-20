@@ -8,220 +8,147 @@ anonSafe: true
 
 # 教学资源
 
-本页面是 Java Web 课程全部教学资源的中央枢纽。无论您是评审专家快速核验材料，还是教师同行寻找可复用的 AI 融合教学方案，都可以从这里出发，按需获取课程文档、AI 提示词模板、课堂测试清单以及学生实践证据。所有资源均采用统一编号体系，确保可追溯、可复现。
-
-<div class="section-divider"></div>
+<div class="section-lead">本页面汇聚课程全部教学资源，包括文档下载、AI提示词库、测试清单和学生作品证据。所有资源均经过结构化整理，支持评审快速定位与深度核验。</div>
 
 ## 资源总览
 
 <div class="metric-hero">
   <div class="metric-hero-card">
     <div class="num blue">7</div>
-    <div class="label">课程文档</div>
+    <div class="label">核心文档（D01-D07）</div>
   </div>
   <div class="metric-hero-card">
-    <div class="num cyan">12+</div>
-    <div class="label">提示词模板</div>
+    <div class="num cyan">10</div>
+    <div class="label">AI提示词模板</div>
   </div>
   <div class="metric-hero-card">
     <div class="num emerald">3</div>
-    <div class="label">测试清单套件</div>
+    <div class="label">课堂测试清单</div>
   </div>
   <div class="metric-hero-card">
-    <div class="num amber">30+</div>
-    <div class="label">学生证据条目</div>
+    <div class="num amber">8</div>
+    <div class="label">学生作品样本</div>
   </div>
 </div>
 
-<div class="section-divider"></div>
-
-## 资源分类导航
+## 快速入口
 
 <div class="summary-grid">
   <div class="summary-card">
-    <div class="summary-icon">📑</div>
-    <h3>文档下载</h3>
-    <p>D01-D07 全量课程文档，涵盖教学大纲、教学设计、课堂实录讲稿等核心材料，支持评审一键下载核验。</p>
+    <div class="summary-icon">🧠</div>
+    <h3>AI提示词库</h3>
+    <p>覆盖课前-课中-课后全流程的10条提示词模板，可直接复用。</p>
+    <p><a href="/resources/prompts/">进入提示词库 →</a></p>
   </div>
   <div class="summary-card">
-    <div class="summary-icon">🤖</div>
-    <h3>提示词库</h3>
-    <p>覆盖代码审查、错误定位、反馈生成、课堂任务纠偏等场景的 AI 提示词模板，可直接复用于教学实践。</p>
-  </div>
-  <div class="summary-card">
-    <div class="summary-icon">✅</div>
-    <h3>测试清单</h3>
-    <p>三套结构化测试清单（A/B/C），分别面向权限验证、视图一致性与 Session 行为，支撑课堂即时检测。</p>
+    <div class="summary-icon">📦</div>
+    <h3>课程文档下载</h3>
+    <p>D01-D07全量文档，支持评审快速核验。</p>
+    <p><a href="#课程文档下载-d01-d07">查看下载列表 ↓</a></p>
   </div>
   <div class="summary-card">
     <div class="summary-icon">🎓</div>
-    <h3>学生证据</h3>
-    <p>采用"摘要卡片 + PDF 原件"双层呈现方式，完整记录学生在 AI 辅助教学中的实践产出与成长轨迹。</p>
+    <h3>学生作品证据</h3>
+    <p>采用"摘要卡片 + PDF原件"双层呈现。</p>
+    <p><a href="/resources/student-evidence/">进入证据页 →</a></p>
+  </div>
+  <div class="summary-card">
+    <div class="summary-icon">🧪</div>
+    <h3>测试验证清单</h3>
+    <p>三套课堂测试清单，覆盖权限、一致性、Session验证。</p>
+    <p><a href="#三套课堂测试清单">查看清单 ↓</a></p>
   </div>
 </div>
 
 <div class="section-divider"></div>
 
-## 课程文档下载（D01 - D07）
+## 课程文档下载（D01-D07）
 
 <div class="info-box blue">
-  <span class="icon">📋</span>
-  <div>以下七份文档构成本课程完整的教学设计与实施证据链，编号 D01-D07，与竞赛材料清单一一对应。点击即可下载 PDF 原件。</div>
+  <span class="icon">📂</span>
+  <div>以下文档为参赛提交的完整支撑材料。点击即可下载PDF原件。文档编号与竞赛材料清单一一对应。</div>
 </div>
 
 <div class="download-grid">
   <a class="download-card" href="/assets/docs/D01_教学大纲.pdf">
     <div class="file-icon">📄</div>
-    <div class="file-info">
-      <h4>D01 教学大纲</h4>
-      <p>Java Web 程序设计课程教学大纲，明确课程目标、知识模块与 AI 融合策略。</p>
-    </div>
+    <div class="file-info"><h4>D01 教学大纲</h4><p>48学时完整课程大纲，含16讲教学安排与能力目标</p></div>
   </a>
   <a class="download-card" href="/assets/docs/D02_第十五讲教学设计.pdf">
     <div class="file-icon">📄</div>
-    <div class="file-info">
-      <h4>D02 第十五讲教学设计</h4>
-      <p>围绕"登录鉴权 + Session 管理"主题的完整教学设计方案，含 AI 辅助环节规划。</p>
-    </div>
+    <div class="file-info"><h4>D02 第十五讲教学设计</h4><p>录课对应教案，含教学目标、活动设计与评价方案</p></div>
   </a>
   <a class="download-card" href="/assets/docs/D03_课堂视频选题与AI应用方案.pdf">
     <div class="file-icon">📄</div>
-    <div class="file-info">
-      <h4>D03 课堂视频选题与 AI 应用方案</h4>
-      <p>说明课堂录像选题理由及 AI 工具在课堂各环节的具体应用方案。</p>
-    </div>
+    <div class="file-info"><h4>D03 视频选题与AI方案</h4><p>课堂录制选题说明与AI应用场景设计</p></div>
   </a>
   <a class="download-card" href="/assets/docs/D04_存在缺陷的示例工程设计方案.pdf">
     <div class="file-icon">📄</div>
-    <div class="file-info">
-      <h4>D04 存在缺陷的示例工程设计方案</h4>
-      <p>精心设计的"问题版"工程方案，内含权限越权、Session 失效等典型缺陷，供学生诊断修复。</p>
-    </div>
+    <div class="file-info"><h4>D04 缺陷示例工程方案</h4><p>教学用"问题版"Java Web工程的设计说明</p></div>
   </a>
   <a class="download-card" href="/assets/docs/D05_课堂实录逐分钟讲稿.pdf">
     <div class="file-icon">📄</div>
-    <div class="file-info">
-      <h4>D05 课堂实录逐分钟讲稿</h4>
-      <p>课堂录像的逐分钟讲稿记录，精确对应视频时间轴，便于评审快速定位关键教学节点。</p>
-    </div>
+    <div class="file-info"><h4>D05 课堂实录讲稿</h4><p>45分钟课堂逐分钟脚本与教学节奏说明</p></div>
   </a>
   <a class="download-card" href="/assets/docs/D06_AI提示词与测试清单.pdf">
     <div class="file-icon">📄</div>
-    <div class="file-info">
-      <h4>D06 AI 提示词与测试清单</h4>
-      <p>汇总课堂实际使用的全部 AI 提示词模板及三套结构化测试清单。</p>
-    </div>
+    <div class="file-info"><h4>D06 AI提示词与测试清单</h4><p>课堂使用的全部AI提示词模板与验证清单</p></div>
   </a>
   <a class="download-card" href="/assets/docs/D07_问题版工程README.pdf">
     <div class="file-icon">📄</div>
-    <div class="file-info">
-      <h4>D07 问题版工程 README</h4>
-      <p>问题版工程的说明文档，列出已植入的缺陷清单与学生排查路径指引。</p>
-    </div>
+    <div class="file-info"><h4>D07 问题版工程README</h4><p>学生实验用问题工程的使用说明与缺陷索引</p></div>
   </a>
 </div>
 
 <div class="section-divider"></div>
 
-## 课堂测试清单（三套）
+## 三套课堂测试清单
 
 <div class="info-box emerald">
   <span class="icon">🧪</span>
-  <div>三套测试清单对应课堂实践的三个核心验证维度，学生在 AI 辅助下逐项完成检测，确保代码修复的完整性与正确性。详细内容见文档 D06。</div>
-</div>
-
-| 清单 | 验证目标 | 检测项数 | 覆盖范围 |
-|:---:|---|:---:|---|
-| **清单 A** | 核心权限验证 | 6 项 | 拦截器配置、角色鉴权、越权访问拦截、未登录重定向等 |
-| **清单 B** | 视图与后端一致性验证 | 4 项 | JSP 页面渲染、Controller 返回值、数据绑定、错误页面跳转等 |
-| **清单 C** | Session 行为验证 | 3 项 | Session 创建与销毁、超时处理、多标签页一致性等 |
-
-<div class="flow-grid">
-  <div class="flow-card">
-    <div class="step-num">1</div>
-    <h4>AI 辅助定位缺陷</h4>
-    <p>学生使用提示词模板让 AI 分析问题版工程代码，定位潜在缺陷位置。</p>
-  </div>
-  <div class="flow-card">
-    <div class="step-num">2</div>
-    <h4>手动修复代码</h4>
-    <p>学生根据 AI 反馈独立编写修复代码，培养实际调试能力。</p>
-  </div>
-  <div class="flow-card">
-    <div class="step-num">3</div>
-    <h4>执行测试清单</h4>
-    <p>按 A/B/C 三套清单逐项验证修复效果，确保覆盖全部缺陷场景。</p>
-  </div>
-  <div class="flow-card">
-    <div class="step-num">4</div>
-    <h4>AI 评审反馈</h4>
-    <p>将测试结果提交 AI 获取总结性反馈，形成闭环学习。</p>
-  </div>
-</div>
-
-<div class="section-divider"></div>
-
-## 提示词模板库
-
-<div class="info-box amber">
-  <span class="icon">💡</span>
-  <div>提示词库收录了课堂实际使用的全部 AI 提示词模板，按"代码审查、错误定位、反馈生成、任务纠偏"四类场景组织，每条提示词均附有使用说明与预期输出示例。</div>
-</div>
-
-<div class="waveb-grid">
-  <div class="waveb-card">
-    <h3>代码审查类</h3>
-    <p>引导 AI 从安全性、规范性、可维护性三个维度审查学生代码，输出结构化审查报告。</p>
-  </div>
-  <div class="waveb-card">
-    <h3>错误定位类</h3>
-    <p>帮助学生向 AI 精确描述异常现象，获得缺陷根因分析与修复建议。</p>
-  </div>
-  <div class="waveb-card">
-    <h3>反馈生成类</h3>
-    <p>让 AI 基于测试清单执行结果生成个性化学习反馈与改进建议。</p>
-  </div>
-  <div class="waveb-card">
-    <h3>任务纠偏类</h3>
-    <p>当学生偏离实践目标时，AI 通过引导性提问帮助其回归正确修复路径。</p>
-  </div>
-</div>
-
-**[进入提示词模板库 >>>](/resources/prompts/)**
-
-<div class="section-divider"></div>
-
-## 学生实践证据
-
-<div class="info-box blue">
-  <span class="icon">📂</span>
-  <div>学生证据页采用"摘要卡片 + PDF 原件"双层呈现方式。摘要卡片快速展示核心信息，点击可查看完整 PDF 证据文件，确保评审效率与材料完整性兼顾。</div>
+  <div>测试清单用于课堂"修复→验证"环节，学生完成代码修改后按清单逐项验证。每项测试均绑定具体知识点，确保验证过程即学习过程。</div>
 </div>
 
 <div class="summary-grid">
   <div class="summary-card">
-    <div class="summary-icon">📝</div>
-    <h3>AI 对话记录</h3>
-    <p>学生与 AI 工具的完整交互记录，展示提示词使用与多轮对话策略。</p>
+    <div class="summary-icon">🔐</div>
+    <h3>清单A：核心权限验证</h3>
+    <p><strong>6项测试</strong> — 覆盖未登录拦截、角色区分、越权防护、URL直接访问等核心授权场景</p>
   </div>
   <div class="summary-card">
-    <div class="summary-icon">🔧</div>
-    <h3>代码修复产出</h3>
-    <p>问题版工程的修复前后对比，含 Git diff 与关键代码片段截图。</p>
+    <div class="summary-icon">🖥️</div>
+    <h3>清单B：视图一致性验证</h3>
+    <p><strong>4项测试</strong> — 验证JSP菜单渲染与后端Filter权限控制的一致性</p>
   </div>
   <div class="summary-card">
-    <div class="summary-icon">📊</div>
-    <h3>测试验证结果</h3>
-    <p>三套清单的逐项通过记录，证明修复方案的完整性与正确性。</p>
-  </div>
-  <div class="summary-card">
-    <div class="summary-icon">💬</div>
-    <h3>学习反思报告</h3>
-    <p>学生对 AI 辅助学习过程的总结与反思，体现高阶思维培养成效。</p>
+    <div class="summary-icon">🔄</div>
+    <h3>清单C：Session行为验证</h3>
+    <p><strong>3项测试</strong> — 验证登录建立、登出销毁、Session属性完整性</p>
   </div>
 </div>
 
-**[进入学生作品证据页 >>>](/resources/student-evidence/)**
+<div class="flow-grid">
+  <div class="flow-card">
+    <div class="step-num">1</div>
+    <h4>AI诊断</h4>
+    <p>分组使用提示词审查代码缺陷</p>
+  </div>
+  <div class="flow-card">
+    <div class="step-num">2</div>
+    <h4>代码修复</h4>
+    <p>学生根据诊断结果修改代码</p>
+  </div>
+  <div class="flow-card">
+    <div class="step-num">3</div>
+    <h4>清单验证</h4>
+    <p>按测试清单逐项运行验证</p>
+  </div>
+  <div class="flow-card">
+    <div class="step-num">4</div>
+    <h4>结果记录</h4>
+    <p>记录通过/未通过项，分析原因</p>
+  </div>
+</div>
 
 <div class="section-divider"></div>
 
@@ -229,23 +156,16 @@ anonSafe: true
 
 <SamplePlaceholderBoard />
 
-<div class="section-divider"></div>
-
 ## 命名契约与证据索引
 
-<div class="info-box emerald">
-  <span class="icon">🏷️</span>
-  <div>全站所有支撑材料采用统一编号前缀命名，便于在文档、页面、文件系统之间快速定位与交叉引用。</div>
+<div class="info-box blue">
+  <span class="icon">📋</span>
+  <div>所有教学证据采用统一命名规则，便于评审快速追溯与交叉验证。</div>
 </div>
 
-| 前缀 | 类型 | 格式示例 | 存储位置 |
-|:---:|---|---|---|
-| **Sxx** | 截图证据 | `S01_登录拦截测试.png` | `/assets/evidence/screenshots/` |
-| **Dxx** | 课程文档 | `D01_教学大纲.pdf` | `/assets/docs/` |
-| **Cxx** | 数据图表 | `C01_成绩分布.json` | `/assets/evidence/charts/` |
-| **Exx** | 学生证据 | `E01_AI对话记录.pdf` | `/assets/evidence/student/` |
-
-<div class="info-box amber">
-  <span class="icon">⚠️</span>
-  <div>新增材料时请严格遵循上述命名规则，序号递增、不留空号。文件名使用下划线分隔，中文描述应简明扼要。如需查看完整证据索引，请访问 <a href="/evidence-index">证据索引页</a>。</div>
-</div>
+| 类别 | 前缀 | 示例 | 存放位置 |
+|---|---|---|---|
+| 截图证据 | `Sxx_` | `S01_login_test.png` | `/assets/evidence/` |
+| 课程文档 | `Dxx_` | `D01_教学大纲.pdf` | `/assets/docs/` |
+| 数据图表 | `Cxx_` | `C01_scores.json` | `/assets/data/` |
+| 学生样本 | `EV-Sxx` | `EV-S01_feedback.pdf` | `/assets/evidence/student/` |

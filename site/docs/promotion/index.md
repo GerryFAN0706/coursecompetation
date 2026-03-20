@@ -8,53 +8,56 @@ anonSafe: true
 
 # 推广与复用
 
-> 一套经过实证验证的 AI 赋能编程教学模式，已在 Java Web 课程中完成闭环，具备向同类课程快速迁移的条件。
+<div class="section-lead">本项目的教学模式不是为单一课程定制的方案，而是一套可迁移、可验证的编程类课程AI教学框架。以下展示模式核心、实施条件、迁移方法和推广路径。</div>
 
-## "三位一体"可复制模式
+## 可复制教学模式："三位一体"框架
 
 <div class="summary-grid">
   <div class="summary-card">
     <div class="summary-icon">🎯</div>
-    <h3>个性化任务设计</h3>
-    <p>基于学生能力画像，由 AI 自动生成分层编程任务。不同水平的学生获得不同难度的练习，确保每位学习者都处于"最近发展区"。</p>
+    <h3>AI个性化任务设计</h3>
+    <p>基于学情分层的"一人一题"机制，同知识点、异场景、分层脚手架。从源头解决抄袭问题。</p>
   </div>
   <div class="summary-card">
-    <div class="summary-icon">🔍</div>
-    <h3>知识对照代码审查</h3>
-    <p>将课程知识点与代码提交绑定，AI 逐项检测知识点覆盖与代码规范，生成结构化审查报告，替代传统人工批改。</p>
+    <div class="summary-icon">🤖</div>
+    <h3>AI辅助人机协同审查</h3>
+    <p>"AI诊断 → 学生判断 → 教师纠偏 → 系统验证"四步闭环，确保学生真正理解而非依赖AI。</p>
   </div>
   <div class="summary-card">
     <div class="summary-icon">📊</div>
     <h3>数据驱动多维评价</h3>
-    <p>采集任务完成率、知识点掌握度、代码质量等多维数据，自动生成个人学情报告，为课后精准干预提供依据。</p>
+    <p>功能·知识·规范·安全四维评价 + AI辅助报告生成 + 共性分析驱动教学迭代。</p>
   </div>
 </div>
 
-三大模块分别对应**课前→课中→课后**三个环节，形成完整教学闭环。任何编程类课程只要具备"任务—代码—评价"三要素，均可复用该模式。
+<div class="info-box blue">
+  <span class="icon">🔑</span>
+  <div><strong>核心公式：</strong> AI个性化任务设计 + AI辅助知识点对照与代码审查 + 数据驱动多维评价反馈 = 课前-课中-课后教学闭环</div>
+</div>
 
 <div class="section-divider"></div>
 
-## 实施条件对照
+## 最低实施条件与推荐配置
 
 <div class="compare-board">
-  <div class="compare-card before">
-    <h4>最低要求</h4>
+  <div class="compare-col before">
+    <h3>最低要求</h3>
     <ul>
-      <li><strong>AI 工具：</strong>任一可用的生成式 AI 工具（如 ChatGPT、文心一言）</li>
-      <li><strong>学生设备：</strong>可联网电脑，能访问在线编程环境</li>
-      <li><strong>教师能力：</strong>掌握基本提示词编写，能运行 AI 生成结果</li>
-      <li><strong>班级规模：</strong>10–60 人均可实施</li>
-      <li><strong>课时安排：</strong>每讲至少保留 15 分钟实操环节</li>
+      <li><strong>AI工具：</strong>任一可用生成式AI（ChatGPT / Claude / 文心等）</li>
+      <li><strong>学生设备：</strong>可联网电脑</li>
+      <li><strong>教师能力：</strong>基本提示词使用能力</li>
+      <li><strong>班级规模：</strong>10-60人</li>
+      <li><strong>课时安排：</strong>理论+实验不少于32学时</li>
     </ul>
   </div>
-  <div class="compare-card after">
-    <h4>推荐配置</h4>
+  <div class="compare-col after">
+    <h3>推荐配置</h3>
     <ul>
-      <li><strong>AI 工具：</strong>IDE 内嵌 AI 插件 + API 工具链（如 Cursor / Copilot）</li>
-      <li><strong>学生设备：</strong>人手一机完整开发环境，本地运行项目</li>
-      <li><strong>教师能力：</strong>能设计提示词模板、定义审查规则、解读数据报告</li>
-      <li><strong>班级规模：</strong>30–40 人为最佳效果区间</li>
-      <li><strong>课时安排：</strong>每讲 30 分钟实操 + 课后 AI 辅助练习</li>
+      <li><strong>AI工具：</strong>IDE内嵌AI（Cursor）+ API工具链（Claude API）</li>
+      <li><strong>学生设备：</strong>人手一机开发环境</li>
+      <li><strong>教师能力：</strong>能设计提示词模板和评价规则</li>
+      <li><strong>班级规模：</strong>30-40人（最佳分组协作规模）</li>
+      <li><strong>课时安排：</strong>48学时（理论24+实验24）</li>
     </ul>
   </div>
 </div>
@@ -63,28 +66,26 @@ anonSafe: true
 
 ## 三步迁移法
 
+<div class="info-box emerald">
+  <span class="icon">🚀</span>
+  <div>任何编程实践类课程均可通过以下三步完成AI教学模式迁移。每步独立可验证，无需一次性全面改造。</div>
+</div>
+
 <div class="flow-grid">
   <div class="flow-card">
     <div class="step-num">1</div>
-    <h4>选取痛点案例</h4>
-    <p>从目标课程中选取一个高频教学痛点任务，构建包含典型错误的"问题版案例"，作为 AI 审查的切入点。</p>
+    <h4>选痛点·建案例</h4>
+    <p>选一个高频教学痛点（如抄袭、批改慢），围绕它建立一个"问题版案例"工程。让学生诊断而非从零开发。</p>
   </div>
   <div class="flow-card">
     <div class="step-num">2</div>
-    <h4>接入审查闭环</h4>
-    <p>配置 AI 审查提示词与知识点测试清单，在课堂中完成"编码→提交→AI 审查→修正"验证闭环。</p>
+    <h4>接AI·建闭环</h4>
+    <p>引入AI辅助审查与测试清单，形成"诊断→修复→验证"的课堂验证闭环。教师编写提示词模板控制AI输出边界。</p>
   </div>
   <div class="flow-card">
     <div class="step-num">3</div>
-    <h4>扩展数据评价</h4>
-    <p>接入多维数据采集与反馈模板，建立课后精准干预机制，逐步扩展到更多讲次与任务场景。</p>
-  </div>
-</div>
-
-<div class="info-box blue">
-  <span class="icon">💡</span>
-  <div>
-    <strong>迁移核心原则：</strong>先做 1 个案例闭环验证，再横向复制到全课程。不追求一次性全面改造，而是"小步快跑、逐步覆盖"。
+    <h4>记数据·做干预</h4>
+    <p>接入数据记录与反馈模板，形成课后干预机制。AI生成个性化报告，教师基于共性分析调整下一轮教学。</p>
   </div>
 </div>
 
@@ -92,102 +93,84 @@ anonSafe: true
 
 ## 适配课程范围
 
-<div class="matrix-panel">
-
-| 课程名称 | 迁移难度 | 核心复用模块 | 适配说明 |
-|:---|:---:|:---|:---|
-| **Java Web 应用开发** | ★☆☆ | 全部三模块 | 已完成实证验证，可直接复用全部模板 |
-| **Python 程序设计** | ★☆☆ | 任务设计 + 代码审查 | 语法检查规则替换即可，迁移成本极低 |
-| **数据结构与算法** | ★★☆ | 代码审查 + 测试验证 | 需补充算法正确性测试清单 |
-| **数据库课程实验** | ★★☆ | SQL 审查 + 分层任务 | 将代码审查替换为 SQL 语句审查 |
-| **软件工程实践** | ★★★ | 项目审查 + 多维评价 | 需适配团队协作场景的评价维度 |
-| **前端开发技术** | ★★☆ | 任务设计 + 代码审查 | 增加 UI 还原度检测维度 |
-| **移动应用开发** | ★★☆ | 全部三模块 | 需适配移动端特有的调试与测试流程 |
-
+<div class="innovation-grid">
+  <div class="pain-card" style="border-color: var(--c-emerald-200); background: linear-gradient(160deg, var(--c-emerald-50), white);">
+    <span class="badge" style="background: var(--c-emerald-50); color: var(--c-emerald-700);">✅ 已验证</span>
+    <h3>Java Web应用开发</h3>
+    <p>本课程，已完成全流程验证。16讲AI应用映射、完整提示词库、量化成效数据。</p>
+  </div>
+  <div class="pain-card" style="border-color: var(--c-blue-200); background: linear-gradient(160deg, var(--c-blue-50), white);">
+    <span class="badge" style="background: var(--c-blue-50); color: var(--c-blue-700);">🔄 可迁移</span>
+    <h3>Python程序设计</h3>
+    <p>代码审查 + 分层任务 + 测试验证模式可直接迁移。提示词需适配Python语法场景。</p>
+  </div>
+  <div class="pain-card" style="border-color: var(--c-blue-200); background: linear-gradient(160deg, var(--c-blue-50), white);">
+    <span class="badge" style="background: var(--c-blue-50); color: var(--c-blue-700);">🔄 可迁移</span>
+    <h3>数据结构与算法</h3>
+    <p>AI辅助算法审查 + 测试用例验证。分层任务按算法复杂度分级。</p>
+  </div>
+  <div class="pain-card" style="border-color: var(--c-blue-200); background: linear-gradient(160deg, var(--c-blue-50), white);">
+    <span class="badge" style="background: var(--c-blue-50); color: var(--c-blue-700);">🔄 可迁移</span>
+    <h3>数据库课程实验</h3>
+    <p>SQL审查 + 分层查询任务 + 注入防护验证。AI辅助SQL优化建议。</p>
+  </div>
+  <div class="pain-card" style="border-color: var(--c-blue-200); background: linear-gradient(160deg, var(--c-blue-50), white);">
+    <span class="badge" style="background: var(--c-blue-50); color: var(--c-blue-700);">🔄 可迁移</span>
+    <h3>软件工程实践</h3>
+    <p>项目代码审查 + 多维评价（设计·实现·测试·文档）。AI辅助Code Review。</p>
+  </div>
 </div>
 
 <div class="section-divider"></div>
 
 ## 输出成果与复用资产
 
-<div class="waveb-grid">
-  <div class="waveb-card">
-    <h4>📋 提示词模板库</h4>
-    <p>覆盖任务生成、代码审查、学情分析三大场景的结构化提示词，可直接套用或微调后迁移。</p>
+<div class="summary-grid">
+  <div class="summary-card">
+    <div class="summary-icon">🧠</div>
+    <h3>提示词模板库</h3>
+    <p>10条经过验证的AI提示词，覆盖课前-课中-课后全流程</p>
   </div>
-  <div class="waveb-card">
-    <h4>📐 分层任务生成流程</h4>
-    <p>从能力画像到任务输出的完整流程文档，附带 3 套不同难度的任务样例。</p>
+  <div class="summary-card">
+    <div class="summary-icon">📋</div>
+    <h3>分层任务生成流程</h3>
+    <p>学情分析 → 分层 → 一人一题生成的完整工作流</p>
   </div>
-  <div class="waveb-card">
-    <h4>✅ 测试清单与反馈模板</h4>
-    <p>标准化的知识点检测清单和学生反馈报告模板，确保评价口径统一、结果可追溯。</p>
+  <div class="summary-card">
+    <div class="summary-icon">🧪</div>
+    <h3>测试清单与反馈模板</h3>
+    <p>三套验证清单 + 四维评价Rubric + 个性化报告模板</p>
   </div>
-  <div class="waveb-card">
-    <h4>🎬 课堂实录与执行方案</h4>
-    <p>核心案例的完整课堂脚本、时间轴与执行要点，可作为新教师的操作手册。</p>
+  <div class="summary-card">
+    <div class="summary-icon">📄</div>
+    <h3>课堂实录与执行方案</h3>
+    <p>45分钟逐分钟脚本 + 教学设计文档</p>
   </div>
-  <div class="waveb-card">
-    <h4>🌐 课程展示网站</h4>
-    <p>本站即为可公开访问的成果展示，其搭建方案与内容框架同样可供复用。</p>
+  <div class="summary-card">
+    <div class="summary-icon">🌐</div>
+    <h3>课程展示网站</h3>
+    <p>本网站全部源码开源，可直接Fork用于其他课程展示</p>
   </div>
-  <div class="waveb-card">
-    <h4>📊 数据采集与分析工具</h4>
-    <p>课堂数据的采集脚本、清洗流程与可视化模板，降低数据驱动评价的技术门槛。</p>
-  </div>
-</div>
-
-<div class="section-divider"></div>
-
-## 同行反馈
-
-<div class="quote-wall">
-  <div class="quote-card">
-    <p>"我在 Python 课上只用了两周就跑通了第一个案例闭环。AI 审查让批改效率提升了一倍，学生也能即时看到反馈，课堂互动明显活跃了。"</p>
-    <div class="author">— 某高校计算机系教师，Python 程序设计课</div>
-  </div>
-  <div class="quote-card">
-    <p>"最打动我的是分层任务设计。以前布置统一作业，优等生吃不饱、后进生跟不上。现在每个人的任务难度都不一样，学习投入时间反而更均衡了。"</p>
-    <div class="author">— 某学院软件工程教研室主任</div>
-  </div>
-  <div class="quote-card">
-    <p>"数据驱动评价帮我发现了很多凭经验注意不到的问题。比如有些学生代码能跑通但知识点覆盖率很低，这在传统批改中根本看不出来。"</p>
-    <div class="author">— 某高校数据结构课程负责人</div>
+  <div class="summary-card">
+    <div class="summary-icon">📊</div>
+    <h3>成效数据采集框架</h3>
+    <p>准实验设计方案 + 数据采集模板 + 分析口径说明</p>
   </div>
 </div>
 
 <div class="section-divider"></div>
 
-## 推广实施路线图
+## 实施建议
 
-<div class="timeline">
-  <div class="timeline-item">
-    <h4>第 1–2 周：选取与准备</h4>
-    <p>确定目标课程与核心痛点案例，完成提示词模板适配与测试清单定制，组织教师进行 AI 工具基础培训。</p>
-  </div>
-  <div class="timeline-item">
-    <h4>第 3–4 周：单点试点</h4>
-    <p>在 1 个班级的 1 个案例上试运行完整闭环，收集学生反馈与课堂数据，验证流程可行性并记录问题。</p>
-  </div>
-  <div class="timeline-item">
-    <h4>第 5–6 周：优化迭代</h4>
-    <p>根据试点数据调整提示词与评价规则，优化任务难度梯度，完善课堂执行方案。</p>
-  </div>
-  <div class="timeline-item">
-    <h4>第 7–8 周：横向扩展</h4>
-    <p>将验证后的模式扩展到更多讲次与平行班级，建立跨班级的数据对比机制。</p>
-  </div>
-  <div class="timeline-item">
-    <h4>第 9–12 周：跨课程迁移</h4>
-    <p>输出标准化迁移手册，支持其他编程类课程复用，形成教研室级别的常态化应用。</p>
-  </div>
-</div>
-
-<div class="section-divider"></div>
-
-<div class="info-box emerald">
-  <span class="icon">📦</span>
+<div class="info-box amber">
+  <span class="icon">💡</span>
   <div>
-    <strong>获取全部复用资产：</strong>提示词模板、测试清单、课堂脚本等完整材料包已整理在 <a href="/resources/">教学资源</a> 页面，可直接下载使用。如需了解数据支撑与成效证据，请访问 <a href="/results/">成效与数据</a> 页面。
+    <ul style="margin:0;padding-left:1.2em;">
+      <li>优先从一个"可验证问题"切入，不追求全课程一次性改造</li>
+      <li>先做1个核心案例闭环，再扩展到多讲次和多任务场景</li>
+      <li>提示词模板需根据课程特点适配，不建议直接照搬</li>
+      <li>所有关键指标都绑定证据来源和统计口径，确保可评审、可复核</li>
+      <li>AI是辅助者，教师始终掌握教学主导权和最终评价权</li>
+    </ul>
   </div>
 </div>

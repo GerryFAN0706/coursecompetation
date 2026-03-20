@@ -878,6 +878,47 @@ body {
   font-size: 0.88rem;
   line-height: 1.6;
 }
+/* Markdown code-fence prompt cards (language-prompt) */
+div[class*="language-prompt"] {
+  background: var(--c-slate-900) !important;
+  border-radius: var(--r-lg) !important;
+  padding: 20px !important;
+  margin: 16px 0 20px !important;
+  position: relative;
+  overflow: hidden;
+}
+div[class*="language-prompt"]::before {
+  content: "PROMPT" !important;
+  position: absolute !important;
+  top: 8px !important;
+  right: 12px !important;
+  font-size: 0.7rem !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.1em !important;
+  color: var(--c-slate-400) !important;
+  background: rgba(255,255,255,0.1) !important;
+  padding: 2px 8px !important;
+  border-radius: var(--r-full) !important;
+  display: block !important;
+}
+div[class*="language-prompt"] pre {
+  margin: 0 !important;
+  padding: 0 !important;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+div[class*="language-prompt"] code {
+  color: var(--c-emerald-400) !important;
+  font-size: 0.88rem;
+  line-height: 1.6;
+}
+div[class*="language-prompt"] .line-numbers-wrapper {
+  display: none !important;
+}
+div[class*="language-prompt"] button.copy {
+  top: 8px;
+}
 
 /* ── 19. HERO SECTION (Custom) ── */
 .hero-stage {
