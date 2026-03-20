@@ -17,10 +17,11 @@ function listMarkdownFiles(dir) {
 }
 
 function parseFrontmatter(content) {
-  if (!content.startsWith("---\n")) return null;
-  const end = content.indexOf("\n---\n", 4);
+  const c = content.replace(/\r\n/g, "\n");
+  if (!c.startsWith("---\n")) return null;
+  const end = c.indexOf("\n---\n", 4);
   if (end === -1) return null;
-  const raw = content.slice(4, end).trim();
+  const raw = c.slice(4, end).trim();
   const map = {};
   for (const line of raw.split("\n")) {
     const idx = line.indexOf(":");
