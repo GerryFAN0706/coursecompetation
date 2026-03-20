@@ -202,8 +202,8 @@ anonSafe: true
   </div>
 </div>
 
-<div class="prompt-card">
-<pre><code>你是一位 Java Web 安全审查专家。请审查以下代码中与"用户认证与权限控制"相关的安全缺陷。
+```prompt
+你是一位 Java Web 安全审查专家。请审查以下代码中与"用户认证与权限控制"相关的安全缺陷。
 
 审查范围：
 1. Servlet Filter 的访问控制逻辑
@@ -215,8 +215,8 @@ anonSafe: true
 - 每个缺陷给出：位置、问题描述、风险说明、修改方向（不要给出完整修复代码）
 - 最后生成一份"最小验证清单"，列出修复后应逐一测试的路径
 
-注意：请用中文输出，保持简洁专业。</code></pre>
-</div>
+注意：请用中文输出，保持简洁专业。
+```
 
 <div class="section-divider"></div>
 
