@@ -48,7 +48,7 @@
 
 #### 内容要点
 1.  **问题驱动 (Problem-Driven):**
-    *   以一个学生最熟悉的场景开场："同学们，当我们在浏览器地址栏输入 `http://www.tyust.edu.cn` 并敲下回车时，屏幕上出现了太原科技大学的官网。这个看似简单的动作背后，究竟隐藏了怎样的技术之旅？我们的浏览器是如何"告诉"服务器它想要什么？服务器又是如何"回应"的？"
+    *   以一个学生最熟悉的场景开场："同学们，当我们在浏览器地址栏输入 `http://www.example.edu.cn` 并敲下回车时，屏幕上出现了XXX大学的官网。这个看似简单的动作背后，究竟隐藏了怎样的技术之旅？我们的浏览器是如何"告诉"服务器它想要什么？服务器又是如何"回应"的？"
 2.  **高层概述 (High-Level Overview):**
     *   引出客户端（浏览器）和服务器（网站服务器）这两个核心角色。
     *   强调它们之间需要一种"通用语言"进行沟通，这种语言就是 **HTTP协议 (HyperText Transfer Protocol)**。
@@ -65,7 +65,7 @@
 #### 内容要点
 1.  **HTTP请求 (HTTP Request / The Request):** 讲解一个请求就像一封信，包含三个核心部分：
     *   **请求行 (Request Line):** `GET /index.html HTTP/1.1` (告诉服务器Server：我想用GET方法Method，获取/index.html这个资源Resource，我遵循HTTP/1.1版本协议Protocol)
-    *   **请求头 (Request Headers):** `Host: www.tyust.edu.cn`, `User-Agent: Chrome/108...` (附加信息，如同信封上的寄件人信息)
+    *   **请求头 (Request Headers):** `Host: www.example.edu.cn`, `User-Agent: Chrome/108...` (附加信息，如同信封上的寄件人信息)
     *   **请求体 (Request Body):** (GET请求通常为空，为后面POST请求做铺垫，可比喻为空信件内容)
 2.  **HTTP响应 (HTTP Response / The Response):** 讲解服务器的回信也包含三部分：
     *   **状态行 (Status Line):** `HTTP/1.1 200 OK` (告诉浏览器Browser：我用HTTP/1.1回复你，状态码Status Code是200，一切顺利)

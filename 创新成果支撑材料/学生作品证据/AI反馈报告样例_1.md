@@ -12,7 +12,7 @@
 ## 一、学生提交的代码结构
 
 ```
-src/main/java/com/tyust/library/
+src/main/java/com/example/library/
 ├── controller/
 │   └── BookServlet.java          ← 问题集中区
 ├── dao/
@@ -130,7 +130,7 @@ public class BookDao {
 
 **list.jsp（scriptlet问题）：**
 ```jsp
-<%@ page import="java.util.List, com.tyust.library.model.Book" %>
+<%@ page import="java.util.List, com.example.library.model.Book" %>
 <html>
 <body>
 <h2>图书列表</h2>
@@ -174,7 +174,7 @@ MVC模式中Controller只负责"请求分发"的原则。
 对应知识点：MVC模式、三层架构（Controller → Service → DAO）、
 单一职责原则
 修改建议：
-1. 新建 com.tyust.library.service.BookService 类
+1. 新建 com.example.library.service.BookService 类
 2. 将BookServlet中的数据库操作迁移到BookService
 3. BookService调用BookDao完成数据访问
 4. BookServlet只负责：接收参数 → 调用Service → 设置属性 → 转发JSP
@@ -265,7 +265,7 @@ MVC模式中Controller只负责"请求分发"的原则。
 
 ```diff
 项目结构变化：
-+ src/main/java/com/tyust/library/service/BookService.java  (新增)
++ src/main/java/com/example/library/service/BookService.java  (新增)
 
 BookServlet.java：
 - Connection conn = null;
@@ -281,7 +281,7 @@ BookDao.java：
 + pstmt.setString(1, "%" + title + "%");
 
 list.jsp：
-- <%@ page import="java.util.List, com.tyust.library.model.Book" %>
+- <%@ page import="java.util.List, com.example.library.model.Book" %>
 - <% List<Book> books = (List<Book>) request.getAttribute("books"); ...  (删除12行scriptlet)
 + <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 + <c:forEach var="book" items="${books}"> ...   (改为EL+JSTL)

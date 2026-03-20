@@ -40,7 +40,7 @@
 
 ### 统一标准
 - **主题**: 全部使用 `am_blue` 主题
-- **Logo**: 统一在封面右下角（`cover_d` + `logo-lan.png`）
+- **Logo**: 统一在封面右下角（`cover_d` + `logo.png`）
 - **过渡页**: 统一使用 `lastpage` 样式（蓝色背景）
 - **页脚**: 统一格式（课程名 + 学院名）
 
@@ -118,7 +118,7 @@
 
 **5. Logo设置**
 - ✅ 使用 `cover_d` 样式
-- ✅ Logo路径：`logo-lan.png`（无 `./`）
+- ✅ Logo路径：`logo.png`（无 `./`）
 - ✅ 位置：`left: 75%, bottom: 25px`
 
 **6. Footer格式**
@@ -243,7 +243,7 @@ files/第十六讲_工程化部署_0511.md
 ### 辅助文档（2个）
 ```
 files/PPT格式规范说明.md（643行）
-files/logo-lan.png
+files/logo.png
 ```
 
 ---
@@ -380,7 +380,7 @@ marp --pdf --allow-local-files 第一讲_Web核心脉络_0511.md
 
 ### 注意事项
 1. **文件命名**: 提交时可能需要改为标准命名
-2. **Logo文件**: 确保`logo-lan.png`一起提交
+2. **Logo文件**: 确保`logo.png`一起提交
 3. **主题文件**: 确保`themes/am_blue.scss`等文件完整
 
 ---

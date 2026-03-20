@@ -4,7 +4,7 @@ size: 16:9
 theme: am_blue
 paginate: true
 headingDivider: [2,3]
-footer: \ *Java Web应用开发 (Java Web Application Development)* *计算机科学与技术学院*
+footer: \ *Java Web应用开发 (Java Web Application Development)* *XXX学院*
 style: |
   section.cover_d footer {
     left: 75%;
@@ -32,7 +32,6 @@ style: |
 
 <!-- _class: cover_d -->
 <!-- _header: "" -->
-<!-- _footer: ![h:100](logo-lan.png) -->
 <!-- _paginate: "" -->
 
 # Filter过滤器与请求处理链
@@ -479,7 +478,7 @@ Servlet/JSP
 ```xml
 <filter>
     <filter-name>EncodingFilter</filter-name>
-    <filter-class>com.tyust.filter.EncodingFilter</filter-class>
+    <filter-class>com.example.filter.EncodingFilter</filter-class>
 </filter>
 <filter-mapping>
     <filter-name>EncodingFilter</filter-name>
@@ -688,7 +687,7 @@ String param = filterConfig.getInitParameter("name");
 <div class="icons">
 
 - <i class="fa-solid fa-graduation-cap"></i>  
-  计算机科学与技术学院  
+  XXX学院  
 
 - <i class="fa-solid fa-book-open"></i>  
   Java Web 应用开发  

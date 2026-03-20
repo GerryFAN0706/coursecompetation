@@ -126,12 +126,12 @@ headingDivider: [2,3]  # 让##和###自动分页
 
 **错误写法**：
 ```markdown
-<!-- _footer: ![h:100](./logo-lan.png) -->  ← 多余的 ./
+<!-- _footer: ![h:100](./logo.png) -->  ← 多余的 ./
 ```
 
 **正确写法** ✅:
 ```markdown
-<!-- _footer: ![h:100](logo-lan.png) -->    ← 直接文件名
+<!-- _footer: ![h:100](logo.png) -->    ← 直接文件名
 ```
 
 ### ❌ 错误7：footer缺少反斜杠
@@ -391,9 +391,9 @@ headingDivider: [2,3]
 
 **封面页 - 修改前**：
 ```markdown
-**主讲教师**: 樊光瑞 (Fan Guangrui)
+**主讲教师**: XXX
 **授课方式**: 双语教学 (Bilingual Teaching)
-**单位**: 太原科技大学·计算机科学与技术学院
+**单位**: XXX大学·XXX学院
 **时间**: 2025年秋季学期
 ```
 
@@ -401,27 +401,25 @@ headingDivider: [2,3]
 ```markdown
 **课程名称**: Java Web 应用开发
 **授课方式**: 双语教学 (Bilingual Teaching)
-**开课单位**: 计算机科学与技术学院
+**开课单位**: XXX学院
 **学期**: 2025年秋季
 ```
 
 **页脚 - 修改前**：
 ```yaml
-footer: \ *樊光瑞* *Java Web应用开发* *太原科技大学*
+footer: \ *XXX* *Java Web应用开发* *XXX大学*
 ```
 
 **页脚 - 修改后**：
 ```yaml
-footer: *Java Web应用开发 (Java Web Application Development)* *计算机科学与技术学院*
+footer: *Java Web应用开发 (Java Web Application Development)* *XXX学院*
 ```
 
 **结束页 - 删除**：
 ```markdown
 <!-- 删除整个联系信息区域 -->
 - <i class="fa-solid fa-envelope"></i>
-  - fanguangrui@tyust.edu.cn
-- <i class="fa-brands fa-weixin"></i>
-  - 微信: fanguangrui
+  - xxx@example.edu.cn
 ```
 
 ---
@@ -441,7 +439,7 @@ size: 16:9
 theme: am_blue
 paginate: true
 headingDivider: [2,3]
-footer: *Java Web应用开发* *计算机科学与技术学院*
+footer: *Java Web应用开发* *XXX学院*
 style: |
   section {
     font-size: 28px;  /* 原默认25px → 28px */
@@ -512,7 +510,7 @@ style: |
 ```markdown
 <!-- _class: cover_d -->
 <!-- _header: "" -->
-<!-- _footer: ![h:100](logo-lan.png) -->  ← logo在右下角
+<!-- _footer: ![h:100](logo.png) -->  ← logo在右下角
 <!-- _paginate: "" -->
 ```
 
@@ -590,7 +588,7 @@ style: |
 2. 改为 `####` 或 `#####` 标题
 
 **如果logo不显示**：
-1. 检查路径：使用 `logo-lan.png` 而不是 `./logo-lan.png`
+1. 检查路径：使用 `logo.png` 而不是 `./logo.png`
 2. 确认文件存在于 `files/` 目录
 3. 检查 `cover_d footer` 样式是否在YAML的style中
 
@@ -610,11 +608,11 @@ style: |
 
 ### 步骤2：删除个人信息
 **搜索并替换**：
-- `樊光瑞` → (删除)
-- `Fan Guangrui` → (删除)
-- `fanguangrui` → (删除)
+- `XXX` → (删除)
+- `XXX` → (已匿名化)
+- `xxx` → (已匿名化)
 - `主讲教师` → `课程名称`
-- `太原科技大学` → (删除或改为学院)
+- `XXX大学` → (已匿名化)
 
 ### 步骤3：统一双语格式
 **搜索**: `## .*\(.*\)$`  
