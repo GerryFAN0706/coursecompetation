@@ -37,7 +37,7 @@ export default defineConfig({
         items: [
           { text: "资源总览", link: "/resources/" },
           { text: "AI提示词库", link: "/resources/prompts/" },
-          { text: "学生作品证据", link: "/resources/student-evidence/" }
+          { text: "学生成果展示", link: "/resources/student-evidence/" }
         ]
       },
       { text: "推广复用", link: "/promotion/" },
@@ -64,11 +64,11 @@ export default defineConfig({
           ]
         },
         {
-          text: "成效与证据",
+          text: "成效与成果",
           collapsed: false,
           items: [
             { text: "成效与数据", link: "/results/" },
-            { text: "学生作品证据", link: "/resources/student-evidence/" }
+            { text: "学生成果展示", link: "/resources/student-evidence/" }
           ]
         },
         {

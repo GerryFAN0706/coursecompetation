@@ -1,26 +1,189 @@
 <svg width="1400" height="820" viewBox="0 0 1400 820" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <rect width="1400" height="820" rx="28" fill="#F7FCFF"/>
-  <rect x="66" y="78" width="1268" height="140" rx="20" fill="#E7F3FF" stroke="#9FC6E8"/>
-  <text x="108" y="136" font-size="34" fill="#0B4D6C" font-family="Segoe UI, sans-serif">数据输入层</text>
-  <text x="108" y="182" font-size="23" fill="#1F6182" font-family="Segoe UI, sans-serif">作业提交、测验成绩、代码审查记录、课堂互动输出</text>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1400" y2="820">
+      <stop stop-color="#F0F7FF"/>
+      <stop offset="0.5" stop-color="#F5FBFF"/>
+      <stop offset="1" stop-color="#F0F0FF"/>
+    </linearGradient>
+    <linearGradient id="layer1" x1="100" y1="60" x2="1300" y2="220">
+      <stop stop-color="#DBEAFE"/>
+      <stop offset="1" stop-color="#E0F2FE"/>
+    </linearGradient>
+    <linearGradient id="layer2" x1="100" y1="280" x2="1300" y2="480">
+      <stop stop-color="#D1FAE5"/>
+      <stop offset="1" stop-color="#CCFBF1"/>
+    </linearGradient>
+    <linearGradient id="layer3" x1="100" y1="500" x2="1300" y2="660">
+      <stop stop-color="#FEF3C7"/>
+      <stop offset="1" stop-color="#FFF7ED"/>
+    </linearGradient>
+    <linearGradient id="output-grad" x1="400" y1="700" x2="1000" y2="780">
+      <stop stop-color="#2563EB"/>
+      <stop offset="1" stop-color="#0891B2"/>
+    </linearGradient>
+    <linearGradient id="arrow-grad" x1="0" y1="0" x2="0" y2="1">
+      <stop stop-color="#2563EB"/>
+      <stop offset="1" stop-color="#059669"/>
+    </linearGradient>
+    <filter id="card-shadow" x="-4%" y="-4%" width="108%" height="116%">
+      <feDropShadow dx="0" dy="4" stdDeviation="12" flood-color="#1E40AF" flood-opacity="0.08"/>
+    </filter>
+    <filter id="icon-glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="6" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+    <filter id="output-shadow" x="-4%" y="-8%" width="108%" height="124%">
+      <feDropShadow dx="0" dy="6" stdDeviation="16" flood-color="#2563EB" flood-opacity="0.2"/>
+    </filter>
+  </defs>
 
-  <rect x="66" y="258" width="1268" height="170" rx="20" fill="#ECFFFA" stroke="#98D8C8"/>
-  <text x="108" y="320" font-size="34" fill="#0B4D6C" font-family="Segoe UI, sans-serif">AI处理与决策层</text>
-  <text x="108" y="366" font-size="23" fill="#206C67" font-family="Segoe UI, sans-serif">学情聚类、分层任务生成、知识点映射、风险识别、反馈生成</text>
-  <text x="108" y="402" font-size="22" fill="#206C67" font-family="Segoe UI, sans-serif">工具链：LLM + 规则模板 + 测试清单 + 教师复核机制</text>
+  <!-- Background -->
+  <rect width="1400" height="820" rx="28" fill="url(#bg)"/>
 
-  <rect x="66" y="470" width="1268" height="170" rx="20" fill="#FFF8EA" stroke="#E4C991"/>
-  <text x="108" y="532" font-size="34" fill="#0B4D6C" font-family="Segoe UI, sans-serif">教学执行层</text>
-  <text x="108" y="578" font-size="23" fill="#8C5F0E" font-family="Segoe UI, sans-serif">课前分层任务 -> 课中诊断修复 -> 课后反馈迭代</text>
-  <text x="108" y="614" font-size="22" fill="#8C5F0E" font-family="Segoe UI, sans-serif">角色协同：教师主导、学生主体、AI协同</text>
+  <!-- Subtle grid pattern -->
+  <line x1="350" y1="0" x2="350" y2="820" stroke="#CBD5E1" stroke-opacity="0.15" stroke-width="1"/>
+  <line x1="700" y1="0" x2="700" y2="820" stroke="#CBD5E1" stroke-opacity="0.15" stroke-width="1"/>
+  <line x1="1050" y1="0" x2="1050" y2="820" stroke="#CBD5E1" stroke-opacity="0.15" stroke-width="1"/>
 
-  <rect x="396" y="678" width="602" height="86" rx="18" fill="#DDF2FF" stroke="#9FC6E8"/>
-  <text x="438" y="732" font-size="30" fill="#0B4D6C" font-family="Segoe UI, sans-serif">闭环输出：可验证成效 + 可复制模式</text>
+  <!-- ═══════════ LAYER 1: 数据输入层 ═══════════ -->
+  <rect x="80" y="50" width="1240" height="190" rx="20" fill="url(#layer1)" stroke="#93C5FD" stroke-width="1.5" filter="url(#card-shadow)"/>
 
-  <path d="M700 220V252" stroke="#0D5C82" stroke-width="8" stroke-linecap="round"/>
-  <path d="M700 430V462" stroke="#0D5C82" stroke-width="8" stroke-linecap="round"/>
-  <path d="M700 640V672" stroke="#0D5C82" stroke-width="8" stroke-linecap="round"/>
-  <path d="M679 242L700 268L721 242" fill="#0D5C82"/>
-  <path d="M679 452L700 478L721 452" fill="#0D5C82"/>
-  <path d="M679 662L700 688L721 662" fill="#0D5C82"/>
+  <!-- Layer 1 accent bar -->
+  <rect x="80" y="50" width="8" height="190" rx="4" fill="#2563EB"/>
+
+  <!-- Layer 1 icon -->
+  <circle cx="140" cy="110" r="28" fill="#2563EB" opacity="0.12"/>
+  <text x="140" y="118" text-anchor="middle" font-size="24" fill="#2563EB" font-family="Inter, system-ui, sans-serif">📥</text>
+
+  <!-- Layer 1 title & description -->
+  <text x="190" y="108" font-size="28" font-weight="700" fill="#1E3A5F" font-family="Inter, system-ui, sans-serif">数据输入层</text>
+  <text x="190" y="140" font-size="17" fill="#475569" font-family="Inter, system-ui, sans-serif">学情数据汇聚 · 多维信息采集 · 实时状态感知</text>
+
+  <!-- Layer 1 sub-items -->
+  <rect x="190" y="158" width="160" height="56" rx="12" fill="white" stroke="#BFDBFE" stroke-width="1"/>
+  <text x="270" y="182" text-anchor="middle" font-size="13" font-weight="600" fill="#2563EB" font-family="Inter, system-ui, sans-serif">作业提交</text>
+  <text x="270" y="200" text-anchor="middle" font-size="11" fill="#64748B" font-family="Inter, system-ui, sans-serif">Gitea代码仓库</text>
+
+  <rect x="370" y="158" width="160" height="56" rx="12" fill="white" stroke="#BFDBFE" stroke-width="1"/>
+  <text x="450" y="182" text-anchor="middle" font-size="13" font-weight="600" fill="#2563EB" font-family="Inter, system-ui, sans-serif">测验成绩</text>
+  <text x="450" y="200" text-anchor="middle" font-size="11" fill="#64748B" font-family="Inter, system-ui, sans-serif">课堂测试数据</text>
+
+  <rect x="550" y="158" width="160" height="56" rx="12" fill="white" stroke="#BFDBFE" stroke-width="1"/>
+  <text x="630" y="182" text-anchor="middle" font-size="13" font-weight="600" fill="#2563EB" font-family="Inter, system-ui, sans-serif">代码审查记录</text>
+  <text x="630" y="200" text-anchor="middle" font-size="11" fill="#64748B" font-family="Inter, system-ui, sans-serif">AI + 教师审查日志</text>
+
+  <rect x="730" y="158" width="160" height="56" rx="12" fill="white" stroke="#BFDBFE" stroke-width="1"/>
+  <text x="810" y="182" text-anchor="middle" font-size="13" font-weight="600" fill="#2563EB" font-family="Inter, system-ui, sans-serif">课堂互动</text>
+  <text x="810" y="200" text-anchor="middle" font-size="11" fill="#64748B" font-family="Inter, system-ui, sans-serif">提问·讨论·操作</text>
+
+  <!-- ═══════════ Arrow 1→2 ═══════════ -->
+  <line x1="700" y1="242" x2="700" y2="278" stroke="url(#arrow-grad)" stroke-width="3" stroke-opacity="0.6"/>
+  <polygon points="688,272 700,290 712,272" fill="#2563EB" opacity="0.6"/>
+
+  <!-- ═══════════ LAYER 2: AI处理与决策层 ═══════════ -->
+  <rect x="60" y="290" width="1280" height="220" rx="20" fill="url(#layer2)" stroke="#6EE7B7" stroke-width="1.5" filter="url(#card-shadow)"/>
+
+  <!-- Layer 2 accent bar -->
+  <rect x="60" y="290" width="8" height="220" rx="4" fill="#059669"/>
+
+  <!-- Layer 2 icon -->
+  <circle cx="120" cy="350" r="28" fill="#059669" opacity="0.12"/>
+  <text x="120" y="358" text-anchor="middle" font-size="24" fill="#059669" font-family="Inter, system-ui, sans-serif">🧠</text>
+
+  <!-- Layer 2 title & description -->
+  <text x="170" y="348" font-size="28" font-weight="700" fill="#134E4A" font-family="Inter, system-ui, sans-serif">AI 处理与决策层</text>
+  <text x="170" y="380" font-size="17" fill="#475569" font-family="Inter, system-ui, sans-serif">智能分析引擎 · 教学决策支持 · 个性化方案生成</text>
+
+  <!-- Layer 2 pipeline nodes -->
+  <rect x="120" y="400" width="180" height="80" rx="14" fill="white" stroke="#A7F3D0" stroke-width="1.5"/>
+  <text x="210" y="430" text-anchor="middle" font-size="14" font-weight="600" fill="#059669" font-family="Inter, system-ui, sans-serif">学情聚类</text>
+  <text x="210" y="452" text-anchor="middle" font-size="11" fill="#64748B" font-family="Inter, system-ui, sans-serif">能力分层 · 风险预警</text>
+
+  <path d="M304 440 L334 440" stroke="#059669" stroke-width="2" stroke-opacity="0.5" marker-end="url(#arrowhead)"/>
+  <polygon points="330,435 342,440 330,445" fill="#059669" opacity="0.5"/>
+
+  <rect x="346" y="400" width="180" height="80" rx="14" fill="white" stroke="#A7F3D0" stroke-width="1.5"/>
+  <text x="436" y="430" text-anchor="middle" font-size="14" font-weight="600" fill="#059669" font-family="Inter, system-ui, sans-serif">分层任务生成</text>
+  <text x="436" y="452" text-anchor="middle" font-size="11" fill="#64748B" font-family="Inter, system-ui, sans-serif">一人一题 · 分级脚手架</text>
+
+  <path d="M530 440 L560 440" stroke="#059669" stroke-width="2" stroke-opacity="0.5"/>
+  <polygon points="556,435 568,440 556,445" fill="#059669" opacity="0.5"/>
+
+  <rect x="572" y="400" width="180" height="80" rx="14" fill="white" stroke="#A7F3D0" stroke-width="1.5"/>
+  <text x="662" y="430" text-anchor="middle" font-size="14" font-weight="600" fill="#059669" font-family="Inter, system-ui, sans-serif">知识点映射</text>
+  <text x="662" y="452" text-anchor="middle" font-size="11" fill="#64748B" font-family="Inter, system-ui, sans-serif">缺陷→知识点对照</text>
+
+  <path d="M756 440 L786 440" stroke="#059669" stroke-width="2" stroke-opacity="0.5"/>
+  <polygon points="782,435 794,440 782,445" fill="#059669" opacity="0.5"/>
+
+  <rect x="798" y="400" width="180" height="80" rx="14" fill="white" stroke="#A7F3D0" stroke-width="1.5"/>
+  <text x="888" y="430" text-anchor="middle" font-size="14" font-weight="600" fill="#059669" font-family="Inter, system-ui, sans-serif">风险识别</text>
+  <text x="888" y="452" text-anchor="middle" font-size="11" fill="#64748B" font-family="Inter, system-ui, sans-serif">安全漏洞 · 代码异味</text>
+
+  <path d="M982 440 L1012 440" stroke="#059669" stroke-width="2" stroke-opacity="0.5"/>
+  <polygon points="1008,435 1020,440 1008,445" fill="#059669" opacity="0.5"/>
+
+  <rect x="1024" y="400" width="180" height="80" rx="14" fill="white" stroke="#A7F3D0" stroke-width="1.5"/>
+  <text x="1114" y="430" text-anchor="middle" font-size="14" font-weight="600" fill="#059669" font-family="Inter, system-ui, sans-serif">反馈生成</text>
+  <text x="1114" y="452" text-anchor="middle" font-size="11" fill="#64748B" font-family="Inter, system-ui, sans-serif">个性化报告输出</text>
+
+  <!-- Tool chain label -->
+  <rect x="860" y="342" width="420" height="32" rx="16" fill="#059669" fill-opacity="0.08"/>
+  <text x="880" y="363" font-size="13" fill="#059669" font-weight="500" font-family="Inter, system-ui, sans-serif">工具链：LLM + 规则模板 + 测试清单 + 教师复核</text>
+
+  <!-- ═══════════ Arrow 2→3 ═══════════ -->
+  <line x1="700" y1="512" x2="700" y2="548" stroke="url(#arrow-grad)" stroke-width="3" stroke-opacity="0.6"/>
+  <polygon points="688,542 700,560 712,542" fill="#059669" opacity="0.6"/>
+
+  <!-- ═══════════ LAYER 3: 教学执行层 ═══════════ -->
+  <rect x="80" y="560" width="1240" height="140" rx="20" fill="url(#layer3)" stroke="#FCD34D" stroke-width="1.5" filter="url(#card-shadow)"/>
+
+  <!-- Layer 3 accent bar -->
+  <rect x="80" y="560" width="8" height="140" rx="4" fill="#D97706"/>
+
+  <!-- Layer 3 icon -->
+  <circle cx="140" cy="610" r="28" fill="#D97706" opacity="0.12"/>
+  <text x="140" y="618" text-anchor="middle" font-size="24" fill="#D97706" font-family="Inter, system-ui, sans-serif">🎯</text>
+
+  <!-- Layer 3 title -->
+  <text x="190" y="608" font-size="28" font-weight="700" fill="#78350F" font-family="Inter, system-ui, sans-serif">教学执行层</text>
+  <text x="190" y="638" font-size="17" fill="#475569" font-family="Inter, system-ui, sans-serif">教师主导 · 学生主体 · AI协同</text>
+
+  <!-- Layer 3 phase cards -->
+  <rect x="560" y="580" width="200" height="52" rx="10" fill="white" stroke="#FDE68A" stroke-width="1.5"/>
+  <text x="568" y="595" font-size="11" font-weight="700" fill="#D97706" font-family="Inter, system-ui, sans-serif">课前</text>
+  <text x="568" y="618" font-size="12" fill="#78350F" font-family="Inter, system-ui, sans-serif">分层任务推送</text>
+
+  <path d="M764 606 L788 606" stroke="#D97706" stroke-width="2" stroke-opacity="0.5"/>
+  <polygon points="784,601 796,606 784,611" fill="#D97706" opacity="0.5"/>
+
+  <rect x="800" y="580" width="200" height="52" rx="10" fill="white" stroke="#FDE68A" stroke-width="1.5"/>
+  <text x="808" y="595" font-size="11" font-weight="700" fill="#D97706" font-family="Inter, system-ui, sans-serif">课中</text>
+  <text x="808" y="618" font-size="12" fill="#78350F" font-family="Inter, system-ui, sans-serif">诊断 → 修复 → 验证</text>
+
+  <path d="M1004 606 L1028 606" stroke="#D97706" stroke-width="2" stroke-opacity="0.5"/>
+  <polygon points="1024,601 1036,606 1024,611" fill="#D97706" opacity="0.5"/>
+
+  <rect x="1040" y="580" width="200" height="52" rx="10" fill="white" stroke="#FDE68A" stroke-width="1.5"/>
+  <text x="1048" y="595" font-size="11" font-weight="700" fill="#D97706" font-family="Inter, system-ui, sans-serif">课后</text>
+  <text x="1048" y="618" font-size="12" fill="#78350F" font-family="Inter, system-ui, sans-serif">反馈迭代 · 精准干预</text>
+
+  <!-- Layer 3 feedback loop arrow (课后→课前) -->
+  <path d="M1140 636 Q1140 670 900 670 Q560 670 560 636" stroke="#D97706" stroke-width="1.5" stroke-opacity="0.35" fill="none" stroke-dasharray="6 4"/>
+  <polygon points="555,640 560,628 565,640" fill="#D97706" opacity="0.35"/>
+  <text x="850" y="684" text-anchor="middle" font-size="11" fill="#D97706" font-opacity="0.6" font-family="Inter, system-ui, sans-serif">教学迭代闭环</text>
+
+  <!-- ═══════════ Arrow 3→Output ═══════════ -->
+  <line x1="700" y1="702" x2="700" y2="726" stroke="url(#arrow-grad)" stroke-width="3" stroke-opacity="0.6"/>
+  <polygon points="688,720 700,738 712,720" fill="#2563EB" opacity="0.6"/>
+
+  <!-- ═══════════ OUTPUT BAR ═══════════ -->
+  <rect x="340" y="740" width="720" height="56" rx="28" fill="url(#output-grad)" filter="url(#output-shadow)"/>
+  <text x="700" y="775" text-anchor="middle" font-size="20" font-weight="600" fill="white" font-family="Inter, system-ui, sans-serif">闭环输出：可验证成效 + 可复制模式</text>
+
+  <!-- Side decorative elements -->
+  <circle cx="1340" cy="150" r="60" fill="#2563EB" opacity="0.03"/>
+  <circle cx="1340" cy="150" r="40" fill="#2563EB" opacity="0.04"/>
+  <circle cx="60" cy="650" r="50" fill="#D97706" opacity="0.03"/>
+  <circle cx="60" cy="650" r="30" fill="#D97706" opacity="0.04"/>
 </svg>
