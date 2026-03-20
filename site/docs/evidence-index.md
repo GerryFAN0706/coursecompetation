@@ -1,6 +1,6 @@
 ---
 title: 资料索引
-description: 站点教学资料资产和命名规范索引页面。
+description: 站点资料资产和命名规范索引页面。
 lastUpdated: 2026-03-17
 evidenceLevel: internal
 anonSafe: true
@@ -41,5 +41,5 @@ anonSafe: true
 
 ## 说明
 
-`/assets/evidence/original/` 与 `/assets/evidence/anonymized/` 已预置 `S01-S12` 文件位。
-请将 `*_pending.png` 覆盖为真实截图，并同步执行匿名化检查。
+`/assets/evidence/original/` 与 `/assets/evidence/anonymized/` 已预置 `S01-S12` 文件位。  
+请将 `*_pending.png` 覆盖为真实资料截图，并同步执行匿名化检查。

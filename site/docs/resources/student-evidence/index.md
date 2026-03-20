@@ -1,6 +1,6 @@
 ---
 title: 学生成果展示
-description: 学生成果采用”结构化摘要 + PDF原件”的双层展示，支持评审快速浏览与细节复核。
+description: 学生成果展示采用”结构化摘要 + PDF原件”的双层展示，支持评审快速浏览与细节复核。
 lastUpdated: 2026-03-17
 evidenceLevel: public
 anonSafe: true
@@ -8,9 +8,9 @@ anonSafe: true
 
 # 学生成果展示
 
-> 展示原则
-> 1) 先看摘要卡片，60秒理解成果价值
-> 2) 再点开PDF，完成细节核验
+> 展示原则  
+> 1) 先看摘要卡片，60秒理解成果价值  
+> 2) 再点开PDF，完成细节核验  
 > 3) 全部样本已匿名处理，仅保留教学成果链
 
 <StudentEvidenceShowcase />

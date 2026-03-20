@@ -16,7 +16,7 @@ anonSafe: true
   <div class="summary-card">
     <div class="summary-icon">🎯</div>
     <h3>目标</h3>
-    <p>将AI从"工具展示"升级为"教学闭环能力"，实现从课前设计到课后干预的可量化、可验证的教学改革</p>
+    <p>将AI从"工具展示"升级为"教学闭环能力"，实现从课前设计到课后干预的可验证的改革</p>
   </div>
   <div class="summary-card">
     <div class="summary-icon">📐</div>
@@ -48,7 +48,7 @@ anonSafe: true
     <h3>Public（评审版）← 当前</h3>
     <ul>
       <li><strong>用途：</strong>专家评审</li>
-      <li><strong>内容：</strong>保留可验证的完整材料</li>
+      <li><strong>内容：</strong>保留可验证成果链</li>
       <li><strong>身份信息：</strong>已脱敏处理</li>
       <li><strong>状态：</strong>在线公开</li>
     </ul>
@@ -123,7 +123,7 @@ anonSafe: true
 
 | 检查项 | 状态 | 说明 |
 |---|---|---|
-| 去除姓名、学号、账号标识 | ✅ 已完成 | 所有学生样本使用编号替代 |
+| 去除姓名、学号、账号标识 | ✅ 已完成 | 所有学生成果使用编号替代 |
 | 处理学校标识与机构信息 | ✅ 已完成 | 按竞赛要求处理 |
 | 检查截图中的身份信息 | ✅ 已完成 | 浏览器标签、平台头像已处理 |
 | 关键指标补充统计口径 | ✅ 已完成 | 每个数据点标注数据来源 |
@@ -136,21 +136,21 @@ anonSafe: true
   <div class="flow-card">
     <div class="step-num">→</div>
     <h4>评审路径</h4>
-    <p>5分钟/15分钟两套路径<br/><a href="/review-path/">进入评审路径</a></p>
+    <p>5分钟/15分钟两套路径<br/><a href="/coursecompetation/review-path/">进入评审路径</a></p>
   </div>
   <div class="flow-card">
     <div class="step-num">→</div>
     <h4>创新设计</h4>
-    <p>AI教学创新核心方案<br/><a href="/innovation/">进入创新设计</a></p>
+    <p>AI教学创新核心方案<br/><a href="/coursecompetation/innovation/">进入创新设计</a></p>
   </div>
   <div class="flow-card">
     <div class="step-num">→</div>
     <h4>核心案例</h4>
-    <p>第15讲完整课堂实录<br/><a href="/cases/lesson-15/">进入核心案例</a></p>
+    <p>第15讲完整课堂实录<br/><a href="/coursecompetation/cases/lesson-15/">进入核心案例</a></p>
   </div>
   <div class="flow-card">
     <div class="step-num">→</div>
     <h4>成效数据</h4>
-    <p>量化成效与对比分析<br/><a href="/results/">进入成效数据</a></p>
+    <p>量化成效与对比分析<br/><a href="/coursecompetation/results/">进入成效数据</a></p>
   </div>
 </div>

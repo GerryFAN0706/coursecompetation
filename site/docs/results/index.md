@@ -136,6 +136,6 @@ anonSafe: true
 ## 相关资料与下载
 
 - 成效统计主文档：`创新成果支撑材料/成效数据/成效数据汇总与图表说明.md`
-- 资料索引：[资料索引](/evidence-index)
+- 课程资料索引：[evidence-index](/evidence-index)
 - 学生成果展示：[学生成果展示](/resources/student-evidence/)
 
