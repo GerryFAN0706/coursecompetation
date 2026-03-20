@@ -10,6 +10,24 @@ style: |
     left: 75%;
     bottom: 25px;
   }
+  .ai-badge {
+    display: inline-block;
+    background: #e8f5e9;
+    color: #2e7d32;
+    border: 2px solid #2e7d32;
+    border-radius: 20px;
+    padding: 4px 16px;
+    font-size: 18px;
+    font-weight: bold;
+    margin: 4px 0;
+  }
+  .ai-box {
+    background: linear-gradient(135deg, #e8f5e9 0%, #f1f8e9 100%);
+    border-left: 5px solid #2e7d32;
+    border-radius: 8px;
+    padding: 16px 20px;
+    margin: 12px 0;
+  }
 ---
 
 <!-- _class: cover_d -->
@@ -67,8 +85,29 @@ style: |
 >   *(Be able to write encoding and authentication filters)*
 > - 能够合理安排多个过滤器的执行顺序  
 >   *(Be able to arrange multiple filters properly)*
-> - 能够利用白名单避免对静态资源的拦截  
+> - 能够利用白名单避免对静态资源的拦截
 >   *(Be able to use whitelist for static resources)*
+
+## AI辅助教学环节
+
+###### AI-Assisted Teaching
+
+<!-- _class: bq-green -->
+
+> **本讲AI应用 (AI Application in This Lecture)**
+>
+> - **工具 (Tool)**: Claude
+> - **环节 (Phase)**: Filter配置方案设计审查
+> - **方式 (Method)**: 学生描述过滤需求 → AI生成Filter配置方案 → 学生审查安全性与URL模式合理性 → 优化配置
+> - **原则 (Principle)**: AI是助手，不是答案 *(AI assists, not replaces)*
+
+<div class="ai-box">
+
+**🔧 AI使用场景 (AI Usage Scenario)**
+
+在本讲Filter配置实践中，学生首先描述具体的过滤需求（如编码过滤、登录认证），然后由Claude生成完整的Filter配置方案，包括web.xml配置和注解配置。学生需要审查AI生成的URL匹配模式是否合理、白名单是否完整、过滤器链顺序是否安全，最终优化配置方案，培养安全审查意识。
+
+</div>
 
 ## 第一部分：问题引入
 

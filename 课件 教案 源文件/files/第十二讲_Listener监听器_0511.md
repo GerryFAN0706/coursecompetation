@@ -10,6 +10,24 @@ style: |
     left: 75%;
     bottom: 25px;
   }
+  .ai-badge {
+    display: inline-block;
+    background: #e8f5e9;
+    color: #2e7d32;
+    border: 2px solid #2e7d32;
+    border-radius: 20px;
+    padding: 4px 16px;
+    font-size: 18px;
+    font-weight: bold;
+    margin: 4px 0;
+  }
+  .ai-box {
+    background: linear-gradient(135deg, #e8f5e9 0%, #f1f8e9 100%);
+    border-left: 5px solid #2e7d32;
+    border-radius: 8px;
+    padding: 16px 20px;
+    margin: 12px 0;
+  }
 ---
 
 <!-- _class: cover_d -->
@@ -67,8 +85,29 @@ style: |
 >   *(Be able to implement initialization and cleanup)*
 > - 能够实现在线人数统计功能  
 >   *(Be able to implement online user counting)*
-> - 能够使用ServletContext存取全局数据  
+> - 能够使用ServletContext存取全局数据
 >   *(Be able to use ServletContext for global data)*
+
+## AI辅助教学环节
+
+###### AI-Assisted Teaching
+
+<!-- _class: bq-green -->
+
+> **本讲AI应用 (AI Application in This Lecture)**
+>
+> - **工具 (Tool)**: ChatGPT / Claude
+> - **环节 (Phase)**: 监听器场景对比分析
+> - **方式 (Method)**: 学生向AI提问不同Listener的适用场景 → AI给出对比分析 → 学生对照课程案例验证AI回答的准确性
+> - **原则 (Principle)**: AI是助手，不是答案 *(AI assists, not replaces)*
+
+<div class="ai-box">
+
+**🔧 AI使用场景 (AI Usage Scenario)**
+
+在本讲监听器学习中，学生向ChatGPT或Claude提问ServletContextListener、HttpSessionListener、ServletRequestListener等不同监听器的适用场景和区别。AI给出对比分析后，学生需要结合课堂案例（如在线人数统计、应用初始化）验证AI回答的准确性，辨别AI可能存在的错误或遗漏，培养批判性思维。
+
+</div>
 
 ## 第一部分：问题引入
 

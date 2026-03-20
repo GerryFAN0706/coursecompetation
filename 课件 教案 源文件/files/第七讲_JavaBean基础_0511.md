@@ -10,6 +10,24 @@ style: |
     left: 75%;
     bottom: 25px;
   }
+  .ai-badge {
+    display: inline-block;
+    background: #e8f5e9;
+    color: #2e7d32;
+    border: 2px solid #2e7d32;
+    border-radius: 20px;
+    padding: 4px 16px;
+    font-size: 18px;
+    font-weight: bold;
+    margin: 4px 0;
+  }
+  .ai-box {
+    background: linear-gradient(135deg, #e8f5e9 0%, #f1f8e9 100%);
+    border-left: 5px solid #2e7d32;
+    border-radius: 8px;
+    padding: 16px 20px;
+    margin: 12px 0;
+  }
 ---
 
 <!-- _class: cover_d -->
@@ -67,8 +85,29 @@ style: |
 >   *(Be able to identify standard JavaBean structure)*
 > - 能够编写符合规范的JavaBean类  
 >   *(Be able to write specification-compliant JavaBean classes)*
-> - 能够理解JavaBean属性的访问机制  
+> - 能够理解JavaBean属性的访问机制
 >   *(Be able to understand JavaBean property access mechanism)*
+
+## AI辅助教学环节
+
+###### AI-Assisted Teaching
+
+<!-- _class: bq-green -->
+
+> **本讲AI应用 (AI Application in This Lecture)**
+>
+> - **工具 (Tool)**: Cursor
+> - **环节 (Phase)**: JavaBean自动生成与规范对比
+> - **方式 (Method)**: AI自动生成getter/setter/构造器 → 学生对比手写与AI生成的命名规范 → 讨论JavaBean约定
+> - **原则 (Principle)**: AI是助手，不是答案 *(AI assists, not replaces)*
+
+<div class="ai-box">
+
+**🔧 AI使用场景 (AI Usage Scenario)**
+
+本讲使用Cursor根据属性列表自动生成完整的JavaBean类，包括私有属性、getter/setter方法、无参构造器等。学生将AI生成的代码与自己手写的版本进行对比，分析命名规范（如驼峰命名、is前缀用于布尔属性等）是否符合JavaBean标准约定。通过对比讨论，学生不仅提升了编码效率，更深刻理解了JavaBean规范的本质和设计意图。
+
+</div>
 
 ## 第一部分：概念介绍
 

@@ -10,6 +10,24 @@ style: |
     left: 75%;
     bottom: 25px;
   }
+  .ai-badge {
+    display: inline-block;
+    background: #e8f5e9;
+    color: #2e7d32;
+    border: 2px solid #2e7d32;
+    border-radius: 20px;
+    padding: 4px 16px;
+    font-size: 18px;
+    font-weight: bold;
+    margin: 4px 0;
+  }
+  .ai-box {
+    background: linear-gradient(135deg, #e8f5e9 0%, #f1f8e9 100%);
+    border-left: 5px solid #2e7d32;
+    border-radius: 8px;
+    padding: 16px 20px;
+    margin: 12px 0;
+  }
 ---
 
 <!-- _class: cover_d -->
@@ -69,6 +87,27 @@ style: |
 >   *(Be able to use request to get parameters and response to output content)*
 > - 能够将带有Servlet的Web应用部署到Tomcat服务器  
 >   *(Be able to deploy web applications with Servlets to Tomcat)*
+
+## AI辅助教学环节
+
+###### AI-Assisted Teaching
+
+<!-- _class: bq-green -->
+
+> **本讲AI应用 (AI Application in This Lecture)**
+>
+> - **工具 (Tool)**: Cursor
+> - **环节 (Phase)**: Servlet编码实践
+> - **方式 (Method)**: 学生使用Cursor编写Servlet时获得AI代码补全提示 → 对比AI建议与手动编码 → 理解Servlet结构
+> - **原则 (Principle)**: AI是助手，不是答案 *(AI assists, not replaces)*
+
+<div class="ai-box">
+
+**🔧 AI使用场景 (AI Usage Scenario)**
+
+在编写第一个Servlet的实践环节中，学生使用Cursor编辑器进行编码。当学生继承HttpServlet并重写doGet方法时，Cursor会提供AI代码补全建议。学生需要对比AI生成的代码与自己手动编写的代码，理解每一行的作用，特别是Servlet的类结构、注解配置和请求响应处理流程，确保AI辅助提升编码效率的同时不跳过对核心原理的理解。
+
+</div>
 
 ## 第一部分：问题引入
 

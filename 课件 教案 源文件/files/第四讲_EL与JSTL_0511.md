@@ -10,6 +10,24 @@ style: |
     left: 75%;
     bottom: 25px;
   }
+  .ai-badge {
+    display: inline-block;
+    background: #e8f5e9;
+    color: #2e7d32;
+    border: 2px solid #2e7d32;
+    border-radius: 20px;
+    padding: 4px 16px;
+    font-size: 18px;
+    font-weight: bold;
+    margin: 4px 0;
+  }
+  .ai-box {
+    background: linear-gradient(135deg, #e8f5e9 0%, #f1f8e9 100%);
+    border-left: 5px solid #2e7d32;
+    border-radius: 8px;
+    padding: 16px 20px;
+    margin: 12px 0;
+  }
 ---
 
 <!-- _class: cover_d -->
@@ -69,6 +87,27 @@ style: |
 >   *(Be able to use JSTL tags to replace Java scriptlets)*
 > - 能够将混杂脚本的JSP重构为无脚本的纯净视图  
 >   *(Be able to refactor JSP into scriptless clean views)*
+
+## AI辅助教学环节
+
+###### AI-Assisted Teaching
+
+<!-- _class: bq-green -->
+
+> **本讲AI应用 (AI Application in This Lecture)**
+>
+> - **工具 (Tool)**: ChatGPT / Claude
+> - **环节 (Phase)**: Scriptlet vs EL/JSTL对比分析
+> - **方式 (Method)**: AI生成两种写法（Scriptlet vs EL） → 学生分析代码可读性、安全性与维护性差异 → 总结最佳实践
+> - **原则 (Principle)**: AI是助手，不是答案 *(AI assists, not replaces)*
+
+<div class="ai-box">
+
+**🔧 AI使用场景 (AI Usage Scenario)**
+
+在讲解EL与JSTL替代Scriptlet的优势时，教师使用ChatGPT/Claude分别生成同一功能的两种实现方式：传统Scriptlet写法和EL/JSTL写法。学生对比两段代码，从可读性、安全性和维护性三个维度进行分析，判断哪种写法更优并总结最佳实践。通过AI辅助的知识对照，培养学生在实际开发中进行技术选型的判断力。
+
+</div>
 
 ## 第一部分：问题引入
 

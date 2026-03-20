@@ -10,6 +10,24 @@ style: |
     left: 75%;
     bottom: 25px;
   }
+  .ai-badge {
+    display: inline-block;
+    background: #e8f5e9;
+    color: #2e7d32;
+    border: 2px solid #2e7d32;
+    border-radius: 20px;
+    padding: 4px 16px;
+    font-size: 18px;
+    font-weight: bold;
+    margin: 4px 0;
+  }
+  .ai-box {
+    background: linear-gradient(135deg, #e8f5e9 0%, #f1f8e9 100%);
+    border-left: 5px solid #2e7d32;
+    border-radius: 8px;
+    padding: 16px 20px;
+    margin: 12px 0;
+  }
 ---
 
 <!-- _class: cover_d -->
@@ -67,8 +85,29 @@ style: |
 >   *(Be able to use JavaBean correctly in JSP)*
 > - 能够实现表单数据到JavaBean的映射  
 >   *(Be able to map form data to JavaBean)*
-> - 能够设计适合Web应用的JavaBean结构  
+> - 能够设计适合Web应用的JavaBean结构
 >   *(Be able to design JavaBean for web applications)*
+
+## AI辅助教学环节
+
+###### AI-Assisted Teaching
+
+<!-- _class: bq-green -->
+
+> **本讲AI应用 (AI Application in This Lecture)**
+>
+> - **工具 (Tool)**: Cursor
+> - **环节 (Phase)**: JSP代码重构为JavaBean
+> - **方式 (Method)**: 学生提交含Scriptlet的JSP代码 → AI建议提取为JavaBean → 学生评估重构方案合理性 → 手动实施重构
+> - **原则 (Principle)**: AI是助手，不是答案 *(AI assists, not replaces)*
+
+<div class="ai-box">
+
+**🔧 AI使用场景 (AI Usage Scenario)**
+
+本讲中，学生首先提交包含大量Scriptlet（Java代码片段）的JSP页面，然后使用Cursor分析这些代码并获取AI的重构建议，将内嵌的业务逻辑和数据处理提取为独立的JavaBean组件。学生需要评估AI提出的重构方案是否合理、JavaBean的属性设计是否恰当，最终由学生自己手动完成重构实施。这一过程培养了学生的代码审查能力和架构优化思维。
+
+</div>
 
 ## 第一部分：JSP中的JavaBean
 
