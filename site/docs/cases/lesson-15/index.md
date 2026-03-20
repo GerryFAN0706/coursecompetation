@@ -24,13 +24,13 @@ anonSafe: true
 ## 修复前后对照图
 
 <div class="diagram-shell">
-  <img src="/coursecompetation/assets/svg/case-before-after.svg" alt="案例修复前后对照图" />
+  <img src="/assets/svg/case-before-after.svg" alt="案例修复前后对照图" />
 </div>
 
 ## 45分钟课堂时间轴
 
 <div class="diagram-shell">
-  <img src="/coursecompetation/assets/svg/case-timeline.svg" alt="45分钟课堂时间轴" />
+  <img src="/assets/svg/case-timeline.svg" alt="45分钟课堂时间轴" />
 </div>
 
 ## 问题版工程（3个核心缺陷）
