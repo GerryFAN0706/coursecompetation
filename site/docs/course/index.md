@@ -24,12 +24,12 @@ anonSafe: true
   <div class="summary-card">
     <div class="summary-icon">👥</div>
     <h3>授课对象</h3>
-    <p>大三本科生，每学期约80人</p>
+    <p>大三本科生，每学期约60人</p>
   </div>
   <div class="summary-card">
     <div class="summary-icon">⏱️</div>
     <h3>学时学分</h3>
-    <p>48学时（理论24 + 实验24）</p>
+    <p>32学时（理论24 + 实验8）</p>
   </div>
   <div class="summary-card">
     <div class="summary-icon">🎯</div>
