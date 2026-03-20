@@ -103,6 +103,23 @@ body {
   backdrop-filter: blur(12px) saturate(180%) !important;
 }
 
+/* Navbar logo & title */
+.VPNavBarTitle .title {
+  font-size: 15px !important;
+  font-weight: 700 !important;
+  background: linear-gradient(135deg, #1e40af, #0891b2);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  letter-spacing: -0.01em;
+}
+
+.VPNavBarTitle .logo {
+  width: 32px !important;
+  height: 32px !important;
+  margin-right: 8px;
+}
+
 /* Content typography */
 .vp-doc h1 {
   background: linear-gradient(135deg, var(--c-blue-700), var(--c-cyan-600));

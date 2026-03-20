@@ -1,8 +1,8 @@
 import { defineConfig } from "vitepress";
 
 export default defineConfig({
-  title: "Java Web AI教学创新实践",
-  description: "Java Web应用开发课程人工智能教学创新实践展示网站 — 第六届全国高校教师教学创新大赛 · 人工智能赛道",
+  title: "第六届教学创新大赛成果展示",
+  description: "第六届全国高校教师教学创新大赛 · 人工智能赛道 — Java Web应用开发课程AI教学创新成果展示",
   lang: "zh-CN",
   base: "/coursecompetation/",
   cleanUrls: true,
@@ -19,8 +19,8 @@ export default defineConfig({
   },
 
   themeConfig: {
-    logo: { light: "/assets/svg/hero-constellation.svg", dark: "/assets/svg/hero-constellation.svg" },
-    siteTitle: "AI教学创新",
+    logo: { light: "/assets/svg/logo.svg", dark: "/assets/svg/logo.svg" },
+    siteTitle: "教学创新大赛成果展示",
     nav: [
       { text: "首页", link: "/" },
       {
@@ -93,8 +93,8 @@ export default defineConfig({
     ],
 
     footer: {
-      message: "第六届全国高校教师教学创新大赛 · 人工智能赛道",
-      copyright: "Copyright © 2026 · AI赋能Java Web教学创新实践"
+      message: "第六届全国高校教师教学创新大赛 · 人工智能赛道 · 成果展示",
+      copyright: "Copyright © 2026 · AI赋能Java Web应用开发课程教学创新"
     },
 
     search: {

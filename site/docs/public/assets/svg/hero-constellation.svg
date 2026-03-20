@@ -1,32 +1,99 @@
-<svg width="1200" height="720" viewBox="0 0 1200 720" fill="none" xmlns="http://www.w3.org/2000/svg">
+<svg width="520" height="520" viewBox="0 0 520 520" fill="none" xmlns="http://www.w3.org/2000/svg">
   <defs>
-    <linearGradient id="bg" x1="60" y1="30" x2="1160" y2="690" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#E8F7FF"/>
-      <stop offset="0.55" stop-color="#EFFFFA"/>
-      <stop offset="1" stop-color="#FFF7E8"/>
+    <linearGradient id="hbg" x1="0" y1="0" x2="520" y2="520">
+      <stop stop-color="#EBF5FF"/>
+      <stop offset="0.5" stop-color="#F0FBFF"/>
+      <stop offset="1" stop-color="#F5F0FF"/>
     </linearGradient>
-    <linearGradient id="line" x1="180" y1="210" x2="1000" y2="500" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#0D5C82"/>
-      <stop offset="1" stop-color="#0EA5A3"/>
+    <linearGradient id="hg1" x1="160" y1="120" x2="360" y2="400">
+      <stop stop-color="#2563EB"/>
+      <stop offset="1" stop-color="#0891B2"/>
     </linearGradient>
+    <linearGradient id="hg2" x1="100" y1="200" x2="420" y2="320">
+      <stop stop-color="#059669"/>
+      <stop offset="1" stop-color="#0891B2"/>
+    </linearGradient>
+    <filter id="hs1" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="4" stdDeviation="12" flood-color="#2563EB" flood-opacity="0.15"/>
+    </filter>
+    <filter id="hs2" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="3" stdDeviation="8" flood-color="#0891B2" flood-opacity="0.12"/>
+    </filter>
   </defs>
-  <rect width="1200" height="720" rx="26" fill="url(#bg)"/>
-  <circle cx="204" cy="163" r="66" fill="#C8EFFF" fill-opacity="0.55"/>
-  <circle cx="1024" cy="552" r="78" fill="#D4FFF2" fill-opacity="0.52"/>
-  <circle cx="934" cy="166" r="42" fill="#FFE5B0" fill-opacity="0.52"/>
-  <path d="M175 228L371 328L548 247L730 349L1008 247" stroke="url(#line)" stroke-width="6" stroke-linecap="round"/>
-  <path d="M175 228L320 501L548 247L730 349L890 574" stroke="#0B4D6C" stroke-opacity="0.28" stroke-width="4" stroke-linecap="round"/>
-  <circle cx="175" cy="228" r="18" fill="#0D5C82"/>
-  <circle cx="371" cy="328" r="20" fill="#147AA5"/>
-  <circle cx="548" cy="247" r="20" fill="#0F9F87"/>
-  <circle cx="730" cy="349" r="20" fill="#0D5C82"/>
-  <circle cx="1008" cy="247" r="20" fill="#147AA5"/>
-  <circle cx="320" cy="501" r="17" fill="#0F9F87"/>
-  <circle cx="890" cy="574" r="17" fill="#0D5C82"/>
-  <rect x="104" y="89" width="258" height="84" rx="14" fill="white" fill-opacity="0.88"/>
-  <text x="130" y="126" font-size="24" fill="#0B4D6C" font-family="Segoe UI, sans-serif">Problem Driven</text>
-  <text x="130" y="154" font-size="18" fill="#31718E" font-family="Segoe UI, sans-serif">AI Teaching Innovation</text>
-  <rect x="738" y="506" width="352" height="110" rx="16" fill="white" fill-opacity="0.9"/>
-  <text x="772" y="554" font-size="24" fill="#0B4D6C" font-family="Segoe UI, sans-serif">Evidence + Feedback Loop</text>
-  <text x="772" y="584" font-size="18" fill="#2E6C6A" font-family="Segoe UI, sans-serif">Course Practice / Review Ready</text>
+
+  <!-- Background -->
+  <rect width="520" height="520" rx="32" fill="url(#hbg)"/>
+
+  <!-- Decorative rings -->
+  <circle cx="260" cy="260" r="210" stroke="#2563EB" stroke-opacity="0.05" stroke-width="1.5" fill="none"/>
+  <circle cx="260" cy="260" r="160" stroke="#0891B2" stroke-opacity="0.06" stroke-width="1" fill="none"/>
+  <circle cx="260" cy="260" r="110" stroke="#059669" stroke-opacity="0.05" stroke-width="1" fill="none"/>
+
+  <!-- Connection lines -->
+  <line x1="260" y1="120" x2="155" y2="200" stroke="url(#hg1)" stroke-width="2" stroke-opacity="0.3"/>
+  <line x1="260" y1="120" x2="365" y2="200" stroke="url(#hg1)" stroke-width="2" stroke-opacity="0.3"/>
+  <line x1="155" y1="200" x2="130" y2="320" stroke="url(#hg2)" stroke-width="2" stroke-opacity="0.25"/>
+  <line x1="365" y1="200" x2="390" y2="320" stroke="url(#hg1)" stroke-width="2" stroke-opacity="0.25"/>
+  <line x1="130" y1="320" x2="210" y2="410" stroke="url(#hg2)" stroke-width="2" stroke-opacity="0.25"/>
+  <line x1="390" y1="320" x2="310" y2="410" stroke="url(#hg1)" stroke-width="2" stroke-opacity="0.25"/>
+  <line x1="210" y1="410" x2="310" y2="410" stroke="url(#hg2)" stroke-width="2" stroke-opacity="0.2"/>
+  <!-- Spokes to center -->
+  <line x1="260" y1="120" x2="260" y2="260" stroke="#2563EB" stroke-width="1.5" stroke-opacity="0.15"/>
+  <line x1="130" y1="320" x2="260" y2="260" stroke="#0891B2" stroke-width="1.5" stroke-opacity="0.15"/>
+  <line x1="390" y1="320" x2="260" y2="260" stroke="#059669" stroke-width="1.5" stroke-opacity="0.15"/>
+
+  <!-- Center node: AI -->
+  <circle cx="260" cy="260" r="50" fill="white" filter="url(#hs1)"/>
+  <circle cx="260" cy="260" r="46" fill="white"/>
+  <circle cx="260" cy="260" r="34" fill="#2563EB" opacity="0.1"/>
+  <text x="260" y="254" text-anchor="middle" font-size="22" font-weight="800" fill="#2563EB" font-family="Inter, system-ui, sans-serif">AI</text>
+  <text x="260" y="276" text-anchor="middle" font-size="11" font-weight="500" fill="#64748B" font-family="Inter, system-ui, sans-serif">赋能中枢</text>
+
+  <!-- Top node: 课前 -->
+  <circle cx="260" cy="120" r="34" fill="white" filter="url(#hs2)"/>
+  <circle cx="260" cy="120" r="30" fill="white"/>
+  <rect x="242" y="106" width="36" height="3.5" rx="1.75" fill="#2563EB" opacity="0.5"/>
+  <text x="260" y="126" text-anchor="middle" font-size="14" font-weight="700" fill="#1E40AF" font-family="Inter, system-ui, sans-serif">课前</text>
+  <text x="260" y="140" text-anchor="middle" font-size="9" fill="#64748B" font-family="Inter, system-ui, sans-serif">学情分析</text>
+
+  <!-- Top-left node: 分层 -->
+  <circle cx="155" cy="200" r="28" fill="white" filter="url(#hs2)"/>
+  <circle cx="155" cy="200" r="24" fill="white"/>
+  <text x="155" y="204" text-anchor="middle" font-size="12" font-weight="600" fill="#7C3AED" font-family="Inter, system-ui, sans-serif">分层</text>
+  <text x="155" y="217" text-anchor="middle" font-size="8.5" fill="#64748B" font-family="Inter, system-ui, sans-serif">一人一题</text>
+
+  <!-- Top-right node: 审查 -->
+  <circle cx="365" cy="200" r="28" fill="white" filter="url(#hs2)"/>
+  <circle cx="365" cy="200" r="24" fill="white"/>
+  <text x="365" y="204" text-anchor="middle" font-size="12" font-weight="600" fill="#0891B2" font-family="Inter, system-ui, sans-serif">审查</text>
+  <text x="365" y="217" text-anchor="middle" font-size="8.5" fill="#64748B" font-family="Inter, system-ui, sans-serif">代码诊断</text>
+
+  <!-- Left node: 课中 -->
+  <circle cx="130" cy="320" r="34" fill="white" filter="url(#hs2)"/>
+  <circle cx="130" cy="320" r="30" fill="white"/>
+  <rect x="112" y="306" width="36" height="3.5" rx="1.75" fill="#0891B2" opacity="0.5"/>
+  <text x="130" y="326" text-anchor="middle" font-size="14" font-weight="700" fill="#0E7490" font-family="Inter, system-ui, sans-serif">课中</text>
+  <text x="130" y="340" text-anchor="middle" font-size="9" fill="#64748B" font-family="Inter, system-ui, sans-serif">人机协同</text>
+
+  <!-- Right node: 验证 -->
+  <circle cx="390" cy="320" r="28" fill="white" filter="url(#hs2)"/>
+  <circle cx="390" cy="320" r="24" fill="white"/>
+  <text x="390" y="324" text-anchor="middle" font-size="12" font-weight="600" fill="#059669" font-family="Inter, system-ui, sans-serif">验证</text>
+  <text x="390" y="337" text-anchor="middle" font-size="8.5" fill="#64748B" font-family="Inter, system-ui, sans-serif">测试闭环</text>
+
+  <!-- Bottom-left node: 课后 -->
+  <circle cx="210" cy="410" r="34" fill="white" filter="url(#hs2)"/>
+  <circle cx="210" cy="410" r="30" fill="white"/>
+  <rect x="192" y="396" width="36" height="3.5" rx="1.75" fill="#059669" opacity="0.5"/>
+  <text x="210" y="416" text-anchor="middle" font-size="14" font-weight="700" fill="#047857" font-family="Inter, system-ui, sans-serif">课后</text>
+  <text x="210" y="430" text-anchor="middle" font-size="9" fill="#64748B" font-family="Inter, system-ui, sans-serif">精准干预</text>
+
+  <!-- Bottom-right node: 反馈 -->
+  <circle cx="310" cy="410" r="28" fill="white" filter="url(#hs2)"/>
+  <circle cx="310" cy="410" r="24" fill="white"/>
+  <text x="310" y="414" text-anchor="middle" font-size="12" font-weight="600" fill="#D97706" font-family="Inter, system-ui, sans-serif">反馈</text>
+  <text x="310" y="427" text-anchor="middle" font-size="8.5" fill="#64748B" font-family="Inter, system-ui, sans-serif">数据驱动</text>
+
+  <!-- Bottom cycle hint -->
+  <path d="M225 445 Q260 470 295 445" stroke="#059669" stroke-width="1.5" stroke-opacity="0.3" fill="none" stroke-dasharray="4 3"/>
 </svg>
