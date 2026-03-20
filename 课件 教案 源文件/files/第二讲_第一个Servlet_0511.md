@@ -4,7 +4,7 @@ size: 16:9
 theme: am_blue
 paginate: true
 headingDivider: [2,3]
-footer: \ *Java Web应用开发 (Java Web Application Development)* *计算机科学与技术学院*
+footer: \ *Java Web应用开发 (Java Web Application Development)* *XXX学院*
 style: |
   section.cover_d footer {
     left: 75%;
@@ -32,7 +32,6 @@ style: |
 
 <!-- _class: cover_d -->
 <!-- _header: "" -->
-<!-- _footer: ![h:100](logo-lan.png) -->
 <!-- _paginate: "" -->
 
 # 第一个Servlet—开启动态内容的大门
@@ -41,7 +40,7 @@ style: |
 
 **课程名称**: Java Web 应用开发 | 第二讲
 **授课方式**: 双语教学 (Bilingual Teaching)
-**课程性质**: 专业核心课程 | 4学分/64学时
+**课程性质**: 专业核心课程 | 2学分/32学时
 **学期**: 2025年秋季
 
 ## 本讲概要
@@ -726,7 +725,7 @@ out.println("<h3>你的下一个任务是：精通Servlet!</h3>");
 <div class="icons">
 
 - <i class="fa-solid fa-graduation-cap"></i>  
-  计算机科学与技术学院  
+  XXX学院  
 
 - <i class="fa-solid fa-book-open"></i>  
   Java Web 应用开发  

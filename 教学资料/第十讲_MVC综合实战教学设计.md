@@ -60,10 +60,10 @@
 #### 内容要点
 1.  **项目骨架搭建 (2分钟)**
     *   在IDE中演示创建项目，并建立规范的包结构：
-        - `com.tyust.controller` (存放Servlet)
-        - `com.tyust.service` (存放业务逻辑接口与实现)
-        - `com.tyust.dao` (存放数据访问接口与实现)
-        - `com.tyust.model` (存放JavaBean实体类)
+        - `com.example.controller` (存放Servlet)
+        - `com.example.service` (存放业务逻辑接口与实现)
+        - `com.example.dao` (存放数据访问接口与实现)
+        - `com.example.model` (存放JavaBean实体类)
     *   强调"**未写代码，结构先行**"的工程化思想。
 
 2.  **代码实现：自底向上 (10分钟)**
