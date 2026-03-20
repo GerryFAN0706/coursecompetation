@@ -1,21 +1,103 @@
-<svg width="1400" height="380" viewBox="0 0 1400 380" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <rect width="1400" height="380" rx="22" fill="#F7FCFF"/>
-  <path d="M110 188H1290" stroke="#0D5C82" stroke-width="8" stroke-linecap="round"/>
-  <circle cx="180" cy="188" r="20" fill="#0D5C82"/>
-  <circle cx="420" cy="188" r="20" fill="#147AA5"/>
-  <circle cx="700" cy="188" r="20" fill="#0F9F87"/>
-  <circle cx="980" cy="188" r="20" fill="#0D5C82"/>
-  <circle cx="1220" cy="188" r="20" fill="#D17B00"/>
-  <text x="130" y="120" font-size="22" fill="#0B4D6C" font-family="Segoe UI, sans-serif">0-10 分钟</text>
-  <text x="74" y="150" font-size="20" fill="#2E6B8A" font-family="Segoe UI, sans-serif">问题导入 + 分组任务</text>
-  <text x="372" y="120" font-size="22" fill="#0B4D6C" font-family="Segoe UI, sans-serif">10-20 分钟</text>
-  <text x="314" y="150" font-size="20" fill="#2E6B8A" font-family="Segoe UI, sans-serif">AI审查 + 锁定风险</text>
-  <text x="652" y="120" font-size="22" fill="#0B4D6C" font-family="Segoe UI, sans-serif">20-30 分钟</text>
-  <text x="582" y="150" font-size="20" fill="#2E6B8A" font-family="Segoe UI, sans-serif">汇报 + 知识点对齐</text>
-  <text x="932" y="120" font-size="22" fill="#0B4D6C" font-family="Segoe UI, sans-serif">30-39 分钟</text>
-  <text x="858" y="150" font-size="20" fill="#2E6B8A" font-family="Segoe UI, sans-serif">修改代码 + 路径验证</text>
-  <text x="1170" y="120" font-size="22" fill="#0B4D6C" font-family="Segoe UI, sans-serif">39-45 分钟</text>
-  <text x="1088" y="150" font-size="20" fill="#2E6B8A" font-family="Segoe UI, sans-serif">复盘总结 + 课后延展</text>
-  <rect x="430" y="248" width="540" height="76" rx="14" fill="#E8F5FF" stroke="#A5CAE8"/>
-  <text x="468" y="296" font-size="24" fill="#0B4D6C" font-family="Segoe UI, sans-serif">课堂主线：发现问题 -> 修复问题 -> 验证问题</text>
+<svg width="1400" height="420" viewBox="0 0 1400 420" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="tl-bg" x1="0" y1="0" x2="1400" y2="420">
+      <stop stop-color="#F0F7FF"/>
+      <stop offset="0.5" stop-color="#F8FBFF"/>
+      <stop offset="1" stop-color="#F5F0FF"/>
+    </linearGradient>
+    <linearGradient id="tl-line" x1="120" y1="0" x2="1280" y2="0">
+      <stop stop-color="#2563EB"/>
+      <stop offset="0.25" stop-color="#0891B2"/>
+      <stop offset="0.5" stop-color="#059669"/>
+      <stop offset="0.75" stop-color="#2563EB"/>
+      <stop offset="1" stop-color="#D97706"/>
+    </linearGradient>
+    <filter id="tl-s" x="-10%" y="-10%" width="120%" height="130%">
+      <feDropShadow dx="0" dy="3" stdDeviation="8" flood-color="#1E293B" flood-opacity="0.08"/>
+    </filter>
+    <filter id="tl-dot" x="-50%" y="-50%" width="200%" height="200%">
+      <feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="#2563EB" flood-opacity="0.2"/>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1400" height="420" rx="22" fill="url(#tl-bg)"/>
+
+  <!-- Title -->
+  <text x="700" y="42" text-anchor="middle" font-size="18" font-weight="700" fill="#1E293B" font-family="Inter, system-ui, sans-serif">45分钟课堂时间轴</text>
+
+  <!-- Main timeline line -->
+  <line x1="120" y1="190" x2="1280" y2="190" stroke="url(#tl-line)" stroke-width="4" stroke-linecap="round" stroke-opacity="0.3"/>
+
+  <!-- ═══ Phase 1: 0-10min ═══ -->
+  <circle cx="180" cy="190" r="16" fill="#2563EB" filter="url(#tl-dot)"/>
+  <circle cx="180" cy="190" r="6" fill="white"/>
+  <g filter="url(#tl-s)">
+    <rect x="108" y="70" width="144" height="90" rx="14" fill="white" stroke="#DBEAFE" stroke-width="1"/>
+    <rect x="108" y="70" width="144" height="4" rx="2" fill="#2563EB"/>
+  </g>
+  <text x="180" y="96" text-anchor="middle" font-size="13" font-weight="700" fill="#2563EB" font-family="Inter, system-ui, sans-serif">0 - 10 分钟</text>
+  <text x="180" y="116" text-anchor="middle" font-size="12" font-weight="600" fill="#1E3A5F" font-family="Inter, system-ui, sans-serif">问题导入</text>
+  <text x="180" y="135" text-anchor="middle" font-size="11" fill="#64748B" font-family="Inter, system-ui, sans-serif">分组领取任务</text>
+  <text x="180" y="150" text-anchor="middle" font-size="11" fill="#64748B" font-family="Inter, system-ui, sans-serif">认识缺陷工程</text>
+  <!-- Connector -->
+  <line x1="180" y1="160" x2="180" y2="174" stroke="#2563EB" stroke-width="1.5" stroke-opacity="0.3"/>
+
+  <!-- ═══ Phase 2: 10-20min ═══ -->
+  <circle cx="440" cy="190" r="16" fill="#0891B2" filter="url(#tl-dot)"/>
+  <circle cx="440" cy="190" r="6" fill="white"/>
+  <g filter="url(#tl-s)">
+    <rect x="368" y="220" width="144" height="106" rx="14" fill="white" stroke="#CCFBF1" stroke-width="1"/>
+    <rect x="368" y="322" width="144" height="4" rx="2" fill="#0891B2"/>
+  </g>
+  <text x="440" y="246" text-anchor="middle" font-size="13" font-weight="700" fill="#0891B2" font-family="Inter, system-ui, sans-serif">10 - 20 分钟</text>
+  <text x="440" y="266" text-anchor="middle" font-size="12" font-weight="600" fill="#134E4A" font-family="Inter, system-ui, sans-serif">AI辅助审查</text>
+  <text x="440" y="285" text-anchor="middle" font-size="11" fill="#64748B" font-family="Inter, system-ui, sans-serif">学生使用AI诊断</text>
+  <text x="440" y="300" text-anchor="middle" font-size="11" fill="#64748B" font-family="Inter, system-ui, sans-serif">锁定安全风险点</text>
+  <text x="440" y="315" text-anchor="middle" font-size="11" fill="#64748B" font-family="Inter, system-ui, sans-serif">教师巡视纠偏</text>
+  <line x1="440" y1="206" x2="440" y2="220" stroke="#0891B2" stroke-width="1.5" stroke-opacity="0.3"/>
+
+  <!-- ═══ Phase 3: 20-30min ═══ -->
+  <circle cx="700" cy="190" r="16" fill="#059669" filter="url(#tl-dot)"/>
+  <circle cx="700" cy="190" r="6" fill="white"/>
+  <g filter="url(#tl-s)">
+    <rect x="628" y="70" width="144" height="90" rx="14" fill="white" stroke="#D1FAE5" stroke-width="1"/>
+    <rect x="628" y="70" width="144" height="4" rx="2" fill="#059669"/>
+  </g>
+  <text x="700" y="96" text-anchor="middle" font-size="13" font-weight="700" fill="#059669" font-family="Inter, system-ui, sans-serif">20 - 30 分钟</text>
+  <text x="700" y="116" text-anchor="middle" font-size="12" font-weight="600" fill="#14532D" font-family="Inter, system-ui, sans-serif">汇报与对齐</text>
+  <text x="700" y="135" text-anchor="middle" font-size="11" fill="#64748B" font-family="Inter, system-ui, sans-serif">分组汇报发现</text>
+  <text x="700" y="150" text-anchor="middle" font-size="11" fill="#64748B" font-family="Inter, system-ui, sans-serif">知识点精准映射</text>
+  <line x1="700" y1="160" x2="700" y2="174" stroke="#059669" stroke-width="1.5" stroke-opacity="0.3"/>
+
+  <!-- ═══ Phase 4: 30-39min ═══ -->
+  <circle cx="960" cy="190" r="16" fill="#2563EB" filter="url(#tl-dot)"/>
+  <circle cx="960" cy="190" r="6" fill="white"/>
+  <g filter="url(#tl-s)">
+    <rect x="888" y="220" width="144" height="106" rx="14" fill="white" stroke="#DBEAFE" stroke-width="1"/>
+    <rect x="888" y="322" width="144" height="4" rx="2" fill="#2563EB"/>
+  </g>
+  <text x="960" y="246" text-anchor="middle" font-size="13" font-weight="700" fill="#2563EB" font-family="Inter, system-ui, sans-serif">30 - 39 分钟</text>
+  <text x="960" y="266" text-anchor="middle" font-size="12" font-weight="600" fill="#1E3A5F" font-family="Inter, system-ui, sans-serif">代码修复</text>
+  <text x="960" y="285" text-anchor="middle" font-size="11" fill="#64748B" font-family="Inter, system-ui, sans-serif">修改关键逻辑</text>
+  <text x="960" y="300" text-anchor="middle" font-size="11" fill="#64748B" font-family="Inter, system-ui, sans-serif">按5步路径验证</text>
+  <text x="960" y="315" text-anchor="middle" font-size="11" fill="#64748B" font-family="Inter, system-ui, sans-serif">确认权限闭环</text>
+  <line x1="960" y1="206" x2="960" y2="220" stroke="#2563EB" stroke-width="1.5" stroke-opacity="0.3"/>
+
+  <!-- ═══ Phase 5: 39-45min ═══ -->
+  <circle cx="1220" cy="190" r="16" fill="#D97706" filter="url(#tl-dot)"/>
+  <circle cx="1220" cy="190" r="6" fill="white"/>
+  <g filter="url(#tl-s)">
+    <rect x="1148" y="70" width="144" height="90" rx="14" fill="white" stroke="#FEF3C7" stroke-width="1"/>
+    <rect x="1148" y="70" width="144" height="4" rx="2" fill="#D97706"/>
+  </g>
+  <text x="1220" y="96" text-anchor="middle" font-size="13" font-weight="700" fill="#D97706" font-family="Inter, system-ui, sans-serif">39 - 45 分钟</text>
+  <text x="1220" y="116" text-anchor="middle" font-size="12" font-weight="600" fill="#78350F" font-family="Inter, system-ui, sans-serif">复盘总结</text>
+  <text x="1220" y="135" text-anchor="middle" font-size="11" fill="#64748B" font-family="Inter, system-ui, sans-serif">课堂成果回顾</text>
+  <text x="1220" y="150" text-anchor="middle" font-size="11" fill="#64748B" font-family="Inter, system-ui, sans-serif">课后分层延展</text>
+  <line x1="1220" y1="160" x2="1220" y2="174" stroke="#D97706" stroke-width="1.5" stroke-opacity="0.3"/>
+
+  <!-- Bottom summary bar -->
+  <rect x="300" y="365" width="800" height="40" rx="20" fill="white" stroke="#E2E8F0" stroke-width="1" filter="url(#tl-s)"/>
+  <text x="700" y="391" text-anchor="middle" font-size="14" font-weight="600" fill="#475569" font-family="Inter, system-ui, sans-serif">课堂主线：发现问题 → AI辅助诊断 → 知识点映射 → 修复验证 → 复盘延展</text>
 </svg>

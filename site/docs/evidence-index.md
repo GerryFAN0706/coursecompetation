@@ -22,7 +22,6 @@ anonSafe: true
 - [D02_第十五讲教学设计.pdf](/assets/docs/D02_第十五讲教学设计.pdf)
 - [D03_课堂视频选题与AI应用方案.pdf](/assets/docs/D03_课堂视频选题与AI应用方案.pdf)
 - [D04_存在缺陷的示例工程设计方案.pdf](/assets/docs/D04_存在缺陷的示例工程设计方案.pdf)
-- [D05_课堂实录逐分钟讲稿.pdf](/assets/docs/D05_课堂实录逐分钟讲稿.pdf)
 - [D06_AI提示词与测试清单.pdf](/assets/docs/D06_AI提示词与测试清单.pdf)
 - [D07_问题版工程README.pdf](/assets/docs/D07_问题版工程README.pdf)
 

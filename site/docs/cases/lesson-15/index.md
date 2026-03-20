@@ -66,8 +66,7 @@ flowchart TD
 
 ## 资源与成果入口
 
-1. [课堂实录讲稿](/assets/docs/D05_课堂实录逐分钟讲稿.pdf)
-2. [AI提示词与测试清单](/assets/docs/D06_AI提示词与测试清单.pdf)
+1. [AI提示词与测试清单](/assets/docs/D06_AI提示词与测试清单.pdf)
 3. [问题版工程README](/assets/docs/D07_问题版工程README.pdf)
 4. [成效与数据](/results/)
 

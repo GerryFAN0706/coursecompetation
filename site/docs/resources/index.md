@@ -86,10 +86,6 @@ anonSafe: true
     <div class="file-icon">📄</div>
     <div class="file-info"><h4>D04 缺陷示例工程方案</h4><p>教学用"问题版"Java Web工程的设计说明</p></div>
   </a>
-  <a class="download-card" href="/coursecompetation/assets/docs/D05_课堂实录逐分钟讲稿.pdf">
-    <div class="file-icon">📄</div>
-    <div class="file-info"><h4>D05 课堂实录讲稿</h4><p>45分钟课堂逐分钟脚本与教学节奏说明</p></div>
-  </a>
   <a class="download-card" href="/coursecompetation/assets/docs/D06_AI提示词与测试清单.pdf">
     <div class="file-icon">📄</div>
     <div class="file-info"><h4>D06 AI提示词与测试清单</h4><p>课堂使用的全部AI提示词模板与验证清单</p></div>
