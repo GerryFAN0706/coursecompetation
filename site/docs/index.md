@@ -171,7 +171,8 @@ features:
 
 <div class="metrics-strip">
   <div class="metric-box"><div class="metric-value">🧠</div><div>Claude / GPT-4<br/><small>任务生成·代码审查</small></div></div>
+  <div class="metric-box"><div class="metric-value">🇨🇳</div><div>文心一言 / 通义千问 / DeepSeek<br/><small>国产大模型·备选方案</small></div></div>
   <div class="metric-box"><div class="metric-value">⌨️</div><div>Cursor IDE<br/><small>课堂AI编程助手</small></div></div>
   <div class="metric-box"><div class="metric-value">🧪</div><div>JUnit 5<br/><small>自动化测试验证</small></div></div>
-  <div class="metric-box"><div class="metric-value">📦</div><div>Git / GitHub<br/><small>代码管理·版本追踪</small></div></div>
+  <div class="metric-box"><div class="metric-value">📦</div><div>Git / Gitea<br/><small>代码管理·版本追踪</small></div></div>
 </div>

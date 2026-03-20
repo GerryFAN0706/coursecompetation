@@ -84,7 +84,7 @@ anonSafe: true
   <td>第1讲</td>
   <td>Web核心脉络</td>
   <td>AI生成HTTP请求/响应示例，学生对比手写 vs AI生成</td>
-  <td><span class="ai-tag">ChatGPT</span></td>
+  <td><span class="ai-tag">ChatGPT</span> <span class="ai-tag">文心一言</span></td>
   <td>概念演示</td>
 </tr>
 <tr>
@@ -105,7 +105,7 @@ anonSafe: true
   <td>第4讲</td>
   <td>EL与JSTL</td>
   <td>AI对比scriptlet vs EL表达式写法优劣，引导规范化</td>
-  <td><span class="ai-tag">ChatGPT</span></td>
+  <td><span class="ai-tag">ChatGPT</span> <span class="ai-tag">通义千问</span></td>
   <td>知识对照</td>
 </tr>
 <tr>
@@ -140,7 +140,7 @@ anonSafe: true
   <td>第9讲</td>
   <td>MVC设计模式</td>
   <td>AI生成MVC架构图与分层建议</td>
-  <td><span class="ai-tag">ChatGPT</span></td>
+  <td><span class="ai-tag">ChatGPT</span> <span class="ai-tag">DeepSeek</span></td>
   <td>概念理解</td>
 </tr>
 <tr>
@@ -161,7 +161,7 @@ anonSafe: true
   <td>第12讲</td>
   <td>Listener监听器</td>
   <td>AI对比不同Listener适用场景，辅助选型决策</td>
-  <td><span class="ai-tag">ChatGPT</span></td>
+  <td><span class="ai-tag">ChatGPT</span> <span class="ai-tag">文心一言</span></td>
   <td>知识对比</td>
 </tr>
 <tr>
@@ -175,7 +175,7 @@ anonSafe: true
   <td>第14讲</td>
   <td>数据库事务与连接池</td>
   <td>AI分析事务隔离级别差异与死锁风险</td>
-  <td><span class="ai-tag">Claude</span></td>
+  <td><span class="ai-tag">Claude</span> <span class="ai-tag">DeepSeek</span></td>
   <td>概念辨析</td>
 </tr>
 <tr class="highlight-row">
@@ -242,9 +242,10 @@ anonSafe: true
 
 <div class="metrics-strip">
   <div class="metric-box"><div class="metric-value">🧠</div><div>Claude / GPT-4<br/><small>任务生成·代码审查</small></div></div>
+  <div class="metric-box"><div class="metric-value">🇨🇳</div><div>文心一言 / 通义千问 / DeepSeek<br/><small>国产大模型·备选方案</small></div></div>
   <div class="metric-box"><div class="metric-value">⌨️</div><div>Cursor IDE<br/><small>课堂AI编程助手</small></div></div>
   <div class="metric-box"><div class="metric-value">🧪</div><div>JUnit 5 / Maven<br/><small>自动测试·项目构建</small></div></div>
-  <div class="metric-box"><div class="metric-value">📦</div><div>Git / GitHub<br/><small>代码管理·CI/CD</small></div></div>
+  <div class="metric-box"><div class="metric-value">📦</div><div>Git / Gitea<br/><small>代码管理·CI/CD</small></div></div>
   <div class="metric-box"><div class="metric-value">📊</div><div>Mermaid / ECharts<br/><small>架构图·数据可视化</small></div></div>
   <div class="metric-box"><div class="metric-value">🎨</div><div>Marp / VitePress<br/><small>课件制作·网站展示</small></div></div>
 </div>

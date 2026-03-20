@@ -43,7 +43,7 @@ anonSafe: true
   <div class="compare-col before">
     <h3>最低要求</h3>
     <ul>
-      <li><strong>AI工具：</strong>任一可用生成式AI（ChatGPT / Claude / 文心等）</li>
+      <li><strong>AI工具：</strong>任一可用生成式AI（ChatGPT / Claude / 文心一言 / 通义千问 / DeepSeek等）</li>
       <li><strong>学生设备：</strong>可联网电脑</li>
       <li><strong>教师能力：</strong>基本提示词使用能力</li>
       <li><strong>班级规模：</strong>10-60人</li>
@@ -53,7 +53,7 @@ anonSafe: true
   <div class="compare-col after">
     <h3>推荐配置</h3>
     <ul>
-      <li><strong>AI工具：</strong>IDE内嵌AI（Cursor）+ API工具链（Claude API）</li>
+      <li><strong>AI工具：</strong>IDE内嵌AI（Cursor）+ API工具链（Claude / DeepSeek / 通义千问 API）</li>
       <li><strong>学生设备：</strong>人手一机开发环境</li>
       <li><strong>教师能力：</strong>能设计提示词模板和评价规则</li>
       <li><strong>班级规模：</strong>30-40人（最佳分组协作规模）</li>

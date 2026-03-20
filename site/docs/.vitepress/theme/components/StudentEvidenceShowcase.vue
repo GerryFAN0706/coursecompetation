@@ -1,8 +1,8 @@
 <template>
   <section class="evi-wrap">
     <div class="evi-head">
-      <h3>学生作品证据展示（匿名版）</h3>
-      <p>展示策略：页面先呈现结构化摘要，PDF作为可核验原始证据附件。</p>
+      <h3>学生成果展示（匿名版）</h3>
+      <p>展示策略：页面先呈现结构化摘要，PDF作为可核验原始成果附件。</p>
     </div>
     <div class="evi-grid">
       <article v-for="item in items" :key="item.id" class="evi-card">
@@ -15,7 +15,7 @@
         <div class="evi-tags">
           <span v-for="tag in item.tags" :key="tag">{{ tag }}</span>
         </div>
-        <a class="evi-link" :href="withBase(item.pdfPath)" target="_blank" rel="noreferrer">查看PDF证据</a>
+        <a class="evi-link" :href="withBase(item.pdfPath)" target="_blank" rel="noreferrer">查看PDF原件</a>
       </article>
     </div>
   </section>
