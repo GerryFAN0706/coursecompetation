@@ -161,7 +161,7 @@ features:
   <div class="flow-card">
     <div class="step-num">∞</div>
     <h4>深度审阅</h4>
-    <p><a href="/resources/">下载全部文档</a> · <a href="/resources/student-evidence/">学生作品证据</a> · <a href="/resources/prompts/">AI提示词库</a></p>
+    <p><a href="/resources/">下载全部文档</a> · <a href="/resources/student-evidence/">学生成果展示</a> · <a href="/resources/prompts/">AI提示词库</a></p>
   </div>
 </div>
 

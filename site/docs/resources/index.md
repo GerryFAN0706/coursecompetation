@@ -1,6 +1,6 @@
 ---
 title: 教学资源
-description: 提供提示词模板、测试清单、课程文档下载与学生作品证据入口。
+description: 提供提示词模板、测试清单、课程文档下载与学生成果展示入口。
 lastUpdated: 2026-03-17
 evidenceLevel: public
 anonSafe: true
@@ -8,7 +8,7 @@ anonSafe: true
 
 # 教学资源
 
-<div class="section-lead">本页面汇聚课程全部教学资源，包括文档下载、AI提示词库、测试清单和学生作品证据。所有资源均经过结构化整理，支持评审快速定位与深度核验。</div>
+<div class="section-lead">本页面汇聚课程全部教学资源，包括文档下载、AI提示词库、测试清单和学生成果展示。所有资源均经过结构化整理，支持评审快速定位与深度核验。</div>
 
 ## 资源总览
 
@@ -48,9 +48,9 @@ anonSafe: true
   </div>
   <div class="summary-card">
     <div class="summary-icon">🎓</div>
-    <h3>学生作品证据</h3>
+    <h3>学生成果展示</h3>
     <p>采用"摘要卡片 + PDF原件"双层呈现。</p>
-    <p><a href="/resources/student-evidence/">进入证据页 →</a></p>
+    <p><a href="/resources/student-evidence/">进入成果展示 →</a></p>
   </div>
   <div class="summary-card">
     <div class="summary-icon">🧪</div>
@@ -156,16 +156,16 @@ anonSafe: true
 
 <SamplePlaceholderBoard />
 
-## 命名契约与证据索引
+## 命名契约与资料索引
 
 <div class="info-box blue">
   <span class="icon">📋</span>
-  <div>所有教学证据采用统一命名规则，便于评审快速追溯与交叉验证。</div>
+  <div>所有教学资料采用统一命名规则，便于评审快速追溯与交叉验证。</div>
 </div>
 
 | 类别 | 前缀 | 示例 | 存放位置 |
 |---|---|---|---|
-| 截图证据 | `Sxx_` | `S01_login_test.png` | `/assets/evidence/` |
+| 截图资料 | `Sxx_` | `S01_login_test.png` | `/assets/evidence/` |
 | 课程文档 | `Dxx_` | `D01_教学大纲.pdf` | `/assets/docs/` |
 | 数据图表 | `Cxx_` | `C01_scores.json` | `/assets/data/` |
 | 学生样本 | `EV-Sxx` | `EV-S01_feedback.pdf` | `/assets/evidence/student/` |

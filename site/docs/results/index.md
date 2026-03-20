@@ -1,6 +1,6 @@
 ---
 title: 成效与数据
-description: 完整展示AI教学创新的量化结果、统计口径、证据映射与局限性说明。
+description: 完整展示AI教学创新的量化结果、统计口径、数据分析与局限性说明。
 lastUpdated: 2026-03-17
 evidenceLevel: public
 anonSafe: true
@@ -133,9 +133,9 @@ anonSafe: true
 4. 学生AI使用强度差异未纳入协变量。  
 5. 教师经验自然增长可能带来附加提升。
 
-## 证据与下载
+## 相关资料与下载
 
 - 成效统计主文档：`创新成果支撑材料/成效数据/成效数据汇总与图表说明.md`
-- 课程证据索引：[evidence-index](/evidence-index)
-- 学生作品证据页：[学生作品证据](/resources/student-evidence/)
+- 资料索引：[资料索引](/evidence-index)
+- 学生成果展示：[学生成果展示](/resources/student-evidence/)
 

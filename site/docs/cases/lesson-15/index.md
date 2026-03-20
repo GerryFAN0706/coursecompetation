@@ -328,14 +328,14 @@ anonSafe: true
   </div>
   <div class="summary-card">
     <div class="summary-icon">🔗</div>
-    <h3>证据链闭环完整</h3>
-    <p>从问题工程发布到最终验证路径全部通过，每一步均有可追溯的产出物：诊断报告、修复代码差异、验证截图、反思卡。证据链支撑"教-学-评"一体化闭合。</p>
+    <h3>教学闭环完整</h3>
+    <p>从问题工程发布到最终验证路径全部通过，每一步均有可追溯的产出物：诊断报告、修复代码差异、验证截图、反思卡。完整闭环支撑"教-学-评"一体化闭合。</p>
   </div>
 </div>
 
 <div class="section-divider"></div>
 
-## 资源与证据下载
+## 资源与文档下载
 
 <div class="download-grid">
   <a class="download-card" href="/assets/docs/D05_课堂实录逐分钟讲稿.pdf">
@@ -370,7 +370,7 @@ anonSafe: true
 
 <div class="section-divider"></div>
 
-## 样本证据挂载
+## 学生成果样本
 
 <div class="evidence-panel">
   <p><strong>已接入样本材料：</strong></p>

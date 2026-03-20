@@ -36,7 +36,7 @@ anonSafe: true
   <div class="flow-card">
     <div class="step-num">4</div>
     <h4>成效数据</h4>
-    <p>确认量化结果与证据口径<br/><a href="/results/">→ 成效与数据</a></p>
+    <p>确认量化结果与数据口径<br/><a href="/results/">→ 成效与数据</a></p>
   </div>
 </div>
 
@@ -86,7 +86,7 @@ anonSafe: true
     <div class="timeline-marker">5</div>
     <div class="timeline-content">
       <h4>教学资源</h4>
-      <p>提示词库、测试清单、文档下载、学生作品证据</p>
+      <p>提示词库、测试清单、文档下载、学生成果展示</p>
       <p><a href="/resources/">→ 教学资源</a></p>
     </div>
   </div>
@@ -111,7 +111,7 @@ anonSafe: true
 
 <table class="lecture-table">
 <thead>
-<tr><th>评审关注点</th><th>推荐页面</th><th>核心证据</th></tr>
+<tr><th>评审关注点</th><th>推荐页面</th><th>核心支撑</th></tr>
 </thead>
 <tbody>
 <tr>
@@ -149,7 +149,7 @@ anonSafe: true
 
 <div class="section-divider"></div>
 
-## 一键证据速览
+## 一键资料速览
 
 <div class="summary-grid">
   <div class="summary-card">
@@ -174,7 +174,7 @@ anonSafe: true
     <div class="summary-icon">🎓</div>
     <h3>学生作品</h3>
     <p>8份匿名化样本</p>
-    <p><a href="/resources/student-evidence/">查看证据 →</a></p>
+    <p><a href="/resources/student-evidence/">查看成果 →</a></p>
   </div>
 </div>
 

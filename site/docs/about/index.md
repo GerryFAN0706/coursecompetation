@@ -8,7 +8,7 @@ anonSafe: true
 
 # 关于本项目
 
-<div class="section-lead">本网站服务于 Java Web应用开发 课程的人工智能教学创新参赛展示，为第六届全国高校教师教学创新大赛（人工智能赛道）提供结构化的教学改革证据呈现。</div>
+<div class="section-lead">本网站服务于 Java Web应用开发 课程的人工智能教学创新参赛展示，为第六届全国高校教师教学创新大赛（人工智能赛道）提供结构化的教学改革成果呈现。</div>
 
 ## 项目定位
 
@@ -16,7 +16,7 @@ anonSafe: true
   <div class="summary-card">
     <div class="summary-icon">🎯</div>
     <h3>目标</h3>
-    <p>将AI从"工具展示"升级为"教学闭环能力"，实现从课前设计到课后干预的可证据化改革</p>
+    <p>将AI从"工具展示"升级为"教学闭环能力"，实现从课前设计到课后干预的可量化、可验证的教学改革</p>
   </div>
   <div class="summary-card">
     <div class="summary-icon">📐</div>
@@ -39,7 +39,7 @@ anonSafe: true
     <h3>Internal（原始版）</h3>
     <ul>
       <li><strong>用途：</strong>校内存档与复核</li>
-      <li><strong>内容：</strong>保留完整原始证据</li>
+      <li><strong>内容：</strong>保留完整原始材料</li>
       <li><strong>身份信息：</strong>包含教师姓名、学号等</li>
       <li><strong>状态：</strong>内部存档</li>
     </ul>
@@ -48,7 +48,7 @@ anonSafe: true
     <h3>Public（评审版）← 当前</h3>
     <ul>
       <li><strong>用途：</strong>专家评审</li>
-      <li><strong>内容：</strong>保留可验证证据链</li>
+      <li><strong>内容：</strong>保留可验证的完整材料</li>
       <li><strong>身份信息：</strong>已脱敏处理</li>
       <li><strong>状态：</strong>在线公开</li>
     </ul>
@@ -123,10 +123,10 @@ anonSafe: true
 
 | 检查项 | 状态 | 说明 |
 |---|---|---|
-| 去除姓名、学号、账号标识 | ✅ 已完成 | 所有学生证据使用编号替代 |
+| 去除姓名、学号、账号标识 | ✅ 已完成 | 所有学生样本使用编号替代 |
 | 处理学校标识与机构信息 | ✅ 已完成 | 按竞赛要求处理 |
 | 检查截图中的身份信息 | ✅ 已完成 | 浏览器标签、平台头像已处理 |
-| 关键指标补充统计口径 | ✅ 已完成 | 每个数据点标注证据来源 |
+| 关键指标补充统计口径 | ✅ 已完成 | 每个数据点标注数据来源 |
 
 <div class="section-divider"></div>
 
