@@ -109,7 +109,7 @@ features:
 </div>
 
 <div class="diagram-shell">
-  <img src="/coursecompetation/assets/svg/loop-cycle.svg" alt="课前课中课后AI教学闭环图" />
+  <img src="/assets/svg/loop-cycle.svg" alt="课前课中课后AI教学闭环图" />
 </div>
 
 <div class="section-divider"></div>

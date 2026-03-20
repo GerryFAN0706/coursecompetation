@@ -49,7 +49,7 @@ anonSafe: true
 </p>
 
 <div class="diagram-shell">
-  <img src="/coursecompetation/assets/svg/innovation-stack.svg" alt="AI赋能教学架构图" />
+  <img src="/assets/svg/innovation-stack.svg" alt="AI赋能教学架构图" />
 </div>
 
 <div class="summary-grid">
