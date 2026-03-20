@@ -24,13 +24,13 @@ anonSafe: true
 ## 修复前后对照图
 
 <div class="diagram-shell">
-  <img src="/assets/svg/case-before-after.svg" alt="案例修复前后对照图" />
+  <img src="/coursecompetation/assets/svg/case-before-after.svg" alt="案例修复前后对照图" />
 </div>
 
 ## 45分钟课堂时间轴
 
 <div class="diagram-shell">
-  <img src="/assets/svg/case-timeline.svg" alt="45分钟课堂时间轴" />
+  <img src="/coursecompetation/assets/svg/case-timeline.svg" alt="45分钟课堂时间轴" />
 </div>
 
 ## 问题版工程（3个核心缺陷）
@@ -64,7 +64,7 @@ flowchart TD
 | 修复 | 修改关键逻辑 | 讲解知识点映射 | 提供修改建议 |
 | 验证 | 按路径测试 | 组织结果复盘 | 生成最小验证清单 |
 
-## 资源与证据入口
+## 资源与成果入口
 
 1. [课堂实录讲稿](/assets/docs/D05_课堂实录逐分钟讲稿.pdf)
 2. [AI提示词与测试清单](/assets/docs/D06_AI提示词与测试清单.pdf)
@@ -87,4 +87,4 @@ flowchart TD
 
 1. 课堂任务具备真实问题张力，不是工具演示。
 2. AI 参与的是教学过程，不是替代学生完成答案。
-3. 修复结果可通过角色路径直接验证，证据链闭环完整。
+3. 修复结果可通过角色路径直接验证，验证闭环完整。

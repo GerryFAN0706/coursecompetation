@@ -78,7 +78,7 @@ features:
 
 <div class="info-box blue">
   <span class="icon">📐</span>
-  <div>统计口径：实验组N=58 vs 对照组N=62，同教师同课程同教材，16周准实验设计。详见 <a href="/results/">成效与数据</a> 页面。</div>
+  <div>统计口径：实验组N=58 vs 对照组N=62，同教师同课程同教材，16周准实验设计。详见 <a href="/coursecompetation/results/">成效与数据</a> 页面。</div>
 </div>
 
 <div class="section-divider"></div>
@@ -109,7 +109,7 @@ features:
 </div>
 
 <div class="diagram-shell">
-  <img src="/assets/svg/loop-cycle.svg" alt="课前课中课后AI教学闭环图" />
+  <img src="/coursecompetation/assets/svg/loop-cycle.svg" alt="课前课中课后AI教学闭环图" />
 </div>
 
 <div class="section-divider"></div>
@@ -140,7 +140,7 @@ features:
 </div>
 
 <p style="text-align:center;margin:20px 0;">
-  <a href="/cases/lesson-15/" style="display:inline-block;padding:10px 28px;background:linear-gradient(135deg,#2563eb,#0891b2);color:white;border-radius:999px;font-weight:600;text-decoration:none;box-shadow:0 4px 14px rgba(37,99,235,0.2);transition:all 0.3s;">查看完整案例 →</a>
+  <a href="/coursecompetation/cases/lesson-15/" style="display:inline-block;padding:10px 28px;background:linear-gradient(135deg,#2563eb,#0891b2);color:white;border-radius:999px;font-weight:600;text-decoration:none;box-shadow:0 4px 14px rgba(37,99,235,0.2);transition:all 0.3s;">查看完整案例 →</a>
 </p>
 
 <div class="section-divider"></div>
@@ -151,17 +151,17 @@ features:
   <div class="flow-card">
     <div class="step-num">5'</div>
     <h4>五分钟路径</h4>
-    <p><a href="/innovation/">创新设计</a> → <a href="/cases/lesson-15/">核心案例</a> → <a href="/results/">成效数据</a></p>
+    <p><a href="/coursecompetation/innovation/">创新设计</a> → <a href="/coursecompetation/cases/lesson-15/">核心案例</a> → <a href="/coursecompetation/results/">成效数据</a></p>
   </div>
   <div class="flow-card">
     <div class="step-num">15'</div>
     <h4>十五分钟路径</h4>
-    <p><a href="/course/">课程概览</a> → <a href="/innovation/">创新设计</a> → <a href="/cases/lesson-15/">核心案例</a> → <a href="/results/">成效数据</a> → <a href="/resources/">教学资源</a> → <a href="/promotion/">推广复用</a></p>
+    <p><a href="/coursecompetation/course/">课程概览</a> → <a href="/coursecompetation/innovation/">创新设计</a> → <a href="/coursecompetation/cases/lesson-15/">核心案例</a> → <a href="/coursecompetation/results/">成效数据</a> → <a href="/coursecompetation/resources/">教学资源</a> → <a href="/coursecompetation/promotion/">推广复用</a></p>
   </div>
   <div class="flow-card">
     <div class="step-num">∞</div>
     <h4>深度审阅</h4>
-    <p><a href="/resources/">下载全部文档</a> · <a href="/resources/student-evidence/">学生作品证据</a> · <a href="/resources/prompts/">AI提示词库</a></p>
+    <p><a href="/coursecompetation/resources/">下载全部文档</a> · <a href="/coursecompetation/resources/student-evidence/">学生成果展示</a> · <a href="/coursecompetation/resources/prompts/">AI提示词库</a></p>
   </div>
 </div>
 

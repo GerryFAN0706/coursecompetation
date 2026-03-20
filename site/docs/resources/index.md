@@ -1,6 +1,6 @@
 ---
 title: 教学资源
-description: 提供提示词模板、测试清单、课程文档下载与学生作品证据入口。
+description: 提供提示词模板、测试清单、课程文档下载与学生成果展示入口。
 lastUpdated: 2026-03-17
 evidenceLevel: public
 anonSafe: true
@@ -8,7 +8,7 @@ anonSafe: true
 
 # 教学资源
 
-<div class="section-lead">本页面汇聚课程全部教学资源，包括文档下载、AI提示词库、测试清单和学生作品证据。所有资源均经过结构化整理，支持评审快速定位与深度核验。</div>
+<div class="section-lead">本页面汇聚课程全部教学资源，包括文档下载、AI提示词库、测试清单和学生成果展示。所有资源均经过结构化整理，支持评审快速定位与深度核验。</div>
 
 ## 资源总览
 
@@ -38,7 +38,7 @@ anonSafe: true
     <div class="summary-icon">🧠</div>
     <h3>AI提示词库</h3>
     <p>覆盖课前-课中-课后全流程的10条提示词模板，可直接复用。</p>
-    <p><a href="/resources/prompts/">进入提示词库 →</a></p>
+    <p><a href="/coursecompetation/resources/prompts/">进入提示词库 →</a></p>
   </div>
   <div class="summary-card">
     <div class="summary-icon">📦</div>
@@ -48,9 +48,9 @@ anonSafe: true
   </div>
   <div class="summary-card">
     <div class="summary-icon">🎓</div>
-    <h3>学生作品证据</h3>
+    <h3>学生成果展示</h3>
     <p>采用"摘要卡片 + PDF原件"双层呈现。</p>
-    <p><a href="/resources/student-evidence/">进入证据页 →</a></p>
+    <p><a href="/coursecompetation/resources/student-evidence/">进入成果页 →</a></p>
   </div>
   <div class="summary-card">
     <div class="summary-icon">🧪</div>
@@ -70,31 +70,31 @@ anonSafe: true
 </div>
 
 <div class="download-grid">
-  <a class="download-card" href="/assets/docs/D01_教学大纲.pdf">
+  <a class="download-card" href="/coursecompetation/assets/docs/D01_教学大纲.pdf">
     <div class="file-icon">📄</div>
     <div class="file-info"><h4>D01 教学大纲</h4><p>48学时完整课程大纲，含16讲教学安排与能力目标</p></div>
   </a>
-  <a class="download-card" href="/assets/docs/D02_第十五讲教学设计.pdf">
+  <a class="download-card" href="/coursecompetation/assets/docs/D02_第十五讲教学设计.pdf">
     <div class="file-icon">📄</div>
     <div class="file-info"><h4>D02 第十五讲教学设计</h4><p>录课对应教案，含教学目标、活动设计与评价方案</p></div>
   </a>
-  <a class="download-card" href="/assets/docs/D03_课堂视频选题与AI应用方案.pdf">
+  <a class="download-card" href="/coursecompetation/assets/docs/D03_课堂视频选题与AI应用方案.pdf">
     <div class="file-icon">📄</div>
     <div class="file-info"><h4>D03 视频选题与AI方案</h4><p>课堂录制选题说明与AI应用场景设计</p></div>
   </a>
-  <a class="download-card" href="/assets/docs/D04_存在缺陷的示例工程设计方案.pdf">
+  <a class="download-card" href="/coursecompetation/assets/docs/D04_存在缺陷的示例工程设计方案.pdf">
     <div class="file-icon">📄</div>
     <div class="file-info"><h4>D04 缺陷示例工程方案</h4><p>教学用"问题版"Java Web工程的设计说明</p></div>
   </a>
-  <a class="download-card" href="/assets/docs/D05_课堂实录逐分钟讲稿.pdf">
+  <a class="download-card" href="/coursecompetation/assets/docs/D05_课堂实录逐分钟讲稿.pdf">
     <div class="file-icon">📄</div>
     <div class="file-info"><h4>D05 课堂实录讲稿</h4><p>45分钟课堂逐分钟脚本与教学节奏说明</p></div>
   </a>
-  <a class="download-card" href="/assets/docs/D06_AI提示词与测试清单.pdf">
+  <a class="download-card" href="/coursecompetation/assets/docs/D06_AI提示词与测试清单.pdf">
     <div class="file-icon">📄</div>
     <div class="file-info"><h4>D06 AI提示词与测试清单</h4><p>课堂使用的全部AI提示词模板与验证清单</p></div>
   </a>
-  <a class="download-card" href="/assets/docs/D07_问题版工程README.pdf">
+  <a class="download-card" href="/coursecompetation/assets/docs/D07_问题版工程README.pdf">
     <div class="file-icon">📄</div>
     <div class="file-info"><h4>D07 问题版工程README</h4><p>学生实验用问题工程的使用说明与缺陷索引</p></div>
   </a>
@@ -156,16 +156,16 @@ anonSafe: true
 
 <SamplePlaceholderBoard />
 
-## 命名契约与证据索引
+## 命名契约与资料索引
 
 <div class="info-box blue">
   <span class="icon">📋</span>
-  <div>所有教学证据采用统一命名规则，便于评审快速追溯与交叉验证。</div>
+  <div>所有教学资料采用统一命名规则，便于评审快速追溯与交叉验证。</div>
 </div>
 
 | 类别 | 前缀 | 示例 | 存放位置 |
 |---|---|---|---|
-| 截图证据 | `Sxx_` | `S01_login_test.png` | `/assets/evidence/` |
+| 截图资料 | `Sxx_` | `S01_login_test.png` | `/assets/evidence/` |
 | 课程文档 | `Dxx_` | `D01_教学大纲.pdf` | `/assets/docs/` |
 | 数据图表 | `Cxx_` | `C01_scores.json` | `/assets/data/` |
 | 学生样本 | `EV-Sxx` | `EV-S01_feedback.pdf` | `/assets/evidence/student/` |

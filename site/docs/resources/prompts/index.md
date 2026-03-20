@@ -527,10 +527,10 @@ anonSafe: true
   <div>
     <strong>相关资源：</strong>
     <ul>
-      <li><a href="/cases/lesson-15/">核心案例：第15讲课堂实录</a> - 查看提示词在真实课堂中的使用效果</li>
-      <li><a href="/resources/">教学资源总览</a> - 下载完整的AI提示词与测试清单文档（D06）</li>
-      <li><a href="/innovation/">AI教学创新设计</a> - 了解提示词背后的系统化教学设计理念</li>
-      <li><a href="/results/">成效与数据</a> - 查看提示词驱动教学的量化效果</li>
+      <li><a href="/coursecompetation/cases/lesson-15/">核心案例：第15讲课堂实录</a> - 查看提示词在真实课堂中的使用效果</li>
+      <li><a href="/coursecompetation/resources/">教学资源总览</a> - 下载完整的AI提示词与测试清单文档（D06）</li>
+      <li><a href="/coursecompetation/innovation/">AI教学创新设计</a> - 了解提示词背后的系统化教学设计理念</li>
+      <li><a href="/coursecompetation/results/">成效与数据</a> - 查看提示词驱动教学的量化效果</li>
     </ul>
   </div>
 </div>
