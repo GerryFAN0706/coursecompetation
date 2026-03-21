@@ -424,6 +424,16 @@ body {
   letter-spacing: 1px;
 }
 
+.level-badge.completed-badge {
+  background: linear-gradient(135deg, var(--accent-green), #00cc6a);
+  color: #000;
+}
+
+.level-badge.locked-badge {
+  background: linear-gradient(135deg, #475569, #334155);
+  color: #94a3b8;
+}
+
 .difficulty {
   display: flex;
   gap: 3px;
@@ -559,6 +569,9 @@ body {
 .mt { color: #61afef; }
 .op { color: #abb2bf; }
 .nm { color: #e06c75; }
+.tg { color: #e06c75; } /* JSP/HTML tags */
+.at { color: #d19a66; } /* attributes */
+.el { color: #61afef; } /* EL expressions */
 .bug-line {
   background: rgba(255, 71, 87, 0.08);
   display: inline-block;
@@ -797,6 +810,47 @@ body {
   overflow-y: auto;
 }
 
+/* Sidebar sub-tabs */
+.sidebar-tabs {
+  display: flex;
+  border-bottom: 1px solid var(--border);
+  background: rgba(0,0,0,0.2);
+}
+
+.sidebar-tab {
+  flex: 1;
+  text-align: center;
+  padding: 10px 8px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-dim);
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  transition: all 0.2s;
+  user-select: none;
+}
+
+.sidebar-tab:hover {
+  color: var(--text-secondary);
+}
+
+.sidebar-tab.active {
+  color: var(--accent-cyan);
+  border-bottom-color: var(--accent-cyan);
+  background: rgba(0, 212, 255, 0.04);
+}
+
+.sidebar-panel {
+  display: none;
+  flex-direction: column;
+  flex: 1;
+  overflow-y: auto;
+}
+
+.sidebar-panel.active {
+  display: flex;
+}
+
 /* Progress Tracker */
 .progress-section {
   padding: 20px;
@@ -954,6 +1008,8 @@ body {
   display: flex;
   flex-direction: column;
   gap: 6px;
+  max-height: 480px;
+  overflow-y: auto;
 }
 
 .lb-item {
@@ -965,6 +1021,12 @@ body {
   border-radius: 6px;
   border: 1px solid transparent;
   transition: all 0.3s;
+  cursor: pointer;
+}
+
+.lb-item:hover {
+  background: rgba(0,0,0,0.25);
+  border-color: rgba(255,255,255,0.1);
 }
 
 .lb-item.top1 {
@@ -1277,6 +1339,314 @@ body {
 
 .lesson-content.active {
   display: flex;
+  flex-direction: column;
+}
+
+/* ========== COMPLETED LEVEL DISPLAY ========== */
+.completed-banner {
+  background: rgba(0, 255, 136, 0.06);
+  border: 1px solid rgba(0, 255, 136, 0.2);
+  border-radius: 8px;
+  padding: 12px 18px;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 13px;
+}
+
+.completed-banner-icon {
+  font-size: 24px;
+}
+
+.completed-banner-text {
+  flex: 1;
+}
+
+.completed-banner-text strong {
+  color: var(--accent-green);
+}
+
+.completed-banner-stats {
+  display: flex;
+  gap: 16px;
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+
+.completed-banner-stats span {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* Lock overlay for preview levels */
+.lock-overlay {
+  position: relative;
+}
+
+.lock-overlay::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(13, 13, 26, 0.6);
+  border-radius: 8px;
+  pointer-events: none;
+}
+
+.lock-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 6px;
+  padding: 6px 14px;
+  font-size: 12px;
+  color: var(--text-dim);
+  margin-bottom: 12px;
+}
+
+/* ========== CHALLENGE RECORD TAB ========== */
+.record-section {
+  padding: 16px 20px;
+}
+
+.record-table {
+  width: 100%;
+  font-size: 12px;
+  border-collapse: collapse;
+}
+
+.record-table th {
+  text-align: left;
+  color: var(--text-dim);
+  font-weight: 600;
+  padding: 6px 8px;
+  border-bottom: 1px solid var(--border);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.record-table td {
+  padding: 6px 8px;
+  color: var(--text-secondary);
+  border-bottom: 1px solid rgba(255,255,255,0.03);
+}
+
+.record-table .pass-cell { color: var(--accent-green); font-weight: 600; }
+.record-table .fail-cell { color: var(--accent-red); font-weight: 600; }
+
+.radar-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 0;
+}
+
+.rank-trend-container {
+  padding: 8px 0;
+}
+
+/* ========== TEACHER DASHBOARD EXTRAS ========== */
+.heatmap-grid {
+  display: grid;
+  grid-template-columns: 80px repeat(5, 1fr);
+  gap: 3px;
+  font-size: 11px;
+}
+
+.heatmap-cell {
+  padding: 6px 4px;
+  text-align: center;
+  border-radius: 4px;
+  font-weight: 600;
+  font-family: 'Consolas', monospace;
+}
+
+.heatmap-header {
+  color: var(--text-dim);
+  font-weight: 700;
+  font-size: 10px;
+  padding: 4px;
+  text-align: center;
+}
+
+.heatmap-label {
+  color: var(--text-secondary);
+  text-align: right;
+  padding-right: 8px;
+  font-size: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.error-analysis-item {
+  padding: 8px 12px;
+  margin-bottom: 6px;
+  background: rgba(0,0,0,0.15);
+  border-radius: 6px;
+  border-left: 3px solid var(--accent-red);
+}
+
+.error-analysis-item .error-rank {
+  font-size: 11px;
+  color: var(--accent-red);
+  font-weight: 700;
+  margin-bottom: 2px;
+}
+
+.error-analysis-item .error-desc {
+  font-size: 12px;
+  color: var(--text-secondary);
+  line-height: 1.4;
+}
+
+.error-analysis-item .error-pct {
+  font-size: 11px;
+  color: var(--text-dim);
+  margin-top: 2px;
+  font-family: 'Consolas', monospace;
+}
+
+/* Student drill-down modal */
+.student-modal {
+  display: none;
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.7);
+  z-index: 2000;
+  align-items: center;
+  justify-content: center;
+}
+
+.student-modal.show {
+  display: flex;
+}
+
+.student-modal-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 28px 32px;
+  width: 480px;
+  max-height: 80vh;
+  overflow-y: auto;
+  animation: successPop 0.3s ease;
+}
+
+.student-modal-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 20px;
+}
+
+.student-modal-avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.student-modal-name {
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.student-modal-id {
+  font-size: 12px;
+  color: var(--text-dim);
+}
+
+.student-modal-close {
+  margin-left: auto;
+  background: none;
+  border: 1px solid var(--border);
+  color: var(--text-secondary);
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+}
+
+.student-modal-close:hover {
+  border-color: var(--accent-red);
+  color: var(--accent-red);
+}
+
+.student-modal-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.student-stat-card {
+  background: rgba(0,0,0,0.2);
+  border-radius: 8px;
+  padding: 10px;
+  text-align: center;
+}
+
+.student-stat-val {
+  font-size: 20px;
+  font-weight: 700;
+  font-family: 'Consolas', monospace;
+}
+
+.student-stat-label {
+  font-size: 10px;
+  color: var(--text-dim);
+  margin-top: 2px;
+}
+
+.student-level-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.student-level-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 12px;
+  background: rgba(0,0,0,0.15);
+  border-radius: 6px;
+  font-size: 12px;
+}
+
+.student-level-status {
+  font-size: 16px;
+  width: 24px;
+  text-align: center;
+}
+
+.student-level-name {
+  flex: 1;
+  color: var(--text-secondary);
+}
+
+.student-level-time {
+  font-family: 'Consolas', monospace;
+  color: var(--text-dim);
+}
+
+.student-level-attempts {
+  font-size: 11px;
+  color: var(--text-dim);
 }
 
 /* ========== ANIMATIONS ========== */
@@ -1463,10 +1833,10 @@ body {
       AI引擎 v2.3
     </div>
     <div class="user-info">
-      <div class="avatar">张</div>
+      <div class="avatar">陈</div>
       <div>
-        <div class="user-name">张伟同学</div>
-        <div class="user-role">软件工程 2024级</div>
+        <div class="user-name">陈思远</div>
+        <div class="user-role">软件工程 2023级 | 2023010115</div>
       </div>
     </div>
   </div>
@@ -1588,248 +1958,127 @@ body {
 <div class="lesson-content active" id="lesson15Content">
   <div class="main-container">
     <!-- Challenge Area -->
-    <div class="challenge-area">
-
-      <!-- Challenge Info Panel -->
-      <div class="challenge-info-panel" id="challengeInfoPanel">
-        <div class="info-row">
-          <span class="info-label">漏洞类型</span>
-          <span class="info-value">越权访问 (Broken Access Control)</span>
-        </div>
-        <div class="info-row">
-          <span class="info-label">OWASP分类</span>
-          <span class="info-value owasp">OWASP Top 10 - A01:2021</span>
-        </div>
-        <div class="info-row">
-          <span class="info-label">难度</span>
-          <span class="info-stars">&#9733;&#9733;&#9733;&#9734;&#9734;</span>
-        </div>
-        <div class="info-row">
-          <span class="info-label">知识点</span>
-          <div class="info-tags">
-            <span class="info-tag">Filter</span>
-            <span class="info-tag">Session</span>
-            <span class="info-tag">RBAC</span>
-          </div>
-        </div>
-        <div class="info-objective">
-          <span class="info-label">学习目标</span>
-          <span class="info-value">理解越权访问漏洞的成因，掌握基于角色的访问控制（RBAC）在Servlet中的实现方法，学会对管理接口进行权限验证。</span>
-        </div>
-      </div>
-
-      <!-- Reference Section -->
-      <div class="reference-section">
-        <div class="reference-toggle" id="refToggle" onclick="toggleReference()">
-          <span class="arrow">&#9654;</span>
-          &#128214; 参考资料
-        </div>
-        <div class="reference-links" id="refLinks">
-          <a href="#">&#128196; 第15讲课件 - 用户认证与权限控制.pptx</a>
-          <a href="#">&#128196; OWASP Top 10 - A01 Broken Access Control</a>
-          <a href="#">&#128196; Java Servlet Filter 官方文档</a>
-          <a href="#">&#128196; 实验手册 - RBAC权限模型实践</a>
-        </div>
-      </div>
-
-      <div class="challenge-header">
-        <div class="challenge-tag">
-          <span class="level-badge">LEVEL 2</span>
-          <div class="difficulty">
-            <span></span><span></span><span></span><span class="dim"></span><span class="dim"></span>
-          </div>
-          <span style="font-size:12px; color: var(--text-dim);">难度: 中等</span>
-        </div>
-      </div>
-
-      <h2 class="challenge-title"><span class="num">第2关</span>：越权访问漏洞</h2>
-      <p class="challenge-desc">
-        以下 Servlet 负责管理员页面的访问控制，但存在越权访问漏洞。任何已登录用户（包括普通用户）都能访问管理页面。
-        请找到漏洞并编写修复代码，添加角色验证逻辑。
-      </p>
-
-      <!-- Code Editor -->
-      <div class="code-editor">
-        <div class="editor-tabs">
-          <div class="editor-tab active">
-            <span class="icon">&#9670;</span>
-            AdminUserServlet.java
-          </div>
-          <div class="editor-tab">
-            <span class="icon" style="color: var(--accent-green);">&#9670;</span>
-            User.java
-          </div>
-          <div class="editor-tab">
-            <span class="icon" style="color: var(--accent-cyan);">&#9670;</span>
-            web.xml
-          </div>
-          <div class="editor-actions">
-            <button class="editor-action-btn">&#9881; 设置</button>
-            <button class="editor-action-btn">&#128196; 复制</button>
-          </div>
-        </div>
-        <div class="code-container">
-          <div class="line-numbers">1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16</div>
-          <div class="code-content"><span class="an">@WebServlet</span>(<span class="st">"/admin/users"</span>)
-<span class="kw">public class</span> <span class="tp">AdminUserServlet</span> <span class="kw">extends</span> <span class="tp">HttpServlet</span> {
-    <span class="kw">protected void</span> <span class="mt">doGet</span>(<span class="tp">HttpServletRequest</span> request, <span class="tp">HttpServletResponse</span> response)
-            <span class="kw">throws</span> <span class="tp">ServletException</span>, <span class="tp">IOException</span> {
-<span class="bug-line">        <span class="cm">// <span class="bug-indicator">&#9888; BUG:</span> 未检查用户角色，任何已登录用户都能访问管理页面</span></span>
-        <span class="tp">HttpSession</span> session = request.<span class="mt">getSession</span>();
-        <span class="tp">String</span> username = (<span class="tp">String</span>) session.<span class="mt">getAttribute</span>(<span class="st">"username"</span>);
-        <span class="kw">if</span> (username != <span class="nm">null</span>) {
-            <span class="tp">List</span>&lt;<span class="tp">User</span>&gt; users = userDAO.<span class="mt">findAll</span>();
-            request.<span class="mt">setAttribute</span>(<span class="st">"users"</span>, users);
-            request.<span class="mt">getRequestDispatcher</span>(<span class="st">"/WEB-INF/admin/users.jsp"</span>).<span class="mt">forward</span>(request, response);
-        } <span class="kw">else</span> {
-            response.<span class="mt">sendRedirect</span>(<span class="st">"/login.jsp"</span>);
-        }
-    }
-}</div>
-        </div>
-      </div>
-
-      <!-- Fix Area -->
-      <div class="fix-area">
-        <div class="fix-label">
-          <span class="icon">&#9998;</span>
-          修复方案
-        </div>
-        <textarea class="fix-textarea" id="fixTextarea" placeholder="// 在此编写修复代码...&#10;// 提示：需要在验证用户登录后，额外检查用户角色&#10;// 例如：从session中获取role属性，判断是否为admin"></textarea>
-      </div>
-
-      <!-- Action Buttons -->
-      <div class="fix-actions">
-        <button class="btn btn-primary" id="submitBtn" onclick="submitFix()">
-          &#9654; 提交修复
-        </button>
-        <button class="btn btn-hint" onclick="showHint()">
-          &#128161; AI提示
-        </button>
-        <button class="btn btn-reset" onclick="resetChallenge()">
-          &#8635; 重置
-        </button>
-      </div>
-
-      <!-- Hint Box -->
-      <div class="hint-box" id="hintBox">
-        <div class="hint-header">
-          &#129302; AI助手提示
-        </div>
-        <div class="hint-text">
-          提示：检查用户Session中是否存储了角色信息，对比是否为admin角色。<br><br>
-          建议修复思路：在验证 <code style="color: var(--accent-cyan);">username != null</code> 之后，
-          增加对 <code style="color: var(--accent-cyan);">session.getAttribute("role")</code> 的检查，
-          仅当角色为 <code style="color: var(--accent-cyan);">"admin"</code> 时才允许访问管理页面。
-          否则应返回403错误或重定向到无权限页面。
-        </div>
-      </div>
-
-      <!-- Test Results -->
-      <div class="test-results" id="testResults">
-        <div class="test-header">
-          <span>&#9881; 自动化测试结果</span>
-          <span class="test-status" id="testStatus"></span>
-        </div>
-        <div class="test-list" id="testList"></div>
-        <div class="test-summary" id="testSummary"></div>
-      </div>
+    <div class="challenge-area" id="lesson15ChallengeArea">
+      <!-- Populated by JS based on current level -->
     </div>
 
     <!-- Sidebar -->
     <div class="sidebar">
-      <!-- Progress Tracker -->
-      <div class="progress-section">
-        <div class="section-title">
-          <span class="icon">&#127942;</span>
-          闯关进度 - 第十五讲
+      <!-- Sidebar Tabs -->
+      <div class="sidebar-tabs">
+        <div class="sidebar-tab active" onclick="switchSidebarTab(this, 'progressPanel')">闯关进度</div>
+        <div class="sidebar-tab" onclick="switchSidebarTab(this, 'recordPanel')">挑战记录</div>
+        <div class="sidebar-tab" onclick="switchSidebarTab(this, 'rankPanel')">排行榜</div>
+      </div>
+
+      <!-- Panel 1: Progress -->
+      <div class="sidebar-panel active" id="progressPanel">
+        <div class="progress-section">
+          <div class="section-title">
+            <span class="icon">&#127942;</span>
+            闯关进度 - 第十五讲
+          </div>
+          <div class="progress-track" id="l15ProgressTrack">
+            <div class="progress-line"></div>
+            <div class="progress-line-fill"></div>
+            <!-- Populated by JS -->
+          </div>
         </div>
-        <div class="progress-track">
-          <div class="progress-line"></div>
-          <div class="progress-line-fill"></div>
 
-          <div class="level-item">
-            <div class="level-dot completed">&#10003;</div>
-            <div class="level-info">
-              <div class="level-name">第1关：SQL注入</div>
-              <div class="level-meta green">&#10003; 已通过</div>
-            </div>
-            <div class="level-time green">2:34</div>
+        <!-- Timer -->
+        <div class="timer-section">
+          <div>
+            <div class="timer-label">本关用时</div>
+            <div class="timer-value" id="timerDisplay">00:00</div>
           </div>
-
-          <div class="level-item">
-            <div class="level-dot current">2</div>
-            <div class="level-info">
-              <div class="level-name">第2关：越权访问</div>
-              <div class="level-meta orange">&#128293; 进行中</div>
-            </div>
-            <div class="level-time" id="currentLevelTime" style="color: var(--accent-orange);">--:--</div>
-          </div>
-
-          <div class="level-item">
-            <div class="level-dot locked">&#128274;</div>
-            <div class="level-info">
-              <div class="level-name dim">第3关：Session劫持</div>
-              <div class="level-meta" style="color: var(--text-dim);">未解锁</div>
-            </div>
-            <div class="level-time">--:--</div>
-          </div>
-
-          <div class="level-item">
-            <div class="level-dot locked">&#128274;</div>
-            <div class="level-info">
-              <div class="level-name dim">第4关：XSS跨站脚本</div>
-              <div class="level-meta" style="color: var(--text-dim);">未解锁</div>
-            </div>
-            <div class="level-time">--:--</div>
-          </div>
-
-          <div class="level-item">
-            <div class="level-dot locked" style="background: var(--accent-red); color: #fff; font-size: 10px;">B</div>
-            <div class="level-info">
-              <div class="level-name dim">第5关：综合漏洞（BOSS关）</div>
-              <div class="level-meta" style="color: var(--text-dim);">未解锁</div>
-            </div>
-            <div class="level-time">--:--</div>
+          <div>
+            <div class="timer-detail">总用时 <span id="totalTime" style="color: var(--accent-cyan);">02:34</span></div>
+            <div class="timer-detail" style="margin-top:4px;">尝试次数 <span id="attempts" style="color: var(--accent-orange);">0</span></div>
           </div>
         </div>
       </div>
 
-      <!-- Timer -->
-      <div class="timer-section">
-        <div>
-          <div class="timer-label">本关用时</div>
-          <div class="timer-value" id="timerDisplay">00:00</div>
+      <!-- Panel 2: Challenge Records -->
+      <div class="sidebar-panel" id="recordPanel">
+        <div class="record-section">
+          <div class="section-title">
+            <span class="icon">&#128203;</span>
+            挑战记录
+          </div>
+          <table class="record-table">
+            <thead>
+              <tr>
+                <th>时间</th>
+                <th>关卡</th>
+                <th>结果</th>
+                <th>用时</th>
+                <th>尝试</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>14:32</td>
+                <td>L15-1 SQL注入</td>
+                <td class="pass-cell">通过</td>
+                <td>2:34</td>
+                <td>2次</td>
+              </tr>
+              <tr>
+                <td>14:28</td>
+                <td>L15-1 SQL注入</td>
+                <td class="fail-cell">失败</td>
+                <td>1:45</td>
+                <td>1次</td>
+              </tr>
+              <tr>
+                <td>13:55</td>
+                <td>L14-1 SQL注入基础</td>
+                <td class="pass-cell">通过</td>
+                <td>3:15</td>
+                <td>1次</td>
+              </tr>
+              <tr>
+                <td>13:48</td>
+                <td>L14-1 SQL注入基础</td>
+                <td class="fail-cell">失败</td>
+                <td>2:10</td>
+                <td>1次</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
-        <div>
-          <div class="timer-detail">总用时 <span id="totalTime" style="color: var(--accent-cyan);">02:34</span></div>
-          <div class="timer-detail" style="margin-top:4px;">尝试次数 <span id="attempts" style="color: var(--accent-orange);">0</span></div>
+
+        <div class="record-section">
+          <div class="section-title">
+            <span class="icon">&#127919;</span>
+            我的安全技能雷达图
+          </div>
+          <div class="radar-container">
+            <canvas id="personalRadarCanvas" width="220" height="200"></canvas>
+          </div>
+        </div>
+
+        <div class="record-section">
+          <div class="section-title">
+            <span class="icon">&#128200;</span>
+            全班排名趋势
+          </div>
+          <div class="rank-trend-container">
+            <canvas id="rankTrendCanvas" width="260" height="120"></canvas>
+          </div>
         </div>
       </div>
 
-      <!-- Leaderboard -->
-      <div class="leaderboard-section">
-        <div class="section-title">
-          <span class="icon">&#127941;</span>
-          实时排行榜
-          <span style="margin-left:auto; font-size:11px; color: var(--text-dim); font-weight:400;">48人参与</span>
+      <!-- Panel 3: Leaderboard -->
+      <div class="sidebar-panel" id="rankPanel">
+        <div class="leaderboard-section">
+          <div class="section-title">
+            <span class="icon">&#127941;</span>
+            实时排行榜
+            <span style="margin-left:auto; font-size:11px; color: var(--text-dim); font-weight:400;">48人参与</span>
+          </div>
+          <div class="leaderboard-list" id="leaderboard"></div>
         </div>
-        <div class="leaderboard-list" id="leaderboard"></div>
       </div>
     </div>
   </div>
@@ -1838,7 +2087,7 @@ body {
 <!-- Bottom Dashboard -->
 <div class="dashboard" id="dashboardArea">
   <!-- Class Progress Bars -->
-  <div class="dash-section" style="flex: 1.3;">
+  <div class="dash-section" style="flex: 1.2;">
     <div class="dash-title">
       <span>&#128202;</span>
       <span id="dashProgressTitle">班级闯关进度（实时）- 第十五讲</span>
@@ -1846,18 +2095,17 @@ body {
     <div class="dash-bars" id="dashBars"></div>
   </div>
 
-  <!-- Average Times -->
-  <div class="dash-section" style="flex: 0.8;">
+  <!-- Heatmap / Avg Times -->
+  <div class="dash-section" style="flex: 1.0;">
     <div class="dash-title">
-      <span>&#9201;</span>
-      平均用时
+      <span>&#128293;</span>
+      漏洞类型掌握度热力图
     </div>
-    <div class="dash-avg-times" id="dashAvgTimes">
-    </div>
+    <div id="dashHeatmap" class="heatmap-grid"></div>
   </div>
 
   <!-- Mastery Radar Chart -->
-  <div class="dash-section" style="flex: 1.2;">
+  <div class="dash-section" style="flex: 1.0;">
     <div class="dash-title">
       <span>&#127919;</span>
       课程整体安全知识掌握度
@@ -1867,8 +2115,8 @@ body {
     </div>
   </div>
 
-  <!-- AI Alert -->
-  <div class="dash-alert-section" style="flex: 0 0 310px;">
+  <!-- Common Errors + AI Alert -->
+  <div class="dash-alert-section" style="flex: 0 0 360px;">
     <div class="alert-banner" id="alertBanner">
       <div class="alert-header">
         &#9888;&#65039; AI教学预警
@@ -1879,6 +2127,10 @@ body {
       <div class="alert-action" id="alertActionBtn" onclick="this.textContent='&#10003; 已发送课堂提醒'; this.style.borderColor='rgba(0,255,136,0.3)'; this.style.color='var(--accent-green)'; this.style.background='rgba(0,255,136,0.1)';">
         &#128227; 发送课堂提醒
       </div>
+    </div>
+    <div style="margin-top:8px;">
+      <div style="font-size:10px;color:var(--text-dim);font-weight:600;margin-bottom:4px;text-transform:uppercase;letter-spacing:0.5px;">常见错误 TOP 3</div>
+      <div id="commonErrors" style="font-size:11px;"></div>
     </div>
   </div>
 </div>
@@ -1911,10 +2163,18 @@ body {
   </div>
 </div>
 
+<!-- Student Drill-Down Modal -->
+<div class="student-modal" id="studentModal">
+  <div class="student-modal-card" id="studentModalCard">
+    <!-- Populated by JS -->
+  </div>
+</div>
+
 <script>
 // ========== LESSON STATE ==========
 let currentLesson = 15;
-let l14Challenge = 1; // which challenge is shown in lesson 14 (0-indexed from the challenges array)
+let currentL15Level = 2; // which level is displayed (1-5), default: level 2 (interactive)
+let l14Challenge = 1;
 
 // ========== Timer ==========
 let timerSeconds = 0;
@@ -1926,19 +2186,16 @@ let l14TotalSeconds = 195; // 3:15
 let l14Attempts = 0;
 
 function updateTimer() {
-  // Lesson 15 timer
   timerSeconds++;
   totalSeconds++;
   const min = String(Math.floor(timerSeconds / 60)).padStart(2, '0');
   const sec = String(timerSeconds % 60).padStart(2, '0');
   document.getElementById('timerDisplay').textContent = min + ':' + sec;
-  document.getElementById('currentLevelTime').textContent = min + ':' + sec;
 
   const tMin = String(Math.floor(totalSeconds / 60)).padStart(2, '0');
   const tSec = String(totalSeconds % 60).padStart(2, '0');
   document.getElementById('totalTime').textContent = tMin + ':' + tSec;
 
-  // Lesson 14 timer
   l14TimerSeconds++;
   l14TotalSeconds++;
   const l14min = String(Math.floor(l14TimerSeconds / 60)).padStart(2, '0');
@@ -1967,6 +2224,413 @@ setInterval(updateTimer, 1000);
     container.appendChild(p);
   }
 })();
+
+// ========== Sidebar Tab Switching ==========
+function switchSidebarTab(tabEl, panelId) {
+  tabEl.parentElement.querySelectorAll('.sidebar-tab').forEach(t => t.classList.remove('active'));
+  tabEl.classList.add('active');
+  tabEl.closest('.sidebar').querySelectorAll('.sidebar-panel').forEach(p => p.classList.remove('active'));
+  document.getElementById(panelId).classList.add('active');
+  // Draw charts if switching to record panel
+  if (panelId === 'recordPanel') {
+    setTimeout(() => { drawPersonalRadar(); drawRankTrend(); }, 50);
+  }
+}
+
+// ========== Lesson 15 Level Data (ALL 5 LEVELS) ==========
+const lesson15Levels = {
+  1: {
+    state: 'completed',
+    title: 'SQL注入',
+    levelBadge: 'LEVEL 1',
+    diff: [1,1,0,0,0],
+    diffLabel: '简单',
+    completionTime: '2:34',
+    completionAttempts: 2,
+    info: {
+      vulnType: 'SQL注入 (SQL Injection)',
+      owasp: 'OWASP Top 10 - A03:2021',
+      stars: 2,
+      tags: ['Statement', 'PreparedStatement', 'DAO'],
+      objective: '理解SQL注入的原理和危害，掌握使用PreparedStatement替代字符串拼接SQL的安全编码方法。'
+    },
+    desc: '以下Servlet使用字符串拼接构建SQL查询，存在SQL注入漏洞。攻击者可构造恶意输入绕过认证。',
+    fileName: 'UserDAO.java',
+    lineCount: 12,
+    code: '<span class="kw">public class</span> <span class="tp">UserDAO</span> {\n' +
+      '    <span class="kw">private</span> <span class="tp">Connection</span> conn;\n\n' +
+      '    <span class="kw">public</span> <span class="tp">User</span> <span class="mt">findByUsername</span>(<span class="tp">String</span> username) {\n' +
+      '<span class="bug-line">        <span class="cm">// <span class="bug-indicator">&#9888; BUG:</span> 字符串拼接SQL，存在SQL注入漏洞</span></span>\n' +
+      '        <span class="tp">String</span> sql = <span class="st">"SELECT * FROM users WHERE username = \'"</span>\n' +
+      '                + username + <span class="st">"\';"</span>;\n' +
+      '        <span class="tp">Statement</span> stmt = conn.<span class="mt">createStatement</span>();\n' +
+      '        <span class="tp">ResultSet</span> rs = stmt.<span class="mt">executeQuery</span>(sql);\n' +
+      '        <span class="kw">if</span> (rs.<span class="mt">next</span>()) <span class="kw">return</span> <span class="mt">mapToUser</span>(rs);\n' +
+      '        <span class="kw">return</span> <span class="nm">null</span>;\n' +
+      '    }\n' +
+      '}',
+    fixShown: 'String sql = "SELECT * FROM users WHERE username = ?";\nPreparedStatement pstmt = conn.prepareStatement(sql);\npstmt.setString(1, username);\nResultSet rs = pstmt.executeQuery();'
+  },
+  2: {
+    state: 'active',
+    title: '越权访问',
+    levelBadge: 'LEVEL 2',
+    diff: [1,1,1,0,0],
+    diffLabel: '中等',
+    info: {
+      vulnType: '越权访问 (Broken Access Control)',
+      owasp: 'OWASP Top 10 - A01:2021',
+      stars: 3,
+      tags: ['Filter', 'Session', 'RBAC'],
+      objective: '理解越权访问漏洞的成因，掌握基于角色的访问控制（RBAC）在Servlet中的实现方法，学会对管理接口进行权限验证。'
+    },
+    desc: '以下 Servlet 负责管理员页面的访问控制，但存在越权访问漏洞。任何已登录用户（包括普通用户）都能访问管理页面。请找到漏洞并编写修复代码，添加角色验证逻辑。',
+    fileName: 'AdminUserServlet.java',
+    lineCount: 16,
+    code: '<span class="an">@WebServlet</span>(<span class="st">"/admin/users"</span>)\n' +
+      '<span class="kw">public class</span> <span class="tp">AdminUserServlet</span> <span class="kw">extends</span> <span class="tp">HttpServlet</span> {\n' +
+      '    <span class="kw">protected void</span> <span class="mt">doGet</span>(<span class="tp">HttpServletRequest</span> request, <span class="tp">HttpServletResponse</span> response)\n' +
+      '            <span class="kw">throws</span> <span class="tp">ServletException</span>, <span class="tp">IOException</span> {\n' +
+      '<span class="bug-line">        <span class="cm">// <span class="bug-indicator">&#9888; BUG:</span> 未检查用户角色，任何已登录用户都能访问管理页面</span></span>\n' +
+      '        <span class="tp">HttpSession</span> session = request.<span class="mt">getSession</span>();\n' +
+      '        <span class="tp">String</span> username = (<span class="tp">String</span>) session.<span class="mt">getAttribute</span>(<span class="st">"username"</span>);\n' +
+      '        <span class="kw">if</span> (username != <span class="nm">null</span>) {\n' +
+      '            <span class="tp">List</span>&lt;<span class="tp">User</span>&gt; users = userDAO.<span class="mt">findAll</span>();\n' +
+      '            request.<span class="mt">setAttribute</span>(<span class="st">"users"</span>, users);\n' +
+      '            request.<span class="mt">getRequestDispatcher</span>(<span class="st">"/WEB-INF/admin/users.jsp"</span>).<span class="mt">forward</span>(request, response);\n' +
+      '        } <span class="kw">else</span> {\n' +
+      '            response.<span class="mt">sendRedirect</span>(<span class="st">"/login.jsp"</span>);\n' +
+      '        }\n' +
+      '    }\n' +
+      '}',
+    hint: '提示：检查用户Session中是否存储了角色信息，对比是否为admin角色。<br><br>建议修复思路：在验证 <code style="color: var(--accent-cyan);">username != null</code> 之后，增加对 <code style="color: var(--accent-cyan);">session.getAttribute("role")</code> 的检查，仅当角色为 <code style="color: var(--accent-cyan);">"admin"</code> 时才允许访问管理页面。否则应返回403错误或重定向到无权限页面。',
+    fixPlaceholder: '// 在此编写修复代码...\n// 提示：需要在验证用户登录后，额外检查用户角色\n// 例如：从session中获取role属性，判断是否为admin',
+    fixAnswer: 'String role = (String) session.getAttribute("role");\nif (!"admin".equals(role)) {\n    response.sendError(HttpServletResponse.SC_FORBIDDEN, "无权限访问");\n    return;\n}',
+    tests: [
+      { name: 'testAdminCanAccess()', desc: '管理员可以访问管理页面' },
+      { name: 'testNormalUserBlocked()', desc: '普通用户被拒绝访问' },
+      { name: 'testNotLoggedInRedirect()', desc: '未登录用户重定向到登录页' },
+      { name: 'testRoleCheckExists()', desc: '角色检查逻辑存在' },
+      { name: 'testReturn403OnForbidden()', desc: '无权限时返回403状态码' },
+    ],
+    refs: ['第15讲课件 - 用户认证与权限控制.pptx', 'OWASP Top 10 - A01 Broken Access Control', 'Java Servlet Filter 官方文档', '实验手册 - RBAC权限模型实践']
+  },
+  3: {
+    state: 'locked-preview',
+    title: 'Session劫持',
+    levelBadge: 'LEVEL 3',
+    diff: [1,1,1,0,0],
+    diffLabel: '中等',
+    info: {
+      vulnType: 'Session管理缺陷 (Session Fixation)',
+      owasp: 'OWASP Top 10 - A07:2021',
+      stars: 3,
+      tags: ['Session', 'invalidate', 'Cache-Control'],
+      objective: '理解Session劫持和固定攻击的原理，掌握安全的Session生命周期管理，包括登出时的正确销毁和缓存控制。'
+    },
+    desc: '以下LogoutServlet处理用户登出请求，但存在Session管理缺陷。登出后Session未被完全销毁，攻击者可利用残留Session重新访问系统。请找到漏洞并编写修复代码。',
+    fileName: 'LogoutServlet.java',
+    lineCount: 14,
+    code: '<span class="an">@WebServlet</span>(<span class="st">"/logout"</span>)\n' +
+      '<span class="kw">public class</span> <span class="tp">LogoutServlet</span> <span class="kw">extends</span> <span class="tp">HttpServlet</span> {\n' +
+      '    <span class="kw">protected void</span> <span class="mt">doGet</span>(<span class="tp">HttpServletRequest</span> req, <span class="tp">HttpServletResponse</span> resp)\n' +
+      '            <span class="kw">throws</span> <span class="tp">IOException</span> {\n' +
+      '        <span class="tp">HttpSession</span> session = req.<span class="mt">getSession</span>(<span class="nm">false</span>);\n' +
+      '        <span class="kw">if</span> (session != <span class="nm">null</span>) {\n' +
+      '<span class="bug-line">            session.<span class="mt">removeAttribute</span>(<span class="st">"username"</span>);</span>\n' +
+      '<span class="bug-line">            <span class="cm">// <span class="bug-indicator">&#9888; BUG:</span> 应使用 session.invalidate() 彻底销毁Session</span></span>\n' +
+      '<span class="bug-line">            <span class="cm">// <span class="bug-indicator">&#9888; BUG:</span> 未设置Cache-Control头，浏览器缓存可能泄露页面</span></span>\n' +
+      '        }\n' +
+      '        resp.<span class="mt">sendRedirect</span>(<span class="st">"/login.jsp"</span>);\n' +
+      '    }\n' +
+      '}'
+  },
+  4: {
+    state: 'locked',
+    title: 'XSS跨站脚本',
+    levelBadge: 'LEVEL 4',
+    diff: [1,1,1,1,0],
+    diffLabel: '较难',
+    info: {
+      vulnType: 'XSS跨站脚本 (Cross-Site Scripting)',
+      owasp: 'OWASP Top 10 - A03:2021',
+      stars: 4,
+      tags: ['JSP', 'c:out', 'EL表达式', 'HTMLEncode'],
+      objective: '理解反射型XSS和存储型XSS的区别与危害，掌握在JSP中使用JSTL标签库进行输出转义的方法。'
+    },
+    desc: '以下JSP页面直接输出用户输入的参数，未进行HTML转义，存在反射型XSS漏洞。攻击者可注入恶意脚本窃取Cookie或劫持会话。',
+    fileName: 'search.jsp',
+    lineCount: 10,
+    code: '<span class="tg">&lt;%@ page</span> <span class="at">contentType</span>=<span class="st">"text/html;charset=UTF-8"</span> <span class="tg">%&gt;</span>\n' +
+      '<span class="tg">&lt;html&gt;</span>\n' +
+      '<span class="tg">&lt;body&gt;</span>\n' +
+      '<span class="bug-line">  <span class="tg">&lt;h1&gt;</span>欢迎, <span class="el">${param.username}</span><span class="tg">&lt;/h1&gt;</span></span>\n' +
+      '  <span class="cm">&lt;!-- <span class="bug-indicator">&#9888; BUG:</span> 未使用&lt;c:out&gt;转义，存在XSS风险 --&gt;</span>\n' +
+      '<span class="bug-line">  <span class="tg">&lt;p&gt;</span>搜索结果: <span class="el">${param.keyword}</span><span class="tg">&lt;/p&gt;</span></span>\n' +
+      '  <span class="tg">&lt;form</span> <span class="at">action</span>=<span class="st">"search"</span> <span class="at">method</span>=<span class="st">"get"</span><span class="tg">&gt;</span>\n' +
+      '    <span class="tg">&lt;input</span> <span class="at">name</span>=<span class="st">"keyword"</span> <span class="at">value</span>=<span class="st">"</span><span class="el">${param.keyword}</span><span class="st">"</span><span class="tg">&gt;</span>\n' +
+      '  <span class="tg">&lt;/form&gt;</span>\n' +
+      '<span class="tg">&lt;/body&gt;&lt;/html&gt;</span>'
+  },
+  5: {
+    state: 'locked',
+    title: '综合漏洞BOSS关',
+    levelBadge: 'BOSS',
+    diff: [1,1,1,1,1],
+    diffLabel: '困难',
+    info: {
+      vulnType: '综合漏洞 (Multiple Vulnerabilities)',
+      owasp: 'OWASP Top 10 - Multiple',
+      stars: 5,
+      tags: ['SQL注入', '越权', 'XSS', 'Session', 'CSRF'],
+      objective: '综合运用所有安全知识，在一个完整的用户管理Servlet中找出并修复多种安全漏洞，理解漏洞的组合利用和防御纵深策略。'
+    },
+    desc: '以下用户管理Servlet包含多种安全漏洞：SQL注入、越权访问、XSS和Session管理缺陷。作为BOSS关，你需要找出所有漏洞并一次性修复。',
+    fileName: 'UserManageServlet.java',
+    lineCount: 28,
+    code: '<span class="an">@WebServlet</span>(<span class="st">"/manage/user"</span>)\n' +
+      '<span class="kw">public class</span> <span class="tp">UserManageServlet</span> <span class="kw">extends</span> <span class="tp">HttpServlet</span> {\n' +
+      '    <span class="kw">protected void</span> <span class="mt">doPost</span>(<span class="tp">HttpServletRequest</span> req, <span class="tp">HttpServletResponse</span> resp)\n' +
+      '            <span class="kw">throws</span> <span class="tp">ServletException</span>, <span class="tp">IOException</span> {\n' +
+      '<span class="bug-line">        <span class="cm">// <span class="bug-indicator">&#9888; BUG 1:</span> 无权限检查 - 任何用户均可操作</span></span>\n' +
+      '        <span class="tp">String</span> action = req.<span class="mt">getParameter</span>(<span class="st">"action"</span>);\n' +
+      '        <span class="tp">String</span> targetUser = req.<span class="mt">getParameter</span>(<span class="st">"username"</span>);\n\n' +
+      '        <span class="kw">if</span> (<span class="st">"delete"</span>.<span class="mt">equals</span>(action)) {\n' +
+      '<span class="bug-line">            <span class="cm">// <span class="bug-indicator">&#9888; BUG 2:</span> SQL拼接注入</span></span>\n' +
+      '            <span class="tp">String</span> sql = <span class="st">"DELETE FROM users WHERE username=\'"</span>\n' +
+      '                    + targetUser + <span class="st">"\';"</span>;\n' +
+      '            stmt.<span class="mt">executeUpdate</span>(sql);\n' +
+      '        } <span class="kw">else if</span> (<span class="st">"search"</span>.<span class="mt">equals</span>(action)) {\n' +
+      '<span class="bug-line">            <span class="cm">// <span class="bug-indicator">&#9888; BUG 3:</span> 直接回显用户输入 - XSS</span></span>\n' +
+      '            resp.<span class="mt">getWriter</span>().<span class="mt">println</span>(\n' +
+      '                <span class="st">"&lt;h2&gt;搜索: "</span> + targetUser + <span class="st">"&lt;/h2&gt;"</span>);\n' +
+      '        }\n\n' +
+      '<span class="bug-line">        <span class="cm">// <span class="bug-indicator">&#9888; BUG 4:</span> 无CSRF Token验证</span></span>\n' +
+      '        <span class="tp">HttpSession</span> session = req.<span class="mt">getSession</span>();\n' +
+      '<span class="bug-line">        <span class="cm">// <span class="bug-indicator">&#9888; BUG 5:</span> 敏感操作后未刷新Session ID</span></span>\n' +
+      '        session.<span class="mt">setAttribute</span>(<span class="st">"lastAction"</span>, action);\n\n' +
+      '        req.<span class="mt">getRequestDispatcher</span>(<span class="st">"/manage.jsp"</span>)\n' +
+      '                .<span class="mt">forward</span>(req, resp);\n' +
+      '    }\n' +
+      '}',
+    unlockMsg: '需通过前4关解锁'
+  }
+};
+
+// ========== Render Lesson 15 Level (all 5 levels) ==========
+function renderL15Level(levelNum) {
+  currentL15Level = levelNum;
+  const area = document.getElementById('lesson15ChallengeArea');
+  const lv = lesson15Levels[levelNum];
+  if (!lv) return;
+
+  const starsHtml = '&#9733;'.repeat(lv.info.stars) + '&#9734;'.repeat(5 - lv.info.stars);
+  const diffDots = lv.diff.map(d => d ? '<span></span>' : '<span class="dim"></span>').join('');
+  const tagsHtml = lv.info.tags.map(t => '<span class="info-tag">' + t + '</span>').join('');
+
+  // Info panel (always shown)
+  let html = `
+    <div class="challenge-info-panel">
+      <div class="info-row"><span class="info-label">漏洞类型</span><span class="info-value">${lv.info.vulnType}</span></div>
+      <div class="info-row"><span class="info-label">OWASP分类</span><span class="info-value owasp">${lv.info.owasp}</span></div>
+      <div class="info-row"><span class="info-label">难度</span><span class="info-stars">${starsHtml}</span></div>
+      <div class="info-row"><span class="info-label">知识点</span><div class="info-tags">${tagsHtml}</div></div>
+      <div class="info-objective"><span class="info-label">学习目标</span><span class="info-value">${lv.info.objective}</span></div>
+    </div>`;
+
+  if (lv.state === 'completed') {
+    // COMPLETED level - show code + fix + green banner
+    html += `
+      <div class="completed-banner">
+        <div class="completed-banner-icon">&#9989;</div>
+        <div class="completed-banner-text">
+          <strong>已通过</strong> - ${lv.title}漏洞已修复
+        </div>
+        <div class="completed-banner-stats">
+          <span>&#9201; ${lv.completionTime}</span>
+          <span>&#128260; ${lv.completionAttempts}次尝试</span>
+        </div>
+      </div>
+      <div class="challenge-header">
+        <div class="challenge-tag">
+          <span class="level-badge completed-badge">${lv.levelBadge} &#10003;</span>
+          <div class="difficulty">${diffDots}</div>
+          <span style="font-size:12px; color: var(--accent-green);">已完成</span>
+        </div>
+      </div>
+      <h2 class="challenge-title"><span class="num">第${levelNum}关</span>：${lv.title}</h2>
+      <p class="challenge-desc">${lv.desc}</p>
+      <div class="code-editor">
+        <div class="editor-tabs">
+          <div class="editor-tab active"><span class="icon">&#9670;</span> ${lv.fileName}</div>
+        </div>
+        <div class="code-container">
+          <div class="line-numbers">${Array.from({length: lv.lineCount}, (_, i) => i + 1).join('\n')}</div>
+          <div class="code-content">${lv.code}</div>
+        </div>
+      </div>
+      <div style="margin-bottom:16px;">
+        <div class="fix-label"><span class="icon">&#10003;</span> 你的修复方案</div>
+        <div style="background:rgba(0,255,136,0.05); border:1px solid rgba(0,255,136,0.2); border-radius:8px; padding:14px 16px; font-family:'Consolas',monospace; font-size:13px; line-height:1.6; color:var(--accent-green); white-space:pre;">${lv.fixShown}</div>
+      </div>`;
+
+  } else if (lv.state === 'active') {
+    // ACTIVE interactive level (Level 2)
+    const refsHtml = (lv.refs || []).map(r => '<a href="#">&#128196; ' + r + '</a>').join('');
+    html += `
+      <div class="reference-section">
+        <div class="reference-toggle" id="refToggle" onclick="toggleReference()">
+          <span class="arrow">&#9654;</span> &#128214; 参考资料
+        </div>
+        <div class="reference-links" id="refLinks">${refsHtml}</div>
+      </div>
+      <div class="challenge-header">
+        <div class="challenge-tag">
+          <span class="level-badge">${lv.levelBadge}</span>
+          <div class="difficulty">${diffDots}</div>
+          <span style="font-size:12px; color: var(--text-dim);">难度: ${lv.diffLabel}</span>
+        </div>
+      </div>
+      <h2 class="challenge-title"><span class="num">第${levelNum}关</span>：${lv.title}</h2>
+      <p class="challenge-desc">${lv.desc}</p>
+      <div class="code-editor">
+        <div class="editor-tabs">
+          <div class="editor-tab active"><span class="icon">&#9670;</span> ${lv.fileName}</div>
+          <div class="editor-tab"><span class="icon" style="color: var(--accent-green);">&#9670;</span> User.java</div>
+          <div class="editor-tab"><span class="icon" style="color: var(--accent-cyan);">&#9670;</span> web.xml</div>
+          <div class="editor-actions">
+            <button class="editor-action-btn">&#9881; 设置</button>
+            <button class="editor-action-btn">&#128196; 复制</button>
+          </div>
+        </div>
+        <div class="code-container">
+          <div class="line-numbers">${Array.from({length: lv.lineCount}, (_, i) => i + 1).join('\n')}</div>
+          <div class="code-content">${lv.code}</div>
+        </div>
+      </div>
+      <div class="fix-area">
+        <div class="fix-label"><span class="icon">&#9998;</span> 修复方案</div>
+        <textarea class="fix-textarea" id="fixTextarea" placeholder="${lv.fixPlaceholder}"></textarea>
+      </div>
+      <div class="fix-actions">
+        <button class="btn btn-primary" id="submitBtn" onclick="submitFix()">&#9654; 提交修复</button>
+        <button class="btn btn-hint" onclick="showHint()">&#128161; AI提示</button>
+        <button class="btn btn-reset" onclick="resetChallenge()">&#8635; 重置</button>
+      </div>
+      <div class="hint-box" id="hintBox">
+        <div class="hint-header">&#129302; AI助手提示</div>
+        <div class="hint-text">${lv.hint}</div>
+      </div>
+      <div class="test-results" id="testResults">
+        <div class="test-header"><span>&#9881; 自动化测试结果</span><span class="test-status" id="testStatus"></span></div>
+        <div class="test-list" id="testList"></div>
+        <div class="test-summary" id="testSummary"></div>
+      </div>`;
+
+  } else if (lv.state === 'locked-preview') {
+    // LOCKED but code is viewable (preview mode)
+    html += `
+      <div class="lock-badge">&#128274; 预览模式 - 需通过第2关解锁交互</div>
+      <div class="challenge-header">
+        <div class="challenge-tag">
+          <span class="level-badge locked-badge">${lv.levelBadge}</span>
+          <div class="difficulty">${diffDots}</div>
+          <span style="font-size:12px; color: var(--text-dim);">难度: ${lv.diffLabel}</span>
+        </div>
+      </div>
+      <h2 class="challenge-title"><span class="num">第${levelNum}关</span>：${lv.title}</h2>
+      <p class="challenge-desc">${lv.desc}</p>
+      <div class="code-editor lock-overlay">
+        <div class="editor-tabs">
+          <div class="editor-tab active"><span class="icon">&#9670;</span> ${lv.fileName}</div>
+        </div>
+        <div class="code-container">
+          <div class="line-numbers">${Array.from({length: lv.lineCount}, (_, i) => i + 1).join('\n')}</div>
+          <div class="code-content">${lv.code}</div>
+        </div>
+      </div>`;
+
+  } else if (lv.state === 'locked') {
+    // LOCKED level - show code but dimmed
+    const lockMsg = lv.unlockMsg || '需通过前面关卡解锁';
+    html += `
+      <div class="lock-badge">&#128274; ${lockMsg}</div>
+      <div class="challenge-header">
+        <div class="challenge-tag">
+          <span class="level-badge locked-badge">${lv.levelBadge}</span>
+          <div class="difficulty">${diffDots}</div>
+          <span style="font-size:12px; color: var(--text-dim);">难度: ${lv.diffLabel}</span>
+        </div>
+      </div>
+      <h2 class="challenge-title"><span class="num">第${levelNum}关</span>：${lv.title}</h2>
+      <p class="challenge-desc">${lv.desc}</p>
+      <div class="code-editor lock-overlay">
+        <div class="editor-tabs">
+          <div class="editor-tab active"><span class="icon">&#9670;</span> ${lv.fileName}</div>
+        </div>
+        <div class="code-container">
+          <div class="line-numbers">${Array.from({length: lv.lineCount}, (_, i) => i + 1).join('\n')}</div>
+          <div class="code-content">${lv.code}</div>
+        </div>
+      </div>`;
+  }
+
+  area.innerHTML = html;
+  renderL15ProgressTrack();
+}
+
+// ========== Render L15 Progress Track ==========
+function renderL15ProgressTrack() {
+  const track = document.getElementById('l15ProgressTrack');
+  if (!track) return;
+
+  const levels = [
+    { num: 1, name: 'SQL注入', state: 'completed', time: '2:34' },
+    { num: 2, name: '越权访问', state: 'active', time: null },
+    { num: 3, name: 'Session劫持', state: 'locked', time: null },
+    { num: 4, name: 'XSS跨站脚本', state: 'locked', time: null },
+    { num: 5, name: '综合漏洞（BOSS关）', state: 'locked', time: null, boss: true }
+  ];
+
+  let html = '<div class="progress-line"></div><div class="progress-line-fill"></div>';
+  levels.forEach(lv => {
+    const isSelected = lv.num === currentL15Level;
+    let dotClass, dotContent, metaHtml, timeHtml;
+
+    if (lv.state === 'completed') {
+      dotClass = 'completed';
+      dotContent = '&#10003;';
+      metaHtml = '<div class="level-meta green">&#10003; 已通过</div>';
+      timeHtml = `<div class="level-time green">${lv.time}</div>`;
+    } else if (lv.state === 'active') {
+      dotClass = 'current';
+      dotContent = lv.num;
+      metaHtml = '<div class="level-meta orange">&#128293; 进行中</div>';
+      timeHtml = '<div class="level-time" style="color: var(--accent-orange);">--:--</div>';
+    } else {
+      dotClass = 'locked';
+      dotContent = lv.boss ? 'B' : '&#128274;';
+      metaHtml = '<div class="level-meta" style="color: var(--text-dim);">未解锁</div>';
+      timeHtml = '<div class="level-time">--:--</div>';
+    }
+
+    const nameClass = lv.state === 'locked' ? 'dim' : '';
+    const bossStyle = lv.boss && lv.state === 'locked' ? ' style="background: var(--accent-red); color: #fff; font-size: 10px;"' : '';
+    const selectedBorder = isSelected ? 'border-left:2px solid var(--accent-cyan); padding-left:6px; margin-left:-8px;' : '';
+
+    html += `
+      <div class="level-item" style="cursor:pointer;${selectedBorder}" onclick="renderL15Level(${lv.num})">
+        <div class="level-dot ${dotClass}"${bossStyle}>${dotContent}</div>
+        <div class="level-info">
+          <div class="level-name ${nameClass}">第${lv.num}关：${lv.name}</div>
+          ${metaHtml}
+        </div>
+        ${timeHtml}
+      </div>`;
+  });
+
+  track.innerHTML = html;
+}
 
 // ========== Lesson 14 Challenge Data ==========
 const lesson14Challenges = [
@@ -2073,44 +2737,26 @@ const lesson14Challenges = [
 
 // Current L14 challenge state
 let l14SubmitPhase = 0;
-let l14CurrentChallenge = 0; // index into lesson14Challenges for the displayed active challenge
+let l14CurrentChallenge = 0;
 
 function renderLesson14Challenge() {
   const area = document.getElementById('lesson14ChallengeArea');
-  // Find the first active (non-coming-soon) challenge that isn't completed
-  // For demo, show challenge at l14CurrentChallenge
   const ch = lesson14Challenges[l14CurrentChallenge];
 
   if (ch.state === 'coming-soon') {
     area.innerHTML = `
       <div class="challenge-info-panel">
-        <div class="info-row">
-          <span class="info-label">漏洞类型</span>
-          <span class="info-value">${ch.info.vulnType}</span>
-        </div>
-        <div class="info-row">
-          <span class="info-label">OWASP分类</span>
-          <span class="info-value owasp">${ch.info.owasp}</span>
-        </div>
-        <div class="info-row">
-          <span class="info-label">难度</span>
-          <span class="info-stars">${'&#9733;'.repeat(ch.info.stars)}${'&#9734;'.repeat(5 - ch.info.stars)}</span>
-        </div>
-        <div class="info-row">
-          <span class="info-label">知识点</span>
-          <div class="info-tags">${ch.info.tags.map(t => '<span class="info-tag">' + t + '</span>').join('')}</div>
-        </div>
-        <div class="info-objective">
-          <span class="info-label">学习目标</span>
-          <span class="info-value">${ch.info.objective}</span>
-        </div>
+        <div class="info-row"><span class="info-label">漏洞类型</span><span class="info-value">${ch.info.vulnType}</span></div>
+        <div class="info-row"><span class="info-label">OWASP分类</span><span class="info-value owasp">${ch.info.owasp}</span></div>
+        <div class="info-row"><span class="info-label">难度</span><span class="info-stars">${'&#9733;'.repeat(ch.info.stars)}${'&#9734;'.repeat(5 - ch.info.stars)}</span></div>
+        <div class="info-row"><span class="info-label">知识点</span><div class="info-tags">${ch.info.tags.map(t => '<span class="info-tag">' + t + '</span>').join('')}</div></div>
+        <div class="info-objective"><span class="info-label">学习目标</span><span class="info-value">${ch.info.objective}</span></div>
       </div>
       <div class="coming-soon-overlay">
         <div class="coming-soon-icon">&#128274;</div>
         <div class="coming-soon-title">第${ch.num}关：${ch.title} - 即将开放</div>
         <div class="coming-soon-sub">完成前面的挑战即可解锁此关卡<br>敬请期待</div>
-      </div>
-    `;
+      </div>`;
     return;
   }
 
@@ -2120,41 +2766,19 @@ function renderLesson14Challenge() {
   const refsHtml = ch.refs.map(r => '<a href="#">&#128196; ' + r + '</a>').join('');
 
   area.innerHTML = `
-    <!-- Challenge Info Panel -->
     <div class="challenge-info-panel">
-      <div class="info-row">
-        <span class="info-label">漏洞类型</span>
-        <span class="info-value">${ch.info.vulnType}</span>
-      </div>
-      <div class="info-row">
-        <span class="info-label">OWASP分类</span>
-        <span class="info-value owasp">${ch.info.owasp}</span>
-      </div>
-      <div class="info-row">
-        <span class="info-label">难度</span>
-        <span class="info-stars">${starsHtml}</span>
-      </div>
-      <div class="info-row">
-        <span class="info-label">知识点</span>
-        <div class="info-tags">${tagsHtml}</div>
-      </div>
-      <div class="info-objective">
-        <span class="info-label">学习目标</span>
-        <span class="info-value">${ch.info.objective}</span>
-      </div>
+      <div class="info-row"><span class="info-label">漏洞类型</span><span class="info-value">${ch.info.vulnType}</span></div>
+      <div class="info-row"><span class="info-label">OWASP分类</span><span class="info-value owasp">${ch.info.owasp}</span></div>
+      <div class="info-row"><span class="info-label">难度</span><span class="info-stars">${starsHtml}</span></div>
+      <div class="info-row"><span class="info-label">知识点</span><div class="info-tags">${tagsHtml}</div></div>
+      <div class="info-objective"><span class="info-label">学习目标</span><span class="info-value">${ch.info.objective}</span></div>
     </div>
-
-    <!-- Reference Section -->
     <div class="reference-section">
       <div class="reference-toggle" onclick="this.classList.toggle('open'); this.nextElementSibling.classList.toggle('show');">
-        <span class="arrow">&#9654;</span>
-        &#128214; 参考资料
+        <span class="arrow">&#9654;</span> &#128214; 参考资料
       </div>
-      <div class="reference-links">
-        ${refsHtml}
-      </div>
+      <div class="reference-links">${refsHtml}</div>
     </div>
-
     <div class="challenge-header">
       <div class="challenge-tag">
         <span class="level-badge">${ch.levelBadge}</span>
@@ -2162,17 +2786,11 @@ function renderLesson14Challenge() {
         <span style="font-size:12px; color: var(--text-dim);">难度: ${ch.diffLabel}</span>
       </div>
     </div>
-
     <h2 class="challenge-title"><span class="num">第${ch.num}关</span>：${ch.title}</h2>
     <p class="challenge-desc">${ch.desc}</p>
-
-    <!-- Code Editor -->
     <div class="code-editor">
       <div class="editor-tabs">
-        <div class="editor-tab active">
-          <span class="icon">&#9670;</span>
-          ${ch.fileName}
-        </div>
+        <div class="editor-tab active"><span class="icon">&#9670;</span> ${ch.fileName}</div>
         <div class="editor-actions">
           <button class="editor-action-btn">&#9881; 设置</button>
           <button class="editor-action-btn">&#128196; 复制</button>
@@ -2183,45 +2801,24 @@ function renderLesson14Challenge() {
         <div class="code-content">${ch.code}</div>
       </div>
     </div>
-
-    <!-- Fix Area -->
     <div class="fix-area">
-      <div class="fix-label">
-        <span class="icon">&#9998;</span>
-        修复方案
-      </div>
+      <div class="fix-label"><span class="icon">&#9998;</span> 修复方案</div>
       <textarea class="fix-textarea" id="l14FixTextarea" placeholder="${ch.fixPlaceholder}"></textarea>
     </div>
-
-    <!-- Action Buttons -->
     <div class="fix-actions">
-      <button class="btn btn-primary" id="l14SubmitBtn" onclick="submitL14Fix()">
-        &#9654; 提交修复
-      </button>
-      <button class="btn btn-hint" onclick="showL14Hint()">
-        &#128161; AI提示
-      </button>
-      <button class="btn btn-reset" onclick="resetL14Challenge()">
-        &#8635; 重置
-      </button>
+      <button class="btn btn-primary" id="l14SubmitBtn" onclick="submitL14Fix()">&#9654; 提交修复</button>
+      <button class="btn btn-hint" onclick="showL14Hint()">&#128161; AI提示</button>
+      <button class="btn btn-reset" onclick="resetL14Challenge()">&#8635; 重置</button>
     </div>
-
-    <!-- Hint Box -->
     <div class="hint-box" id="l14HintBox">
       <div class="hint-header">&#129302; AI助手提示</div>
       <div class="hint-text">${ch.hint}</div>
     </div>
-
-    <!-- Test Results -->
     <div class="test-results" id="l14TestResults">
-      <div class="test-header">
-        <span>&#9881; 自动化测试结果</span>
-        <span class="test-status" id="l14TestStatus"></span>
-      </div>
+      <div class="test-header"><span>&#9881; 自动化测试结果</span><span class="test-status" id="l14TestStatus"></span></div>
       <div class="test-list" id="l14TestList"></div>
       <div class="test-summary" id="l14TestSummary"></div>
-    </div>
-  `;
+    </div>`;
 }
 
 function showL14Hint() {
@@ -2260,9 +2857,7 @@ function submitL14Fix() {
   summaryEl.innerHTML = '';
 
   const passAll = l14SubmitPhase >= 1;
-  const results = passAll
-    ? ch.tests.map(() => true)
-    : ch.tests.map((_, i) => i !== 1); // fail second test first time
+  const results = passAll ? ch.tests.map(() => true) : ch.tests.map((_, i) => i !== 1);
   const times = [35, 22, 41, 28];
 
   let idx = 0;
@@ -2270,64 +2865,34 @@ function submitL14Fix() {
     if (idx >= ch.tests.length) {
       const passCount = results.filter(r => r).length;
       const failCount = results.filter(r => !r).length;
-
       statusEl.innerHTML = passAll
         ? '<span style="color: var(--accent-green);">&#10003; 全部通过</span>'
         : '<span style="color: var(--accent-red);">&#10007; 部分失败</span>';
-
-      summaryEl.innerHTML = `
-        <span><span class="test-pass-count">&#10003; ${passCount} 通过</span> &nbsp; <span class="test-fail-count">${failCount > 0 ? '&#10007; ' + failCount + ' 失败' : ''}</span></span>
-        <span style="color: var(--text-dim);">总耗时: ${times.slice(0, ch.tests.length).reduce((a,b) => a+b, 0)}ms</span>
-      `;
-
+      summaryEl.innerHTML = `<span><span class="test-pass-count">&#10003; ${passCount} 通过</span> &nbsp; <span class="test-fail-count">${failCount > 0 ? '&#10007; ' + failCount + ' 失败' : ''}</span></span><span style="color: var(--text-dim);">总耗时: ${times.slice(0, ch.tests.length).reduce((a,b) => a+b, 0)}ms</span>`;
       btn.disabled = false;
       btn.style.opacity = '1';
       btn.innerHTML = '&#9654; 提交修复';
-
       if (!passAll) {
         l14SubmitPhase = 1;
-        setTimeout(() => {
-          const ta = document.getElementById('l14FixTextarea');
-          if (ta && !ta.value.trim()) {
-            ta.value = ch.fixAnswer;
-          }
-        }, 500);
+        setTimeout(() => { const ta = document.getElementById('l14FixTextarea'); if (ta && !ta.value.trim()) ta.value = ch.fixAnswer; }, 500);
       }
       return;
     }
-
     const test = ch.tests[idx];
     const pass = results[idx];
     const ms = times[idx % times.length];
-
-    listEl.innerHTML += `
-      <div class="test-item" id="l14test-${idx}">
-        <span class="test-icon running">&#9881;</span>
-        <span class="test-name">${test.name} <span style="color:var(--text-dim);font-size:11px;">${test.desc}</span></span>
-        <span class="test-time">...</span>
-      </div>
-    `;
-
+    listEl.innerHTML += `<div class="test-item" id="l14test-${idx}"><span class="test-icon running">&#9881;</span><span class="test-name">${test.name} <span style="color:var(--text-dim);font-size:11px;">${test.desc}</span></span><span class="test-time">...</span></div>`;
     setTimeout(() => {
       const item = document.getElementById('l14test-' + idx);
       if (pass) {
-        item.innerHTML = `
-          <span class="test-icon pass">&#10003;</span>
-          <span class="test-name">${test.name} <span style="color:var(--text-dim);font-size:11px;">${test.desc}</span></span>
-          <span class="test-time">${ms}ms</span>
-        `;
+        item.innerHTML = `<span class="test-icon pass">&#10003;</span><span class="test-name">${test.name} <span style="color:var(--text-dim);font-size:11px;">${test.desc}</span></span><span class="test-time">${ms}ms</span>`;
       } else {
-        item.innerHTML = `
-          <span class="test-icon fail">&#10007;</span>
-          <span class="test-name" style="color: var(--accent-red);">${test.name} <span style="font-size:11px;">FAILED - ${test.desc}</span></span>
-          <span class="test-time">${ms}ms</span>
-        `;
+        item.innerHTML = `<span class="test-icon fail">&#10007;</span><span class="test-name" style="color: var(--accent-red);">${test.name} <span style="font-size:11px;">FAILED - ${test.desc}</span></span><span class="test-time">${ms}ms</span>`;
       }
       idx++;
       runNext();
     }, 350 + Math.random() * 250);
   }
-
   setTimeout(runNext, 400);
 }
 
@@ -2335,21 +2900,12 @@ function submitL14Fix() {
 function switchLesson(lessonNum) {
   if (currentLesson === lessonNum) return;
   currentLesson = lessonNum;
-
-  // Update tabs
   document.getElementById('lessonTab14').classList.toggle('active', lessonNum === 14);
   document.getElementById('lessonTab15').classList.toggle('active', lessonNum === 15);
-
-  // Update content
   document.getElementById('lesson14Content').classList.toggle('active', lessonNum === 14);
   document.getElementById('lesson15Content').classList.toggle('active', lessonNum === 15);
-
-  // Re-render lesson 14 if switching to it
-  if (lessonNum === 14) {
-    renderLesson14Challenge();
-  }
-
-  // Update dashboard
+  if (lessonNum === 14) renderLesson14Challenge();
+  if (lessonNum === 15) renderL15Level(currentL15Level);
   updateDashboard();
 }
 
@@ -2357,32 +2913,60 @@ function switchLesson(lessonNum) {
 function toggleReference() {
   const toggle = document.getElementById('refToggle');
   const links = document.getElementById('refLinks');
-  toggle.classList.toggle('open');
-  links.classList.toggle('show');
+  if (toggle && links) {
+    toggle.classList.toggle('open');
+    links.classList.toggle('show');
+  }
 }
 
-// ========== Leaderboard ==========
+// ========== Leaderboard (15+ students with realistic Chinese names) ==========
 const leaderboardData = [
-  { name: '李明', level: 3, levelName: '第3关', time: '08:21', pct: 60, colors: ['#ff6b35','#ff8c42'] },
-  { name: '王雪', level: 2, levelName: '第2关', time: '09:15', pct: 40, colors: ['#00d4ff','#0099cc'] },
-  { name: '赵强', level: 2, levelName: '第2关', time: '09:42', pct: 40, colors: ['#a855f7','#7c3aed'] },
-  { name: '张伟', level: 2, levelName: '第2关', time: '--:--', pct: 35, colors: ['#00d4ff','#00ff88'], me: true },
-  { name: '刘洋', level: 2, levelName: '第2关', time: '10:55', pct: 30, colors: ['#ffd93d','#f59e0b'] },
-  { name: '陈静', level: 1, levelName: '第1关', time: '11:23', pct: 20, colors: ['#f472b6','#ec4899'] },
-  { name: '孙鹏', level: 1, levelName: '第1关', time: '12:01', pct: 20, colors: ['#34d399','#10b981'] },
-  { name: '周婷', level: 1, levelName: '第1关', time: '12:44', pct: 15, colors: ['#fb923c','#f97316'] },
+  { name: '林雨桐', level: 3, levelName: '第3关', time: '07:12', pct: 60, colors: ['#ff6b35','#ff8c42'] },
+  { name: '王浩然', level: 3, levelName: '第3关', time: '07:58', pct: 58, colors: ['#a855f7','#7c3aed'] },
+  { name: '赵天宇', level: 2, levelName: '第2关', time: '08:33', pct: 45, colors: ['#ffd93d','#f59e0b'] },
+  { name: '刘诗琪', level: 2, levelName: '第2关', time: '08:55', pct: 42, colors: ['#f472b6','#ec4899'] },
+  { name: '陈思远', level: 2, levelName: '第2关', time: '--:--', pct: 35, colors: ['#00d4ff','#00ff88'], me: true },
+  { name: '周雅婷', level: 2, levelName: '第2关', time: '09:42', pct: 38, colors: ['#34d399','#10b981'] },
+  { name: '孙嘉禾', level: 2, levelName: '第2关', time: '10:11', pct: 35, colors: ['#fb923c','#f97316'] },
+  { name: '吴若晨', level: 1, levelName: '第1关', time: '10:38', pct: 22, colors: ['#60a5fa','#3b82f6'] },
+  { name: '张博文', level: 1, levelName: '第1关', time: '11:05', pct: 20, colors: ['#c084fc','#a855f7'] },
+  { name: '杨思琪', level: 1, levelName: '第1关', time: '11:23', pct: 20, colors: ['#f472b6','#db2777'] },
+  { name: '马天翔', level: 1, levelName: '第1关', time: '11:55', pct: 18, colors: ['#fbbf24','#d97706'] },
+  { name: '黄子轩', level: 1, levelName: '第1关', time: '12:10', pct: 15, colors: ['#4ade80','#22c55e'] },
+  { name: '徐雨萱', level: 1, levelName: '第1关', time: '12:44', pct: 15, colors: ['#fb7185','#e11d48'] },
+  { name: '郑凯文', level: 0, levelName: '未开始', time: '--:--', pct: 0, colors: ['#64748b','#475569'] },
+  { name: '何晓峰', level: 0, levelName: '未开始', time: '--:--', pct: 0, colors: ['#78716c','#57534e'] },
 ];
 
 const leaderboardData14 = [
-  { name: '王雪', level: 2, levelName: '第2关', time: '07:45', pct: 45, colors: ['#00d4ff','#0099cc'] },
-  { name: '李明', level: 2, levelName: '第2关', time: '08:10', pct: 40, colors: ['#ff6b35','#ff8c42'] },
-  { name: '张伟', level: 1, levelName: '第1关', time: '--:--', pct: 30, colors: ['#00d4ff','#00ff88'], me: true },
-  { name: '刘洋', level: 1, levelName: '第1关', time: '09:33', pct: 25, colors: ['#ffd93d','#f59e0b'] },
-  { name: '赵强', level: 1, levelName: '第1关', time: '10:15', pct: 20, colors: ['#a855f7','#7c3aed'] },
-  { name: '陈静', level: 1, levelName: '第1关', time: '10:42', pct: 20, colors: ['#f472b6','#ec4899'] },
-  { name: '孙鹏', level: 1, levelName: '第1关', time: '11:18', pct: 15, colors: ['#34d399','#10b981'] },
-  { name: '周婷', level: 1, levelName: '第1关', time: '12:01', pct: 10, colors: ['#fb923c','#f97316'] },
+  { name: '王浩然', level: 2, levelName: '第2关', time: '06:45', pct: 45, colors: ['#a855f7','#7c3aed'] },
+  { name: '林雨桐', level: 2, levelName: '第2关', time: '07:10', pct: 42, colors: ['#ff6b35','#ff8c42'] },
+  { name: '刘诗琪', level: 2, levelName: '第2关', time: '07:55', pct: 40, colors: ['#f472b6','#ec4899'] },
+  { name: '陈思远', level: 1, levelName: '第1关', time: '--:--', pct: 30, colors: ['#00d4ff','#00ff88'], me: true },
+  { name: '赵天宇', level: 1, levelName: '第1关', time: '09:15', pct: 25, colors: ['#ffd93d','#f59e0b'] },
+  { name: '周雅婷', level: 1, levelName: '第1关', time: '09:42', pct: 22, colors: ['#34d399','#10b981'] },
+  { name: '孙嘉禾', level: 1, levelName: '第1关', time: '10:05', pct: 20, colors: ['#fb923c','#f97316'] },
+  { name: '吴若晨', level: 1, levelName: '第1关', time: '10:33', pct: 18, colors: ['#60a5fa','#3b82f6'] },
+  { name: '张博文', level: 1, levelName: '第1关', time: '11:02', pct: 16, colors: ['#c084fc','#a855f7'] },
+  { name: '杨思琪', level: 1, levelName: '第1关', time: '11:18', pct: 15, colors: ['#f472b6','#db2777'] },
+  { name: '马天翔', level: 0, levelName: '未开始', time: '--:--', pct: 5, colors: ['#fbbf24','#d97706'] },
+  { name: '黄子轩', level: 0, levelName: '未开始', time: '--:--', pct: 0, colors: ['#4ade80','#22c55e'] },
+  { name: '徐雨萱', level: 0, levelName: '未开始', time: '--:--', pct: 0, colors: ['#fb7185','#e11d48'] },
+  { name: '郑凯文', level: 0, levelName: '未开始', time: '--:--', pct: 0, colors: ['#64748b','#475569'] },
+  { name: '何晓峰', level: 0, levelName: '未开始', time: '--:--', pct: 0, colors: ['#78716c','#57534e'] },
 ];
+
+// Student detail data for drill-down
+const studentDetails = {
+  '林雨桐': { id: '2023010103', levels: [{s:'pass',t:'1:58',a:1},{s:'pass',t:'2:45',a:2},{s:'active',t:null,a:0},{s:'lock',t:null,a:0},{s:'lock',t:null,a:0}], score: 380, rank: 1 },
+  '王浩然': { id: '2023010108', levels: [{s:'pass',t:'2:12',a:1},{s:'pass',t:'3:10',a:3},{s:'active',t:null,a:0},{s:'lock',t:null,a:0},{s:'lock',t:null,a:0}], score: 350, rank: 2 },
+  '赵天宇': { id: '2023010112', levels: [{s:'pass',t:'2:45',a:2},{s:'active',t:null,a:1},{s:'lock',t:null,a:0},{s:'lock',t:null,a:0},{s:'lock',t:null,a:0}], score: 220, rank: 3 },
+  '刘诗琪': { id: '2023010106', levels: [{s:'pass',t:'2:20',a:1},{s:'active',t:null,a:2},{s:'lock',t:null,a:0},{s:'lock',t:null,a:0},{s:'lock',t:null,a:0}], score: 210, rank: 4 },
+  '陈思远': { id: '2023010115', levels: [{s:'pass',t:'2:34',a:2},{s:'active',t:null,a:0},{s:'lock',t:null,a:0},{s:'lock',t:null,a:0},{s:'lock',t:null,a:0}], score: 150, rank: 5 },
+  '周雅婷': { id: '2023010121', levels: [{s:'pass',t:'3:05',a:2},{s:'active',t:null,a:1},{s:'lock',t:null,a:0},{s:'lock',t:null,a:0},{s:'lock',t:null,a:0}], score: 180, rank: 6 },
+  '孙嘉禾': { id: '2023010118', levels: [{s:'pass',t:'3:22',a:3},{s:'active',t:null,a:0},{s:'lock',t:null,a:0},{s:'lock',t:null,a:0},{s:'lock',t:null,a:0}], score: 130, rank: 7 },
+  '吴若晨': { id: '2023010125', levels: [{s:'pass',t:'4:10',a:3},{s:'lock',t:null,a:0},{s:'lock',t:null,a:0},{s:'lock',t:null,a:0},{s:'lock',t:null,a:0}], score: 100, rank: 8 },
+};
 
 function renderLeaderboard(data, elId) {
   const el = document.getElementById(elId);
@@ -2397,7 +2981,7 @@ function renderLeaderboard(data, elId) {
     const avatarBg = `linear-gradient(135deg, ${item.colors[0]}, ${item.colors[1]})`;
 
     el.innerHTML += `
-      <div class="lb-item ${itemClass}">
+      <div class="lb-item ${itemClass}" onclick="showStudentModal('${item.name}')">
         <div class="lb-rank ${badgeClass}">${i + 1}</div>
         <div class="lb-avatar" style="background: ${avatarBg}">${item.name[0]}</div>
         <div class="lb-info">
@@ -2408,13 +2992,61 @@ function renderLeaderboard(data, elId) {
         </div>
         <div class="lb-level">${item.levelName}</div>
         <div class="lb-time">${item.time}</div>
-      </div>
-    `;
+      </div>`;
   });
 }
 
 renderLeaderboard(leaderboardData, 'leaderboard');
 renderLeaderboard(leaderboardData14, 'leaderboard14');
+
+// ========== Student Modal Drill-Down ==========
+function showStudentModal(name) {
+  const detail = studentDetails[name];
+  if (!detail) return;
+  const modal = document.getElementById('studentModal');
+  const card = document.getElementById('studentModalCard');
+
+  const levelNames = ['SQL注入', '越权访问', 'Session劫持', 'XSS跨站脚本', '综合BOSS关'];
+  let levelsHtml = '';
+  detail.levels.forEach((lv, i) => {
+    let icon, timeStr, attStr;
+    if (lv.s === 'pass') { icon = '&#9989;'; timeStr = lv.t; attStr = lv.a + '次'; }
+    else if (lv.s === 'active') { icon = '&#128293;'; timeStr = '进行中'; attStr = lv.a > 0 ? lv.a + '次' : '-'; }
+    else { icon = '&#128274;'; timeStr = '--'; attStr = '-'; }
+    levelsHtml += `<div class="student-level-row">
+      <span class="student-level-status">${icon}</span>
+      <span class="student-level-name">第${i+1}关：${levelNames[i]}</span>
+      <span class="student-level-time">${timeStr}</span>
+      <span class="student-level-attempts">${attStr}</span>
+    </div>`;
+  });
+
+  const passed = detail.levels.filter(l => l.s === 'pass').length;
+  card.innerHTML = `
+    <div class="student-modal-header">
+      <div class="student-modal-avatar" style="background:linear-gradient(135deg,var(--accent-cyan),var(--accent-purple))">${name[0]}</div>
+      <div>
+        <div class="student-modal-name">${name}</div>
+        <div class="student-modal-id">学号: ${detail.id}</div>
+      </div>
+      <button class="student-modal-close" onclick="document.getElementById('studentModal').classList.remove('show')">&#10005;</button>
+    </div>
+    <div class="student-modal-stats">
+      <div class="student-stat-card"><div class="student-stat-val" style="color:var(--accent-cyan);">${detail.score}</div><div class="student-stat-label">总积分</div></div>
+      <div class="student-stat-card"><div class="student-stat-val" style="color:var(--accent-green);">${passed}/5</div><div class="student-stat-label">已通过</div></div>
+      <div class="student-stat-card"><div class="student-stat-val" style="color:var(--accent-orange);">#${detail.rank}</div><div class="student-stat-label">当前排名</div></div>
+      <div class="student-stat-card"><div class="student-stat-val" style="color:var(--accent-purple);">${detail.levels.filter(l=>l.a>0).reduce((s,l)=>s+l.a,0)}</div><div class="student-stat-label">总尝试</div></div>
+    </div>
+    <div style="font-size:13px;font-weight:700;margin-bottom:10px;">第十五讲 闯关详情</div>
+    <div class="student-level-list">${levelsHtml}</div>`;
+
+  modal.classList.add('show');
+}
+
+// Close modal on background click
+document.getElementById('studentModal').addEventListener('click', function(e) {
+  if (e.target === this) this.classList.remove('show');
+});
 
 // ========== Dashboard ==========
 const classProgressL15 = [
@@ -2433,81 +3065,97 @@ const classProgressL14 = [
   { label: '第5关', pct: 0, color: 'var(--accent-red)' },
 ];
 
-const avgTimesL15 = [
-  { label: '第1关', value: '3:12', color: 'var(--accent-cyan)' },
-  { label: '第2关', value: '6:45', color: 'var(--accent-orange)' },
-  { label: '第3关', value: '--:--', color: 'var(--text-dim)' },
-  { label: '第4关', value: '--:--', color: 'var(--text-dim)' },
-  { label: '第5关', value: '--:--', color: 'var(--text-dim)' },
-  { label: '最快通关', value: '2:34', color: 'var(--accent-green)' },
-];
-
-const avgTimesL14 = [
-  { label: '第1关', value: '4:02', color: 'var(--accent-cyan)' },
-  { label: '第2关', value: '7:18', color: 'var(--accent-orange)' },
-  { label: '第3关', value: '--:--', color: 'var(--text-dim)' },
-  { label: '第4关', value: '--:--', color: 'var(--text-dim)' },
-  { label: '第5关', value: '--:--', color: 'var(--text-dim)' },
-  { label: '最快通关', value: '3:15', color: 'var(--accent-green)' },
-];
-
 function renderDashBars(data) {
   const el = document.getElementById('dashBars');
   el.innerHTML = '';
   data.forEach(item => {
     const pctColor = item.pct > 50 ? item.color : 'var(--text-secondary)';
-    el.innerHTML += `
-      <div class="dash-bar-row">
-        <span class="dash-bar-label">${item.label}</span>
-        <div class="dash-bar-track">
-          <div class="dash-bar-fill" style="width: ${item.pct}%; background: ${item.color};">
-            ${item.pct > 8 ? `<span class="pct-text">${item.pct}%</span>` : ''}
-          </div>
-        </div>
-        <span class="dash-bar-pct" style="color: ${pctColor};">${item.pct}%</span>
-      </div>
-    `;
+    el.innerHTML += `<div class="dash-bar-row"><span class="dash-bar-label">${item.label}</span><div class="dash-bar-track"><div class="dash-bar-fill" style="width: ${item.pct}%; background: ${item.color};">${item.pct > 8 ? '<span class="pct-text">' + item.pct + '%</span>' : ''}</div></div><span class="dash-bar-pct" style="color: ${pctColor};">${item.pct}%</span></div>`;
   });
 }
 
-function renderAvgTimes(data) {
-  const el = document.getElementById('dashAvgTimes');
-  el.innerHTML = '';
-  data.forEach(item => {
-    el.innerHTML += `
-      <div class="avg-item">
-        <span class="avg-label">${item.label}</span>
-        <span class="avg-value" style="color: ${item.color};">${item.value}</span>
-      </div>
-    `;
+// ========== Heatmap ==========
+function renderHeatmap() {
+  const el = document.getElementById('dashHeatmap');
+  const vulnTypes = ['SQL注入', '越权访问', 'Session', 'XSS', '综合'];
+  const classes = ['A班', 'B班', 'C班'];
+
+  const dataL15 = [
+    [92, 40, 12, 0, 0],
+    [88, 35, 8, 0, 0],
+    [78, 28, 5, 0, 0],
+  ];
+  const dataL14 = [
+    [85, 35, 0, 0, 0],
+    [80, 30, 0, 0, 0],
+    [72, 22, 0, 0, 0],
+  ];
+
+  const data = currentLesson === 15 ? dataL15 : dataL14;
+
+  let html = '<div class="heatmap-header"></div>';
+  vulnTypes.forEach(v => { html += `<div class="heatmap-header">${v}</div>`; });
+
+  classes.forEach((cls, ci) => {
+    html += `<div class="heatmap-label">${cls}</div>`;
+    data[ci].forEach(val => {
+      let bg, color;
+      if (val >= 80) { bg = 'rgba(0,255,136,0.25)'; color = 'var(--accent-green)'; }
+      else if (val >= 50) { bg = 'rgba(0,212,255,0.2)'; color = 'var(--accent-cyan)'; }
+      else if (val >= 20) { bg = 'rgba(255,107,53,0.2)'; color = 'var(--accent-orange)'; }
+      else if (val > 0) { bg = 'rgba(255,71,87,0.15)'; color = 'var(--accent-red)'; }
+      else { bg = 'rgba(255,255,255,0.02)'; color = 'var(--text-dim)'; }
+      html += `<div class="heatmap-cell" style="background:${bg};color:${color};">${val > 0 ? val + '%' : '--'}</div>`;
+    });
   });
+
+  el.innerHTML = html;
+}
+
+// ========== Common Errors ==========
+function renderCommonErrors() {
+  const el = document.getElementById('commonErrors');
+  const errorsL15 = [
+    { rank: '#1', desc: '仅检查username非空，未检查role', pct: '62%' },
+    { rank: '#2', desc: '使用==比较字符串而非equals()', pct: '28%' },
+    { rank: '#3', desc: '返回401而非403状态码', pct: '15%' },
+  ];
+  const errorsL14 = [
+    { rank: '#1', desc: '忘记调用conn.setAutoCommit(false)', pct: '55%' },
+    { rank: '#2', desc: 'catch块中未调用rollback()', pct: '35%' },
+    { rank: '#3', desc: 'finally块中未恢复autoCommit', pct: '18%' },
+  ];
+  const errors = currentLesson === 15 ? errorsL15 : errorsL14;
+  el.innerHTML = errors.map(e =>
+    `<div style="display:flex;align-items:center;gap:6px;margin-bottom:3px;"><span style="color:var(--accent-red);font-weight:700;font-size:10px;width:20px;">${e.rank}</span><span style="color:var(--text-secondary);flex:1;">${e.desc}</span><span style="color:var(--text-dim);font-family:'Consolas',monospace;font-size:10px;">${e.pct}</span></div>`
+  ).join('');
 }
 
 function updateDashboard() {
   if (currentLesson === 15) {
     document.getElementById('dashProgressTitle').textContent = '班级闯关进度（实时）- 第十五讲';
     renderDashBars(classProgressL15);
-    renderAvgTimes(avgTimesL15);
     document.getElementById('alertText').innerHTML = '第2关通过率过低（<strong style="color: var(--accent-red);">40%</strong>），建议暂停讲解越权访问漏洞的核心概念。';
   } else {
     document.getElementById('dashProgressTitle').textContent = '班级闯关进度（实时）- 第十四讲';
     renderDashBars(classProgressL14);
-    renderAvgTimes(avgTimesL14);
     document.getElementById('alertText').innerHTML = '第2关（事务一致性）通过率较低（<strong style="color: var(--accent-red);">35%</strong>），建议补充讲解ACID事务特性和rollback用法。';
   }
-  // Reset alert button
   const ab = document.getElementById('alertActionBtn');
-  ab.textContent = '📢 发送课堂提醒';
+  ab.innerHTML = '&#128227; 发送课堂提醒';
   ab.style.borderColor = '';
   ab.style.color = '';
   ab.style.background = '';
 
+  renderHeatmap();
+  renderCommonErrors();
   drawMasteryChart();
 }
 
 // Initial render
 renderDashBars(classProgressL15);
-renderAvgTimes(avgTimesL15);
+renderHeatmap();
+renderCommonErrors();
 
 // ========== Mastery Radar/Bar Chart ==========
 function drawMasteryChart() {
@@ -2518,9 +3166,7 @@ function drawMasteryChart() {
   ctx.clearRect(0, 0, W, H);
 
   const categories = ['SQL注入', '越权访问', 'Session安全', 'XSS防护', '事务管理'];
-  const values = currentLesson === 15
-    ? [85, 40, 10, 5, 0]
-    : [72, 0, 0, 0, 35];
+  const values = currentLesson === 15 ? [85, 40, 10, 5, 0] : [72, 0, 0, 0, 35];
   const colors = ['#00ff88', '#ff6b35', '#00d4ff', '#a855f7', '#ffd93d'];
 
   const barWidth = 38;
@@ -2534,13 +3180,11 @@ function drawMasteryChart() {
     const x = startX + i * (barWidth + gap);
     const barH = (values[i] / 100) * maxH;
 
-    // Bar background
     ctx.fillStyle = 'rgba(255,255,255,0.03)';
     ctx.beginPath();
     ctx.roundRect(x, baseY - maxH, barWidth, maxH, 3);
     ctx.fill();
 
-    // Bar fill with gradient
     if (barH > 0) {
       const grad = ctx.createLinearGradient(0, baseY, 0, baseY - barH);
       grad.addColorStop(0, colors[i]);
@@ -2550,7 +3194,6 @@ function drawMasteryChart() {
       ctx.roundRect(x, baseY - barH, barWidth, barH, 3);
       ctx.fill();
 
-      // Value label
       ctx.fillStyle = '#fff';
       ctx.font = 'bold 11px Consolas, monospace';
       ctx.textAlign = 'center';
@@ -2562,7 +3205,6 @@ function drawMasteryChart() {
       ctx.fillText('--', x + barWidth / 2, baseY - 8);
     }
 
-    // Category label
     ctx.fillStyle = '#94a3b8';
     ctx.font = '10px Microsoft YaHei, sans-serif';
     ctx.textAlign = 'center';
@@ -2570,25 +3212,170 @@ function drawMasteryChart() {
   });
 }
 
-// Draw initial chart
 setTimeout(drawMasteryChart, 100);
+
+// ========== Personal Radar Chart (Challenge Record Tab) ==========
+function drawPersonalRadar() {
+  const canvas = document.getElementById('personalRadarCanvas');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  const W = canvas.width, H = canvas.height;
+  ctx.clearRect(0, 0, W, H);
+
+  const categories = ['SQL注入', '越权访问', 'Session', 'XSS', '事务管理'];
+  const values = [85, 30, 0, 0, 60]; // personal mastery
+  const cx = W / 2, cy = H / 2 - 5;
+  const radius = 70;
+  const n = categories.length;
+
+  // Draw grid
+  for (let r = 1; r <= 4; r++) {
+    ctx.beginPath();
+    const rr = (radius / 4) * r;
+    for (let i = 0; i <= n; i++) {
+      const angle = (Math.PI * 2 / n) * i - Math.PI / 2;
+      const x = cx + rr * Math.cos(angle);
+      const y = cy + rr * Math.sin(angle);
+      if (i === 0) ctx.moveTo(x, y);
+      else ctx.lineTo(x, y);
+    }
+    ctx.strokeStyle = 'rgba(255,255,255,0.08)';
+    ctx.stroke();
+  }
+
+  // Draw axes
+  for (let i = 0; i < n; i++) {
+    const angle = (Math.PI * 2 / n) * i - Math.PI / 2;
+    ctx.beginPath();
+    ctx.moveTo(cx, cy);
+    ctx.lineTo(cx + radius * Math.cos(angle), cy + radius * Math.sin(angle));
+    ctx.strokeStyle = 'rgba(255,255,255,0.06)';
+    ctx.stroke();
+  }
+
+  // Draw data polygon
+  ctx.beginPath();
+  values.forEach((v, i) => {
+    const angle = (Math.PI * 2 / n) * i - Math.PI / 2;
+    const r = (v / 100) * radius;
+    const x = cx + r * Math.cos(angle);
+    const y = cy + r * Math.sin(angle);
+    if (i === 0) ctx.moveTo(x, y);
+    else ctx.lineTo(x, y);
+  });
+  ctx.closePath();
+  ctx.fillStyle = 'rgba(0, 212, 255, 0.15)';
+  ctx.fill();
+  ctx.strokeStyle = 'rgba(0, 212, 255, 0.6)';
+  ctx.lineWidth = 2;
+  ctx.stroke();
+
+  // Draw dots and labels
+  values.forEach((v, i) => {
+    const angle = (Math.PI * 2 / n) * i - Math.PI / 2;
+    const r = (v / 100) * radius;
+    const x = cx + r * Math.cos(angle);
+    const y = cy + r * Math.sin(angle);
+
+    ctx.beginPath();
+    ctx.arc(x, y, 3, 0, Math.PI * 2);
+    ctx.fillStyle = '#00d4ff';
+    ctx.fill();
+
+    // Label
+    const lx = cx + (radius + 18) * Math.cos(angle);
+    const ly = cy + (radius + 18) * Math.sin(angle);
+    ctx.fillStyle = '#94a3b8';
+    ctx.font = '10px Microsoft YaHei, sans-serif';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillText(categories[i], lx, ly);
+  });
+}
+
+// ========== Rank Trend Chart (Challenge Record Tab) ==========
+function drawRankTrend() {
+  const canvas = document.getElementById('rankTrendCanvas');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  const W = canvas.width, H = canvas.height;
+  ctx.clearRect(0, 0, W, H);
+
+  const days = ['周一', '周二', '周三', '周四', '周五', '今天'];
+  const ranks = [18, 15, 12, 8, 6, 5]; // rank trend (lower is better)
+  const maxRank = 25;
+  const padL = 30, padR = 10, padT = 15, padB = 22;
+  const plotW = W - padL - padR;
+  const plotH = H - padT - padB;
+
+  // Y-axis (rank, inverted)
+  ctx.fillStyle = '#475569';
+  ctx.font = '10px Consolas, monospace';
+  ctx.textAlign = 'right';
+  [1, 10, 20].forEach(r => {
+    const y = padT + (r / maxRank) * plotH;
+    ctx.fillText('#' + r, padL - 4, y + 3);
+    ctx.beginPath();
+    ctx.moveTo(padL, y);
+    ctx.lineTo(W - padR, y);
+    ctx.strokeStyle = 'rgba(255,255,255,0.04)';
+    ctx.stroke();
+  });
+
+  // X-axis labels
+  ctx.textAlign = 'center';
+  days.forEach((d, i) => {
+    const x = padL + (i / (days.length - 1)) * plotW;
+    ctx.fillStyle = '#94a3b8';
+    ctx.font = '10px Microsoft YaHei, sans-serif';
+    ctx.fillText(d, x, H - 4);
+  });
+
+  // Line
+  ctx.beginPath();
+  ranks.forEach((r, i) => {
+    const x = padL + (i / (days.length - 1)) * plotW;
+    const y = padT + (r / maxRank) * plotH;
+    if (i === 0) ctx.moveTo(x, y);
+    else ctx.lineTo(x, y);
+  });
+  ctx.strokeStyle = '#00d4ff';
+  ctx.lineWidth = 2;
+  ctx.stroke();
+
+  // Fill area
+  ctx.lineTo(padL + plotW, padT + plotH);
+  ctx.lineTo(padL, padT + plotH);
+  ctx.closePath();
+  ctx.fillStyle = 'rgba(0, 212, 255, 0.08)';
+  ctx.fill();
+
+  // Dots
+  ranks.forEach((r, i) => {
+    const x = padL + (i / (days.length - 1)) * plotW;
+    const y = padT + (r / maxRank) * plotH;
+    ctx.beginPath();
+    ctx.arc(x, y, 3, 0, Math.PI * 2);
+    ctx.fillStyle = i === ranks.length - 1 ? '#00ff88' : '#00d4ff';
+    ctx.fill();
+
+    if (i === ranks.length - 1) {
+      ctx.fillStyle = '#00ff88';
+      ctx.font = 'bold 11px Consolas, monospace';
+      ctx.textAlign = 'center';
+      ctx.fillText('#' + r, x, y - 8);
+    }
+  });
+}
 
 // ========== Hint ==========
 function showHint() {
   const hint = document.getElementById('hintBox');
-  hint.classList.toggle('show');
+  if (hint) hint.classList.toggle('show');
 }
 
-// ========== Submit Fix (Lesson 15) ==========
+// ========== Submit Fix (Lesson 15 Level 2) ==========
 let submitPhase = 0;
-
-const tests = [
-  { name: 'testAdminCanAccess()', desc: '管理员可以访问管理页面' },
-  { name: 'testNormalUserBlocked()', desc: '普通用户被拒绝访问' },
-  { name: 'testNotLoggedInRedirect()', desc: '未登录用户重定向到登录页' },
-  { name: 'testRoleCheckExists()', desc: '角色检查逻辑存在' },
-  { name: 'testReturn403OnForbidden()', desc: '无权限时返回403状态码' },
-];
 
 function submitFix() {
   attempts++;
@@ -2599,6 +3386,7 @@ function submitFix() {
   btn.innerHTML = '&#9881; 运行测试中...';
   btn.style.opacity = '0.7';
 
+  const lv = lesson15Levels[2];
   const resultEl = document.getElementById('testResults');
   const listEl = document.getElementById('testList');
   const statusEl = document.getElementById('testStatus');
@@ -2610,79 +3398,48 @@ function submitFix() {
   summaryEl.innerHTML = '';
 
   const passAll = submitPhase >= 1;
-  const results = passAll
-    ? [true, true, true, true, true]
-    : [true, false, true, false, true];
+  const results = passAll ? [true, true, true, true, true] : [true, false, true, false, true];
+  const times = [42, 18, 31, 56, 23];
+  const tests = lv.tests;
 
   let idx = 0;
-  const times = [42, 18, 31, 56, 23];
-
   function runNext() {
     if (idx >= tests.length) {
       const passCount = results.filter(r => r).length;
       const failCount = results.filter(r => !r).length;
-
       statusEl.innerHTML = passAll
         ? '<span style="color: var(--accent-green);">&#10003; 全部通过</span>'
         : '<span style="color: var(--accent-red);">&#10007; 部分失败</span>';
-
-      summaryEl.innerHTML = `
-        <span><span class="test-pass-count">&#10003; ${passCount} 通过</span> &nbsp; <span class="test-fail-count">${failCount > 0 ? '&#10007; ' + failCount + ' 失败' : ''}</span></span>
-        <span style="color: var(--text-dim);">总耗时: ${times.reduce((a,b) => a+b, 0)}ms</span>
-      `;
-
+      summaryEl.innerHTML = `<span><span class="test-pass-count">&#10003; ${passCount} 通过</span> &nbsp; <span class="test-fail-count">${failCount > 0 ? '&#10007; ' + failCount + ' 失败' : ''}</span></span><span style="color: var(--text-dim);">总耗时: ${times.reduce((a,b) => a+b, 0)}ms</span>`;
       btn.disabled = false;
       btn.style.opacity = '1';
       btn.innerHTML = '&#9654; 提交修复';
-
       if (passAll) {
-        setTimeout(() => {
-          showSuccess();
-        }, 800);
+        setTimeout(() => { showSuccess(); }, 800);
       } else {
         submitPhase = 1;
         setTimeout(() => {
           const ta = document.getElementById('fixTextarea');
-          if (!ta.value.trim()) {
-            ta.value = 'String role = (String) session.getAttribute("role");\nif (!"admin".equals(role)) {\n    response.sendError(HttpServletResponse.SC_FORBIDDEN, "无权限访问");\n    return;\n}';
-          }
+          if (ta && !ta.value.trim()) ta.value = lv.fixAnswer;
         }, 500);
       }
       return;
     }
-
     const test = tests[idx];
     const pass = results[idx];
     const ms = times[idx];
-
-    listEl.innerHTML += `
-      <div class="test-item" id="test-${idx}">
-        <span class="test-icon running">&#9881;</span>
-        <span class="test-name">${test.name} <span style="color:var(--text-dim);font-size:11px;">${test.desc}</span></span>
-        <span class="test-time">...</span>
-      </div>
-    `;
-
+    listEl.innerHTML += `<div class="test-item" id="test-${idx}"><span class="test-icon running">&#9881;</span><span class="test-name">${test.name} <span style="color:var(--text-dim);font-size:11px;">${test.desc}</span></span><span class="test-time">...</span></div>`;
     setTimeout(() => {
       const item = document.getElementById('test-' + idx);
       if (pass) {
-        item.innerHTML = `
-          <span class="test-icon pass">&#10003;</span>
-          <span class="test-name">${test.name} <span style="color:var(--text-dim);font-size:11px;">${test.desc}</span></span>
-          <span class="test-time">${ms}ms</span>
-        `;
+        item.innerHTML = `<span class="test-icon pass">&#10003;</span><span class="test-name">${test.name} <span style="color:var(--text-dim);font-size:11px;">${test.desc}</span></span><span class="test-time">${ms}ms</span>`;
       } else {
-        item.innerHTML = `
-          <span class="test-icon fail">&#10007;</span>
-          <span class="test-name" style="color: var(--accent-red);">${test.name} <span style="font-size:11px;">FAILED - ${test.desc}</span></span>
-          <span class="test-time">${ms}ms</span>
-        `;
+        item.innerHTML = `<span class="test-icon fail">&#10007;</span><span class="test-name" style="color: var(--accent-red);">${test.name} <span style="font-size:11px;">FAILED - ${test.desc}</span></span><span class="test-time">${ms}ms</span>`;
       }
       idx++;
       runNext();
     }, 350 + Math.random() * 250);
   }
-
   setTimeout(runNext, 400);
 }
 
@@ -2703,9 +3460,12 @@ function closeSuccess() {
 // ========== Reset ==========
 function resetChallenge() {
   submitPhase = 0;
-  document.getElementById('testResults').classList.remove('show');
-  document.getElementById('hintBox').classList.remove('show');
-  document.getElementById('fixTextarea').value = '';
+  const tr = document.getElementById('testResults');
+  const hb = document.getElementById('hintBox');
+  const ta = document.getElementById('fixTextarea');
+  if (tr) tr.classList.remove('show');
+  if (hb) hb.classList.remove('show');
+  if (ta) ta.value = '';
 }
 
 // ========== Fake leaderboard movement ==========
@@ -2737,21 +3497,9 @@ setInterval(() => {
   });
 }, 1000);
 
-// ========== Initialize Lesson 14 Content ==========
+// ========== Initialize ==========
 renderLesson14Challenge();
-
-// ========== Sidebar challenge navigation (click on level items) ==========
-document.querySelectorAll('.progress-track .level-item').forEach((item, idx) => {
-  item.style.cursor = 'pointer';
-  item.addEventListener('click', () => {
-    // Only for lesson 14 sidebar
-    if (currentLesson === 14) {
-      l14CurrentChallenge = idx;
-      l14SubmitPhase = 0;
-      renderLesson14Challenge();
-    }
-  });
-});
+renderL15Level(2); // Start on Level 2 (active/interactive)
 </script>
 </body>
 </html>

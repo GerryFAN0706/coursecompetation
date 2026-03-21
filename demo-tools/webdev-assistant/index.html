@@ -1340,6 +1340,522 @@
     letter-spacing: 1px;
     margin-bottom: -4px;
   }
+
+  /* ===== TIME DISTRIBUTION CHART ===== */
+  .time-chart {
+    display: flex;
+    align-items: flex-end;
+    gap: 2px;
+    height: 80px;
+    padding: 0 4px;
+    margin-bottom: 8px;
+  }
+
+  .time-bar-wrapper {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+    justify-content: flex-end;
+  }
+
+  .time-bar {
+    width: 100%;
+    min-height: 2px;
+    background: var(--primary-light);
+    border-radius: 2px 2px 0 0;
+    transition: height 1s ease-out;
+    cursor: pointer;
+    position: relative;
+  }
+
+  .time-bar.peak {
+    background: #ef4444;
+  }
+
+  .time-bar:hover {
+    opacity: 0.8;
+  }
+
+  .time-labels {
+    display: flex;
+    gap: 2px;
+    padding: 0 4px;
+  }
+
+  .time-labels span {
+    flex: 1;
+    text-align: center;
+    font-size: 8px;
+    color: var(--text-secondary);
+  }
+
+  /* ===== KNOWLEDGE HIT RATE ===== */
+  .hit-rate-list {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .hit-rate-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+  }
+
+  .hit-rate-label {
+    width: 90px;
+    color: var(--text-secondary);
+    font-size: 11px;
+    flex-shrink: 0;
+    text-align: right;
+  }
+
+  .hit-rate-bar-bg {
+    flex: 1;
+    height: 8px;
+    background: #e8ecf1;
+    border-radius: 4px;
+    overflow: hidden;
+  }
+
+  .hit-rate-bar {
+    height: 100%;
+    border-radius: 4px;
+    transition: width 1s ease-out;
+  }
+
+  .hit-rate-value {
+    width: 36px;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--text);
+    text-align: right;
+  }
+
+  /* ===== AI QUALITY ASSESSMENT ===== */
+  .ai-quality-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+  }
+
+  .aq-stat {
+    text-align: center;
+    padding: 10px 8px;
+    background: var(--chat-bg);
+    border-radius: var(--radius-sm);
+  }
+
+  .aq-stat-val {
+    font-size: 20px;
+    font-weight: 800;
+  }
+
+  .aq-stat-val.good { color: var(--accent); }
+  .aq-stat-val.warn { color: #e67e22; }
+  .aq-stat-val.info { color: var(--primary); }
+
+  .aq-stat-label {
+    font-size: 10px;
+    color: var(--text-secondary);
+    margin-top: 2px;
+  }
+
+  /* ===== WARNING STUDENTS ===== */
+  .warn-student-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .warn-student-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 12px;
+    background: #fff5f5;
+    border: 1px solid #fecaca;
+    border-radius: var(--radius-sm);
+  }
+
+  .warn-student-avatar {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: #fecaca;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 700;
+    color: #c0392b;
+    flex-shrink: 0;
+  }
+
+  .warn-student-info {
+    flex: 1;
+  }
+
+  .warn-student-name {
+    font-size: 12.5px;
+    font-weight: 700;
+    color: var(--text);
+  }
+
+  .warn-student-detail {
+    font-size: 11px;
+    color: #c0392b;
+  }
+
+  .warn-student-action {
+    padding: 4px 10px;
+    background: #fecaca;
+    border: none;
+    border-radius: 12px;
+    font-size: 11px;
+    font-weight: 600;
+    color: #c0392b;
+    cursor: pointer;
+    font-family: inherit;
+  }
+
+  .warn-student-action:hover {
+    background: #f8b4b4;
+  }
+
+  /* ===== LECTURE DETAIL MODAL ===== */
+  .modal-overlay {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.5);
+    z-index: 9998;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    animation: modalFadeIn 0.3s ease;
+  }
+
+  .modal-overlay.visible {
+    display: flex;
+  }
+
+  @keyframes modalFadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  .modal-content {
+    background: var(--card);
+    border-radius: 16px;
+    width: 520px;
+    max-height: 80vh;
+    overflow-y: auto;
+    padding: 24px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+    animation: modalSlideIn 0.3s ease;
+  }
+
+  @keyframes modalSlideIn {
+    from { opacity: 0; transform: translateY(20px) scale(0.95); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+  }
+
+  .modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 16px;
+  }
+
+  .modal-header h3 {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--text);
+  }
+
+  .modal-close {
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    background: var(--chat-bg);
+    cursor: pointer;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+  }
+
+  .modal-close:hover {
+    background: #fce4ec;
+    border-color: #f8b4b4;
+    color: #c62828;
+  }
+
+  .modal-section {
+    margin-bottom: 16px;
+  }
+
+  .modal-section-title {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--text-secondary);
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .modal-tag {
+    display: inline-block;
+    padding: 3px 10px;
+    background: var(--ai-bubble);
+    border-radius: 12px;
+    font-size: 12px;
+    color: var(--primary);
+    font-weight: 500;
+    margin: 2px 4px 2px 0;
+  }
+
+  .modal-stat-row {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 12px;
+  }
+
+  .modal-stat {
+    flex: 1;
+    text-align: center;
+    padding: 10px;
+    background: var(--chat-bg);
+    border-radius: var(--radius-sm);
+  }
+
+  .modal-stat-val {
+    font-size: 22px;
+    font-weight: 800;
+    color: var(--primary);
+  }
+
+  .modal-stat-label {
+    font-size: 10px;
+    color: var(--text-secondary);
+    margin-top: 2px;
+  }
+
+  .modal-qa {
+    padding: 10px 14px;
+    background: var(--chat-bg);
+    border-radius: var(--radius-sm);
+    margin-bottom: 8px;
+    border-left: 3px solid var(--primary);
+  }
+
+  .modal-qa-q {
+    font-size: 12.5px;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 4px;
+  }
+
+  .modal-qa-a {
+    font-size: 12px;
+    color: var(--text-secondary);
+    line-height: 1.5;
+  }
+
+  .modal-hot-list {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .modal-hot-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+  }
+
+  .modal-hot-rank {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: var(--primary);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    font-weight: 800;
+    flex-shrink: 0;
+  }
+
+  .modal-hot-text {
+    flex: 1;
+    font-size: 12px;
+  }
+
+  .modal-hot-count {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--primary);
+  }
+
+  /* ===== STUDENT: Learning Timeline ===== */
+  .timeline-row {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 8px;
+  }
+
+  .timeline-day-label {
+    width: 30px;
+    font-size: 10px;
+    color: var(--text-secondary);
+    text-align: right;
+    flex-shrink: 0;
+  }
+
+  .timeline-bar-bg {
+    flex: 1;
+    height: 16px;
+    background: var(--chat-bg);
+    border-radius: 4px;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .timeline-segment {
+    position: absolute;
+    top: 2px;
+    bottom: 2px;
+    background: var(--primary-light);
+    border-radius: 3px;
+    opacity: 0.7;
+  }
+
+  .timeline-segment.active {
+    background: var(--accent);
+    opacity: 0.9;
+  }
+
+  .timeline-count {
+    width: 40px;
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--text-secondary);
+    flex-shrink: 0;
+  }
+
+  /* ===== STUDENT: Recommended Exercises ===== */
+  .exercise-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .exercise-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 12px;
+    background: var(--chat-bg);
+    border-radius: var(--radius-sm);
+    border-left: 3px solid var(--primary);
+    transition: all 0.2s;
+    cursor: pointer;
+  }
+
+  .exercise-item:hover {
+    background: var(--ai-bubble);
+    transform: translateX(2px);
+  }
+
+  .exercise-type {
+    padding: 2px 8px;
+    border-radius: 10px;
+    font-size: 10px;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+
+  .exercise-type.code { background: #ede9fe; color: #7c3aed; }
+  .exercise-type.quiz { background: #fff3e0; color: #e65100; }
+  .exercise-type.practice { background: #e8f5e9; color: #2e7d32; }
+
+  .exercise-info {
+    flex: 1;
+  }
+
+  .exercise-title {
+    font-size: 12.5px;
+    font-weight: 600;
+    color: var(--text);
+  }
+
+  .exercise-desc {
+    font-size: 11px;
+    color: var(--text-secondary);
+    margin-top: 1px;
+  }
+
+  .exercise-difficulty {
+    font-size: 11px;
+    font-weight: 600;
+    flex-shrink: 0;
+  }
+
+  /* ===== STUDENT: Bookmarked Answers ===== */
+  .bookmark-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .bookmark-item {
+    padding: 10px 14px;
+    background: var(--chat-bg);
+    border-radius: var(--radius-sm);
+    border-left: 3px solid #f59e0b;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .bookmark-item:hover {
+    background: var(--ai-bubble);
+  }
+
+  .bookmark-q {
+    font-size: 12.5px;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 4px;
+  }
+
+  .bookmark-preview {
+    font-size: 11.5px;
+    color: var(--text-secondary);
+    line-height: 1.5;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .bookmark-meta {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 4px;
+    font-size: 10px;
+    color: var(--text-secondary);
+  }
 </style>
 </head>
 <body>
@@ -1358,10 +1874,10 @@
 </style>
 <a class="nav-home" href="../index.html">AI教学工具套件</a>
 <div class="nav-links">
-<a href="../webdev-assistant/index.html" class="active">🤖 助教</a>
-<a href="../websec-challenge/index.html">🛡️ 挑战</a>
-<a href="../team-coach/index.html">👥 教练</a>
-<a href="../code-review-battle/index.html">⚔️ 对战</a>
+<a href="../webdev-assistant/index.html" class="active">&#x1F916; 助教</a>
+<a href="../websec-challenge/index.html">&#x1F6E1;&#xFE0F; 挑战</a>
+<a href="../team-coach/index.html">&#x1F465; 教练</a>
+<a href="../code-review-battle/index.html">&#x2694;&#xFE0F; 对战</a>
 </div>
 </nav>
 
@@ -1382,7 +1898,7 @@
           <label>学号</label>
           <input type="text" id="stuId" value="2023001" placeholder="请输入学号" />
           <label>姓名</label>
-          <input type="text" id="stuName" value="李明" placeholder="请输入姓名" />
+          <input type="text" id="stuName" value="陈思远" placeholder="请输入姓名" />
           <button class="login-enter-btn" onclick="enterAs('student')">进入学习</button>
         </div>
       </div>
@@ -1425,7 +1941,7 @@
       </div>
       <div class="role-badge" id="roleBadge">
         <span class="role-icon">&#x1F9D1;&#x200D;&#x1F393;</span>
-        <span id="roleBadgeText">学生: 李明</span>
+        <span id="roleBadgeText">学生: 陈思远</span>
       </div>
       <button class="switch-view-btn" id="switchViewBtn" style="display:none;" onclick="switchToStudentPreview()">&#x1F440; 切换到学生视图</button>
       <button class="logout-btn" onclick="logout()">&#x2190; 退出登录</button>
@@ -1445,24 +1961,27 @@
       </div>
 
       <div class="chat-messages" id="chatMessagesStudent">
+        <!-- Message 1: AI Welcome -->
         <div class="message ai">
           <div class="message-avatar">W</div>
           <div>
             <div class="message-content">
               你好！我是 <strong>WebDev助教</strong>，Java Web应用开发课程的AI教学助手。我熟悉课程全部16讲的内容，可以帮你解答课程相关问题、复习知识点、分析代码示例。有什么想问的吗？
             </div>
-            <div class="message-time">14:20</div>
+            <div class="message-time">20:15</div>
           </div>
         </div>
 
+        <!-- Message 2: Student asks about Session/Cookie -->
         <div class="message user">
-          <div class="message-avatar">李</div>
+          <div class="message-avatar">陈</div>
           <div>
             <div class="message-content">老师好，我想问一下Session和Cookie到底有什么区别？什么时候该用哪个？</div>
-            <div class="message-time">14:22</div>
+            <div class="message-time">20:17</div>
           </div>
         </div>
 
+        <!-- Message 3: AI answers Session/Cookie -->
         <div class="message ai">
           <div class="message-avatar">W</div>
           <div>
@@ -1490,18 +2009,20 @@ cookie.<span class="fn">setMaxAge</span>(<span class="str">7 * 24 * 3600</span>)
 response.<span class="fn">addCookie</span>(cookie);</div>
               <strong>记忆口诀：</strong>敏感数据用Session，偏好记忆用Cookie。面试中也经常考到这个对比哦！
             </div>
-            <div class="message-time">14:22</div>
+            <div class="message-time">20:17</div>
           </div>
         </div>
 
+        <!-- Message 4: Student follow-up -->
         <div class="message user">
-          <div class="message-avatar">李</div>
+          <div class="message-avatar">陈</div>
           <div>
             <div class="message-content">那Session的JSESSIONID和Cookie是什么关系？</div>
-            <div class="message-time">14:23</div>
+            <div class="message-time">20:18</div>
           </div>
         </div>
 
+        <!-- Message 5: AI answers JSESSIONID -->
         <div class="message ai">
           <div class="message-avatar">W</div>
           <div>
@@ -1515,7 +2036,209 @@ response.<span class="fn">addCookie</span>(cookie);</div>
               所以本质上：<strong>Session是机制，Cookie是载体</strong>。如果浏览器禁用了Cookie，可以用URL重写方式传递JSESSIONID。<br><br>
               这部分在期末考试中占比较高，建议结合 <span class="ref-tag">第5讲 实验</span> 用Servlet代码实际调试一下！
             </div>
-            <div class="message-time">14:24</div>
+            <div class="message-time">20:19</div>
+          </div>
+        </div>
+
+        <!-- Message 6: Student asks about Filter -->
+        <div class="message user">
+          <div class="message-avatar">陈</div>
+          <div>
+            <div class="message-content">Filter的doFilter方法中chain.doFilter()的作用是什么？</div>
+            <div class="message-time">20:22</div>
+          </div>
+        </div>
+
+        <!-- Message 7: AI answers about chain.doFilter -->
+        <div class="message ai">
+          <div class="message-avatar">W</div>
+          <div>
+            <div class="message-content">
+              这是 <span class="ref-tag">第9讲 Filter/Listener</span> 的核心知识点！<br><br>
+              <strong><code>chain.doFilter(request, response)</code></strong> 的作用是<strong>将请求传递给过滤器链中的下一个Filter</strong>，如果当前是最后一个Filter，则传递给目标Servlet。<br><br>
+              <strong>关键理解：</strong><br>
+              &bull; 调用 <code>chain.doFilter()</code> = <span class="highlight">放行请求</span>，继续执行后续处理<br>
+              &bull; 不调用 <code>chain.doFilter()</code> = <span class="highlight">拦截请求</span>，后续的Filter和Servlet都不会执行<br>
+              &bull; <code>chain.doFilter()</code> 前后的代码分别对应<strong>请求前处理</strong>和<strong>响应后处理</strong><br><br>
+              <div class="code-block"><span class="kw">public void</span> <span class="fn">doFilter</span>(ServletRequest req,
+    ServletResponse resp, FilterChain chain)
+    <span class="kw">throws</span> IOException, ServletException {
+
+  <span class="cm">// ---- 请求前处理（Pre-processing）----</span>
+  System.out.<span class="fn">println</span>(<span class="str">"请求到达前的逻辑"</span>);
+  <span class="kw">long</span> start = System.<span class="fn">currentTimeMillis</span>();
+
+  <span class="cm">// ---- 放行请求 ----</span>
+  chain.<span class="fn">doFilter</span>(req, resp);
+
+  <span class="cm">// ---- 响应后处理（Post-processing）----</span>
+  <span class="kw">long</span> cost = System.<span class="fn">currentTimeMillis</span>() - start;
+  System.out.<span class="fn">println</span>(<span class="str">"请求耗时: "</span> + cost + <span class="str">"ms"</span>);
+}</div>
+              这就像一个<strong>洋葱模型</strong>：请求进入时从外到内经过每个Filter，响应返回时从内到外再经过每个Filter。理解了这一点，Filter链的执行顺序就清楚了！
+            </div>
+            <div class="message-time">20:23</div>
+          </div>
+        </div>
+
+        <!-- Message 8: Student asks about MVC -->
+        <div class="message user">
+          <div class="message-avatar">陈</div>
+          <div>
+            <div class="message-content">MVC架构中Controller和Service层的区别？</div>
+            <div class="message-time">20:30</div>
+          </div>
+        </div>
+
+        <!-- Message 9: AI answers about Controller vs Service -->
+        <div class="message ai">
+          <div class="message-avatar">W</div>
+          <div>
+            <div class="message-content">
+              好问题！这涉及到 <span class="ref-tag">第10讲 MVC设计模式</span> 和 <span class="ref-tag">第11讲 Spring MVC</span> 的核心分层思想：<br><br>
+              <strong>Controller层（控制层）</strong><br>
+              &bull; 负责<strong>接收用户请求</strong>和<strong>返回响应</strong><br>
+              &bull; 进行请求参数的解析与校验<br>
+              &bull; 调用Service层完成业务逻辑<br>
+              &bull; 选择合适的视图返回给用户<br>
+              &bull; <span class="highlight">不包含业务逻辑代码</span><br><br>
+              <strong>Service层（业务逻辑层）</strong><br>
+              &bull; 封装<strong>核心业务逻辑</strong><br>
+              &bull; 调用DAO层完成数据操作<br>
+              &bull; 处理事务管理<br>
+              &bull; 可被多个Controller复用<br>
+              &bull; <span class="highlight">不关心HTTP请求/响应细节</span><br><br>
+              <div class="code-block"><span class="cm">// Controller层 - 只做请求调度</span>
+<span class="kw">@Controller</span>
+<span class="kw">public class</span> <span class="tp">UserController</span> {
+  <span class="kw">@Autowired</span>
+  <span class="kw">private</span> <span class="tp">UserService</span> userService;
+
+  <span class="kw">@PostMapping</span>(<span class="str">"/login"</span>)
+  <span class="kw">public</span> <span class="tp">String</span> <span class="fn">login</span>(<span class="tp">String</span> username, <span class="tp">String</span> password,
+      <span class="tp">HttpSession</span> session) {
+    <span class="tp">User</span> user = userService.<span class="fn">authenticate</span>(username, password);
+    <span class="kw">if</span> (user != <span class="kw">null</span>) {
+      session.<span class="fn">setAttribute</span>(<span class="str">"currentUser"</span>, user);
+      <span class="kw">return</span> <span class="str">"redirect:/home"</span>;
+    }
+    <span class="kw">return</span> <span class="str">"login"</span>;
+  }
+}
+
+<span class="cm">// Service层 - 封装业务逻辑</span>
+<span class="kw">@Service</span>
+<span class="kw">public class</span> <span class="tp">UserService</span> {
+  <span class="kw">@Autowired</span>
+  <span class="kw">private</span> <span class="tp">UserDAO</span> userDAO;
+
+  <span class="kw">public</span> <span class="tp">User</span> <span class="fn">authenticate</span>(<span class="tp">String</span> username, <span class="tp">String</span> pwd) {
+    <span class="tp">User</span> user = userDAO.<span class="fn">findByUsername</span>(username);
+    <span class="kw">if</span> (user != <span class="kw">null</span> && BCrypt.<span class="fn">check</span>(pwd, user.<span class="fn">getPassword</span>())) {
+      <span class="kw">return</span> user;
+    }
+    <span class="kw">return null</span>;
+  }
+}</div>
+              <strong>一句话总结：</strong>Controller是"调度员"（接客），Service是"厨师"（做菜），DAO是"仓库管理员"（取食材）。各司其职才能让代码清晰、可维护！
+            </div>
+            <div class="message-time">20:31</div>
+          </div>
+        </div>
+
+        <!-- Message 10: Student asks about PreparedStatement -->
+        <div class="message user">
+          <div class="message-avatar">陈</div>
+          <div>
+            <div class="message-content">PreparedStatement为什么能防止SQL注入？</div>
+            <div class="message-time">20:38</div>
+          </div>
+        </div>
+
+        <!-- Message 11: AI answers about PreparedStatement -->
+        <div class="message ai">
+          <div class="message-avatar">W</div>
+          <div>
+            <div class="message-content">
+              这是 <span class="ref-tag">第8讲 JDBC编程</span> 和 <span class="ref-tag">第13讲 Web安全基础</span> 的交叉重点，也是面试必考题！<br><br>
+              <strong>核心原因：PreparedStatement 将 SQL语句结构 和 参数数据 分离</strong><br><br>
+              <strong>使用Statement（不安全）：</strong><br>
+              <div class="code-block"><span class="cm">// 字符串拼接 - 存在SQL注入风险！</span>
+<span class="tp">String</span> sql = <span class="str">"SELECT * FROM users WHERE name='"</span>
+    + username + <span class="str">"' AND pwd='"</span> + password + <span class="str">"'"</span>;
+<span class="cm">// 恶意输入: username = admin' OR '1'='1' --</span>
+<span class="cm">// 拼接后: SELECT * FROM users WHERE name='admin' OR '1'='1' --' AND pwd=''</span>
+<span class="cm">// 结果: 绕过密码验证！</span></div>
+              <strong>使用PreparedStatement（安全）：</strong><br>
+              <div class="code-block"><span class="cm">// 参数化查询 - 防止SQL注入</span>
+<span class="tp">String</span> sql = <span class="str">"SELECT * FROM users WHERE name=? AND pwd=?"</span>;
+<span class="tp">PreparedStatement</span> ps = conn.<span class="fn">prepareStatement</span>(sql);
+ps.<span class="fn">setString</span>(<span class="str">1</span>, username);  <span class="cm">// 自动转义特殊字符</span>
+ps.<span class="fn">setString</span>(<span class="str">2</span>, password);
+<span class="cm">// 恶意输入被当作纯文本处理，不会改变SQL结构</span></div>
+              <strong>防御机制详解：</strong><br>
+              &bull; SQL语句在 <code>prepareStatement()</code> 时<strong>预编译</strong>，结构已固定<br>
+              &bull; <code>setString()</code> 会自动对特殊字符（如单引号）进行<strong>转义处理</strong><br>
+              &bull; 参数值只能作为<strong>数据</strong>，不能作为SQL关键字或语法的一部分<br><br>
+              <strong>总结：</strong><span class="highlight">预编译 + 参数绑定 = 结构与数据分离 = 从根本上杜绝注入</span>。这个知识点在第8讲JDBC实验中可以动手验证！
+            </div>
+            <div class="message-time">20:39</div>
+          </div>
+        </div>
+
+        <!-- Message 12: Student asks about login state -->
+        <div class="message user">
+          <div class="message-avatar">陈</div>
+          <div>
+            <div class="message-content">如何实现用户登录状态的保持？</div>
+            <div class="message-time">20:45</div>
+          </div>
+        </div>
+
+        <!-- Message 13: AI answers about login state -->
+        <div class="message ai">
+          <div class="message-avatar">W</div>
+          <div>
+            <div class="message-content">
+              这是 <span class="ref-tag">第5讲 会话管理</span> 的实战应用场景，我来给你梳理完整的实现方案：<br><br>
+              <strong>方案一：Session（服务端方案，最常用）</strong><br>
+              <div class="code-block"><span class="cm">// 登录成功后，将用户信息存入Session</span>
+<span class="tp">HttpSession</span> session = request.<span class="fn">getSession</span>();
+session.<span class="fn">setAttribute</span>(<span class="str">"currentUser"</span>, user);
+session.<span class="fn">setMaxInactiveInterval</span>(<span class="str">30 * 60</span>); <span class="cm">// 30分钟超时</span>
+
+<span class="cm">// 判断是否已登录</span>
+<span class="tp">Object</span> user = session.<span class="fn">getAttribute</span>(<span class="str">"currentUser"</span>);
+<span class="kw">if</span> (user == <span class="kw">null</span>) {
+  response.<span class="fn">sendRedirect</span>(<span class="str">"/login.jsp"</span>);
+}</div>
+              <strong>方案二：Cookie + Session（记住我功能）</strong><br>
+              &bull; 用户勾选"记住我"时，生成一个<strong>加密Token</strong>存入Cookie<br>
+              &bull; Cookie设置较长的过期时间（如7天）<br>
+              &bull; 下次访问时，Filter检查Cookie中的Token，自动恢复Session<br><br>
+              <strong>方案三：登录拦截Filter（全局保护）</strong><br>
+              <div class="code-block"><span class="cm">// LoginFilter - 统一拦截未登录访问</span>
+<span class="kw">public void</span> <span class="fn">doFilter</span>(...) {
+  <span class="tp">HttpServletRequest</span> req = (<span class="tp">HttpServletRequest</span>) request;
+  <span class="tp">String</span> uri = req.<span class="fn">getRequestURI</span>();
+
+  <span class="cm">// 放行登录页和静态资源</span>
+  <span class="kw">if</span> (uri.<span class="fn">contains</span>(<span class="str">"/login"</span>) || uri.<span class="fn">contains</span>(<span class="str">"/static"</span>)) {
+    chain.<span class="fn">doFilter</span>(request, response);
+    <span class="kw">return</span>;
+  }
+
+  <span class="cm">// 检查Session中的登录状态</span>
+  <span class="tp">HttpSession</span> session = req.<span class="fn">getSession</span>(<span class="kw">false</span>);
+  <span class="kw">if</span> (session != <span class="kw">null</span> && session.<span class="fn">getAttribute</span>(<span class="str">"currentUser"</span>) != <span class="kw">null</span>) {
+    chain.<span class="fn">doFilter</span>(request, response);
+  } <span class="kw">else</span> {
+    ((<span class="tp">HttpServletResponse</span>)response).<span class="fn">sendRedirect</span>(<span class="str">"/login.jsp"</span>);
+  }
+}</div>
+              这三个方案在 <span class="ref-tag">第15讲 项目实战(上)</span> 中有完整代码实现，建议对照实验动手练习！
+            </div>
+            <div class="message-time">20:46</div>
           </div>
         </div>
       </div>
@@ -1531,7 +2254,7 @@ response.<span class="fn">addCookie</span>(cookie);</div>
       <!-- Input area -->
       <div class="chat-input-area">
         <div class="chat-input-wrapper">
-          <input type="text" class="chat-input" id="chatInputStudent" placeholder="输入你的问题... 试试问：Filter的作用是什么？" />
+          <input type="text" class="chat-input" id="chatInputStudent" placeholder="输入你的问题... 试试问：Servlet生命周期是什么？" />
         </div>
         <button class="chat-send-btn" id="sendBtnStudent" title="发送">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
@@ -1555,7 +2278,7 @@ response.<span class="fn">addCookie</span>(cookie);</div>
         </div>
         <div class="learning-data-grid">
           <div class="ld-stat">
-            <div class="ld-stat-value">7</div>
+            <div class="ld-stat-value">12</div>
             <div class="ld-stat-label">本周提问次数</div>
           </div>
           <div class="ld-stat">
@@ -1570,9 +2293,95 @@ response.<span class="fn">addCookie</span>(cookie);</div>
         <div class="ld-weak-list">
           <div class="ld-weak-item">Session安全</div>
           <div class="ld-weak-item">JDBC事务</div>
+          <div class="ld-weak-item">Filter链机制</div>
         </div>
         <div class="ld-suggestion">
-          &#x1F4A1; <strong>学习建议（AI生成）：</strong>建议复习第5讲会话管理和第14讲事务控制，重点关注Session安全管理的防劫持策略和JDBC事务的ACID特性。
+          &#x1F4A1; <strong>学习建议（AI生成）：</strong>建议复习第5讲会话管理和第14讲事务控制，重点关注Session安全管理的防劫持策略和JDBC事务的ACID特性。第9讲Filter链的执行顺序也需加强理解。
+        </div>
+      </div>
+
+      <!-- My Learning Timeline -->
+      <div class="dash-card">
+        <div class="dash-card-title">
+          <div class="icon" style="background:#ede9fe;color:#7c3aed;">&#x1F4C5;</div>
+          我的学习轨迹（本周）
+        </div>
+        <div id="learningTimeline"></div>
+      </div>
+
+      <!-- Recommended Exercises -->
+      <div class="dash-card">
+        <div class="dash-card-title">
+          <div class="icon" style="background:#e8f5e9;color:var(--accent);">&#x1F3AF;</div>
+          推荐练习（AI推荐）
+        </div>
+        <div class="exercise-list">
+          <div class="exercise-item">
+            <span class="exercise-type code">编程</span>
+            <div class="exercise-info">
+              <div class="exercise-title">实现登录拦截Filter</div>
+              <div class="exercise-desc">第9讲 - 综合运用Filter和Session</div>
+            </div>
+            <span class="exercise-difficulty" style="color:#e65100;">中等</span>
+          </div>
+          <div class="exercise-item">
+            <span class="exercise-type quiz">选择</span>
+            <div class="exercise-info">
+              <div class="exercise-title">Session/Cookie对比练习</div>
+              <div class="exercise-desc">第5讲 - 10道选择题巩固概念</div>
+            </div>
+            <span class="exercise-difficulty" style="color:var(--accent);">基础</span>
+          </div>
+          <div class="exercise-item">
+            <span class="exercise-type practice">实验</span>
+            <div class="exercise-info">
+              <div class="exercise-title">JDBC事务回滚演示</div>
+              <div class="exercise-desc">第14讲 - 模拟银行转账事务</div>
+            </div>
+            <span class="exercise-difficulty" style="color:#c62828;">较难</span>
+          </div>
+          <div class="exercise-item">
+            <span class="exercise-type code">编程</span>
+            <div class="exercise-info">
+              <div class="exercise-title">PreparedStatement防注入</div>
+              <div class="exercise-desc">第8讲 - 对比Statement和PreparedStatement</div>
+            </div>
+            <span class="exercise-difficulty" style="color:#e65100;">中等</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bookmarked Answers -->
+      <div class="dash-card">
+        <div class="dash-card-title">
+          <div class="icon" style="background:#fff3e0;color:#f59e0b;">&#x2B50;</div>
+          收藏的回答
+        </div>
+        <div class="bookmark-list">
+          <div class="bookmark-item">
+            <div class="bookmark-q">Session和Cookie的区别是什么？</div>
+            <div class="bookmark-preview">Cookie存储在客户端浏览器中，Session存储在服务器端。Cookie可被用户查看和篡改，安全性较低；Session数据在服务器端，相对安全...</div>
+            <div class="bookmark-meta">
+              <span class="ref-tag" style="font-size:10px;">第5讲</span>
+              <span>收藏于 3月18日</span>
+            </div>
+          </div>
+          <div class="bookmark-item">
+            <div class="bookmark-q">PreparedStatement为什么能防止SQL注入？</div>
+            <div class="bookmark-preview">PreparedStatement将SQL语句结构和参数数据分离。SQL语句在prepareStatement()时预编译，结构已固定，参数值只能作为数据...</div>
+            <div class="bookmark-meta">
+              <span class="ref-tag" style="font-size:10px;">第8讲</span>
+              <span>收藏于 3月19日</span>
+            </div>
+          </div>
+          <div class="bookmark-item">
+            <div class="bookmark-q">MVC中Controller和Service层的区别？</div>
+            <div class="bookmark-preview">Controller是"调度员"负责接收请求和返回响应，Service是"厨师"封装核心业务逻辑。Controller不包含业务逻辑代码...</div>
+            <div class="bookmark-meta">
+              <span class="ref-tag" style="font-size:10px;">第10讲</span>
+              <span>收藏于 3月20日</span>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -1607,15 +2416,15 @@ response.<span class="fn">addCookie</span>(cookie);</div>
             <div class="message-content">
               你好！我是 <strong>WebDev助教</strong>，Java Web应用开发课程的AI教学助手。我熟悉课程全部16讲的内容，可以帮你解答课程相关问题、复习知识点、分析代码示例。有什么想问的吗？
             </div>
-            <div class="message-time">14:20</div>
+            <div class="message-time">20:15</div>
           </div>
         </div>
 
         <div class="message user">
-          <div class="message-avatar">李</div>
+          <div class="message-avatar">陈</div>
           <div>
             <div class="message-content">老师好，我想问一下Session和Cookie到底有什么区别？什么时候该用哪个？</div>
-            <div class="message-time">14:22</div>
+            <div class="message-time">20:17</div>
           </div>
         </div>
 
@@ -1638,7 +2447,7 @@ response.<span class="fn">addCookie</span>(cookie);</div>
 session.<span class="fn">setAttribute</span>(<span class="str">"currentUser"</span>, user);</div>
               <strong>记忆口诀：</strong>敏感数据用Session，偏好记忆用Cookie。
             </div>
-            <div class="message-time">14:22</div>
+            <div class="message-time">20:17</div>
           </div>
         </div>
       </div>
@@ -1654,7 +2463,7 @@ session.<span class="fn">setAttribute</span>(<span class="str">"currentUser"</sp
       <!-- Input area -->
       <div class="chat-input-area">
         <div class="chat-input-wrapper">
-          <input type="text" class="chat-input" id="chatInputTeacher" placeholder="输入你的问题... 试试问：Filter的作用是什么？" />
+          <input type="text" class="chat-input" id="chatInputTeacher" placeholder="输入你的问题... 试试问：Servlet生命周期是什么？" />
         </div>
         <button class="chat-send-btn" id="sendBtnTeacher" title="发送">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
@@ -1732,23 +2541,102 @@ session.<span class="fn">setAttribute</span>(<span class="str">"currentUser"</sp
           <div class="top3-student">
             <div class="top3-avatar g1">1</div>
             <div class="top3-info">
-              <div class="top3-name">张伟</div>
+              <div class="top3-name">赵天宇</div>
               <div class="top3-count">23次提问</div>
             </div>
           </div>
           <div class="top3-student">
             <div class="top3-avatar g2">2</div>
             <div class="top3-info">
-              <div class="top3-name">李明</div>
+              <div class="top3-name">陈思远</div>
               <div class="top3-count">19次提问</div>
             </div>
           </div>
           <div class="top3-student">
             <div class="top3-avatar g3">3</div>
             <div class="top3-info">
-              <div class="top3-name">王芳</div>
+              <div class="top3-name">林雨桐</div>
               <div class="top3-count">17次提问</div>
             </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Time Distribution Chart -->
+      <div class="dash-card">
+        <div class="dash-card-title">
+          <div class="icon" style="background:#ede9fe;color:#7c3aed;">&#x1F552;</div>
+          学生提问时间分布（24小时）
+        </div>
+        <div class="time-chart" id="timeChart"></div>
+        <div class="time-labels" id="timeLabels"></div>
+      </div>
+
+      <!-- Knowledge Hit Rate -->
+      <div class="dash-card">
+        <div class="dash-card-title">
+          <div class="icon" style="background:#e3f2fd;color:var(--primary);">&#x1F3AF;</div>
+          本周知识点命中率
+        </div>
+        <div class="hit-rate-list" id="hitRateList"></div>
+      </div>
+
+      <!-- AI Quality Assessment -->
+      <div class="dash-card">
+        <div class="dash-card-title">
+          <div class="icon" style="background:#e8f5e9;color:var(--accent);">&#x2705;</div>
+          AI回答质量评估
+        </div>
+        <div class="ai-quality-grid">
+          <div class="aq-stat">
+            <div class="aq-stat-val good">4.2/5</div>
+            <div class="aq-stat-label">自动评分平均</div>
+          </div>
+          <div class="aq-stat">
+            <div class="aq-stat-val warn">8.3%</div>
+            <div class="aq-stat-label">需人工介入</div>
+          </div>
+          <div class="aq-stat">
+            <div class="aq-stat-val info">91.7%</div>
+            <div class="aq-stat-label">自动解决率</div>
+          </div>
+        </div>
+        <div style="margin-top:10px;padding:8px 12px;background:var(--chat-bg);border-radius:var(--radius-sm);font-size:11.5px;line-height:1.6;color:var(--text-secondary);">
+          &#x1F4DD; <strong>质量分布：</strong>优秀(4.5+) 42.3% | 良好(3.5-4.5) 43.7% | 需改进(&lt;3.5) 14.0%<br>
+          &#x1F527; <strong>待人工审核：</strong>涉及课外延伸问题6条，超纲回答3条，表述不够清晰2条
+        </div>
+      </div>
+
+      <!-- Warning Students -->
+      <div class="dash-card">
+        <div class="dash-card-title">
+          <div class="icon" style="background:#fef2f2;color:#dc2626;">&#x1F6A8;</div>
+          预警学生（超过5天未使用）
+        </div>
+        <div class="warn-student-list">
+          <div class="warn-student-item">
+            <div class="warn-student-avatar">邓</div>
+            <div class="warn-student-info">
+              <div class="warn-student-name">邓宇航（2023042）</div>
+              <div class="warn-student-detail">最后使用: 3月14日 | 累计提问: 3次 | 掌握率: 45%</div>
+            </div>
+            <button class="warn-student-action" onclick="alert('已向邓宇航发送学习提醒（演示功能）')">发送提醒</button>
+          </div>
+          <div class="warn-student-item">
+            <div class="warn-student-avatar">罗</div>
+            <div class="warn-student-info">
+              <div class="warn-student-name">罗晨曦（2023028）</div>
+              <div class="warn-student-detail">最后使用: 3月13日 | 累计提问: 5次 | 掌握率: 52%</div>
+            </div>
+            <button class="warn-student-action" onclick="alert('已向罗晨曦发送学习提醒（演示功能）')">发送提醒</button>
+          </div>
+          <div class="warn-student-item">
+            <div class="warn-student-avatar">宋</div>
+            <div class="warn-student-info">
+              <div class="warn-student-name">宋雨泽（2023051）</div>
+              <div class="warn-student-detail">最后使用: 3月15日 | 累计提问: 2次 | 掌握率: 38%</div>
+            </div>
+            <button class="warn-student-action" onclick="alert('已向宋雨泽发送学习提醒（演示功能）')">发送提醒</button>
           </div>
         </div>
       </div>
@@ -1792,7 +2680,7 @@ session.<span class="fn">setAttribute</span>(<span class="str">"currentUser"</sp
       <div class="dash-card">
         <div class="dash-card-title">
           <div class="icon" style="background:#e8f5e9;color:var(--accent);">&#x1F4DD;</div>
-          学生提问记录（近10条）
+          学生提问记录（近期）
         </div>
         <div style="overflow-x:auto;">
           <table class="records-table">
@@ -1874,6 +2762,12 @@ session.<span class="fn">setAttribute</span>(<span class="str">"currentUser"</sp
 
 </div>
 
+<!-- ===== LECTURE DETAIL MODAL ===== -->
+<div class="modal-overlay" id="lectureModal">
+  <div class="modal-content" id="lectureModalContent">
+  </div>
+</div>
+
 <!-- Tooltip element -->
 <div class="tooltip" id="tooltip"></div>
 
@@ -1907,7 +2801,7 @@ function enterAs(role) {
   appScreen.classList.add('active');
 
   if (role === 'student') {
-    const name = document.getElementById('stuName').value || '李明';
+    const name = document.getElementById('stuName').value || '陈思远';
     document.getElementById('roleBadgeText').textContent = '学生: ' + name;
     document.getElementById('roleBadge').querySelector('.role-icon').innerHTML = '&#x1F9D1;&#x200D;&#x1F393;';
     document.getElementById('studentView').style.display = 'flex';
@@ -1932,9 +2826,12 @@ function enterAs(role) {
       renderWeakPoints();
       renderRecords();
       renderKBManage();
+      renderTimeChart();
+      renderHitRate();
       animateRing();
     }
     renderLectureGrid();
+    renderLearningTimeline();
   }, 100);
 }
 
@@ -1956,15 +2853,14 @@ function logout() {
 
 function switchToStudentPreview() {
   if (!isPreviewingStudent) {
-    // Switch to student preview
     isPreviewingStudent = true;
     document.getElementById('teacherView').style.display = 'none';
     document.getElementById('studentView').style.display = 'flex';
     document.getElementById('switchViewBtn').textContent = '\u{1F4CA} 返回教师看板';
     document.getElementById('roleBadgeText').textContent = '教师: ' + (document.getElementById('tchName').value || 'XXX老师') + ' (学生视图预览)';
     renderLectureGrid();
+    renderLearningTimeline();
   } else {
-    // Switch back to teacher view
     isPreviewingStudent = false;
     document.getElementById('studentView').style.display = 'none';
     document.getElementById('teacherView').style.display = 'flex';
@@ -2007,38 +2903,65 @@ const weakPoints = [
 ];
 
 const lectureData = [
-  { num: 1, title: 'Web开发概述' },
-  { num: 2, title: 'Servlet基础' },
-  { num: 3, title: 'HTTP协议' },
-  { num: 4, title: 'JSP技术' },
-  { num: 5, title: '会话管理' },
-  { num: 6, title: 'EL与JSTL' },
-  { num: 7, title: '数据库基础' },
-  { num: 8, title: 'JDBC编程' },
-  { num: 9, title: 'Filter/Listener' },
-  { num: 10, title: 'MVC设计模式' },
-  { num: 11, title: 'Spring MVC' },
-  { num: 12, title: 'MyBatis框架' },
-  { num: 13, title: 'Web安全基础' },
-  { num: 14, title: '事务与连接池' },
-  { num: 15, title: '项目实战(上)' },
-  { num: 16, title: '项目实战(下)' },
+  { num: 1, title: 'Web开发概述', topics: ['B/S架构', 'HTTP基础', 'Tomcat配置', 'Web项目结构'], chunks: 32, questions: ['B/S和C/S架构的区别？', 'Tomcat如何配置端口号？', 'Web项目的目录结构是怎样的？'] },
+  { num: 2, title: 'Servlet基础', topics: ['Servlet生命周期', 'doGet/doPost', 'web.xml配置', '注解配置'], chunks: 45, questions: ['Servlet的生命周期有哪几个阶段？', 'doGet和doPost有什么区别？', '@WebServlet注解怎么用？'] },
+  { num: 3, title: 'HTTP协议', topics: ['请求/响应格式', 'GET vs POST', '状态码', '请求头'], chunks: 38, questions: ['GET和POST请求有什么区别？', 'HTTP状态码302代表什么？', '常见的Content-Type有哪些？'] },
+  { num: 4, title: 'JSP技术', topics: ['JSP原理', '脚本元素', '指令元素', '内置对象'], chunks: 51, questions: ['JSP的9大内置对象是什么？', 'JSP如何转换为Servlet？', 'include指令和include动作的区别？'] },
+  { num: 5, title: '会话管理', topics: ['Cookie机制', 'Session原理', 'JSESSIONID', '会话安全'], chunks: 47, questions: ['Session和Cookie的区别是什么？', 'JSESSIONID是怎么工作的？', '如何防止Session劫持？'] },
+  { num: 6, title: 'EL与JSTL', topics: ['EL表达式语法', '隐式对象', 'JSTL核心标签', '自定义标签'], chunks: 43, questions: ['EL表达式如何访问JavaBean属性？', 'JSTL的forEach标签怎么用？', 'EL的隐式对象有哪些？'] },
+  { num: 7, title: '数据库基础', topics: ['MySQL基础', 'SQL语法', '表设计', '索引'], chunks: 39, questions: ['主键和外键的区别？', '如何设计数据库表的关系？', '什么时候需要建索引？'] },
+  { num: 8, title: 'JDBC编程', topics: ['JDBC连接', 'Statement', 'PreparedStatement', '结果集处理'], chunks: 52, questions: ['JDBC连接数据库的步骤？', 'PreparedStatement为什么能防SQL注入？', 'ResultSet如何遍历数据？'] },
+  { num: 9, title: 'Filter/Listener', topics: ['Filter生命周期', 'FilterChain', '监听器类型', '应用场景'], chunks: 44, questions: ['Filter的doFilter方法中chain.doFilter()的作用？', 'Filter和Listener的区别？', '编码过滤器怎么实现？'] },
+  { num: 10, title: 'MVC设计模式', topics: ['MVC原理', '三层架构', 'DAO模式', 'Service层'], chunks: 48, questions: ['MVC三层的职责分别是什么？', 'Controller和Service层的区别？', 'DAO层的作用是什么？'] },
+  { num: 11, title: 'Spring MVC', topics: ['DispatcherServlet', '注解开发', '请求映射', '视图解析'], chunks: 55, questions: ['Spring MVC的请求处理流程？', '@RequestMapping注解怎么用？', 'DispatcherServlet的作用？'] },
+  { num: 12, title: 'MyBatis框架', topics: ['ORM概念', 'SQL映射', '动态SQL', '关联查询'], chunks: 50, questions: ['MyBatis的#{}和${}有什么区别？', '动态SQL的if标签怎么用？', 'MyBatis如何实现一对多查询？'] },
+  { num: 13, title: 'Web安全基础', topics: ['SQL注入', 'XSS攻击', 'CSRF防护', '安全编码'], chunks: 46, questions: ['SQL注入的原理是什么？', '如何防御XSS攻击？', 'CSRF Token是怎么工作的？'] },
+  { num: 14, title: '事务与连接池', topics: ['ACID特性', '事务控制', '连接池原理', 'Druid配置'], chunks: 42, questions: ['数据库事务的ACID特性？', 'JDBC如何实现事务控制？', '连接池的优势是什么？'] },
+  { num: 15, title: '项目实战(上)', topics: ['需求分析', '架构设计', '用户模块', '登录认证'], chunks: 58, questions: ['如何实现用户登录状态保持？', '项目分层架构怎么设计？', '密码加密存储用什么方案？'] },
+  { num: 16, title: '项目实战(下)', topics: ['CRUD实现', '分页查询', '文件上传', '项目部署'], chunks: 53, questions: ['分页查询的实现思路？', '文件上传如何处理？', '项目如何部署到Tomcat？'] },
 ];
 
 const questionRecords = [
-  { time: '21:32', student: '张伟', question: 'Session超时后如何自动跳转到登录页？', topic: '会话管理', quality: 'high', score: '4.8' },
-  { time: '21:28', student: '李明', question: 'PreparedStatement和Statement性能差异？', topic: 'JDBC', quality: 'high', score: '4.6' },
-  { time: '21:15', student: '王芳', question: 'Filter链的执行顺序由什么决定？', topic: 'Filter', quality: 'high', score: '4.7' },
-  { time: '20:58', student: '赵强', question: 'JSP中EL表达式如何访问Map？', topic: 'EL/JSTL', quality: 'medium', score: '3.9' },
-  { time: '20:45', student: '刘洋', question: 'Spring MVC的@RequestMapping用法？', topic: 'Spring MVC', quality: 'high', score: '4.5' },
-  { time: '20:30', student: '陈静', question: 'JDBC事务回滚的条件是什么？', topic: 'JDBC事务', quality: 'medium', score: '4.0' },
-  { time: '20:12', student: '黄磊', question: 'Cookie的Secure和HttpOnly属性区别？', topic: '会话管理', quality: 'high', score: '4.8' },
-  { time: '19:55', student: '周婷', question: 'MyBatis的#{}和${}有什么区别？', topic: 'MyBatis', quality: 'high', score: '4.9' },
-  { time: '19:40', student: '吴涛', question: 'XSS攻击的防御方法有哪些？', topic: 'Web安全', quality: 'medium', score: '3.8' },
-  { time: '19:22', student: '孙悦', question: 'MVC中Service层和DAO层的关系？', topic: 'MVC', quality: 'low', score: '3.2' },
+  { time: '21:47', student: '赵天宇', question: 'Servlet的init()方法只调用一次吗？', topic: 'Servlet', quality: 'high', score: '4.8' },
+  { time: '21:42', student: '陈思远', question: 'PreparedStatement和Statement性能差异？', topic: 'JDBC', quality: 'high', score: '4.6' },
+  { time: '21:38', student: '林雨桐', question: 'Filter链的执行顺序由什么决定？', topic: 'Filter', quality: 'high', score: '4.7' },
+  { time: '21:32', student: '王浩然', question: 'JSP中EL表达式如何访问Map？', topic: 'EL/JSTL', quality: 'medium', score: '3.9' },
+  { time: '21:28', student: '刘诗琪', question: 'Spring MVC的@RequestMapping用法？', topic: 'Spring MVC', quality: 'high', score: '4.5' },
+  { time: '21:15', student: '周雅婷', question: 'JDBC事务回滚的条件是什么？', topic: 'JDBC事务', quality: 'medium', score: '4.0' },
+  { time: '21:08', student: '孙嘉禾', question: 'Cookie的Secure和HttpOnly属性区别？', topic: '会话管理', quality: 'high', score: '4.8' },
+  { time: '20:55', student: '吴若晨', question: 'MyBatis的#{}和${}有什么区别？', topic: 'MyBatis', quality: 'high', score: '4.9' },
+  { time: '20:45', student: '郑思齐', question: 'XSS攻击的防御方法有哪些？', topic: 'Web安全', quality: 'medium', score: '3.8' },
+  { time: '20:38', student: '马文博', question: 'MVC中Service层和DAO层的关系？', topic: 'MVC', quality: 'low', score: '3.2' },
+  { time: '20:30', student: '黄佳怡', question: 'Session超时后如何跳转到登录页？', topic: '会话管理', quality: 'high', score: '4.7' },
+  { time: '20:22', student: '杨子涵', question: 'Listener监听Session创建和销毁？', topic: 'Listener', quality: 'high', score: '4.5' },
+  { time: '20:15', student: '徐瑞泽', question: 'JSTL的forEach标签如何遍历List？', topic: 'JSTL', quality: 'medium', score: '4.1' },
+  { time: '20:08', student: '蔡欣然', question: '三层架构和MVC的区别？', topic: 'MVC', quality: 'high', score: '4.6' },
+  { time: '19:55', student: '韩雪薇', question: 'Druid连接池的配置参数含义？', topic: '连接池', quality: 'medium', score: '3.9' },
+  { time: '19:42', student: '高明远', question: 'DispatcherServlet的工作流程？', topic: 'Spring MVC', quality: 'high', score: '4.8' },
+  { time: '19:30', student: '朱雅琳', question: 'CSRF Token防护的实现原理？', topic: 'Web安全', quality: 'low', score: '3.3' },
 ];
 
-// Mock AI responses
+// Time distribution data (24 hours)
+const timeDistribution = [
+  0, 0, 0, 0, 0, 0,   // 0-5
+  0, 1, 3, 5, 4, 2,   // 6-11
+  1, 2, 6, 8, 5, 3,   // 12-17
+  4, 8, 15, 28, 32, 18 // 18-23
+];
+
+// Knowledge hit rate data
+const hitRateData = [
+  { topic: '会话管理', rate: 92, color: '#ef4444' },
+  { topic: 'JDBC/数据库', rate: 85, color: '#f59e0b' },
+  { topic: 'Filter/Listener', rate: 78, color: '#f59e0b' },
+  { topic: 'MVC架构', rate: 75, color: '#4472C4' },
+  { topic: 'Web安全', rate: 71, color: '#4472C4' },
+  { topic: 'JSP/EL/JSTL', rate: 68, color: '#70AD47' },
+  { topic: 'Spring MVC', rate: 65, color: '#70AD47' },
+  { topic: 'MyBatis', rate: 58, color: '#70AD47' },
+];
+
+// Mock AI responses - expanded to 16+ topics
 const mockResponses = {
   session: {
     content: `关于Session，我来帮你深入理解！<br><br>
@@ -2056,8 +2979,37 @@ session.<span class="fn">setMaxInactiveInterval</span>(<span class="str">1800</s
 <strong>重点提示：</strong>Session安全管理（防止会话劫持和固定攻击）是考试重点，建议重点复习！`,
     time: '14:25'
   },
+  cookie: {
+    content: `Cookie是 <span class="ref-tag">第5讲 会话管理</span> 的重要内容！<br><br>
+<strong>Cookie机制解析：</strong><br>
+&bull; Cookie是服务器发送到浏览器的<strong>小段文本数据</strong>，浏览器存储并在后续请求中携带<br>
+&bull; 每个Cookie包含：名称、值、域、路径、过期时间等属性<br><br>
+<strong>Cookie的关键属性：</strong><br>
+&bull; <span class="highlight">MaxAge</span>：过期时间（秒），-1表示会话级别，0表示立即删除<br>
+&bull; <span class="highlight">HttpOnly</span>：设置后JavaScript无法读取，防止XSS窃取<br>
+&bull; <span class="highlight">Secure</span>：仅在HTTPS连接中传输<br>
+&bull; <span class="highlight">Path</span>：Cookie的有效路径范围<br><br>
+<div class="code-block"><span class="cm">// 创建Cookie</span>
+<span class="tp">Cookie</span> cookie = <span class="kw">new</span> <span class="tp">Cookie</span>(<span class="str">"username"</span>, <span class="str">"zhangsan"</span>);
+cookie.<span class="fn">setMaxAge</span>(<span class="str">7 * 24 * 3600</span>); <span class="cm">// 7天有效</span>
+cookie.<span class="fn">setHttpOnly</span>(<span class="kw">true</span>);       <span class="cm">// 防止XSS</span>
+cookie.<span class="fn">setPath</span>(<span class="str">"/"</span>);              <span class="cm">// 全站有效</span>
+response.<span class="fn">addCookie</span>(cookie);
+
+<span class="cm">// 读取Cookie</span>
+<span class="tp">Cookie</span>[] cookies = request.<span class="fn">getCookies</span>();
+<span class="kw">if</span> (cookies != <span class="kw">null</span>) {
+  <span class="kw">for</span> (<span class="tp">Cookie</span> c : cookies) {
+    <span class="kw">if</span> (<span class="str">"username"</span>.<span class="fn">equals</span>(c.<span class="fn">getName</span>())) {
+      <span class="tp">String</span> value = c.<span class="fn">getValue</span>();
+    }
+  }
+}</div>
+建议结合第5讲实验动手实践Cookie的创建和读取！`,
+    time: '14:25'
+  },
   filter: {
-    content: `好问题！Filter是 <span class="ref-tag">第8讲 过滤器与监听器</span> 的核心内容。<br><br>
+    content: `好问题！Filter是 <span class="ref-tag">第9讲 Filter/Listener</span> 的核心内容。<br><br>
 <strong>Filter（过滤器）的作用：</strong><br>
 &bull; 在请求到达Servlet<strong>之前</strong>和响应返回客户端<strong>之前</strong>进行拦截处理<br>
 &bull; 典型应用：编码过滤、登录验证、日志记录、权限控制<br><br>
@@ -2080,8 +3032,39 @@ session.<span class="fn">setMaxInactiveInterval</span>(<span class="str">1800</s
 这个知识点在实际项目和面试中都非常重要！`,
     time: '14:25'
   },
+  listener: {
+    content: `Listener是 <span class="ref-tag">第9讲 Filter/Listener</span> 的另一个重要内容！<br><br>
+<strong>监听器（Listener）概述：</strong><br>
+Listener用于监听Web应用中<strong>特定事件</strong>的发生，并自动执行相应的处理逻辑。<br><br>
+<strong>三大类监听器：</strong><br>
+&bull; <span class="highlight">ServletContextListener</span>：监听应用的启动和关闭<br>
+&bull; <span class="highlight">HttpSessionListener</span>：监听Session的创建和销毁<br>
+&bull; <span class="highlight">ServletRequestListener</span>：监听请求的创建和销毁<br><br>
+<strong>属性监听器：</strong><br>
+&bull; <code>ServletContextAttributeListener</code>：监听应用级属性变化<br>
+&bull; <code>HttpSessionAttributeListener</code>：监听Session属性变化<br><br>
+<div class="code-block"><span class="kw">@WebListener</span>
+<span class="kw">public class</span> <span class="tp">OnlineCountListener</span>
+    <span class="kw">implements</span> <span class="tp">HttpSessionListener</span> {
+  <span class="kw">private static int</span> onlineCount = <span class="str">0</span>;
+
+  <span class="kw">public void</span> <span class="fn">sessionCreated</span>(<span class="tp">HttpSessionEvent</span> se) {
+    onlineCount++;
+    se.<span class="fn">getSession</span>().<span class="fn">getServletContext</span>()
+      .<span class="fn">setAttribute</span>(<span class="str">"onlineCount"</span>, onlineCount);
+  }
+
+  <span class="kw">public void</span> <span class="fn">sessionDestroyed</span>(<span class="tp">HttpSessionEvent</span> se) {
+    onlineCount--;
+    se.<span class="fn">getSession</span>().<span class="fn">getServletContext</span>()
+      .<span class="fn">setAttribute</span>(<span class="str">"onlineCount"</span>, onlineCount);
+  }
+}</div>
+Listener常用来统计在线人数、初始化全局资源等，在实际项目中很实用！`,
+    time: '14:25'
+  },
   mvc: {
-    content: `MVC模式在 <span class="ref-tag">第10讲 MVC设计模式</span> 和 <span class="ref-tag">第11讲 Spring MVC入门</span> 中有详细讲解。<br><br>
+    content: `MVC模式在 <span class="ref-tag">第10讲 MVC设计模式</span> 和 <span class="ref-tag">第11讲 Spring MVC</span> 中有详细讲解。<br><br>
 <strong>MVC三层职责：</strong><br>
 &bull; <span class="highlight">Model（模型）</span>：业务逻辑和数据处理（JavaBean / Service / DAO）<br>
 &bull; <span class="highlight">View（视图）</span>：页面展示（JSP / Thymeleaf）<br>
@@ -2099,6 +3082,62 @@ session.<span class="fn">setMaxInactiveInterval</span>(<span class="str">1800</s
   }
 }</div>
 关键是理解 <strong>分层解耦</strong> 的思想，每一层各司其职、互不依赖！`,
+    time: '14:25'
+  },
+  dao: {
+    content: `DAO模式是 <span class="ref-tag">第10讲 MVC设计模式</span> 中的重要概念！<br><br>
+<strong>DAO（Data Access Object）数据访问对象：</strong><br>
+&bull; 封装对数据库的所有<strong>CRUD操作</strong><br>
+&bull; 将数据访问逻辑从业务逻辑中<strong>分离</strong>出来<br>
+&bull; 使得业务层不直接依赖具体的数据库实现<br><br>
+<strong>DAO层的标准结构：</strong><br>
+<div class="code-block"><span class="cm">// DAO接口 - 定义数据操作规范</span>
+<span class="kw">public interface</span> <span class="tp">UserDAO</span> {
+  <span class="tp">User</span> <span class="fn">findById</span>(<span class="kw">int</span> id);
+  <span class="tp">List</span>&lt;<span class="tp">User</span>&gt; <span class="fn">findAll</span>();
+  <span class="kw">void</span> <span class="fn">insert</span>(<span class="tp">User</span> user);
+  <span class="kw">void</span> <span class="fn">update</span>(<span class="tp">User</span> user);
+  <span class="kw">void</span> <span class="fn">delete</span>(<span class="kw">int</span> id);
+}
+
+<span class="cm">// DAO实现类 - 具体数据库操作</span>
+<span class="kw">public class</span> <span class="tp">UserDAOImpl</span> <span class="kw">implements</span> <span class="tp">UserDAO</span> {
+  <span class="kw">public</span> <span class="tp">User</span> <span class="fn">findById</span>(<span class="kw">int</span> id) {
+    <span class="tp">String</span> sql = <span class="str">"SELECT * FROM users WHERE id=?"</span>;
+    <span class="cm">// 使用JDBC执行查询...</span>
+  }
+}</div>
+<strong>分层调用链：</strong>Controller -> Service -> DAO -> 数据库。每层只关注自己的职责！`,
+    time: '14:25'
+  },
+  jdbc: {
+    content: `JDBC编程是 <span class="ref-tag">第8讲 JDBC编程</span> 的核心内容！<br><br>
+<strong>JDBC连接数据库6个步骤：</strong><br>
+<div class="code-block"><span class="cm">// 1. 加载驱动</span>
+Class.<span class="fn">forName</span>(<span class="str">"com.mysql.cj.jdbc.Driver"</span>);
+
+<span class="cm">// 2. 获取连接</span>
+<span class="tp">Connection</span> conn = DriverManager.<span class="fn">getConnection</span>(
+    <span class="str">"jdbc:mysql://localhost:3306/mydb"</span>,
+    <span class="str">"root"</span>, <span class="str">"password"</span>);
+
+<span class="cm">// 3. 创建PreparedStatement</span>
+<span class="tp">String</span> sql = <span class="str">"SELECT * FROM users WHERE age > ?"</span>;
+<span class="tp">PreparedStatement</span> ps = conn.<span class="fn">prepareStatement</span>(sql);
+ps.<span class="fn">setInt</span>(<span class="str">1</span>, <span class="str">18</span>);
+
+<span class="cm">// 4. 执行查询</span>
+<span class="tp">ResultSet</span> rs = ps.<span class="fn">executeQuery</span>();
+
+<span class="cm">// 5. 处理结果</span>
+<span class="kw">while</span> (rs.<span class="fn">next</span>()) {
+  <span class="tp">String</span> name = rs.<span class="fn">getString</span>(<span class="str">"name"</span>);
+  <span class="kw">int</span> age = rs.<span class="fn">getInt</span>(<span class="str">"age"</span>);
+}
+
+<span class="cm">// 6. 关闭资源（逆序关闭）</span>
+rs.<span class="fn">close</span>(); ps.<span class="fn">close</span>(); conn.<span class="fn">close</span>();</div>
+<strong>重点：</strong>务必使用PreparedStatement而非Statement，且注意在finally块中关闭资源，或使用try-with-resources语法！`,
     time: '14:25'
   },
   sql: {
@@ -2122,6 +3161,282 @@ ps.<span class="fn">setString</span>(<span class="str">2</span>, password);</div
 这个知识点务必牢记，期末和工作中都会用到！`,
     time: '14:25'
   },
+  servlet: {
+    content: `Servlet是 <span class="ref-tag">第2讲 Servlet基础</span> 的核心内容！<br><br>
+<strong>Servlet生命周期（三个阶段）：</strong><br>
+&bull; <span class="highlight">init()</span>：初始化，只调用一次（首次请求或容器启动时）<br>
+&bull; <span class="highlight">service()</span>：处理请求，每次请求都调用（内部分派到doGet/doPost）<br>
+&bull; <span class="highlight">destroy()</span>：销毁，只调用一次（容器关闭时）<br><br>
+<strong>Servlet是单实例多线程的！</strong>容器只创建一个Servlet实例，多个请求由不同线程共享。<br><br>
+<div class="code-block"><span class="kw">@WebServlet</span>(<span class="str">"/hello"</span>)
+<span class="kw">public class</span> <span class="tp">HelloServlet</span> <span class="kw">extends</span> <span class="tp">HttpServlet</span> {
+
+  <span class="kw">@Override</span>
+  <span class="kw">public void</span> <span class="fn">init</span>() {
+    System.out.<span class="fn">println</span>(<span class="str">"Servlet初始化，只执行一次"</span>);
+  }
+
+  <span class="kw">@Override</span>
+  <span class="kw">protected void</span> <span class="fn">doGet</span>(<span class="tp">HttpServletRequest</span> req,
+      <span class="tp">HttpServletResponse</span> resp) <span class="kw">throws</span> IOException {
+    resp.<span class="fn">setContentType</span>(<span class="str">"text/html;charset=UTF-8"</span>);
+    resp.<span class="fn">getWriter</span>().<span class="fn">println</span>(<span class="str">"&lt;h1&gt;Hello Servlet!&lt;/h1&gt;"</span>);
+  }
+
+  <span class="kw">@Override</span>
+  <span class="kw">public void</span> <span class="fn">destroy</span>() {
+    System.out.<span class="fn">println</span>(<span class="str">"Servlet销毁，只执行一次"</span>);
+  }
+}</div>
+<strong>面试必考：</strong>Servlet是单实例多线程的，所以要避免在Servlet中使用实例变量！`,
+    time: '14:25'
+  },
+  jsp: {
+    content: `JSP技术是 <span class="ref-tag">第4讲 JSP技术</span> 的核心内容！<br><br>
+<strong>JSP本质：</strong>JSP最终会被容器<strong>翻译为Servlet</strong>执行。每个JSP页面对应一个 <code>_jspService()</code> 方法。<br><br>
+<strong>JSP 9大内置对象：</strong><br>
+&bull; <span class="highlight">request</span>（HttpServletRequest）- 客户端请求<br>
+&bull; <span class="highlight">response</span>（HttpServletResponse）- 服务端响应<br>
+&bull; <span class="highlight">session</span>（HttpSession）- 会话<br>
+&bull; <span class="highlight">application</span>（ServletContext）- 应用上下文<br>
+&bull; <span class="highlight">out</span>（JspWriter）- 输出流<br>
+&bull; pageContext、config、page、exception<br><br>
+<strong>JSP三大指令：</strong><br>
+<div class="code-block"><span class="cm">&lt;%-- page指令：设置页面属性 --%&gt;</span>
+<span class="kw">&lt;%@ page</span> contentType=<span class="str">"text/html;charset=UTF-8"</span>
+    import=<span class="str">"java.util.*"</span> <span class="kw">%&gt;</span>
+
+<span class="cm">&lt;%-- include指令：编译时包含 --%&gt;</span>
+<span class="kw">&lt;%@ include</span> file=<span class="str">"header.jsp"</span> <span class="kw">%&gt;</span>
+
+<span class="cm">&lt;%-- taglib指令：引入标签库 --%&gt;</span>
+<span class="kw">&lt;%@ taglib</span> prefix=<span class="str">"c"</span>
+    uri=<span class="str">"http://java.sun.com/jsp/jstl/core"</span> <span class="kw">%&gt;</span></div>
+现代开发中JSP逐渐被Thymeleaf等替代，但理解JSP原理对学习Web开发很重要！`,
+    time: '14:25'
+  },
+  el: {
+    content: `EL表达式和JSTL是 <span class="ref-tag">第6讲 EL与JSTL</span> 的核心内容！<br><br>
+<strong>EL表达式（Expression Language）：</strong><br>
+&bull; 语法：<code>\${expression}</code><br>
+&bull; 用途：简化JSP中的数据访问，替代Java脚本片段<br><br>
+<strong>EL隐式对象：</strong><br>
+&bull; <span class="highlight">pageScope / requestScope / sessionScope / applicationScope</span><br>
+&bull; <span class="highlight">param / paramValues</span>：获取请求参数<br>
+&bull; <span class="highlight">cookie</span>：访问Cookie<br><br>
+<div class="code-block"><span class="cm">&lt;!-- 访问JavaBean属性 --&gt;</span>
+欢迎, \${sessionScope.currentUser.name}!
+
+<span class="cm">&lt;!-- 获取请求参数 --&gt;</span>
+搜索关键词: \${param.keyword}
+
+<span class="cm">&lt;!-- 运算 --&gt;</span>
+总价: \${item.price * item.quantity}
+
+<span class="cm">&lt;!-- 判空 --&gt;</span>
+\${empty userList ? "暂无数据" : "共有数据"}</div>
+<strong>JSTL核心标签库常用标签：</strong><br>
+&bull; <code>&lt;c:if&gt;</code>：条件判断<br>
+&bull; <code>&lt;c:forEach&gt;</code>：循环遍历<br>
+&bull; <code>&lt;c:choose&gt;</code>/<code>&lt;c:when&gt;</code>/<code>&lt;c:otherwise&gt;</code>：多条件分支<br><br>
+EL + JSTL 组合是JSP页面开发的最佳实践！`,
+    time: '14:25'
+  },
+  jstl: {
+    content: `JSTL是 <span class="ref-tag">第6讲 EL与JSTL</span> 的重要内容！<br><br>
+<strong>JSTL（JSP Standard Tag Library）核心标签：</strong><br><br>
+<div class="code-block"><span class="cm">&lt;!-- 引入JSTL核心标签库 --&gt;</span>
+<span class="kw">&lt;%@ taglib</span> prefix=<span class="str">"c"</span>
+    uri=<span class="str">"http://java.sun.com/jsp/jstl/core"</span> <span class="kw">%&gt;</span>
+
+<span class="cm">&lt;!-- c:forEach 遍历集合 --&gt;</span>
+&lt;<span class="kw">c:forEach</span> items=<span class="str">"\${studentList}"</span> var=<span class="str">"stu"</span>
+    varStatus=<span class="str">"status"</span>&gt;
+  &lt;tr&gt;
+    &lt;td&gt;\${status.index + 1}&lt;/td&gt;
+    &lt;td&gt;\${stu.name}&lt;/td&gt;
+    &lt;td&gt;\${stu.score}&lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/<span class="kw">c:forEach</span>&gt;
+
+<span class="cm">&lt;!-- c:if 条件判断 --&gt;</span>
+&lt;<span class="kw">c:if</span> test=<span class="str">"\${stu.score >= 60}"</span>&gt;
+  &lt;span class="pass"&gt;及格&lt;/span&gt;
+&lt;/<span class="kw">c:if</span>&gt;
+
+<span class="cm">&lt;!-- c:choose 多条件分支 --&gt;</span>
+&lt;<span class="kw">c:choose</span>&gt;
+  &lt;<span class="kw">c:when</span> test=<span class="str">"\${stu.score >= 90}"</span>&gt;优秀&lt;/<span class="kw">c:when</span>&gt;
+  &lt;<span class="kw">c:when</span> test=<span class="str">"\${stu.score >= 60}"</span>&gt;及格&lt;/<span class="kw">c:when</span>&gt;
+  &lt;<span class="kw">c:otherwise</span>&gt;不及格&lt;/<span class="kw">c:otherwise</span>&gt;
+&lt;/<span class="kw">c:choose</span>&gt;</div>
+JSTL配合EL表达式，可以大大减少JSP中的Java代码量！`,
+    time: '14:25'
+  },
+  three_layer: {
+    content: `三层架构是 <span class="ref-tag">第10讲 MVC设计模式</span> 中的重要概念！<br><br>
+<strong>三层架构 vs MVC：</strong><br>
+&bull; <span class="highlight">三层架构</span>：表现层、业务逻辑层、数据访问层（按功能划分）<br>
+&bull; <span class="highlight">MVC</span>：Model、View、Controller（按职责划分）<br>
+&bull; 两者不矛盾，可以结合使用<br><br>
+<strong>三层架构对应关系：</strong><br>
+&bull; <strong>表现层（Presentation）</strong>= Controller + View（Servlet/JSP）<br>
+&bull; <strong>业务逻辑层（Business）</strong>= Service（处理业务规则）<br>
+&bull; <strong>数据访问层（Persistence）</strong>= DAO（操作数据库）<br><br>
+<strong>调用规则：</strong>上层可以调用下层，下层不能调用上层。层与层之间通过接口通信，实现<strong>松耦合</strong>。<br><br>
+这种分层思想是企业级开发的基础，理解透彻对后续学习框架非常有帮助！`,
+    time: '14:25'
+  },
+  permission: {
+    content: `权限控制是 <span class="ref-tag">第13讲 Web安全基础</span> 和 <span class="ref-tag">第15讲 项目实战</span> 的交叉内容！<br><br>
+<strong>Web权限控制的实现方式：</strong><br><br>
+<strong>1. 基于Filter的URL级权限：</strong><br>
+<div class="code-block"><span class="kw">public void</span> <span class="fn">doFilter</span>(...) {
+  <span class="tp">HttpServletRequest</span> req = (<span class="tp">HttpServletRequest</span>) request;
+  <span class="tp">User</span> user = (<span class="tp">User</span>) req.<span class="fn">getSession</span>()
+      .<span class="fn">getAttribute</span>(<span class="str">"currentUser"</span>);
+
+  <span class="tp">String</span> uri = req.<span class="fn">getRequestURI</span>();
+
+  <span class="cm">// 管理员页面权限检查</span>
+  <span class="kw">if</span> (uri.<span class="fn">startsWith</span>(<span class="str">"/admin"</span>)) {
+    <span class="kw">if</span> (user == <span class="kw">null</span> || !<span class="str">"admin"</span>.<span class="fn">equals</span>(user.<span class="fn">getRole</span>())) {
+      resp.<span class="fn">sendRedirect</span>(<span class="str">"/403.jsp"</span>);
+      <span class="kw">return</span>;
+    }
+  }
+  chain.<span class="fn">doFilter</span>(request, response);
+}</div>
+<strong>2. RBAC（基于角色的权限控制）：</strong><br>
+&bull; 用户 -> 角色 -> 权限的三级关系<br>
+&bull; 数据库设计：user表、role表、permission表、user_role表、role_permission表<br><br>
+权限控制是企业级项目的必备功能，建议在第15讲项目实战中动手实现！`,
+    time: '14:25'
+  },
+  transaction: {
+    content: `事务控制是 <span class="ref-tag">第14讲 事务与连接池</span> 的核心内容！<br><br>
+<strong>ACID特性：</strong><br>
+&bull; <span class="highlight">A（Atomicity）原子性</span>：事务中的操作要么全部成功，要么全部回滚<br>
+&bull; <span class="highlight">C（Consistency）一致性</span>：事务前后数据库状态保持一致<br>
+&bull; <span class="highlight">I（Isolation）隔离性</span>：并发事务之间互不干扰<br>
+&bull; <span class="highlight">D（Durability）持久性</span>：事务提交后数据永久保存<br><br>
+<strong>JDBC事务控制：</strong><br>
+<div class="code-block"><span class="tp">Connection</span> conn = <span class="kw">null</span>;
+<span class="kw">try</span> {
+  conn = dataSource.<span class="fn">getConnection</span>();
+  conn.<span class="fn">setAutoCommit</span>(<span class="kw">false</span>); <span class="cm">// 开启事务</span>
+
+  <span class="cm">// 转账操作：A账户减100</span>
+  ps1.<span class="fn">executeUpdate</span>();
+  <span class="cm">// 转账操作：B账户加100</span>
+  ps2.<span class="fn">executeUpdate</span>();
+
+  conn.<span class="fn">commit</span>(); <span class="cm">// 提交事务</span>
+} <span class="kw">catch</span> (<span class="tp">Exception</span> e) {
+  <span class="kw">if</span> (conn != <span class="kw">null</span>) {
+    conn.<span class="fn">rollback</span>(); <span class="cm">// 回滚事务</span>
+  }
+} <span class="kw">finally</span> {
+  <span class="kw">if</span> (conn != <span class="kw">null</span>) {
+    conn.<span class="fn">setAutoCommit</span>(<span class="kw">true</span>);
+    conn.<span class="fn">close</span>();
+  }
+}</div>
+银行转账是理解事务的经典场景：要保证"扣款"和"到账"要么同时成功要么同时失败！`,
+    time: '14:25'
+  },
+  pool: {
+    content: `连接池是 <span class="ref-tag">第14讲 事务与连接池</span> 的重要内容！<br><br>
+<strong>为什么需要连接池？</strong><br>
+&bull; 数据库连接的创建和销毁非常<strong>消耗资源</strong><br>
+&bull; 频繁创建连接会导致<strong>性能瓶颈</strong><br>
+&bull; 连接池预先创建一批连接，<strong>重复利用</strong><br><br>
+<strong>Druid连接池配置示例：</strong><br>
+<div class="code-block"><span class="cm"># druid.properties</span>
+driverClassName=com.mysql.cj.jdbc.Driver
+url=jdbc:mysql://localhost:3306/mydb
+username=root
+password=123456
+initialSize=<span class="str">5</span>      <span class="cm"># 初始连接数</span>
+maxActive=<span class="str">20</span>       <span class="cm"># 最大连接数</span>
+maxWait=<span class="str">3000</span>       <span class="cm"># 等待超时(毫秒)</span>
+minIdle=<span class="str">3</span>          <span class="cm"># 最小空闲连接</span></div>
+<div class="code-block"><span class="cm">// Java代码获取连接</span>
+<span class="tp">Properties</span> props = <span class="kw">new</span> <span class="tp">Properties</span>();
+props.<span class="fn">load</span>(<span class="kw">new</span> <span class="tp">FileInputStream</span>(<span class="str">"druid.properties"</span>));
+<span class="tp">DataSource</span> ds = DruidDataSourceFactory.<span class="fn">createDataSource</span>(props);
+<span class="tp">Connection</span> conn = ds.<span class="fn">getConnection</span>(); <span class="cm">// 从池中借连接</span>
+<span class="cm">// 使用完毕</span>
+conn.<span class="fn">close</span>(); <span class="cm">// 归还到池中（不是真正关闭）</span></div>
+<strong>注意：</strong>使用连接池后，<code>conn.close()</code>不是关闭连接，而是归还到池中！`,
+    time: '14:25'
+  },
+  xss: {
+    content: `XSS攻击是 <span class="ref-tag">第13讲 Web安全基础</span> 的重要内容！<br><br>
+<strong>XSS（Cross-Site Scripting）跨站脚本攻击：</strong><br>
+攻击者在网页中注入恶意JavaScript代码，其他用户浏览时代码自动执行。<br><br>
+<strong>三种XSS类型：</strong><br>
+&bull; <span class="highlight">反射型XSS</span>：恶意代码在URL参数中，服务器原样返回<br>
+&bull; <span class="highlight">存储型XSS</span>：恶意代码存入数据库，所有访问用户受影响（更危险）<br>
+&bull; <span class="highlight">DOM型XSS</span>：纯前端JavaScript漏洞<br><br>
+<strong>防御方案：</strong><br>
+&bull; <strong>输出编码</strong>：对HTML特殊字符进行转义（&lt; &gt; &amp; &quot; &#x27;）<br>
+&bull; <strong>CSP</strong>（Content Security Policy）：限制页面能加载的脚本来源<br>
+&bull; <strong>HttpOnly Cookie</strong>：防止JavaScript读取Cookie<br>
+&bull; <strong>输入过滤</strong>：对用户输入进行白名单或黑名单过滤<br><br>
+<strong>关联知识：</strong>CSRF（跨站请求伪造）攻击使用Token机制防御，在 <span class="ref-tag">第13讲</span> 中也有讲解。`,
+    time: '14:25'
+  },
+  spring: {
+    content: `Spring MVC是 <span class="ref-tag">第11讲 Spring MVC</span> 的核心内容！<br><br>
+<strong>Spring MVC请求处理流程：</strong><br>
+&bull; 1. 客户端发送请求到 <span class="highlight">DispatcherServlet</span>（前端控制器）<br>
+&bull; 2. DispatcherServlet查询 <span class="highlight">HandlerMapping</span> 找到对应Controller<br>
+&bull; 3. Controller调用Service处理业务逻辑<br>
+&bull; 4. Controller返回 <span class="highlight">ModelAndView</span>（数据+视图名）<br>
+&bull; 5. <span class="highlight">ViewResolver</span> 解析视图名，找到具体视图<br>
+&bull; 6. 渲染视图并返回给客户端<br><br>
+<strong>常用注解：</strong><br>
+<div class="code-block"><span class="kw">@Controller</span>            <span class="cm">// 声明控制器</span>
+<span class="kw">@RequestMapping</span>(<span class="str">"/user"</span>) <span class="cm">// 请求映射</span>
+<span class="kw">@GetMapping</span>             <span class="cm">// 处理GET请求</span>
+<span class="kw">@PostMapping</span>            <span class="cm">// 处理POST请求</span>
+<span class="kw">@RequestParam</span>           <span class="cm">// 获取请求参数</span>
+<span class="kw">@PathVariable</span>           <span class="cm">// 获取URL路径变量</span>
+<span class="kw">@ResponseBody</span>           <span class="cm">// 返回JSON数据</span>
+<span class="kw">@ModelAttribute</span>         <span class="cm">// 绑定表单数据到对象</span></div>
+Spring MVC简化了Web开发，是当前Java Web开发的主流框架！`,
+    time: '14:25'
+  },
+  mybatis: {
+    content: `MyBatis是 <span class="ref-tag">第12讲 MyBatis框架</span> 的核心内容！<br><br>
+<strong>MyBatis核心概念：</strong><br>
+&bull; <strong>ORM框架</strong>：Java对象和数据库表之间的映射<br>
+&bull; <strong>SQL映射文件</strong>：将SQL语句写在XML中，与Java代码分离<br>
+&bull; <strong>动态SQL</strong>：根据条件动态生成SQL语句<br><br>
+<strong>#{}和${}的区别（高频面试题）：</strong><br>
+&bull; <span class="highlight">#{}</span>：预编译占位符，防止SQL注入，值会被单引号包裹<br>
+&bull; <span class="highlight">${}</span>：字符串替换，有SQL注入风险，用于表名/列名动态拼接<br><br>
+<div class="code-block"><span class="cm">&lt;!-- #{} 安全的参数绑定 --&gt;</span>
+&lt;<span class="kw">select</span> id=<span class="str">"findById"</span> resultType=<span class="str">"User"</span>&gt;
+  SELECT * FROM users WHERE id = <span class="fn">#{id}</span>
+&lt;/<span class="kw">select</span>&gt;
+
+<span class="cm">&lt;!-- 动态SQL示例 --&gt;</span>
+&lt;<span class="kw">select</span> id=<span class="str">"findByCondition"</span> resultType=<span class="str">"User"</span>&gt;
+  SELECT * FROM users
+  &lt;<span class="kw">where</span>&gt;
+    &lt;<span class="kw">if</span> test=<span class="str">"name != null"</span>&gt;
+      AND name LIKE CONCAT('%', <span class="fn">#{name}</span>, '%')
+    &lt;/<span class="kw">if</span>&gt;
+    &lt;<span class="kw">if</span> test=<span class="str">"age != null"</span>&gt;
+      AND age &gt; <span class="fn">#{age}</span>
+    &lt;/<span class="kw">if</span>&gt;
+  &lt;/<span class="kw">where</span>&gt;
+&lt;/<span class="kw">select</span>&gt;</div>
+MyBatis相比纯JDBC大大简化了数据访问层的代码量！`,
+    time: '14:25'
+  },
   default: {
     content: `这个问题涉及到课程中的重要知识点。让我在课程知识库中检索一下...<br><br>
 根据课程内容，我建议你：<br>
@@ -2131,8 +3446,12 @@ ps.<span class="fn">setString</span>(<span class="str">2</span>, password);</div
 你可以试着问我更具体的问题，比如：<br>
 &bull; "Session和Cookie有什么区别？"<br>
 &bull; "Filter的执行机制是怎样的？"<br>
-&bull; "MVC模式中Controller的职责？"<br>
-&bull; "如何防止SQL注入？"<br><br>
+&bull; "Servlet的生命周期是什么？"<br>
+&bull; "PreparedStatement为什么能防SQL注入？"<br>
+&bull; "MVC中Controller和Service的区别？"<br>
+&bull; "JDBC连接数据库的步骤？"<br>
+&bull; "JSTL的forEach标签怎么用？"<br>
+&bull; "MyBatis的#{}和${}区别？"<br><br>
 我会结合课程具体内容给你详细解答！`,
     time: '14:25'
   }
@@ -2222,7 +3541,7 @@ function renderKBManage() {
   if (!grid) return;
   grid.innerHTML = '';
   for (let i = 1; i <= 16; i++) {
-    const enabled = i !== 15 && i !== 16; // Last 2 disabled as demo
+    const enabled = i !== 15 && i !== 16;
     grid.innerHTML += `
       <div class="kb-item ${enabled ? 'enabled' : 'disabled'}" onclick="this.classList.toggle('enabled');this.classList.toggle('disabled');">
         第${i}讲
@@ -2234,11 +3553,11 @@ function renderLectureGrid() {
   const grid = document.getElementById('lectureGrid');
   if (!grid) return;
   grid.innerHTML = '';
-  const currentLecture = 5; // Current progress at lecture 5
+  const currentLecture = 9;
   lectureData.forEach(l => {
     const isCurrent = l.num === currentLecture;
     grid.innerHTML += `
-      <div class="lecture-card ${isCurrent ? 'current' : ''}" title="第${l.num}讲: ${l.title}">
+      <div class="lecture-card ${isCurrent ? 'current' : ''}" title="第${l.num}讲: ${l.title}" onclick="showLectureModal(${l.num - 1})">
         <div class="lc-num">${l.num}</div>
         <div class="lc-title">${l.title}</div>
         ${isCurrent ? '<div class="lc-badge">当前</div>' : ''}
@@ -2246,10 +3565,87 @@ function renderLectureGrid() {
   });
 }
 
+function renderTimeChart() {
+  const chart = document.getElementById('timeChart');
+  const labels = document.getElementById('timeLabels');
+  if (!chart || !labels) return;
+
+  const maxVal = Math.max(...timeDistribution);
+  chart.innerHTML = '';
+  labels.innerHTML = '';
+
+  timeDistribution.forEach((val, i) => {
+    const height = maxVal > 0 ? (val / maxVal * 100) : 0;
+    const isPeak = i >= 21 && i <= 23;
+    chart.innerHTML += `
+      <div class="time-bar-wrapper">
+        <div class="time-bar ${isPeak ? 'peak' : ''}" style="height:${Math.max(height, 3)}%" data-tip="${i}:00 - ${val}次提问"></div>
+      </div>`;
+    if (i % 3 === 0) {
+      labels.innerHTML += `<span>${i}时</span>`;
+    } else {
+      labels.innerHTML += `<span></span>`;
+    }
+  });
+}
+
+function renderHitRate() {
+  const list = document.getElementById('hitRateList');
+  if (!list) return;
+  list.innerHTML = '';
+
+  hitRateData.forEach(item => {
+    list.innerHTML += `
+      <div class="hit-rate-item">
+        <div class="hit-rate-label">${item.topic}</div>
+        <div class="hit-rate-bar-bg">
+          <div class="hit-rate-bar" style="width:0%;background:${item.color}" data-target="${item.rate}"></div>
+        </div>
+        <div class="hit-rate-value">${item.rate}%</div>
+      </div>`;
+  });
+
+  setTimeout(() => {
+    document.querySelectorAll('.hit-rate-bar').forEach(bar => {
+      bar.style.width = bar.dataset.target + '%';
+    });
+  }, 300);
+}
+
+function renderLearningTimeline() {
+  const container = document.getElementById('learningTimeline');
+  if (!container) return;
+
+  const days = [
+    { label: '周一', segments: [{start:35, width:8}, {start:80, width:12}], count: '3次' },
+    { label: '周二', segments: [{start:75, width:18}], count: '2次' },
+    { label: '周三', segments: [{start:30, width:5}, {start:60, width:10}, {start:82, width:14}], count: '5次' },
+    { label: '周四', segments: [{start:78, width:15}], count: '2次' },
+    { label: '周五', segments: [], count: '0次' },
+    { label: '周六', segments: [{start:40, width:12}, {start:70, width:20}], count: '4次' },
+    { label: '周日', segments: [{start:55, width:8}, {start:80, width:16}], count: '3次' },
+  ];
+
+  container.innerHTML = '';
+  days.forEach(day => {
+    let segsHtml = '';
+    day.segments.forEach((seg, i) => {
+      const isActive = i === day.segments.length - 1;
+      segsHtml += `<div class="timeline-segment ${isActive ? 'active' : ''}" style="left:${seg.start}%;width:${seg.width}%"></div>`;
+    });
+    container.innerHTML += `
+      <div class="timeline-row">
+        <div class="timeline-day-label">${day.label}</div>
+        <div class="timeline-bar-bg">${segsHtml}</div>
+        <div class="timeline-count">${day.count}</div>
+      </div>`;
+  });
+}
+
 function animateRing() {
   const ring = document.getElementById('activeRing');
   if (!ring) return;
-  const circumference = 2 * Math.PI * 35; // ~220
+  const circumference = 2 * Math.PI * 35;
   ring.style.strokeDasharray = circumference;
   ring.style.strokeDashoffset = circumference;
   const target = 0.724;
@@ -2259,10 +3655,94 @@ function animateRing() {
 }
 
 
+// ===== LECTURE DETAIL MODAL =====
+function showLectureModal(index) {
+  const lecture = lectureData[index];
+  if (!lecture) return;
+
+  const modal = document.getElementById('lectureModal');
+  const content = document.getElementById('lectureModalContent');
+
+  const topicsHtml = lecture.topics.map(t => `<span class="modal-tag">${t}</span>`).join('');
+
+  const questionsHtml = lecture.questions.map((q, i) => {
+    const answers = [
+      '详细解答请在对话框中向AI助教提问，获取完整的讲解和代码示例。',
+      '这是本讲的核心概念，AI助教可以结合代码实例为你详细分析。',
+      '这个知识点经常在考试中出现，建议通过AI助教进行深入学习。'
+    ];
+    return `
+      <div class="modal-qa">
+        <div class="modal-qa-q">Q: ${q}</div>
+        <div class="modal-qa-a">A: ${answers[i % answers.length]}</div>
+      </div>`;
+  }).join('');
+
+  const hotQuestions = lecture.questions.map((q, i) => `
+    <div class="modal-hot-item">
+      <div class="modal-hot-rank">${i + 1}</div>
+      <div class="modal-hot-text">${q}</div>
+      <div class="modal-hot-count">${Math.floor(Math.random() * 20 + 10)}次</div>
+    </div>`).join('');
+
+  content.innerHTML = `
+    <div class="modal-header">
+      <h3>第${lecture.num}讲: ${lecture.title}</h3>
+      <button class="modal-close" onclick="closeLectureModal()">&times;</button>
+    </div>
+
+    <div class="modal-stat-row">
+      <div class="modal-stat">
+        <div class="modal-stat-val">${lecture.chunks}</div>
+        <div class="modal-stat-label">已索引知识片段</div>
+      </div>
+      <div class="modal-stat">
+        <div class="modal-stat-val" style="color:var(--accent);">${lecture.topics.length}</div>
+        <div class="modal-stat-label">覆盖知识点</div>
+      </div>
+      <div class="modal-stat">
+        <div class="modal-stat-val" style="color:#e67e22;">${lecture.questions.length}</div>
+        <div class="modal-stat-label">常见问题数</div>
+      </div>
+    </div>
+
+    <div class="modal-section">
+      <div class="modal-section-title">&#x1F4D6; 涵盖知识点</div>
+      <div>${topicsHtml}</div>
+    </div>
+
+    <div class="modal-section">
+      <div class="modal-section-title">&#x1F4AC; 示例Q&A</div>
+      ${questionsHtml}
+    </div>
+
+    <div class="modal-section">
+      <div class="modal-section-title">&#x1F525; 相关问题热度</div>
+      <div class="modal-hot-list">
+        ${hotQuestions}
+      </div>
+    </div>
+  `;
+
+  modal.classList.add('visible');
+}
+
+function closeLectureModal() {
+  document.getElementById('lectureModal').classList.remove('visible');
+}
+
+// Close modal on overlay click
+document.getElementById('lectureModal').addEventListener('click', function(e) {
+  if (e.target === this) {
+    closeLectureModal();
+  }
+});
+
+
 // ===== TOOLTIP =====
 const tooltip = document.getElementById('tooltip');
 document.addEventListener('mouseover', e => {
-  const cell = e.target.closest('.heatmap-cell');
+  const cell = e.target.closest('[data-tip]');
   if (cell && cell.dataset.tip) {
     tooltip.textContent = cell.dataset.tip;
     tooltip.classList.add('visible');
@@ -2275,7 +3755,7 @@ document.addEventListener('mousemove', e => {
   }
 });
 document.addEventListener('mouseout', e => {
-  if (e.target.closest('.heatmap-cell')) {
+  if (e.target.closest('[data-tip]')) {
     tooltip.classList.remove('visible');
   }
 });
@@ -2287,8 +3767,13 @@ function getCurrentTime() {
   return now.getHours().toString().padStart(2, '0') + ':' + now.getMinutes().toString().padStart(2, '0');
 }
 
+function getUserAvatar() {
+  const name = document.getElementById('stuName').value || '陈思远';
+  return name.charAt(0);
+}
+
 function addMessage(container, type, content) {
-  const avatar = type === 'user' ? '李' : 'W';
+  const avatar = type === 'user' ? getUserAvatar() : 'W';
   const time = getCurrentTime();
   const msg = document.createElement('div');
   msg.className = `message ${type}`;
@@ -2304,14 +3789,63 @@ function addMessage(container, type, content) {
 
 function getResponse(input) {
   const lower = input.toLowerCase();
-  if (lower.includes('session') || lower.includes('会话') || lower.includes('cookie'))
+
+  // Session/Cookie
+  if ((lower.includes('session') && !lower.includes('cookie')) || lower.includes('会话'))
     return mockResponses.session;
-  if (lower.includes('filter') || lower.includes('过滤') || lower.includes('监听') || lower.includes('listener'))
+  if (lower.includes('cookie') && !lower.includes('session'))
+    return mockResponses.cookie;
+  if (lower.includes('session') && lower.includes('cookie'))
+    return mockResponses.session;
+
+  // Filter/Listener
+  if (lower.includes('filter') || lower.includes('过滤') || lower.includes('dofilter') || lower.includes('chain'))
     return mockResponses.filter;
-  if (lower.includes('mvc') || lower.includes('控制器') || lower.includes('controller') || lower.includes('分层') || lower.includes('spring'))
+  if (lower.includes('listener') || lower.includes('监听'))
+    return mockResponses.listener;
+
+  // MVC/DAO/三层
+  if (lower.includes('dao') || lower.includes('数据访问'))
+    return mockResponses.dao;
+  if (lower.includes('三层') || lower.includes('分层'))
+    return mockResponses.three_layer;
+  if (lower.includes('mvc') || lower.includes('控制器') || lower.includes('controller') || lower.includes('service'))
     return mockResponses.mvc;
-  if (lower.includes('sql') || lower.includes('注入') || lower.includes('安全') || lower.includes('xss') || lower.includes('csrf') || lower.includes('prepared'))
+
+  // JDBC/SQL/数据库
+  if (lower.includes('jdbc') || lower.includes('连接数据库') || lower.includes('resultset'))
+    return mockResponses.jdbc;
+  if (lower.includes('sql注入') || lower.includes('注入') || lower.includes('prepared'))
     return mockResponses.sql;
+  if (lower.includes('事务') || lower.includes('transaction') || lower.includes('acid') || lower.includes('回滚'))
+    return mockResponses.transaction;
+  if (lower.includes('连接池') || lower.includes('druid') || lower.includes('datasource'))
+    return mockResponses.pool;
+
+  // Web安全
+  if (lower.includes('xss') || lower.includes('csrf') || lower.includes('跨站'))
+    return mockResponses.xss;
+  if (lower.includes('安全') || lower.includes('权限') || lower.includes('rbac'))
+    return mockResponses.permission;
+
+  // Servlet/JSP/EL/JSTL
+  if (lower.includes('servlet') || lower.includes('生命周期') || lower.includes('doget') || lower.includes('dopost'))
+    return mockResponses.servlet;
+  if (lower.includes('jsp') && !lower.includes('jstl'))
+    return mockResponses.jsp;
+  if (lower.includes('el') || lower.includes('表达式'))
+    return mockResponses.el;
+  if (lower.includes('jstl') || lower.includes('foreach') || lower.includes('标签库'))
+    return mockResponses.jstl;
+
+  // Spring MVC
+  if (lower.includes('spring') || lower.includes('dispatcher') || lower.includes('requestmapping') || lower.includes('注解'))
+    return mockResponses.spring;
+
+  // MyBatis
+  if (lower.includes('mybatis') || lower.includes('mapper') || lower.includes('动态sql'))
+    return mockResponses.mybatis;
+
   return mockResponses.default;
 }
 

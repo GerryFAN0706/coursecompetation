@@ -74,16 +74,53 @@
   .ai-rule-box .sub{font-size:13px;color:#888;margin-top:4px}
   .start-btn-wrap{text-align:center;margin-top:28px}
 
+  /* Scoring table */
+  .scoring-table{width:100%;border-collapse:separate;border-spacing:0;margin:12px 0 6px;font-size:13px}
+  .scoring-table th{background:var(--ai);color:#fff;padding:8px 12px;font-weight:600;text-align:left}
+  .scoring-table th:first-child{border-radius:8px 0 0 0}
+  .scoring-table th:last-child{border-radius:0 8px 0 0}
+  .scoring-table td{padding:8px 12px;border-bottom:1px solid #e2e8f0}
+  .scoring-table tr:last-child td:first-child{border-radius:0 0 0 8px}
+  .scoring-table tr:last-child td:last-child{border-radius:0 0 8px 0}
+  .scoring-table .score-pts{font-weight:700;color:var(--ai);text-align:center;width:70px}
+
+  /* Group tags */
+  .group-tags{display:flex;gap:12px;flex-wrap:wrap;margin:12px 0}
+  .group-tag{display:flex;align-items:center;gap:6px;background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;padding:8px 14px;font-size:13px;flex:1;min-width:200px}
+  .group-tag .g-label{font-weight:700;color:var(--ai);white-space:nowrap}
+  .group-tag .g-members{color:#475569}
+  .group-tag .g-leader{color:var(--gold);font-weight:600}
+
+  /* History */
+  .battle-history{display:flex;gap:12px;margin:12px 0;flex-wrap:wrap}
+  .history-item{flex:1;min-width:180px;background:#f8fafc;border:1px solid #e2e8f0;border-radius:10px;padding:12px 16px;text-align:center}
+  .history-item.current{border-color:var(--ai);background:var(--ai-bg)}
+  .history-item .h-round{font-size:11px;color:#94a3b8;text-transform:uppercase;letter-spacing:1px;font-weight:600}
+  .history-item .h-topic{font-size:14px;font-weight:700;color:var(--dark);margin:4px 0}
+  .history-item .h-result{font-size:12px;color:#64748b}
+  .cumulative-score{display:flex;align-items:center;justify-content:center;gap:20px;margin:16px 0;padding:14px;background:linear-gradient(135deg,rgba(68,114,196,.06),rgba(124,58,237,.06));border-radius:10px;border:1px dashed rgba(124,58,237,.2)}
+  .cum-side{text-align:center}
+  .cum-side .cum-label{font-size:12px;color:#64748b;font-weight:600}
+  .cum-side .cum-val{font-size:28px;font-weight:900;font-variant-numeric:tabular-nums}
+  .cum-side.human .cum-val{color:var(--human)}
+  .cum-side.ai .cum-val{color:var(--ai)}
+  .cum-vs{font-size:16px;font-weight:900;color:var(--gold)}
+
   /* ===== STEP 2: CODE + REVIEW ===== */
   .code-review-layout{max-width:1400px;margin:24px auto 0;padding:0 24px;display:grid;grid-template-columns:220px 1fr;gap:20px}
   .file-tree{background:#fff;border-radius:12px;padding:16px;box-shadow:0 4px 16px rgba(0,0,0,.06);align-self:start;position:sticky;top:90px}
   .file-tree-title{font-size:13px;font-weight:700;color:#64748b;text-transform:uppercase;letter-spacing:1px;margin-bottom:12px;display:flex;align-items:center;gap:6px}
-  .tree-item{font-family:'Consolas','Courier New',monospace;font-size:13px;padding:4px 0;color:#64748b;white-space:nowrap;display:flex;align-items:center;gap:4px}
-  .tree-item.folder{color:#94a3b8;font-weight:600}
+  .tree-item{font-family:'Consolas','Courier New',monospace;font-size:13px;padding:4px 0;color:#64748b;white-space:nowrap;display:flex;align-items:center;gap:4px;cursor:pointer;border-radius:6px;transition:all .2s;margin:0 -8px;padding:4px 8px}
+  .tree-item:hover{background:#f0f2f5}
+  .tree-item.folder{color:#94a3b8;font-weight:600;cursor:default}
+  .tree-item.folder:hover{background:transparent}
   .tree-item.file{padding-left:20px}
-  .tree-item.active-file{color:var(--ai);font-weight:700;background:var(--ai-bg);margin:0 -8px;padding:4px 8px;border-radius:6px}
+  .tree-item.active-file{color:var(--ai);font-weight:700;background:var(--ai-bg)}
+  .tree-item.active-file:hover{background:var(--ai-bg)}
+  .tree-item.reviewable{color:#475569;font-weight:600}
   .tree-item .tree-icon{font-size:14px;width:18px;text-align:center}
   .tree-item .arrow{color:var(--gold);font-size:11px;margin-left:8px}
+  .tree-item .review-badge{font-size:10px;background:var(--red);color:#fff;padding:1px 6px;border-radius:10px;margin-left:auto;font-weight:700}
 
   .code-main{min-width:0}
 
@@ -101,8 +138,17 @@
   .timer-submit-btn{padding:10px 24px;border-radius:8px;font-size:14px;font-weight:700;border:2px solid var(--human);color:var(--human);background:#fff;cursor:pointer;transition:all .3s}
   .timer-submit-btn:hover{background:var(--human);color:#fff}
 
+  /* File tabs */
+  .file-tabs{display:flex;gap:2px;margin-bottom:0}
+  .file-tab{padding:10px 20px;background:#2d2d3f;color:#94a3b8;font-family:'Consolas','Courier New',monospace;font-size:13px;font-weight:600;border-radius:8px 8px 0 0;cursor:pointer;transition:all .3s;display:flex;align-items:center;gap:8px;border:none}
+  .file-tab:hover{background:#3d3d5f;color:#cdd6f4}
+  .file-tab.active{background:var(--code-bg);color:#cdd6f4}
+  .file-tab .tab-dot{width:8px;height:8px;border-radius:50%}
+  .file-tab .tab-dot.warn{background:#f38ba8}
+  .file-tab .tab-count{font-size:10px;background:rgba(243,139,168,.2);color:#f38ba8;padding:2px 6px;border-radius:10px}
+
   /* Code display */
-  .code-card{background:var(--code-bg);border-radius:12px;overflow:hidden;box-shadow:0 8px 32px rgba(0,0,0,.18)}
+  .code-card{background:var(--code-bg);border-radius:0 12px 12px 12px;overflow:hidden;box-shadow:0 8px 32px rgba(0,0,0,.18)}
   .code-header{display:flex;align-items:center;gap:10px;padding:12px 20px;background:#181825;border-bottom:1px solid #313244}
   .code-header .dots{display:flex;gap:6px}
   .code-header .dots span{width:12px;height:12px;border-radius:50%}
@@ -116,8 +162,12 @@
   .line-numbers span{display:block;padding:0 12px 0 8px;font-size:13px;line-height:22px;color:#585b70;font-family:'Consolas','Courier New',monospace}
   .code-content{padding:16px 20px;flex:1;overflow-x:auto}
   .code-content pre{font-size:13px;line-height:22px;font-family:'Consolas','Courier New',monospace;color:var(--code-fg);white-space:pre}
-  .code-line{display:block;padding:0 4px;border-radius:3px;transition:background .3s}
+  .code-line{display:block;padding:0 4px;border-radius:3px;transition:background .3s;position:relative;cursor:pointer}
+  .code-line:hover{background:rgba(255,255,255,.04)}
   .code-line.highlight{background:rgba(255,215,0,.12);box-shadow:inset 3px 0 0 var(--gold)}
+  .code-line.annotated{background:rgba(68,114,196,.1)}
+  .code-line .annotation-marker{position:absolute;right:8px;top:1px;font-size:11px;background:var(--human);color:#fff;padding:1px 8px;border-radius:10px;font-family:'Microsoft YaHei',sans-serif;opacity:0;transition:opacity .3s;cursor:pointer}
+  .code-line.annotated .annotation-marker{opacity:1}
   /* Syntax colors */
   .kw{color:#c678dd} .ty{color:#e5c07b} .str{color:#98c379} .cm{color:#6a9955;font-style:italic}
   .an{color:#e06c75} .fn{color:#61afef} .num{color:#d19a66} .op{color:#abb2bf}
@@ -125,7 +175,7 @@
   /* Student findings form */
   .findings-form{background:#fff;border-radius:12px;padding:20px 24px;margin-top:16px;box-shadow:0 4px 16px rgba(0,0,0,.06)}
   .findings-form-title{font-size:16px;font-weight:700;color:var(--human);margin-bottom:14px;display:flex;align-items:center;gap:8px}
-  .finding-row{display:grid;grid-template-columns:70px 1fr 100px 1fr 36px;gap:8px;align-items:start;margin-bottom:10px;animation:fadeSlideIn .3s ease}
+  .finding-row{display:grid;grid-template-columns:70px 80px 1fr 100px 1fr 36px;gap:8px;align-items:start;margin-bottom:10px;animation:fadeSlideIn .3s ease}
   .finding-row input,.finding-row select,.finding-row textarea{padding:8px 10px;border:2px solid #e2e8f0;border-radius:8px;font-size:13px;font-family:inherit;transition:border-color .3s;resize:none}
   .finding-row input:focus,.finding-row select:focus,.finding-row textarea:focus{outline:none;border-color:var(--human)}
   .finding-row select{cursor:pointer}
@@ -133,9 +183,13 @@
   .finding-row .remove-btn:hover{background:var(--red);color:#fff}
   .add-finding-btn{padding:8px 20px;border-radius:8px;border:2px dashed #cbd5e1;background:#f8fafc;color:#64748b;font-size:13px;font-weight:600;cursor:pointer;transition:all .3s;margin-top:4px}
   .add-finding-btn:hover{border-color:var(--human);color:var(--human);background:var(--human-bg)}
+  .file-filter-tabs{display:flex;gap:8px;margin-bottom:14px}
+  .file-filter-tab{padding:6px 14px;border-radius:6px;border:1px solid #e2e8f0;background:#f8fafc;color:#64748b;font-size:12px;font-weight:600;cursor:pointer;transition:all .3s}
+  .file-filter-tab:hover{border-color:var(--human);color:var(--human)}
+  .file-filter-tab.active{background:var(--human);color:#fff;border-color:var(--human)}
 
   /* ===== STEP 3: AI REVEAL ===== */
-  .ai-reveal{max-width:900px;margin:28px auto 0;padding:0 24px}
+  .ai-reveal{max-width:1000px;margin:28px auto 0;padding:0 24px}
   .ai-reveal-card{background:#fff;border-radius:16px;padding:32px 36px;box-shadow:0 4px 24px rgba(0,0,0,.06);border:2px solid rgba(124,58,237,.15);position:relative;overflow:hidden}
   .ai-reveal-card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,#a78bfa,var(--ai),#a78bfa)}
   .ai-header{text-align:center;margin-bottom:24px}
@@ -149,6 +203,18 @@
   .ai-scan-line{height:2px;background:linear-gradient(90deg,transparent,var(--ai),transparent);margin:12px 0 20px;animation:scanPulse 2s infinite}
   @keyframes scanPulse{0%{opacity:.3}50%{opacity:1}100%{opacity:.3}}
 
+  .ai-prompt-box{background:#1e1e2e;border-radius:10px;padding:16px 20px;margin-bottom:20px;font-family:'Consolas','Courier New',monospace;font-size:12px;color:#a6adc8;line-height:1.7;border:1px solid #313244;position:relative}
+  .ai-prompt-label{position:absolute;top:-10px;left:16px;background:#1e1e2e;padding:0 8px;font-size:11px;color:var(--ai);font-weight:700;font-family:'Microsoft YaHei',sans-serif;border:1px solid #313244;border-radius:4px}
+  .ai-thinking-steps{margin-bottom:20px}
+  .ai-think-step{padding:8px 14px;margin-bottom:6px;border-radius:8px;background:#f8fafc;border:1px solid #e2e8f0;font-size:13px;color:#64748b;display:flex;align-items:center;gap:8px;opacity:0;transform:translateX(-20px);transition:all .5s}
+  .ai-think-step.visible{opacity:1;transform:translateX(0)}
+  .ai-think-step .think-icon{font-size:16px}
+  .ai-think-step.done{border-color:var(--green);background:#f0fdf4;color:var(--green)}
+  .ai-think-step.done .think-icon::after{content:' ✓';color:var(--green);font-weight:700}
+
+  .ai-file-section{margin-bottom:8px}
+  .ai-file-label{font-size:13px;font-weight:700;color:var(--ai);margin:16px 0 8px;padding:6px 12px;background:var(--ai-bg);border-radius:6px;display:inline-block}
+
   .ai-finding-item{padding:16px;border-radius:12px;margin-bottom:12px;border-left:4px solid;opacity:0;transform:translateX(40px);transition:all .6s cubic-bezier(.22,1,.36,1)}
   .ai-finding-item.revealed{opacity:1;transform:translateX(0)}
   .ai-finding-item.sev-high{background:#fef2f2;border-color:var(--red)}
@@ -157,6 +223,8 @@
   .ai-finding-item.sev-fp{background:#f5f5f5;border-color:var(--gray)}
   .ai-finding-top{display:flex;align-items:center;gap:8px;margin-bottom:6px}
   .ai-finding-num{font-size:11px;background:var(--ai);color:#fff;width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;flex-shrink:0}
+  .ai-finding-file{font-size:11px;color:#94a3b8;background:#f0f0f0;padding:2px 8px;border-radius:4px;font-family:'Consolas',monospace}
+  .ai-finding-knowledge{font-size:11px;color:var(--ai);background:var(--ai-bg);padding:2px 8px;border-radius:4px;margin-top:6px;display:inline-block}
 
   /* ===== STEP 4: COMPARISON ===== */
   .compare-section{max-width:1400px;margin:24px auto 0;padding:0 24px}
@@ -183,12 +251,13 @@
   .finding.sev-mid{background:#fffbeb;border-color:var(--orange)}
   .finding.sev-low{background:#f0fdf4;border-color:var(--green)}
   .finding.sev-fp{background:#f5f5f5;border-color:var(--gray);opacity:.7}
-  .finding-top{display:flex;align-items:center;gap:8px;margin-bottom:4px}
+  .finding-top{display:flex;align-items:center;gap:8px;margin-bottom:4px;flex-wrap:wrap}
   .sev-badge{font-size:11px;font-weight:700;padding:2px 8px;border-radius:20px;color:#fff;display:inline-flex;align-items:center;gap:4px}
   .sev-badge.high{background:var(--red)}.sev-badge.mid{background:var(--orange)}.sev-badge.low{background:var(--green)}.sev-badge.fp{background:var(--gray)}
   .line-ref{font-size:11px;color:#888;background:#f0f0f0;padding:2px 8px;border-radius:10px;cursor:pointer;transition:background .2s,color .2s;margin-left:auto}
   .line-ref:hover{background:var(--gold);color:#333}
   .finding-desc{font-size:13.5px;color:#444;line-height:1.5}
+  .finding-file{font-size:10px;color:#94a3b8;background:#f0f0f0;padding:1px 6px;border-radius:4px;font-family:'Consolas',monospace}
   .rejected-tag{display:inline-block;font-size:10px;background:#e74c3c;color:#fff;padding:1px 6px;border-radius:4px;margin-left:6px;font-weight:600;animation:pulse 2s infinite}
   @keyframes pulse{0%,100%{opacity:1}50%{opacity:.5}}
 
@@ -202,6 +271,27 @@
   .hl-tag.human-adv{background:rgba(68,114,196,.12);color:var(--human)}
   .hl-tag.ai-adv{background:rgba(124,58,237,.12);color:var(--ai)}
   .hl-tag.fp-tag{background:rgba(231,76,60,.12);color:var(--red)}
+
+  /* Overlap metrics */
+  .overlap-metrics{background:#fff;border-radius:14px;padding:24px 32px;box-shadow:0 4px 20px rgba(0,0,0,.06);margin-top:20px}
+  .overlap-title{text-align:center;font-size:16px;font-weight:700;color:var(--dark);margin-bottom:16px}
+  .venn-container{display:flex;align-items:center;justify-content:center;gap:0;margin:16px 0;position:relative;height:180px}
+  .venn-circle{width:180px;height:180px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-direction:column;font-weight:700;font-size:14px;position:absolute}
+  .venn-circle.venn-human{background:rgba(68,114,196,.15);border:3px solid var(--human);left:calc(50% - 140px)}
+  .venn-circle.venn-ai{background:rgba(124,58,237,.15);border:3px solid var(--ai);right:calc(50% - 140px)}
+  .venn-overlap{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);z-index:2;text-align:center;background:rgba(39,174,96,.15);border:2px solid var(--green);border-radius:50%;width:100px;height:100px;display:flex;align-items:center;justify-content:center;flex-direction:column}
+  .venn-label{font-size:11px;color:#64748b}
+  .venn-num{font-size:24px;font-weight:900}
+  .venn-human .venn-num{color:var(--human)}
+  .venn-ai .venn-num{color:var(--ai)}
+  .venn-overlap .venn-num{color:var(--green)}
+  .overlap-stats{display:flex;justify-content:center;gap:20px;margin-top:16px;flex-wrap:wrap}
+  .overlap-stat{text-align:center;padding:10px 16px;background:#f8fafc;border-radius:8px;border:1px solid #e2e8f0;min-width:120px}
+  .overlap-stat .os-val{font-size:20px;font-weight:800}
+  .overlap-stat .os-label{font-size:11px;color:#64748b;margin-top:2px}
+  .group-breakdown{display:flex;justify-content:center;gap:16px;margin-top:16px;flex-wrap:wrap}
+  .group-hit{padding:10px 20px;background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;text-align:center;font-size:13px;font-weight:600;color:#475569}
+  .group-hit .hit-val{color:var(--human);font-weight:800}
 
   /* Legend */
   .compare-legend{display:flex;gap:20px;justify-content:center;margin-bottom:20px;flex-wrap:wrap}
@@ -242,8 +332,18 @@
   .answer-toggle .arrow{transition:transform .3s;display:inline-block}
   .answer-toggle.open .arrow{transform:rotate(90deg)}
   .answer-content{max-height:0;overflow:hidden;transition:max-height .5s ease, padding .5s ease;padding:0 16px}
-  .answer-content.open{max-height:500px;padding:16px}
+  .answer-content.open{max-height:800px;padding:16px}
   .answer-inner{background:#f8fafc;border-radius:10px;padding:16px;font-size:14px;color:#475569;line-height:1.7;border-left:4px solid var(--ai)}
+
+  .highlight-box{background:linear-gradient(135deg,rgba(255,215,0,.08),rgba(255,215,0,.15));border:2px solid rgba(255,215,0,.3);border-radius:12px;padding:18px 24px;margin-top:20px}
+  .highlight-box .hb-title{font-size:15px;font-weight:700;color:var(--dark);margin-bottom:8px;display:flex;align-items:center;gap:8px}
+  .highlight-box .hb-content{font-size:14px;color:#475569;line-height:1.6}
+  .highlight-box .hb-name{color:var(--human);font-weight:700}
+
+  .student-notes{margin-top:20px;background:#f8fafc;border-radius:12px;padding:20px 24px;border:1px solid #e2e8f0}
+  .student-notes .sn-title{font-size:14px;font-weight:700;color:var(--dark);margin-bottom:10px;display:flex;align-items:center;gap:6px}
+  .student-notes textarea{width:100%;min-height:80px;border:2px solid #e2e8f0;border-radius:8px;padding:12px;font-size:13px;font-family:inherit;resize:vertical;transition:border-color .3s}
+  .student-notes textarea:focus{outline:none;border-color:var(--ai)}
 
   /* ===== STEP 6: SUMMARY ===== */
   .summary-section{max-width:1400px;margin:24px auto 0;padding:0 24px}
@@ -273,6 +373,40 @@
   .collab-icon{font-size:28px;display:inline-block;animation:handshake 1.5s ease-in-out infinite}
   @keyframes handshake{0%,100%{transform:rotate(0)}25%{transform:rotate(-8deg)}75%{transform:rotate(8deg)}}
 
+  /* Historical comparison */
+  .history-compare{background:#fff;border-radius:14px;padding:28px 32px;box-shadow:0 4px 20px rgba(0,0,0,.06);margin-top:24px}
+  .history-compare-title{text-align:center;font-size:18px;font-weight:700;color:var(--dark);margin-bottom:20px}
+  .battle-chart{display:flex;align-items:flex-end;justify-content:center;gap:24px;height:200px;padding:20px 0;border-bottom:2px solid #e2e8f0;margin-bottom:16px}
+  .battle-bar-group{display:flex;flex-direction:column;align-items:center;gap:4px}
+  .battle-bars{display:flex;gap:6px;align-items:flex-end;height:160px}
+  .battle-bar{width:40px;border-radius:6px 6px 0 0;transition:height .8s cubic-bezier(.22,1,.36,1);position:relative}
+  .battle-bar.human-bar{background:linear-gradient(180deg,var(--human),#6a9fd8)}
+  .battle-bar.ai-bar{background:linear-gradient(180deg,var(--ai),#9f7aea)}
+  .battle-bar .bar-val{position:absolute;top:-22px;left:50%;transform:translateX(-50%);font-size:12px;font-weight:700;white-space:nowrap}
+  .human-bar .bar-val{color:var(--human)}
+  .ai-bar .bar-val{color:var(--ai)}
+  .battle-bar-label{font-size:12px;color:#64748b;font-weight:600;text-align:center;max-width:100px}
+  .chart-legend{display:flex;justify-content:center;gap:24px;margin-top:12px}
+  .chart-legend-item{display:flex;align-items:center;gap:6px;font-size:12px;color:#64748b;font-weight:600}
+  .chart-legend-dot{width:12px;height:12px;border-radius:3px}
+  .chart-legend-dot.human-dot{background:var(--human)}
+  .chart-legend-dot.ai-dot{background:var(--ai)}
+
+  /* Per-student scores */
+  .student-scores{background:#fff;border-radius:14px;padding:28px 32px;box-shadow:0 4px 20px rgba(0,0,0,.06);margin-top:24px}
+  .student-scores-title{text-align:center;font-size:18px;font-weight:700;color:var(--dark);margin-bottom:20px}
+  .student-table{width:100%;border-collapse:separate;border-spacing:0;font-size:13px}
+  .student-table th{background:#f8f9fa;color:#666;font-weight:600;font-size:11px;text-transform:uppercase;letter-spacing:1px;padding:10px 12px;text-align:center}
+  .student-table th:first-child{text-align:left;border-radius:8px 0 0 0}
+  .student-table th:last-child{border-radius:0 8px 0 0}
+  .student-table td{padding:10px 12px;text-align:center;border-bottom:1px solid #f0f0f0}
+  .student-table td:first-child{text-align:left;font-weight:600;color:#475569}
+  .student-table .group-cell{font-size:11px;color:var(--ai);font-weight:600}
+  .student-table .score-cell{font-weight:700}
+  .student-table .score-good{color:var(--green)}
+  .student-table .score-mid{color:var(--orange)}
+  .student-table .leader-badge{font-size:10px;background:var(--gold);color:var(--dark);padding:1px 6px;border-radius:10px;font-weight:700;margin-left:4px}
+
   /* Takeaways */
   .takeaways{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:24px}
   .takeaway-item{background:#f8fafc;border-radius:12px;padding:20px;text-align:center;border:1px solid #e2e8f0;transition:transform .3s,box-shadow .3s}
@@ -282,6 +416,10 @@
 
   .session-badge{display:flex;align-items:center;justify-content:center;gap:8px;margin-top:24px;padding:12px 20px;background:linear-gradient(135deg,rgba(39,174,96,.08),rgba(39,174,96,.04));border:1px solid rgba(39,174,96,.2);border-radius:10px;font-size:13px;font-weight:600;color:var(--green)}
   .session-badge .pulse-dot{width:8px;height:8px;border-radius:50%;background:var(--green);animation:pulse 2s infinite}
+
+  /* Export */
+  .export-btn{display:flex;align-items:center;justify-content:center;gap:8px;margin-top:24px;padding:14px 32px;background:linear-gradient(135deg,var(--green),#2ecc71);color:#fff;border:none;border-radius:10px;font-size:15px;font-weight:700;cursor:pointer;transition:all .3s;width:100%}
+  .export-btn:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(39,174,96,.3)}
 
   /* Insights */
   .insights-card{background:linear-gradient(135deg,#1e1e2e 0%,#2d1b69 100%);border-radius:14px;padding:28px 32px;color:#fff;box-shadow:0 8px 32px rgba(0,0,0,.15);margin-top:24px}
@@ -308,6 +446,10 @@
     .file-tree{display:none}
     .step-label{display:none}
     .step-connector{width:30px}
+    .venn-container{height:auto;flex-direction:column;position:static}
+    .venn-circle{position:static;width:140px;height:140px}
+    .venn-overlap{position:static;transform:none;margin:-20px 0}
+    .battle-chart{height:auto}
   }
 </style>
 </head>
@@ -327,10 +469,10 @@
 </style>
 <a class="nav-home" href="../index.html">AI教学工具套件</a>
 <div class="nav-links">
-<a href="../webdev-assistant/index.html">🤖 助教</a>
-<a href="../websec-challenge/index.html">🛡️ 挑战</a>
-<a href="../team-coach/index.html">👥 教练</a>
-<a href="../code-review-battle/index.html" class="active">⚔️ 对战</a>
+<a href="../webdev-assistant/index.html">&#129302; 助教</a>
+<a href="../websec-challenge/index.html">&#128737;&#65039; 挑战</a>
+<a href="../team-coach/index.html">&#128101; 教练</a>
+<a href="../code-review-battle/index.html" class="active">&#9876;&#65039; 对战</a>
 </div>
 </nav>
 
@@ -338,8 +480,8 @@
 <header class="header">
   <div class="header-decor left">&lt;/&gt;</div>
   <div class="header-decor right">{ }</div>
-  <h1>Code Review Battle <span class="dot">&middot;</span> AI&#20195;&#30721;&#35780;&#23457;&#23545;&#25112;</h1>
-  <div class="subtitle">&#20154; vs AI <em>&middot;</em> &#35841;&#33021;&#21457;&#29616;&#26356;&#22810;&#23433;&#20840;&#28431;&#27934;&#65311;</div>
+  <h1>Code Review Battle <span class="dot">&middot;</span> AI代码评审对战</h1>
+  <div class="subtitle">人 vs AI <em>&middot;</em> 谁能发现更多安全漏洞？</div>
 </header>
 
 <!-- PROGRESS BAR -->
@@ -347,32 +489,32 @@
   <div class="progress-inner">
     <div class="step-item" onclick="goToStep(1)">
       <div class="step-circle active" id="sc-1">1</div>
-      <span class="step-label active" id="sl-1">&#35268;&#21017;&#35828;&#26126;</span>
+      <span class="step-label active" id="sl-1">规则说明</span>
     </div>
     <div class="step-connector" id="conn-1"></div>
     <div class="step-item" onclick="goToStep(2)">
       <div class="step-circle" id="sc-2">2</div>
-      <span class="step-label" id="sl-2">&#20195;&#30721;&#23457;&#26597;</span>
+      <span class="step-label" id="sl-2">代码审查</span>
     </div>
     <div class="step-connector" id="conn-2"></div>
     <div class="step-item" onclick="goToStep(3)">
       <div class="step-circle" id="sc-3">3</div>
-      <span class="step-label" id="sl-3">AI&#23457;&#26597;</span>
+      <span class="step-label" id="sl-3">AI审查</span>
     </div>
     <div class="step-connector" id="conn-3"></div>
     <div class="step-item" onclick="goToStep(4)">
       <div class="step-circle" id="sc-4">4</div>
-      <span class="step-label" id="sl-4">&#23545;&#27604;&#20998;&#26512;</span>
+      <span class="step-label" id="sl-4">对比分析</span>
     </div>
     <div class="step-connector" id="conn-4"></div>
     <div class="step-item" onclick="goToStep(5)">
       <div class="step-circle" id="sc-5">5</div>
-      <span class="step-label" id="sl-5">&#35838;&#22530;&#36777;&#35770;</span>
+      <span class="step-label" id="sl-5">课堂辩论</span>
     </div>
     <div class="step-connector" id="conn-5"></div>
     <div class="step-item" onclick="goToStep(6)">
       <div class="step-circle" id="sc-6">6</div>
-      <span class="step-label" id="sl-6">&#24635;&#32467;&#21453;&#24605;</span>
+      <span class="step-label" id="sl-6">总结反思</span>
     </div>
   </div>
 </nav>
@@ -381,52 +523,111 @@
 <div class="step-container active" id="step-1">
   <section class="rules-section">
     <div class="rules-card">
-      <div class="rules-title">&#9876;&#65039; Code Review Battle &#35268;&#21017;</div>
-      <div class="rules-subtitle">&#26412;&#36718;&#23545;&#25112;&#65306;&#23398;&#29983;&#22242;&#38431; vs AI &#21516;&#26102;&#23457;&#26597;&#21516;&#19968;&#27573;&#20195;&#30721;</div>
+      <div class="rules-title">&#9876;&#65039; Code Review Battle 规则</div>
+      <div class="rules-subtitle">第3轮对战 &middot; 本轮主题：Servlet安全认证与过滤器 &middot; 学生团队 vs AI</div>
 
+      <!-- Battle History -->
       <div class="rule-block">
-        <h3>&#127919; &#23545;&#25112;&#30446;&#26631;</h3>
-        <ul>
-          <li>&#25214;&#20986;&#20195;&#30721;&#20013;&#30340;&#23433;&#20840;&#28431;&#27934;&#24182;&#25552;&#20986;&#20462;&#22797;&#24314;&#35758;</li>
-          <li>&#27604;&#36739;&#20154;&#31867;&#23457;&#26597;&#21592;&#19982;AI&#23457;&#26597;&#30340;&#24046;&#24322;&#65292;&#29702;&#35299;&#21508;&#33258;&#20248;&#21183;</li>
-        </ul>
+        <h3>&#128218; 对战历史</h3>
+        <div class="battle-history">
+          <div class="history-item">
+            <div class="h-round">第1轮</div>
+            <div class="h-topic">Servlet生命周期</div>
+            <div class="h-result">学生 65 : AI 78</div>
+          </div>
+          <div class="history-item">
+            <div class="h-round">第2轮</div>
+            <div class="h-topic">JDBC连接管理</div>
+            <div class="h-result">学生 80 : AI 90</div>
+          </div>
+          <div class="history-item current">
+            <div class="h-round">第3轮 (本轮)</div>
+            <div class="h-topic">认证与过滤器安全</div>
+            <div class="h-result">进行中...</div>
+          </div>
+        </div>
+        <div class="cumulative-score">
+          <div class="cum-side human">
+            <div class="cum-label">&#128101; 学生团队累计</div>
+            <div class="cum-val">215</div>
+          </div>
+          <div class="cum-vs">VS</div>
+          <div class="cum-side ai">
+            <div class="cum-label">&#129302; AI累计</div>
+            <div class="cum-val">248</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Groups -->
+      <div class="rule-block">
+        <h3>&#128101; 参赛分组</h3>
+        <div class="group-tags">
+          <div class="group-tag">
+            <span class="g-label">A组 认证组</span>
+            <span class="g-members">陈思远、林雨桐、<span class="g-leader">王浩然(组长)</span></span>
+          </div>
+          <div class="group-tag">
+            <span class="g-label">B组 授权组</span>
+            <span class="g-members">赵天宇、周雅婷、<span class="g-leader">孙嘉禾(组长)</span></span>
+          </div>
+          <div class="group-tag">
+            <span class="g-label">C组 视图一致性组</span>
+            <span class="g-members">马文博、黄佳怡、<span class="g-leader">杨子涵(组长)</span></span>
+          </div>
+        </div>
       </div>
 
       <div class="rule-block">
-        <h3>&#128200; &#35780;&#20998;&#32500;&#24230;</h3>
+        <h3>&#127919; 对战目标</h3>
         <ul>
-          <li><strong>&#21457;&#29616;&#25968;&#37327;</strong> &#8212; &#24635;&#20849;&#21457;&#29616;&#20102;&#22810;&#23569;&#20010;&#38382;&#39064;&#65311;</li>
-          <li><strong>&#20851;&#38190;&#28431;&#27934;&#21629;&#20013;&#29575;</strong> &#8212; &#26159;&#21542;&#21457;&#29616;&#20102;&#26368;&#37325;&#35201;&#30340;&#28431;&#27934;&#65311;</li>
-          <li><strong>&#35823;&#25253;&#29575;</strong> &#8212; &#25253;&#21578;&#30340;&#38382;&#39064;&#26159;&#21542;&#37117;&#26159;&#30495;&#23454;&#30340;&#65311;</li>
-          <li><strong>&#19994;&#21153;&#29702;&#35299;&#28145;&#24230;</strong> &#8212; &#26159;&#21542;&#29702;&#35299;&#20195;&#30721;&#30340;&#19994;&#21153;&#32972;&#26223;&#65311;</li>
+          <li>审查 LogoutServlet.java 和 RoleBasedAuthFilter.java 中的安全漏洞</li>
+          <li>比较人类审查员与AI审查的差异，理解各自优势与局限</li>
+          <li>掌握认证、授权、会话管理相关的安全编码最佳实践</li>
         </ul>
       </div>
 
+      <!-- Scoring Criteria -->
       <div class="rule-block">
-        <h3>&#128337; &#27969;&#31243;</h3>
+        <h3>&#128200; 评分标准</h3>
+        <table class="scoring-table">
+          <thead>
+            <tr><th>维度</th><th>满分</th><th>评分标准</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>发现数量</td><td class="score-pts">30分</td><td>每个有效发现10分，最高30分</td></tr>
+            <tr><td>严重性准确</td><td class="score-pts">30分</td><td>正确标注高危/中危/低危，每项10分</td></tr>
+            <tr><td>修复建议</td><td class="score-pts">20分</td><td>建议可行且具体，每项5-10分</td></tr>
+            <tr><td>知识点对应</td><td class="score-pts">20分</td><td>正确关联课程知识点（认证/授权/会话管理/HTTP安全），每项5分</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="rule-block">
+        <h3>&#128337; 流程</h3>
         <div class="flow-diagram">
-          <span class="flow-step">&#20195;&#30721;&#23637;&#31034;</span>
+          <span class="flow-step">代码展示</span>
           <span class="flow-arrow">&#10140;</span>
-          <span class="flow-step">&#23398;&#29983;&#23457;&#26597; (5min)</span>
+          <span class="flow-step">学生审查 (5min)</span>
           <span class="flow-arrow">&#10140;</span>
-          <span class="flow-step">AI&#23457;&#26597; (2min)</span>
+          <span class="flow-step">AI审查 (2min)</span>
           <span class="flow-arrow">&#10140;</span>
-          <span class="flow-step">&#23545;&#27604;&#20998;&#26512; (3min)</span>
+          <span class="flow-step">对比分析 (3min)</span>
           <span class="flow-arrow">&#10140;</span>
-          <span class="flow-step">&#36777;&#35770;&#35752;&#35770; (5min)</span>
+          <span class="flow-step">辩论讨论 (5min)</span>
           <span class="flow-arrow">&#10140;</span>
-          <span class="flow-step">&#24635;&#32467;</span>
+          <span class="flow-step">总结</span>
         </div>
       </div>
 
       <div class="ai-rule-box">
         <div class="icon">&#9888;&#65039;</div>
-        <div class="text">AI&#20351;&#29992;&#35268;&#21017;</div>
-        <div class="sub">&#26412;&#29615;&#33410;&#20013;AI&#20316;&#20026;&#23545;&#25163;&#32780;&#38750;&#21161;&#25163;&#65292;&#23398;&#29983;&#19981;&#24471;&#22312;&#23457;&#26597;&#38454;&#27573;&#20351;&#29992;AI&#24037;&#20855;</div>
+        <div class="text">AI使用规则</div>
+        <div class="sub">本环节中AI作为对手而非助手，学生不得在审查阶段使用AI工具</div>
       </div>
 
       <div class="start-btn-wrap">
-        <button class="nav-btn start" onclick="nextStep()">&#9889; &#24320;&#22987;&#23545;&#25112;</button>
+        <button class="nav-btn start" onclick="nextStep()">&#9889; 开始对战</button>
       </div>
     </div>
   </section>
@@ -437,14 +638,15 @@
   <div class="code-review-layout">
     <!-- File Tree Sidebar -->
     <div class="file-tree">
-      <div class="file-tree-title">&#128193; &#39033;&#30446;&#32467;&#26500;</div>
+      <div class="file-tree-title">&#128193; 项目结构</div>
       <div class="tree-item folder"><span class="tree-icon">&#128194;</span> src/</div>
       <div class="tree-item folder" style="padding-left:16px"><span class="tree-icon">&#128194;</span> servlet/</div>
       <div class="tree-item file" style="padding-left:32px"><span class="tree-icon">&#128196;</span> LoginServlet.java</div>
-      <div class="tree-item file active-file" style="padding-left:32px"><span class="tree-icon">&#128196;</span> LogoutServlet.java <span class="arrow">&#9664; &#24403;&#21069;&#23457;&#26597;</span></div>
+      <div class="tree-item file active-file reviewable" style="padding-left:32px" onclick="switchFile('logout')"><span class="tree-icon">&#128196;</span> LogoutServlet.java <span class="review-badge">审查</span></div>
       <div class="tree-item file" style="padding-left:32px"><span class="tree-icon">&#128196;</span> AdminServlet.java</div>
       <div class="tree-item folder" style="padding-left:16px"><span class="tree-icon">&#128194;</span> filter/</div>
-      <div class="tree-item file" style="padding-left:32px"><span class="tree-icon">&#128196;</span> AuthFilter.java</div>
+      <div class="tree-item file reviewable" style="padding-left:32px" onclick="switchFile('filter')"><span class="tree-icon">&#128196;</span> RoleBasedAuthFilter.java <span class="review-badge">审查</span></div>
+      <div class="tree-item file" style="padding-left:32px"><span class="tree-icon">&#128196;</span> EncodingFilter.java</div>
       <div class="tree-item folder" style="padding-left:16px"><span class="tree-icon">&#128194;</span> jsp/</div>
       <div class="tree-item file" style="padding-left:32px"><span class="tree-icon">&#128196;</span> login.jsp</div>
       <div class="tree-item file" style="padding-left:32px"><span class="tree-icon">&#128196;</span> index.jsp</div>
@@ -457,47 +659,64 @@
         <div class="timer-left">
           <div class="timer-icon">&#9201;</div>
           <div>
-            <div class="timer-label">&#23398;&#29983;&#23457;&#26597;&#20498;&#35745;&#26102;</div>
+            <div class="timer-label">学生审查倒计时 &middot; 2个文件待审查</div>
             <div class="timer-display" id="timerDisplay">5:00</div>
           </div>
         </div>
-        <button class="timer-submit-btn" onclick="submitReview()">&#25552;&#20132;&#23457;&#26597;&#32467;&#26524; &#10140;</button>
+        <button class="timer-submit-btn" onclick="submitReview()">提交审查结果 &#10140;</button>
       </div>
       <div class="timer-progress">
         <div class="timer-progress-bar" id="timerProgressBar" style="width:100%"></div>
       </div>
 
+      <!-- File Tabs -->
+      <div class="file-tabs" style="margin-top:16px">
+        <button class="file-tab active" id="tab-logout" onclick="switchFile('logout')">
+          <span class="tab-dot warn"></span> LogoutServlet.java <span class="tab-count">文件1</span>
+        </button>
+        <button class="file-tab" id="tab-filter" onclick="switchFile('filter')">
+          <span class="tab-dot warn"></span> RoleBasedAuthFilter.java <span class="tab-count">文件2</span>
+        </button>
+      </div>
+
       <!-- Code Display -->
-      <div class="code-card" style="margin-top:16px">
+      <div class="code-card">
         <div class="code-header">
           <div class="dots"><span></span><span></span><span></span></div>
-          <span class="title">&#24453;&#23457;&#26597;&#20195;&#30721; &middot; LogoutServlet.java</span>
-          <span class="badge">&#23433;&#20840;&#23457;&#26597;&#20219;&#21153;</span>
+          <span class="title" id="codeTitle">待审查代码 &middot; LogoutServlet.java</span>
+          <span class="badge">安全审查任务</span>
         </div>
         <div class="code-body">
           <div class="line-numbers" id="lineNums"></div>
           <div class="code-content"><pre id="codeBlock"></pre></div>
         </div>
       </div>
+      <div style="font-size:11px;color:#94a3b8;margin-top:6px;text-align:center">&#128161; 提示：点击代码行可添加批注标记</div>
 
       <!-- Student Findings Form -->
       <div class="findings-form" id="findingsForm">
-        <div class="findings-form-title">&#128221; &#23457;&#26597;&#21457;&#29616;&#35760;&#24405;</div>
+        <div class="findings-form-title">&#128221; 审查发现记录</div>
+        <div class="file-filter-tabs">
+          <button class="file-filter-tab active" onclick="filterFindings('all', this)">全部文件</button>
+          <button class="file-filter-tab" onclick="filterFindings('logout', this)">LogoutServlet.java</button>
+          <button class="file-filter-tab" onclick="filterFindings('filter', this)">RoleBasedAuthFilter.java</button>
+        </div>
         <div id="findingRows">
-          <div class="finding-row" data-idx="0">
-            <input type="text" placeholder="&#34892;&#21495;" style="text-align:center">
-            <input type="text" placeholder="&#38382;&#39064;&#25551;&#36848;">
+          <div class="finding-row" data-idx="0" data-file="logout">
+            <input type="text" placeholder="行号" style="text-align:center">
+            <select class="file-select"><option value="logout">Logout</option><option value="filter">Filter</option></select>
+            <input type="text" placeholder="问题描述">
             <select>
-              <option value="">&#20005;&#37325;&#31243;&#24230;</option>
-              <option value="high">&#128308; &#39640;&#21361;</option>
-              <option value="mid">&#128992; &#20013;&#21361;</option>
-              <option value="low">&#128994; &#24314;&#35758;</option>
+              <option value="">严重程度</option>
+              <option value="high">&#128308; 高危</option>
+              <option value="mid">&#128992; 中危</option>
+              <option value="low">&#128994; 建议</option>
             </select>
-            <input type="text" placeholder="&#20462;&#22797;&#24314;&#35758;">
-            <button class="remove-btn" onclick="removeRow(this)" title="&#21024;&#38500;">&#10005;</button>
+            <input type="text" placeholder="修复建议">
+            <button class="remove-btn" onclick="removeRow(this)" title="删除">&#10005;</button>
           </div>
         </div>
-        <button class="add-finding-btn" onclick="addFindingRow()">+ &#28155;&#21152;&#21457;&#29616;</button>
+        <button class="add-finding-btn" onclick="addFindingRow()">+ 添加发现</button>
       </div>
     </div>
   </div>
@@ -508,58 +727,128 @@
   <section class="ai-reveal">
     <div class="ai-reveal-card">
       <div class="ai-header">
-        <h2>&#129302; AI &#23457;&#26597;&#36827;&#34892;&#20013;</h2>
+        <h2>&#129302; AI 审查进行中</h2>
         <div class="ai-status" id="aiStatus">
-          &#27491;&#22312;&#21152;&#36733;&#20195;&#30721;
+          正在初始化审查引擎
           <span class="ai-typing-dots"><span></span><span></span><span></span></span>
         </div>
       </div>
+
+      <!-- AI Prompt Display -->
+      <div class="ai-prompt-box" id="aiPromptBox" style="display:none">
+        <span class="ai-prompt-label">Prompt 输入</span>
+        <div>请审查以下Java Web代码的安全漏洞，包括但不限于：认证绕过、授权缺陷、会话管理问题、输入验证不足、HTTP安全头缺失等。对每个发现标注严重性等级（高危/中危/低危），并给出具体的修复建议和对应的安全知识点。</div>
+        <div style="margin-top:8px;color:#585b70">// 附加文件: LogoutServlet.java, RoleBasedAuthFilter.java</div>
+      </div>
+
+      <!-- Thinking steps -->
+      <div class="ai-thinking-steps" id="aiThinkingSteps">
+        <div class="ai-think-step" id="think-1"><span class="think-icon">&#128269;</span> 正在分析代码结构...</div>
+        <div class="ai-think-step" id="think-2"><span class="think-icon">&#128196;</span> 检测到 LogoutServlet.java 中 2 个潜在问题</div>
+        <div class="ai-think-step" id="think-3"><span class="think-icon">&#128196;</span> 检测到 RoleBasedAuthFilter.java 中 3 个潜在问题</div>
+        <div class="ai-think-step" id="think-4"><span class="think-icon">&#9888;&#65039;</span> 正在评估风险等级...</div>
+        <div class="ai-think-step" id="think-5"><span class="think-icon">&#128202;</span> 生成审查报告，共发现 8 个问题</div>
+      </div>
+
       <div class="ai-scan-line" id="aiScanLine"></div>
+
       <div id="aiFindings">
-        <!-- Finding 1 -->
+        <!-- File 1: LogoutServlet.java -->
+        <div class="ai-file-section">
+          <div class="ai-file-label">&#128196; LogoutServlet.java</div>
+        </div>
+
         <div class="ai-finding-item sev-high" id="aif-1">
           <div class="ai-finding-top">
             <span class="ai-finding-num">1</span>
-            <span class="sev-badge high">&#128308; &#39640;&#21361;</span>
+            <span class="sev-badge high">&#128308; 高危</span>
+            <span class="ai-finding-file">LogoutServlet.java</span>
             <span class="line-ref">Line 7-8</span>
           </div>
-          <div class="finding-desc"><strong>Session&#26410;&#23436;&#20840;&#38144;&#27585;</strong> &#8212; &#21482;&#31227;&#38500;&#20102;username&#65292;&#26410;&#28165;&#38500;&#20854;&#20182;&#25935;&#24863;&#23646;&#24615;(role, permissions)&#65292;&#23384;&#22312;&#20250;&#35805;&#27531;&#30041;&#39118;&#38505;&#12290;&#24212;&#20351;&#29992;session.invalidate()&#24443;&#24213;&#38144;&#27585;&#20250;&#35805;&#12290;</div>
+          <div class="finding-desc"><strong>Session未完全销毁</strong> &mdash; 只移除了username，未清除其他敏感属性(role, permissions, isLoggedIn)，存在会话残留风险。攻击者可能利用残留的会话属性绕过权限检查。应使用session.invalidate()彻底销毁会话。</div>
+          <div class="ai-finding-knowledge">&#127891; 知识点：会话管理 - Session生命周期与安全销毁</div>
         </div>
-        <!-- Finding 2 -->
+
         <div class="ai-finding-item sev-high" id="aif-2">
           <div class="ai-finding-top">
             <span class="ai-finding-num">2</span>
-            <span class="sev-badge high">&#128308; &#39640;&#21361;</span>
+            <span class="sev-badge high">&#128308; 高危</span>
+            <span class="ai-finding-file">LogoutServlet.java</span>
             <span class="line-ref">Line 9</span>
           </div>
-          <div class="finding-desc"><strong>&#32570;&#23569;Cache-Control/Pragma&#21709;&#24212;&#22836;</strong> &#8212; &#27983;&#35272;&#22120;&#21518;&#36864;&#21487;&#33021;&#26174;&#31034;&#24050;&#30331;&#24405;&#39029;&#38754;&#65292;&#23548;&#33268;&#25935;&#24863;&#20449;&#24687;&#27844;&#38706;&#12290;</div>
+          <div class="finding-desc"><strong>缺少Cache-Control/Pragma响应头</strong> &mdash; 浏览器后退可能显示已登录页面，导致敏感信息泄露。应设置 response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate") 等防缓存头。</div>
+          <div class="ai-finding-knowledge">&#127891; 知识点：HTTP安全 - 响应头安全配置</div>
         </div>
-        <!-- Finding 3 -->
+
         <div class="ai-finding-item sev-mid" id="aif-3">
           <div class="ai-finding-top">
             <span class="ai-finding-num">3</span>
-            <span class="sev-badge mid">&#128992; &#20013;&#21361;</span>
+            <span class="sev-badge mid">&#128992; 中危</span>
+            <span class="ai-finding-file">LogoutServlet.java</span>
             <span class="line-ref">Line 4</span>
           </div>
-          <div class="finding-desc"><strong>&#31354;Session&#22788;&#29702;&#36923;&#36753;</strong> &#8212; getSession(false)&#36820;&#22238;null&#26102;&#20173;&#25191;&#34892;&#37325;&#23450;&#21521;&#65292;&#36923;&#36753;&#21487;&#31616;&#21270;&#65292;&#24314;&#35758;&#22686;&#21152;null&#26816;&#26597;&#12290;</div>
+          <div class="finding-desc"><strong>空Session处理逻辑</strong> &mdash; getSession(false)返回null时仍执行重定向，逻辑可简化。建议增加null检查，区分已登录用户注销和未登录用户访问注销接口两种场景。</div>
+          <div class="ai-finding-knowledge">&#127891; 知识点：会话管理 - getSession参数与空值处理</div>
         </div>
-        <!-- Finding 4 -->
+
         <div class="ai-finding-item sev-low" id="aif-4">
           <div class="ai-finding-top">
             <span class="ai-finding-num">4</span>
-            <span class="sev-badge low">&#128994; &#24314;&#35758;</span>
-            <span class="line-ref">&#26032;&#22686;</span>
+            <span class="sev-badge low">&#128994; 建议</span>
+            <span class="ai-finding-file">LogoutServlet.java</span>
+            <span class="line-ref">新增</span>
           </div>
-          <div class="finding-desc"><strong>&#32570;&#23569;CSRF&#39564;&#35777;</strong> &#8212; &#24314;&#35758;&#28155;&#21152;CSRF token&#39564;&#35777;&#38450;&#27490;&#36328;&#31449;&#27880;&#38144;&#25915;&#20987;&#12290;</div>
+          <div class="finding-desc"><strong>缺少CSRF验证</strong> &mdash; 建议添加CSRF token验证防止跨站注销攻击。攻击者可构造img标签触发GET请求实现恶意注销。</div>
+          <div class="ai-finding-knowledge">&#127891; 知识点：认证安全 - CSRF防护机制</div>
         </div>
-        <!-- Finding 5 (false positive) -->
-        <div class="ai-finding-item sev-fp" id="aif-5">
+
+        <!-- File 2: RoleBasedAuthFilter.java -->
+        <div class="ai-file-section">
+          <div class="ai-file-label">&#128196; RoleBasedAuthFilter.java</div>
+        </div>
+
+        <div class="ai-finding-item sev-high" id="aif-5">
           <div class="ai-finding-top">
             <span class="ai-finding-num">5</span>
-            <span class="sev-badge fp">&#9898; &#24453;&#39564;&#35777;</span>
-            <span class="line-ref">&#26032;&#22686;</span>
+            <span class="sev-badge high">&#128308; 高危</span>
+            <span class="ai-finding-file">RoleBasedAuthFilter.java</span>
+            <span class="line-ref">Line 7-8</span>
           </div>
-          <div class="finding-desc" style="text-decoration:line-through;color:#999"><strong>&#24314;&#35758;&#20351;&#29992;POST&#26041;&#27861;&#26367;&#20195;GET</strong> &#8212; &#36827;&#34892;&#27880;&#38144;&#25805;&#20316;&#65288;&#21518;&#32463;&#35780;&#20272;&#20026;&#35823;&#25253;&#65289;</div>
+          <div class="finding-desc"><strong>权限提升漏洞 &mdash; 只检查登录状态未检查角色</strong> &mdash; Filter名为RoleBasedAuth但未检查用户角色，任何已登录用户均可访问/admin/*路径，存在严重的垂直越权风险。应从session中获取用户角色并验证是否为管理员。</div>
+          <div class="ai-finding-knowledge">&#127891; 知识点：授权控制 - 基于角色的访问控制(RBAC)</div>
+        </div>
+
+        <div class="ai-finding-item sev-mid" id="aif-6">
+          <div class="ai-finding-top">
+            <span class="ai-finding-num">6</span>
+            <span class="sev-badge mid">&#128992; 中危</span>
+            <span class="ai-finding-file">RoleBasedAuthFilter.java</span>
+            <span class="line-ref">Line 4</span>
+          </div>
+          <div class="finding-desc"><strong>未安全转换请求类型</strong> &mdash; 直接将ServletRequest强转为HttpServletRequest未做instanceof检查，虽然在Web容器中通常安全，但不符合防御性编程原则。非HTTP协议请求可能导致ClassCastException。</div>
+          <div class="ai-finding-knowledge">&#127891; 知识点：Java Web基础 - Servlet API类型体系</div>
+        </div>
+
+        <div class="ai-finding-item sev-mid" id="aif-7">
+          <div class="ai-finding-top">
+            <span class="ai-finding-num">7</span>
+            <span class="sev-badge mid">&#128992; 中危</span>
+            <span class="ai-finding-file">RoleBasedAuthFilter.java</span>
+            <span class="line-ref">Line 10</span>
+          </div>
+          <div class="finding-desc"><strong>重定向路径硬编码</strong> &mdash; 使用硬编码的"/login.jsp"路径进行重定向，未使用context path，在部署到非根路径时会产生404错误。建议使用request.getContextPath() + "/login.jsp"。</div>
+          <div class="ai-finding-knowledge">&#127891; 知识点：Java Web部署 - Context Path与路径管理</div>
+        </div>
+
+        <div class="ai-finding-item sev-fp" id="aif-8">
+          <div class="ai-finding-top">
+            <span class="ai-finding-num">8</span>
+            <span class="sev-badge fp">&#9898; 待验证</span>
+            <span class="ai-finding-file">LogoutServlet.java</span>
+            <span class="line-ref">新增</span>
+          </div>
+          <div class="finding-desc" style="text-decoration:line-through;color:#999"><strong>建议使用POST方法替代GET</strong> &mdash; 进行注销操作（后经评估为误报 &mdash; GET注销是行业惯例，如Spring Security默认行为）</div>
+          <div class="ai-finding-knowledge">&#127891; 知识点：HTTP方法语义（误报）</div>
         </div>
       </div>
     </div>
@@ -571,10 +860,10 @@
   <section class="compare-section">
     <!-- Legend -->
     <div class="compare-legend">
-      <div class="legend-item"><div class="legend-dot lg-consensus"></div> &#20849;&#35782;&#21457;&#29616;</div>
-      <div class="legend-item"><div class="legend-dot lg-human"></div> &#20154;&#31867;&#20248;&#21183;</div>
-      <div class="legend-item"><div class="legend-dot lg-ai"></div> &#23398;&#20064;&#26426;&#20250;</div>
-      <div class="legend-item"><div class="legend-dot lg-fp"></div> AI&#35823;&#25253;</div>
+      <div class="legend-item"><div class="legend-dot lg-consensus"></div> 共识发现</div>
+      <div class="legend-item"><div class="legend-dot lg-human"></div> 人类优势</div>
+      <div class="legend-item"><div class="legend-dot lg-ai"></div> 学习机会</div>
+      <div class="legend-item"><div class="legend-dot lg-fp"></div> AI误报</div>
     </div>
 
     <div class="arena">
@@ -583,42 +872,70 @@
         <div class="panel-header">
           <div class="panel-icon">&#128101;</div>
           <div>
-            <div class="panel-title">&#23398;&#29983;&#22242;&#38431;&#23457;&#26597;&#32467;&#26524;</div>
-            <div class="panel-label">Human Review &middot; 3 findings</div>
+            <div class="panel-title">学生团队审查结果</div>
+            <div class="panel-label">Human Review &middot; 3组9人 &middot; 5 findings</div>
           </div>
         </div>
+
+        <!-- LogoutServlet findings -->
+        <div style="font-size:11px;font-weight:700;color:#64748b;margin:8px 0 6px;text-transform:uppercase;letter-spacing:1px">&#128196; LogoutServlet.java</div>
 
         <div class="finding sev-high hl-consensus" data-lines="7">
           <div class="finding-top">
-            <span class="sev-badge high">&#128308; &#39640;&#21361;</span>
-            <span class="hl-tag consensus">&#9989; &#20849;&#35782;</span>
+            <span class="sev-badge high">&#128308; 高危</span>
+            <span class="hl-tag consensus">&#9989; 共识</span>
+            <span class="finding-file">LogoutServlet</span>
             <span class="line-ref" onclick="highlightLine(7)">Line 7</span>
           </div>
-          <div class="finding-desc">&#21482;&#31227;&#38500;username&#26410;&#28165;&#38500;&#20840;&#37096;Session&#23646;&#24615;</div>
+          <div class="finding-desc">只移除username未清除全部Session属性 <em style="font-size:11px;color:#94a3b8">&mdash; A组 陈思远 发现</em></div>
         </div>
         <div class="finding sev-mid hl-consensus" data-lines="8">
           <div class="finding-top">
-            <span class="sev-badge mid">&#128992; &#20013;&#21361;</span>
-            <span class="hl-tag consensus">&#9989; &#20849;&#35782;</span>
+            <span class="sev-badge mid">&#128992; 中危</span>
+            <span class="hl-tag consensus">&#9989; 共识</span>
+            <span class="finding-file">LogoutServlet</span>
             <span class="line-ref" onclick="highlightLine(8)">Line 8</span>
           </div>
-          <div class="finding-desc">&#20351;&#29992;removeAttribute&#32780;&#38750;invalidate</div>
+          <div class="finding-desc">使用removeAttribute而非invalidate <em style="font-size:11px;color:#94a3b8">&mdash; B组 孙嘉禾 发现</em></div>
         </div>
         <div class="finding sev-low hl-human-only" data-lines="11">
           <div class="finding-top">
-            <span class="sev-badge low">&#128994; &#24314;&#35758;</span>
-            <span class="hl-tag human-adv">&#128309; &#20154;&#31867;</span>
+            <span class="sev-badge low">&#128994; 建议</span>
+            <span class="hl-tag human-adv">&#128309; 人类</span>
+            <span class="finding-file">LogoutServlet</span>
             <span class="line-ref" onclick="highlightLine(11)">Line 11</span>
           </div>
-          <div class="finding-desc">&#37325;&#23450;&#21521;&#36335;&#24452;&#24314;&#35758;&#20351;&#29992;&#24120;&#37327;&#23450;&#20041;</div>
+          <div class="finding-desc">重定向路径建议使用常量定义 <em style="font-size:11px;color:#94a3b8">&mdash; C组 杨子涵 发现</em></div>
+        </div>
+
+        <!-- RoleBasedAuthFilter findings -->
+        <div style="font-size:11px;font-weight:700;color:#64748b;margin:14px 0 6px;text-transform:uppercase;letter-spacing:1px">&#128196; RoleBasedAuthFilter.java</div>
+
+        <div class="finding sev-high hl-consensus" data-filter-lines="7,8">
+          <div class="finding-top">
+            <span class="sev-badge high">&#128308; 高危</span>
+            <span class="hl-tag consensus">&#9989; 共识</span>
+            <span class="finding-file">AuthFilter</span>
+            <span class="line-ref">Line 7-8</span>
+          </div>
+          <div class="finding-desc">只检查登录状态未检查角色，存在越权风险 <em style="font-size:11px;color:#94a3b8">&mdash; B组 赵天宇 发现</em></div>
+        </div>
+        <div class="finding sev-mid hl-human-only" data-filter-lines="10">
+          <div class="finding-top">
+            <span class="sev-badge mid">&#128992; 中危</span>
+            <span class="hl-tag human-adv">&#128309; 人类</span>
+            <span class="finding-file">AuthFilter</span>
+            <span class="line-ref">Line 10</span>
+          </div>
+          <div class="finding-desc">重定向路径硬编码，未使用contextPath <em style="font-size:11px;color:#94a3b8">&mdash; A组 王浩然 发现</em></div>
         </div>
 
         <div class="score-bar">
-          <span>&#21457;&#29616;</span>
+          <span>发现</span>
+          <span class="score-num counter" data-target="5">0</span>
+          <span>个问题，命中</span>
           <span class="score-num counter" data-target="3">0</span>
-          <span>&#20010;&#38382;&#39064;&#65292;&#21629;&#20013;</span>
-          <span class="score-num counter" data-target="2">0</span>
-          <span>&#20010;&#20851;&#38190;&#28431;&#27934;</span>
+          <span>个关键漏洞</span>
         </div>
       </div>
 
@@ -633,61 +950,143 @@
         <div class="panel-header">
           <div class="panel-icon">&#129302;</div>
           <div>
-            <div class="panel-title">AI&#23457;&#26597;&#32467;&#26524;</div>
-            <div class="panel-label">AI Review &middot; 5 findings</div>
+            <div class="panel-title">AI审查结果</div>
+            <div class="panel-label">AI Review &middot; 2 files &middot; 8 findings</div>
           </div>
         </div>
+
+        <!-- LogoutServlet findings -->
+        <div style="font-size:11px;font-weight:700;color:#64748b;margin:8px 0 6px;text-transform:uppercase;letter-spacing:1px">&#128196; LogoutServlet.java</div>
 
         <div class="finding sev-high hl-consensus" data-lines="7,8">
           <div class="finding-top">
-            <span class="sev-badge high">&#128308; &#39640;&#21361;</span>
-            <span class="hl-tag consensus">&#9989; &#20849;&#35782;</span>
+            <span class="sev-badge high">&#128308; 高危</span>
+            <span class="hl-tag consensus">&#9989; 共识</span>
+            <span class="finding-file">LogoutServlet</span>
             <span class="line-ref" onclick="highlightLines([7,8])">Line 7-8</span>
           </div>
-          <div class="finding-desc">Session&#26410;&#23436;&#20840;&#38144;&#27585;&#65292;&#23384;&#22312;&#20250;&#35805;&#27531;&#30041;&#39118;&#38505;</div>
+          <div class="finding-desc">Session未完全销毁，存在会话残留风险</div>
         </div>
         <div class="finding sev-high hl-ai-only" data-lines="9">
           <div class="finding-top">
-            <span class="sev-badge high">&#128308; &#39640;&#21361;</span>
-            <span class="hl-tag ai-adv">&#128312; &#23398;&#20064;</span>
+            <span class="sev-badge high">&#128308; 高危</span>
+            <span class="hl-tag ai-adv">&#128312; 学习</span>
+            <span class="finding-file">LogoutServlet</span>
             <span class="line-ref" onclick="highlightLine(9)">Line 9</span>
           </div>
-          <div class="finding-desc">&#32570;&#23569;Cache-Control/Pragma&#21709;&#24212;&#22836;</div>
+          <div class="finding-desc">缺少Cache-Control/Pragma响应头</div>
         </div>
         <div class="finding sev-mid hl-ai-only" data-lines="4">
           <div class="finding-top">
-            <span class="sev-badge mid">&#128992; &#20013;&#21361;</span>
-            <span class="hl-tag ai-adv">&#128312; &#23398;&#20064;</span>
+            <span class="sev-badge mid">&#128992; 中危</span>
+            <span class="hl-tag ai-adv">&#128312; 学习</span>
+            <span class="finding-file">LogoutServlet</span>
             <span class="line-ref" onclick="highlightLine(4)">Line 4</span>
           </div>
-          <div class="finding-desc">getSession(false)&#36820;&#22238;null&#26102;&#20173;&#25191;&#34892;&#37325;&#23450;&#21521;&#65292;&#36923;&#36753;&#21487;&#31616;&#21270;</div>
+          <div class="finding-desc">getSession(false)返回null时仍执行重定向，逻辑可简化</div>
         </div>
         <div class="finding sev-low hl-ai-only">
           <div class="finding-top">
-            <span class="sev-badge low">&#128994; &#24314;&#35758;</span>
-            <span class="hl-tag ai-adv">&#128312; &#23398;&#20064;</span>
-            <span class="line-ref" style="background:#e8e8e8;color:#aaa;cursor:default">&#26032;&#22686;</span>
+            <span class="sev-badge low">&#128994; 建议</span>
+            <span class="hl-tag ai-adv">&#128312; 学习</span>
+            <span class="finding-file">LogoutServlet</span>
+            <span class="line-ref" style="background:#e8e8e8;color:#aaa;cursor:default">新增</span>
           </div>
-          <div class="finding-desc">&#24314;&#35758;&#28155;&#21152;CSRF token&#39564;&#35777;&#38450;&#27490;&#36328;&#31449;&#27880;&#38144;</div>
+          <div class="finding-desc">建议添加CSRF token验证防止跨站注销</div>
         </div>
+
+        <!-- RoleBasedAuthFilter findings -->
+        <div style="font-size:11px;font-weight:700;color:#64748b;margin:14px 0 6px;text-transform:uppercase;letter-spacing:1px">&#128196; RoleBasedAuthFilter.java</div>
+
+        <div class="finding sev-high hl-consensus">
+          <div class="finding-top">
+            <span class="sev-badge high">&#128308; 高危</span>
+            <span class="hl-tag consensus">&#9989; 共识</span>
+            <span class="finding-file">AuthFilter</span>
+            <span class="line-ref">Line 7-8</span>
+          </div>
+          <div class="finding-desc">权限提升漏洞 &mdash; 只检查登录状态未检查角色</div>
+        </div>
+        <div class="finding sev-mid hl-ai-only">
+          <div class="finding-top">
+            <span class="sev-badge mid">&#128992; 中危</span>
+            <span class="hl-tag ai-adv">&#128312; 学习</span>
+            <span class="finding-file">AuthFilter</span>
+            <span class="line-ref">Line 4</span>
+          </div>
+          <div class="finding-desc">未安全转换请求类型，缺少instanceof检查</div>
+        </div>
+        <div class="finding sev-mid hl-consensus">
+          <div class="finding-top">
+            <span class="sev-badge mid">&#128992; 中危</span>
+            <span class="hl-tag consensus">&#9989; 共识</span>
+            <span class="finding-file">AuthFilter</span>
+            <span class="line-ref">Line 10</span>
+          </div>
+          <div class="finding-desc">重定向路径硬编码，未使用context path</div>
+        </div>
+
         <div class="finding sev-fp hl-fp">
           <div class="finding-top">
-            <span class="sev-badge fp">&#9898; &#35823;&#25253;</span>
-            <span class="hl-tag fp-tag">&#10060; &#35823;&#25253;</span>
+            <span class="sev-badge fp">&#9898; 误报</span>
+            <span class="hl-tag fp-tag">&#10060; 误报</span>
+            <span class="finding-file">LogoutServlet</span>
             <span class="rejected-tag">REJECTED</span>
           </div>
-          <div class="finding-desc" style="text-decoration:line-through;color:#999">&#24314;&#35758;&#20351;&#29992;POST&#26041;&#27861;&#26367;&#20195;GET&#36827;&#34892;&#27880;&#38144;&#25805;&#20316;</div>
+          <div class="finding-desc" style="text-decoration:line-through;color:#999">建议使用POST方法替代GET进行注销操作</div>
         </div>
 
         <div class="score-bar">
-          <span>&#21457;&#29616;</span>
-          <span class="score-num counter" data-target="5">0</span>
-          <span>&#20010;&#38382;&#39064;&#65292;&#21629;&#20013;</span>
-          <span class="score-num counter" data-target="3">0</span>
-          <span>&#20010;&#20851;&#38190;&#28431;&#27934;&#65292;</span>
+          <span>发现</span>
+          <span class="score-num counter" data-target="8">0</span>
+          <span>个问题，命中</span>
+          <span class="score-num counter" data-target="4">0</span>
+          <span>个关键漏洞，</span>
           <span class="score-num counter" data-target="1">0</span>
-          <span>&#20010;&#35823;&#25253;</span>
+          <span>个误报</span>
         </div>
+      </div>
+    </div>
+
+    <!-- Overlap Metrics -->
+    <div class="overlap-metrics">
+      <div class="overlap-title">&#128202; 发现重合度分析</div>
+      <div class="venn-container">
+        <div class="venn-circle venn-human">
+          <div class="venn-label">仅学生发现</div>
+          <div class="venn-num" style="margin-left:30px">1</div>
+        </div>
+        <div class="venn-overlap">
+          <div class="venn-label">人机共识</div>
+          <div class="venn-num">3</div>
+        </div>
+        <div class="venn-circle venn-ai">
+          <div class="venn-label">仅AI发现</div>
+          <div class="venn-num" style="margin-right:30px">3</div>
+        </div>
+      </div>
+      <div class="overlap-stats">
+        <div class="overlap-stat">
+          <div class="os-val" style="color:var(--green)">3项</div>
+          <div class="os-label">人机共识</div>
+        </div>
+        <div class="overlap-stat">
+          <div class="os-val" style="color:var(--human)">1项</div>
+          <div class="os-label">仅学生发现</div>
+        </div>
+        <div class="overlap-stat">
+          <div class="os-val" style="color:var(--ai)">3项</div>
+          <div class="os-label">仅AI发现</div>
+        </div>
+        <div class="overlap-stat">
+          <div class="os-val" style="color:var(--red)">1项</div>
+          <div class="os-label">AI误报</div>
+        </div>
+      </div>
+      <div class="group-breakdown">
+        <div class="group-hit">A组 (认证组)<br><span class="hit-val">命中 2/3</span> 关键漏洞</div>
+        <div class="group-hit">B组 (授权组)<br><span class="hit-val">命中 3/3</span> 关键漏洞</div>
+        <div class="group-hit">C组 (视图一致性组)<br><span class="hit-val">命中 1/2</span> 关键漏洞</div>
       </div>
     </div>
   </section>
@@ -697,8 +1096,8 @@
 <div class="step-container" id="step-5">
   <section class="discussion-section">
     <div class="discussion-card">
-      <div class="discussion-title">&#128172; &#35838;&#22530;&#36777;&#35770;&#24341;&#23548;</div>
-      <div class="discussion-subtitle">&#35831;&#21508;&#32452;&#35752;&#35770;&#20197;&#19979;&#38382;&#39064;&#65292;&#27599;&#39064;2&#20998;&#38047;&#65292;&#28982;&#21518;&#20998;&#20139;&#35266;&#28857;</div>
+      <div class="discussion-title">&#128172; 课堂辩论引导</div>
+      <div class="discussion-subtitle">请各组讨论以下问题，每题2分钟，然后分享观点</div>
 
       <div class="discussion-timer">
         <div class="disc-timer-display" id="discTimerDisplay">5:00</div>
@@ -706,44 +1105,110 @@
 
       <!-- Question 1 -->
       <div class="question-block">
-        <div class="question-num">&#38382;&#39064; 1</div>
-        <div class="question-text">AI&#21457;&#29616;&#30340;Cache-Control&#38382;&#39064;&#65292;&#20026;&#20160;&#20040;&#25105;&#20204;&#27809;&#26377;&#27880;&#24847;&#21040;&#65311;&#36825;&#35828;&#26126;&#20160;&#20040;&#65311;</div>
+        <div class="question-num">问题 1 &mdash; HTTP安全头</div>
+        <div class="question-text">AI发现的Cache-Control问题，为什么我们没有注意到？这说明什么？</div>
         <button class="answer-toggle" onclick="toggleAnswer(this)">
-          <span class="arrow">&#9654;</span> &#23637;&#24320;&#21442;&#32771;&#31572;&#26696;
+          <span class="arrow">&#9654;</span> 展开参考答案
         </button>
         <div class="answer-content">
           <div class="answer-inner">
-            Cache-Control&#26159;HTTP&#21709;&#24212;&#22836;&#23618;&#38754;&#30340;&#23433;&#20840;&#38382;&#39064;&#65292;&#19981;&#22312;Java&#20195;&#30721;&#36923;&#36753;&#23618;&#38754;&#65292;&#23481;&#26131;&#34987;&#24573;&#30053;&#12290;&#36825;&#35828;&#26126;&#65306;(1) &#25105;&#20204;&#30340;&#23457;&#26597;&#20559;&#21521;&#20195;&#30721;&#36923;&#36753;&#32570;&#38519;&#65292;&#23545;HTTP&#21327;&#35758;&#23618;&#23433;&#20840;&#24847;&#35782;&#19981;&#36275;&#65307;(2) AI&#25797;&#38271;&#36328;&#23618;&#27425;&#26816;&#26597;&#65292;&#35206;&#30422;&#38754;&#26356;&#24191;&#65307;(3) &#36825;&#26159;&#19968;&#20010;&#24120;&#35265;&#30340;&#30693;&#35782;&#30450;&#21306;&#65292;&#38656;&#35201;&#22312;&#23398;&#20064;&#20013;&#34917;&#20805;&#12290;
+            <p>Cache-Control是HTTP响应头层面的安全问题，不在Java代码逻辑层面，容易被忽略。这说明几个重要问题：</p>
+            <p><strong>1. 审查视角偏差：</strong>我们的审查倾向于关注代码逻辑缺陷，对HTTP协议层安全意识不足。在实际开发中，许多安全漏洞恰恰出现在代码逻辑之外的配置和协议层面，如HTTP响应头、Cookie属性设置、CORS配置等。</p>
+            <p><strong>2. AI的系统性优势：</strong>AI擅长跨层次检查，它的知识库涵盖了OWASP Top 10中各类漏洞模式，能够自动关联代码与HTTP协议安全规范。这不是因为AI更"聪明"，而是它的检查清单更全面、更系统化。</p>
+            <p><strong>3. 知识盲区识别：</strong>这是一个典型的知识盲区。在课程学习中，我们重点学习了Servlet编程模型和Session管理，但对HTTP协议层安全（如缓存控制、安全头配置）的覆盖相对较少。这提示我们需要建立更完整的Web安全知识体系，从传输层到应用层全面理解安全机制。</p>
+            <p><strong>4. 实际修复方案：</strong>在LogoutServlet中，应在sendRedirect之前添加：response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate"); response.setHeader("Pragma", "no-cache"); response.setDateHeader("Expires", 0); 这可以有效防止浏览器后退时显示已登录页面的敏感信息。</p>
           </div>
         </div>
       </div>
 
       <!-- Question 2 -->
       <div class="question-block">
-        <div class="question-num">&#38382;&#39064; 2</div>
-        <div class="question-text">AI&#24314;&#35758;&#29992;POST&#26367;&#20195;GET&#20570;&#27880;&#38144;&#65292;&#20320;&#21516;&#24847;&#21527;&#65311;&#20026;&#20160;&#20040;&#65311;</div>
+        <div class="question-num">问题 2 &mdash; AI误报分析</div>
+        <div class="question-text">AI建议用POST替代GET做注销，你同意吗？为什么？</div>
         <button class="answer-toggle" onclick="toggleAnswer(this)">
-          <span class="arrow">&#9654;</span> &#23637;&#24320;&#21442;&#32771;&#31572;&#26696;
+          <span class="arrow">&#9654;</span> 展开参考答案
         </button>
         <div class="answer-content">
           <div class="answer-inner">
-            &#36825;&#26159;AI&#30340;&#35823;&#25253;&#12290;&#34429;&#28982;POST&#29702;&#35770;&#19978;&#26356;&#23433;&#20840;&#65292;&#20294;&#27880;&#38144;&#25805;&#20316;&#20351;&#29992;GET&#26159;&#34892;&#19994;&#24815;&#20363;&#65288;&#22914;Spring Security&#40664;&#35748;&#34892;&#20026;&#65289;&#12290;&#22312;&#24050;&#26377;CSRF&#38450;&#25252;&#30340;&#21069;&#25552;&#19979;&#65292;GET&#27880;&#38144;&#26159;&#21487;&#25509;&#21463;&#30340;&#12290;&#36825;&#20307;&#29616;&#20102;AI&#30340;&#23616;&#38480;&#24615; &#8212; &#23427;&#20542;&#21521;&#20110;&#8220;&#25945;&#31185;&#20070;&#24335;&#8221;&#24314;&#35758;&#65292;&#32570;&#20047;&#23545;&#23454;&#38469;&#24037;&#31243;&#23454;&#36341;&#30340;&#29702;&#35299;&#12290;
+            <p>这是AI的误报，但值得深入分析。从理论角度来看，AI的建议有一定道理：REST语义中GET应是幂等且安全的，注销操作改变了服务器状态，从纯粹的HTTP语义来看确实更适合POST。</p>
+            <p><strong>1. 行业实践角度：</strong>注销操作使用GET是广泛接受的行业惯例。Spring Security框架默认的/logout端点就支持GET请求。大多数Web应用（如GitHub、Gmail等）的注销链接都是GET请求。强制使用POST会影响用户体验，用户无法通过直接点击链接注销。</p>
+            <p><strong>2. 安全风险评估：</strong>GET注销的主要安全风险是CSRF攻击 &mdash; 攻击者可以通过img标签等触发用户的注销请求。然而，注销操作的危害程度相对有限（最多导致用户被迫重新登录），与转账、修改密码等敏感操作不同。如果已有CSRF防护机制，GET注销是完全可接受的。</p>
+            <p><strong>3. AI局限性体现：</strong>这体现了AI的"教科书式"建议倾向。AI倾向于按照理论最佳实践给出建议，但缺乏对工程实践权衡的理解。在实际项目中，安全建议需要结合业务场景、用户体验、开发成本等多方面因素综合判断。</p>
+            <p><strong>4. 人类审查的价值：</strong>识别AI误报恰恰是人类审查的核心价值之一。我们能够基于工程经验和业务理解，对AI的建议做出取舍判断，避免过度防御带来的开发负担。</p>
           </div>
         </div>
       </div>
 
       <!-- Question 3 -->
       <div class="question-block">
-        <div class="question-num">&#38382;&#39064; 3</div>
-        <div class="question-text">&#22914;&#26524;&#20320;&#26159;&#39033;&#30446;&#36127;&#36131;&#20154;&#65292;AI&#30340;5&#20010;&#24314;&#35758;&#20013;&#20320;&#20250;&#37319;&#32435;&#21738;&#20960;&#20010;&#65311;&#29702;&#30001;&#26159;&#20160;&#20040;&#65311;</div>
+        <div class="question-num">问题 3 &mdash; 授权漏洞</div>
+        <div class="question-text">RoleBasedAuthFilter中的角色检查缺失，在实际系统中可能造成什么具体危害？如何设计一个完善的RBAC过滤器？</div>
         <button class="answer-toggle" onclick="toggleAnswer(this)">
-          <span class="arrow">&#9654;</span> &#23637;&#24320;&#21442;&#32771;&#31572;&#26696;
+          <span class="arrow">&#9654;</span> 展开参考答案
         </button>
         <div class="answer-content">
           <div class="answer-inner">
-            &#24314;&#35758;&#37319;&#32435;&#31532;1-4&#20010;&#65292;&#25298;&#32477;&#31532;5&#20010;&#12290;&#20855;&#20307;&#65306;&#9312; Session&#38144;&#27585;(&#24517;&#39035;&#20462;&#22797;) &#9313; Cache-Control(&#39640;&#20248;&#20808;) &#9314; &#31354;Session&#22788;&#29702;(&#20195;&#30721;&#36136;&#37327;) &#9315; CSRF&#38450;&#25252;(&#26681;&#25454;&#39033;&#30446;&#35268;&#27169;&#20915;&#23450;) &#9316; POST&#26367;&#20195;GET(&#25298;&#32477;&#65292;&#19981;&#31526;&#21512;&#34892;&#19994;&#24815;&#20363;)&#12290;&#36825;&#23601;&#26159;&#20154;&#31867;&#23457;&#26597;&#30340;&#20215;&#20540; &#8212; &#26377;&#33021;&#21147;&#23545;AI&#24314;&#35758;&#20570;&#20986;&#21462;&#33293;&#21028;&#26029;&#12290;
+            <p>这是本轮最严重的安全漏洞，属于OWASP Top 10中的"Broken Access Control"（损坏的访问控制）。</p>
+            <p><strong>1. 具体危害场景：</strong>任何已登录的普通用户都可以访问/admin/*下的所有管理功能，包括用户管理、系统配置、数据导出等敏感操作。攻击者只需注册一个普通账号，就能获得管理员权限。在电商系统中，这意味着普通用户可以修改商品价格、查看所有订单信息、导出用户数据等。</p>
+            <p><strong>2. 完善的RBAC过滤器设计：</strong>应该从session中获取用户角色信息：String userRole = (String)session.getAttribute("role"); 然后与目标URL所需角色进行匹配。建议使用配置化的角色-URL映射关系，而非硬编码。可以通过web.xml的init-param或外部配置文件定义哪些角色可以访问哪些URL模式。</p>
+            <p><strong>3. 多层防御原则：</strong>安全不能仅依赖Filter，应实现多层防御：(1) Filter做第一层粗粒度拦截；(2) Servlet/Controller层做业务级权限检查；(3) 数据层做数据隔离。这样即使某一层被绕过，其他层仍能提供保护。</p>
+            <p><strong>4. 开发规范建议：</strong>在实际项目中，建议使用成熟的安全框架（如Spring Security的@PreAuthorize注解），而不是手写Filter。自研安全组件容易遗漏边界情况，而框架经过了大量项目的实践验证。</p>
           </div>
         </div>
+      </div>
+
+      <!-- Question 4 -->
+      <div class="question-block">
+        <div class="question-num">问题 4 &mdash; Filter安全编码</div>
+        <div class="question-text">AI指出Filter中ServletRequest强转缺少instanceof检查，这是否属于过度防御？在什么场景下这个问题会真正产生影响？</div>
+        <button class="answer-toggle" onclick="toggleAnswer(this)">
+          <span class="arrow">&#9654;</span> 展开参考答案
+        </button>
+        <div class="answer-content">
+          <div class="answer-inner">
+            <p>这个问题涉及"防御性编程"与"务实编程"之间的权衡，是一个值得深入思考的软件工程问题。</p>
+            <p><strong>1. 技术分析：</strong>在标准的Java Web容器（Tomcat、Jetty等）中，通过@WebFilter注解配置的过滤器只会处理HTTP请求，因此ServletRequest实际上总是HttpServletRequest的实例。从这个角度看，instanceof检查确实显得多余。</p>
+            <p><strong>2. 防御性编程的价值：</strong>然而，防御性编程的核心思想是"永远不要假设调用者的行为"。代码可能被其他方式调用（如单元测试中使用Mock对象），容器实现可能发生变化，或者未来代码被迁移到非HTTP协议的场景。添加instanceof检查的成本极低，但提供了一层额外的安全保障。</p>
+            <p><strong>3. 实际影响场景：</strong>虽然在正常Web应用中几乎不会遇到非HTTP请求，但在以下场景可能出现问题：(1) 使用自定义协议的WebSocket升级请求；(2) 某些中间件或代理层对请求进行了包装；(3) 安全扫描工具发送的异常请求。这些边界情况虽然罕见，但ClassCastException会导致500错误，影响用户体验和系统稳定性。</p>
+            <p><strong>4. 最佳实践：</strong>建议在Filter开头添加类型检查：if (!(req instanceof HttpServletRequest)) { chain.doFilter(req, res); return; } 这既满足防御性编程要求，又保证了代码的健壮性。在代码审查中，这类建议的优先级通常低于功能性安全漏洞，属于代码质量改进。</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Question 5 -->
+      <div class="question-block">
+        <div class="question-num">问题 5 &mdash; 人机协作策略</div>
+        <div class="question-text">如果你是项目负责人，AI的8个建议中你会采纳哪几个？如何建立高效的人机协作代码审查流程？</div>
+        <button class="answer-toggle" onclick="toggleAnswer(this)">
+          <span class="arrow">&#9654;</span> 展开参考答案
+        </button>
+        <div class="answer-content">
+          <div class="answer-inner">
+            <p>这个问题考察的是工程决策能力 &mdash; 如何在有限资源下做出最优安全决策。</p>
+            <p><strong>1. 建议采纳分析：</strong>建议采纳第1-7个，拒绝第8个。具体优先级排序：(1) 权限提升漏洞(#5) &mdash; P0紧急修复，直接影响系统安全；(2) Session未完全销毁(#1) &mdash; P0紧急修复；(3) Cache-Control缺失(#2) &mdash; P1高优先级；(4) CSRF验证(#4)和角色检查完善 &mdash; P1高优先级；(5) 空Session处理(#3)、类型检查(#6)、路径硬编码(#7) &mdash; P2改进项；(6) POST替代GET(#8) &mdash; 拒绝，不符合行业惯例。</p>
+            <p><strong>2. 人机协作流程设计：</strong>推荐"AI初筛 + 人工复核"模式：第一阶段，AI对代码进行全面扫描，生成初始报告；第二阶段，开发者对AI报告逐项复核，标记误报、调整优先级、补充业务上下文；第三阶段，团队讨论确定修复方案和排期。这种模式结合了AI的系统性和人类的判断力。</p>
+            <p><strong>3. 度量与改进：</strong>通过持续记录AI的误报率、遗漏率，可以逐步校准AI工具的参数和规则。同时，记录学生/开发者的常见遗漏点，可以针对性地加强培训。本学期三轮对战的数据积累，正是为这种持续改进提供数据支撑。</p>
+            <p><strong>4. 关键认知：</strong>最佳代码审查策略不是选择AI或人类，而是设计合理的协作流程。AI负责"广度"（系统性扫描所有已知漏洞模式），人类负责"深度"（业务理解、误报识别、优先级判断）。两者互补，才能达到最优审查效果。</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Highlight -->
+      <div class="highlight-box">
+        <div class="hb-title">&#127942; 本轮精彩发言</div>
+        <div class="hb-content">
+          <span class="hb-name">周雅婷</span>同学（B组）指出：AI遗漏了Filter中的类型转换风险在特定容器环境下可能被放大，而且在单元测试场景中如果使用不当的Mock对象也会触发ClassCastException。这个观点展示了对代码质量与安全的深层理解，获得本轮"最佳洞察"认定。
+        </div>
+      </div>
+
+      <!-- Student notes -->
+      <div class="student-notes">
+        <div class="sn-title">&#128221; 学生观点记录</div>
+        <textarea placeholder="教师可在此记录学生讨论中的关键观点和精彩发言...
+
+示例：
+- 王浩然提出可以结合静态分析工具自动化检查硬编码路径
+- 孙嘉禾指出RBAC过滤器应该支持配置化而非硬编码角色"></textarea>
       </div>
     </div>
   </section>
@@ -754,90 +1219,230 @@
   <section class="summary-section">
     <!-- Comparison Table -->
     <div class="comp-card">
-      <div class="comp-title">&#9876;&#65039; &#23545;&#25112;&#32467;&#26524;&#24635;&#35272;</div>
+      <div class="comp-title">&#9876;&#65039; 对战结果总览</div>
       <table class="comp-table">
         <thead>
-          <tr><th>&#32500;&#24230;</th><th>&#23398;&#29983;</th><th>AI</th><th>&#32988;&#20986;</th></tr>
+          <tr><th>维度</th><th>学生</th><th>AI</th><th>胜出</th></tr>
         </thead>
         <tbody>
           <tr>
-            <td>&#21457;&#29616;&#25968;&#37327;</td>
-            <td class="human-val">3</td>
-            <td class="ai-val">5</td>
+            <td>发现数量</td>
+            <td class="human-val">5</td>
+            <td class="ai-val">8</td>
             <td><span class="winner w-ai">&#129302; AI</span></td>
           </tr>
           <tr>
-            <td>&#20851;&#38190;&#28431;&#27934;&#21629;&#20013;</td>
-            <td class="human-val">2 / 4</td>
-            <td class="ai-val">3 / 4</td>
+            <td>关键漏洞命中</td>
+            <td class="human-val">3 / 4</td>
+            <td class="ai-val">4 / 4</td>
             <td><span class="winner w-ai">&#129302; AI</span></td>
           </tr>
           <tr>
-            <td>&#35823;&#25253;&#25968;</td>
+            <td>误报数</td>
             <td class="human-val">0</td>
             <td class="ai-val">1</td>
-            <td><span class="winner w-human">&#128101; &#23398;&#29983;</span></td>
+            <td><span class="winner w-human">&#128101; 学生</span></td>
           </tr>
           <tr>
-            <td>&#19994;&#21153;&#29702;&#35299;</td>
+            <td>业务理解</td>
             <td class="human-val"><span class="stars">&#9733;&#9733;&#9733;</span></td>
             <td class="ai-val"><span class="stars">&#9733;&#9733;</span></td>
-            <td><span class="winner w-human">&#128101; &#23398;&#29983;</span></td>
+            <td><span class="winner w-human">&#128101; 学生</span></td>
+          </tr>
+          <tr>
+            <td>跨文件关联</td>
+            <td class="human-val"><span class="stars">&#9733;&#9733;</span></td>
+            <td class="ai-val"><span class="stars">&#9733;&#9733;&#9733;</span></td>
+            <td><span class="winner w-ai">&#129302; AI</span></td>
           </tr>
         </tbody>
       </table>
 
       <div class="verdict">
-        <div class="verdict-text"><span class="collab-icon">&#129309;</span> &#32467;&#35770;&#65306;&#20154;&#26426;&#21327;&#21516; &gt; &#21333;&#29420;&#20219;&#20309;&#19968;&#26041;</div>
-        <div class="verdict-sub">AI&#25797;&#38271;&#31995;&#32479;&#24615;&#25195;&#25551;&#65292;&#20154;&#31867;&#25797;&#38271;&#19994;&#21153;&#21028;&#26029; &mdash; &#26368;&#20339;&#31574;&#30053;&#26159;&#21327;&#20316;&#32780;&#38750;&#26367;&#20195;</div>
+        <div class="verdict-text"><span class="collab-icon">&#129309;</span> 结论：人机协同 &gt; 单独任何一方</div>
+        <div class="verdict-sub">AI擅长系统性扫描，人类擅长业务判断 &mdash; 最佳策略是协作而非替代</div>
       </div>
+    </div>
+
+    <!-- Historical Comparison -->
+    <div class="history-compare">
+      <div class="history-compare-title">&#128200; 本学期对战数据总览 &mdash; 本轮 vs 前两轮</div>
+      <div class="battle-chart" id="battleChart">
+        <div class="battle-bar-group">
+          <div class="battle-bars">
+            <div class="battle-bar human-bar" style="height:0" data-target-h="104"><div class="bar-val">65</div></div>
+            <div class="battle-bar ai-bar" style="height:0" data-target-h="124"><div class="bar-val">78</div></div>
+          </div>
+          <div class="battle-bar-label">第1轮<br>Servlet生命周期</div>
+        </div>
+        <div class="battle-bar-group">
+          <div class="battle-bars">
+            <div class="battle-bar human-bar" style="height:0" data-target-h="128"><div class="bar-val">80</div></div>
+            <div class="battle-bar ai-bar" style="height:0" data-target-h="144"><div class="bar-val">90</div></div>
+          </div>
+          <div class="battle-bar-label">第2轮<br>JDBC连接管理</div>
+        </div>
+        <div class="battle-bar-group">
+          <div class="battle-bars">
+            <div class="battle-bar human-bar" style="height:0" data-target-h="140"><div class="bar-val">70</div></div>
+            <div class="battle-bar ai-bar" style="height:0" data-target-h="160"><div class="bar-val">80</div></div>
+          </div>
+          <div class="battle-bar-label">第3轮 (本轮)<br>认证与过滤器</div>
+        </div>
+      </div>
+      <div class="chart-legend">
+        <div class="chart-legend-item"><div class="chart-legend-dot human-dot"></div> 学生团队</div>
+        <div class="chart-legend-item"><div class="chart-legend-dot ai-dot"></div> AI</div>
+      </div>
+      <div style="text-align:center;margin-top:16px;padding:12px;background:#f0fdf4;border-radius:8px;font-size:13px;color:var(--green);font-weight:600">
+        &#128200; 趋势分析：学生团队得分从第1轮65分提升至本轮70分（+7.7%），关键漏洞命中率从50%提升至75%，呈现稳步提升趋势
+      </div>
+    </div>
+
+    <!-- Per-Student Participation -->
+    <div class="student-scores">
+      <div class="student-scores-title">&#128101; 学生个人参与度评分</div>
+      <table class="student-table">
+        <thead>
+          <tr><th>姓名</th><th>分组</th><th>发现数</th><th>关键命中</th><th>发言参与</th><th>本轮得分</th><th>累计得分</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>王浩然 <span class="leader-badge">组长</span></td>
+            <td class="group-cell">A组</td>
+            <td>2</td>
+            <td class="score-cell score-good">1</td>
+            <td class="score-cell score-good">积极</td>
+            <td class="score-cell score-good">28</td>
+            <td>78</td>
+          </tr>
+          <tr>
+            <td>陈思远</td>
+            <td class="group-cell">A组</td>
+            <td>1</td>
+            <td class="score-cell score-good">1</td>
+            <td class="score-cell score-mid">一般</td>
+            <td class="score-cell score-good">24</td>
+            <td>70</td>
+          </tr>
+          <tr>
+            <td>林雨桐</td>
+            <td class="group-cell">A组</td>
+            <td>1</td>
+            <td class="score-cell score-mid">0</td>
+            <td class="score-cell score-mid">一般</td>
+            <td class="score-cell score-mid">18</td>
+            <td>62</td>
+          </tr>
+          <tr>
+            <td>孙嘉禾 <span class="leader-badge">组长</span></td>
+            <td class="group-cell">B组</td>
+            <td>2</td>
+            <td class="score-cell score-good">2</td>
+            <td class="score-cell score-good">积极</td>
+            <td class="score-cell score-good">32</td>
+            <td>88</td>
+          </tr>
+          <tr>
+            <td>赵天宇</td>
+            <td class="group-cell">B组</td>
+            <td>2</td>
+            <td class="score-cell score-good">1</td>
+            <td class="score-cell score-good">积极</td>
+            <td class="score-cell score-good">26</td>
+            <td>76</td>
+          </tr>
+          <tr>
+            <td>周雅婷</td>
+            <td class="group-cell">B组</td>
+            <td>1</td>
+            <td class="score-cell score-good">1</td>
+            <td class="score-cell score-good">突出</td>
+            <td class="score-cell score-good">30</td>
+            <td>82</td>
+          </tr>
+          <tr>
+            <td>杨子涵 <span class="leader-badge">组长</span></td>
+            <td class="group-cell">C组</td>
+            <td>1</td>
+            <td class="score-cell score-mid">0</td>
+            <td class="score-cell score-good">积极</td>
+            <td class="score-cell score-mid">20</td>
+            <td>66</td>
+          </tr>
+          <tr>
+            <td>马文博</td>
+            <td class="group-cell">C组</td>
+            <td>1</td>
+            <td class="score-cell score-good">1</td>
+            <td class="score-cell score-mid">一般</td>
+            <td class="score-cell score-mid">22</td>
+            <td>68</td>
+          </tr>
+          <tr>
+            <td>黄佳怡</td>
+            <td class="group-cell">C组</td>
+            <td>0</td>
+            <td class="score-cell score-mid">0</td>
+            <td class="score-cell score-mid">一般</td>
+            <td class="score-cell score-mid">16</td>
+            <td>58</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
 
     <!-- Takeaways -->
     <div class="takeaways">
       <div class="takeaway-item">
         <div class="takeaway-icon">&#128270;</div>
-        <div class="takeaway-text">AI&#35206;&#30422;&#38754;&#24191;&#65292;&#21892;&#20110;&#21457;&#29616;&#27169;&#24335;&#21270;&#28431;&#27934;</div>
+        <div class="takeaway-text">AI覆盖面广，善于发现模式化漏洞和跨层次安全问题</div>
       </div>
       <div class="takeaway-item">
         <div class="takeaway-icon">&#129504;</div>
-        <div class="takeaway-text">&#20154;&#31867;&#26356;&#25797;&#38271;&#19994;&#21153;&#19978;&#19979;&#25991;&#21028;&#26029;&#21644;&#35823;&#25253;&#35782;&#21035;</div>
+        <div class="takeaway-text">人类更擅长业务上下文判断和误报识别</div>
       </div>
       <div class="takeaway-item">
         <div class="takeaway-icon">&#129309;</div>
-        <div class="takeaway-text">&#26368;&#20339;&#23454;&#36341;&#65306;AI&#21021;&#31579; + &#20154;&#24037;&#22797;&#26680; = &#26368;&#20248;&#20195;&#30721;&#23457;&#26597;</div>
+        <div class="takeaway-text">最佳实践：AI初筛 + 人工复核 = 最优代码审查</div>
       </div>
     </div>
 
     <!-- Session Badge -->
     <div class="session-badge">
       <div class="pulse-dot"></div>
-      &#26412;&#36718;&#25968;&#25454;&#24050;&#35760;&#24405; &middot; &#23558;&#32435;&#20837;&#35838;&#31243;&#25968;&#25454;&#20998;&#26512;&#31995;&#32479;
+      本轮数据已记录 &middot; 将纳入课程数据分析系统
     </div>
+
+    <!-- Export Button -->
+    <button class="export-btn" onclick="exportReport()">
+      &#128196; 导出本轮对战报告(PDF)
+    </button>
 
     <!-- Teaching Insights -->
     <div class="insights-card">
-      <div class="insights-title">&#25945;&#23398;&#27934;&#23519; &middot; Teaching Insights</div>
+      <div class="insights-title">教学洞察 &middot; Teaching Insights</div>
       <div class="insight-grid">
         <div class="insight-item">
-          <div class="insight-label">&#128269; AI&#25214;&#21040; &#20294;&#23398;&#29983;&#27809;&#25214;&#21040;&#30340;</div>
+          <div class="insight-label">&#128269; AI找到 但学生没找到的</div>
           <div class="insight-content">
-            <strong>Cache-Control&#22836;&#38382;&#39064;</strong> &mdash; &#27983;&#35272;&#22120;&#21518;&#36864;&#21487;&#26597;&#30475;&#24050;&#30331;&#24405;&#39029;&#38754;&#65292;&#23646;&#20110;&#23433;&#20840;&#30450;&#21306;&#12290;&#23398;&#29983;&#26222;&#36941;&#32570;&#20047;HTTP&#22836;&#23433;&#20840;&#24847;&#35782;&#12290;
-            <br><span class="insight-tag tag-learn">&#127891; &#23398;&#20064;&#26426;&#20250;</span>
+            <strong>Cache-Control头问题</strong> &mdash; 浏览器后退可查看已登录页面，属于安全盲区。学生普遍缺乏HTTP头安全意识。<br>
+            <strong>类型安全转换</strong> &mdash; Filter中的强制类型转换未做防御性检查。
+            <br><span class="insight-tag tag-learn">&#127891; 学习机会</span>
           </div>
         </div>
         <div class="insight-item">
-          <div class="insight-label">&#128064; &#23398;&#29983;&#25214;&#21040; &#20294;AI&#36951;&#28431;&#30340;</div>
+          <div class="insight-label">&#128064; 学生找到 但AI遗漏的</div>
           <div class="insight-content">
-            &#26080; &mdash; &#26412;&#36718;AI&#35206;&#30422;&#33539;&#22260;&#26356;&#24191;&#65292;&#20294;&#23398;&#29983;&#22242;&#38431;&#23545;&#24050;&#21457;&#29616;&#38382;&#39064;&#30340;<strong>&#19994;&#21153;&#19978;&#19979;&#25991;&#29702;&#35299;</strong>&#26356;&#20934;&#30830;&#12290;
-            <br><span class="insight-tag tag-miss">&mdash; &#26412;&#36718;&#26080;&#24046;&#24322;</span>
+            学生对重定向路径的<strong>工程实践建议</strong>（常量化、contextPath使用）更具体，体现了对项目维护性的理解。AI虽然也发现了硬编码问题，但学生的修复建议更贴近实际开发规范。
+            <br><span class="insight-tag tag-miss">&mdash; 人类工程经验优势</span>
           </div>
         </div>
         <div class="insight-item">
-          <div class="insight-label">&#9888;&#65039; AI&#30340;&#35823;&#25253;&#20998;&#26512;</div>
+          <div class="insight-label">&#9888;&#65039; AI的误报分析</div>
           <div class="insight-content">
-            <strong>POST&#26367;&#20195;GET&#24314;&#35758;</strong> &mdash; &#27880;&#38144;&#25805;&#20316;&#20351;&#29992;GET&#26159;&#34892;&#19994;&#24815;&#20363;&#65288;&#22914;Spring Security&#40664;&#35748;&#34892;&#20026;&#65289;&#65292;AI&#36807;&#24230;&#24314;&#35758;&#12290;
-            <br><span class="insight-tag tag-fp">&#10060; &#38656;&#35201;&#20154;&#24037;&#21028;&#26029;</span>
+            <strong>POST替代GET建议</strong> &mdash; 注销操作使用GET是行业惯例（如Spring Security默认行为），AI过度建议。这提醒学生：AI建议需要结合实际工程经验做判断。
+            <br><span class="insight-tag tag-fp">&#10060; 需要人工判断</span>
           </div>
         </div>
       </div>
@@ -847,8 +1452,8 @@
 
 <!-- NAVIGATION BUTTONS -->
 <div class="nav-buttons" id="navButtons">
-  <button class="nav-btn prev" id="prevBtn" onclick="prevStep()" disabled>&#8592; &#19978;&#19968;&#27493;</button>
-  <button class="nav-btn next" id="nextBtn" onclick="nextStep()">&#19979;&#19968;&#27493; &#8594;</button>
+  <button class="nav-btn prev" id="prevBtn" onclick="prevStep()" disabled>&#8592; 上一步</button>
+  <button class="nav-btn next" id="nextBtn" onclick="nextStep()">下一步 &#8594;</button>
 </div>
 
 <script>
@@ -860,41 +1465,109 @@ let reviewSeconds = 300; // 5 minutes
 let discTimer = null;
 let discSeconds = 300; // 5 minutes
 let aiRevealStarted = false;
+let currentFile = 'logout';
+
+// ===== CODE FILES =====
+const codeFiles = {
+  logout: {
+    title: '待审查代码 \u00b7 LogoutServlet.java',
+    lines: [
+      '<span class="an">@WebServlet</span>(<span class="str">"/logout"</span>)',
+      '<span class="kw">public class</span> <span class="ty">LogoutServlet</span> <span class="kw">extends</span> <span class="ty">HttpServlet</span> {',
+      '    <span class="kw">protected void</span> <span class="fn">doGet</span>(<span class="ty">HttpServletRequest</span> request, <span class="ty">HttpServletResponse</span> response)',
+      '            <span class="kw">throws</span> <span class="ty">ServletException</span>, <span class="ty">IOException</span> {',
+      '        <span class="ty">HttpSession</span> session = request.<span class="fn">getSession</span>(<span class="kw">false</span>);',
+      '        <span class="kw">if</span> (session != <span class="kw">null</span>) {',
+      '            <span class="cm">// \u95ee\u98981: \u53ea\u79fb\u9664\u4e86username\uff0c\u672a\u6e05\u9664\u5176\u4ed6\u654f\u611f\u5c5e\u6027(role, permissions)</span>',
+      '            session.<span class="fn">removeAttribute</span>(<span class="str">"username"</span>);',
+      '            <span class="cm">// \u95ee\u98982: \u5e94\u4f7f\u7528session.invalidate()\u5f7b\u5e95\u9500\u6bc1\u4f1a\u8bdd</span>',
+      '            <span class="cm">// \u95ee\u98983: \u672a\u8bbe\u7f6eCache-Control\u5934\uff0c\u6d4f\u89c8\u5668\u540e\u9000\u53ef\u80fd\u770b\u5230\u5df2\u767b\u5f55\u9875\u9762</span>',
+      '        }',
+      '        response.<span class="fn">sendRedirect</span>(<span class="str">"/login.jsp"</span>);',
+      '        <span class="cm">// \u95ee\u98984: \u91cd\u5b9a\u5411\u524d\u672a\u68c0\u67e5response\u662f\u5426\u5df2committed</span>',
+      '    }',
+      '}'
+    ]
+  },
+  filter: {
+    title: '待审查代码 \u00b7 RoleBasedAuthFilter.java',
+    lines: [
+      '<span class="an">@WebFilter</span>(<span class="str">"/admin/*"</span>)',
+      '<span class="kw">public class</span> <span class="ty">RoleBasedAuthFilter</span> <span class="kw">implements</span> <span class="ty">Filter</span> {',
+      '    <span class="kw">public void</span> <span class="fn">doFilter</span>(<span class="ty">ServletRequest</span> req, <span class="ty">ServletResponse</span> res, <span class="ty">FilterChain</span> chain)',
+      '            <span class="kw">throws</span> <span class="ty">IOException</span>, <span class="ty">ServletException</span> {',
+      '        <span class="ty">HttpServletRequest</span> request = (<span class="ty">HttpServletRequest</span>) req;',
+      '        <span class="ty">HttpSession</span> session = request.<span class="fn">getSession</span>(<span class="kw">false</span>);',
+      '        <span class="cm">// BUG: \u53ea\u68c0\u67e5\u767b\u5f55\u72b6\u6001\uff0c\u672a\u68c0\u67e5\u89d2\u8272</span>',
+      '        <span class="kw">if</span> (session != <span class="kw">null</span> && session.<span class="fn">getAttribute</span>(<span class="str">"isLoggedIn"</span>) != <span class="kw">null</span>) {',
+      '            chain.<span class="fn">doFilter</span>(req, res);',
+      '        } <span class="kw">else</span> {',
+      '            ((<span class="ty">HttpServletResponse</span>) res).<span class="fn">sendRedirect</span>(<span class="str">"/login.jsp"</span>);',
+      '        }',
+      '    }',
+      '}'
+    ]
+  }
+};
 
 // ===== CODE BLOCK RENDERING =====
-const codeLines = [
-  '<span class="an">@WebServlet</span>(<span class="str">"/logout"</span>)',
-  '<span class="kw">public class</span> <span class="ty">LogoutServlet</span> <span class="kw">extends</span> <span class="ty">HttpServlet</span> {',
-  '    <span class="kw">protected void</span> <span class="fn">doGet</span>(<span class="ty">HttpServletRequest</span> request, <span class="ty">HttpServletResponse</span> response)',
-  '            <span class="kw">throws</span> <span class="ty">ServletException</span>, <span class="ty">IOException</span> {',
-  '        <span class="ty">HttpSession</span> session = request.<span class="fn">getSession</span>(<span class="kw">false</span>);',
-  '        <span class="kw">if</span> (session != <span class="kw">null</span>) {',
-  '            <span class="cm">// &#38382;&#39064;1: &#21482;&#31227;&#38500;&#20102;username&#65292;&#26410;&#28165;&#38500;&#20854;&#20182;&#25935;&#24863;&#23646;&#24615;(role, permissions)</span>',
-  '            session.<span class="fn">removeAttribute</span>(<span class="str">"username"</span>);',
-  '            <span class="cm">// &#38382;&#39064;2: &#24212;&#20351;&#29992;session.invalidate()&#24443;&#24213;&#38144;&#27585;&#20250;&#35805;</span>',
-  '            <span class="cm">// &#38382;&#39064;3: &#26410;&#35774;&#32622;Cache-Control&#22836;&#65292;&#27983;&#35272;&#22120;&#21518;&#36864;&#21487;&#33021;&#30475;&#21040;&#24050;&#30331;&#24405;&#39029;&#38754;</span>',
-  '        }',
-  '        response.<span class="fn">sendRedirect</span>(<span class="str">"/login.jsp"</span>);',
-  '        <span class="cm">// &#38382;&#39064;4: &#37325;&#23450;&#21521;&#21069;&#26410;&#26816;&#26597;response&#26159;&#21542;&#24050;committed</span>',
-  '    }',
-  '}'
-];
-
 const lineNumsEl = document.getElementById('lineNums');
 const codeBlockEl = document.getElementById('codeBlock');
+const codeTitleEl = document.getElementById('codeTitle');
 
-codeLines.forEach((line, i) => {
-  const num = document.createElement('span');
-  num.textContent = i + 1;
-  num.id = 'ln-' + (i + 1);
-  lineNumsEl.appendChild(num);
+function renderCode(fileKey) {
+  const file = codeFiles[fileKey];
+  lineNumsEl.innerHTML = '';
+  codeBlockEl.innerHTML = '';
+  codeTitleEl.textContent = file.title;
 
-  const codeLine = document.createElement('span');
-  codeLine.className = 'code-line';
-  codeLine.id = 'code-' + (i + 1);
-  codeLine.innerHTML = line + '\n';
-  codeBlockEl.appendChild(codeLine);
-});
+  file.lines.forEach((line, i) => {
+    const num = document.createElement('span');
+    num.textContent = i + 1;
+    num.id = 'ln-' + fileKey + '-' + (i + 1);
+    lineNumsEl.appendChild(num);
+
+    const codeLine = document.createElement('span');
+    codeLine.className = 'code-line';
+    codeLine.id = 'code-' + fileKey + '-' + (i + 1);
+    codeLine.innerHTML = line + '<span class="annotation-marker"></span>\n';
+    codeLine.addEventListener('click', function() {
+      this.classList.toggle('annotated');
+      const marker = this.querySelector('.annotation-marker');
+      if (this.classList.contains('annotated')) {
+        marker.textContent = '\u2709 \u5df2\u6807\u8bb0';
+      } else {
+        marker.textContent = '';
+      }
+    });
+    codeBlockEl.appendChild(codeLine);
+  });
+}
+
+function switchFile(fileKey) {
+  currentFile = fileKey;
+  renderCode(fileKey);
+
+  // Update tabs
+  document.querySelectorAll('.file-tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('tab-' + fileKey).classList.add('active');
+
+  // Update file tree
+  document.querySelectorAll('.tree-item.reviewable').forEach(item => {
+    item.classList.remove('active-file');
+  });
+  const treeItems = document.querySelectorAll('.tree-item.reviewable');
+  treeItems.forEach(item => {
+    if (fileKey === 'logout' && item.textContent.includes('LogoutServlet')) {
+      item.classList.add('active-file');
+    } else if (fileKey === 'filter' && item.textContent.includes('RoleBasedAuth')) {
+      item.classList.add('active-file');
+    }
+  });
+}
+
+// Initial render
+renderCode('logout');
 
 // ===== LINE HIGHLIGHTING =====
 let highlightTimeout;
@@ -903,7 +1576,7 @@ function clearHighlights() {
 }
 function highlightLine(n) {
   clearHighlights();
-  const el = document.getElementById('code-' + n);
+  const el = document.getElementById('code-' + currentFile + '-' + n);
   if (el) {
     el.classList.add('highlight');
     el.scrollIntoView({ behavior: 'smooth', block: 'center' });
@@ -914,13 +1587,20 @@ function highlightLine(n) {
 function highlightLines(nums) {
   clearHighlights();
   nums.forEach(n => {
-    const el = document.getElementById('code-' + n);
+    const el = document.getElementById('code-' + currentFile + '-' + n);
     if (el) el.classList.add('highlight');
   });
-  const first = document.getElementById('code-' + nums[0]);
+  const first = document.getElementById('code-' + currentFile + '-' + nums[0]);
   if (first) first.scrollIntoView({ behavior: 'smooth', block: 'center' });
   clearTimeout(highlightTimeout);
   highlightTimeout = setTimeout(clearHighlights, 4000);
+}
+
+// ===== FILE FILTER FOR FINDINGS =====
+function filterFindings(filter, btn) {
+  document.querySelectorAll('.file-filter-tab').forEach(t => t.classList.remove('active'));
+  btn.classList.add('active');
+  // Filtering is for display; in the demo all rows remain visible
 }
 
 // ===== STEP NAVIGATION =====
@@ -949,18 +1629,14 @@ function updateProgressBar() {
 }
 
 function showStep(n) {
-  // Hide all
   document.querySelectorAll('.step-container').forEach(el => el.classList.remove('active'));
-  // Show target
   const target = document.getElementById('step-' + n);
   if (target) {
     target.classList.add('active');
-    // Re-trigger animation
     target.style.animation = 'none';
-    target.offsetHeight; // reflow
+    target.offsetHeight;
     target.style.animation = '';
   }
-  // Update nav buttons
   const prevBtn = document.getElementById('prevBtn');
   const nextBtn = document.getElementById('nextBtn');
   prevBtn.disabled = (n <= 1);
@@ -969,13 +1645,11 @@ function showStep(n) {
   } else {
     nextBtn.style.display = '';
   }
-  // Scroll to top smoothly
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
 function goToStep(n) {
   if (n < 1 || n > totalSteps) return;
-  // Only allow going to steps already visited (or current+1)
   if (n > currentStep) return;
   currentStep = n;
   updateProgressBar();
@@ -1017,6 +1691,9 @@ function onStepEnter(n) {
     startDiscussionTimer();
   } else {
     stopDiscussionTimer();
+  }
+  if (n === 6) {
+    animateBattleChart();
   }
 }
 
@@ -1069,18 +1746,21 @@ function prefillStudentFindings() {
   const rows = document.getElementById('findingRows');
   rows.innerHTML = '';
   const findings = [
-    { line: '7', desc: '\u53EA\u79FB\u9664username\u672A\u6E05\u9664\u5168\u90E8Session\u5C5E\u6027', sev: 'high', fix: '\u4F7F\u7528session.invalidate()\u5F7B\u5E95\u9500\u6BC1' },
-    { line: '8', desc: '\u4F7F\u7528removeAttribute\u800C\u975Einvalidate', sev: 'mid', fix: '\u66FF\u6362\u4E3Asession.invalidate()' },
-    { line: '11', desc: '\u91CD\u5B9A\u5411\u8DEF\u5F84\u5EFA\u8BAE\u4F7F\u7528\u5E38\u91CF\u5B9A\u4E49', sev: 'low', fix: '\u5B9A\u4E49\u5E38\u91CFLOGIN_URL' }
+    { line: '7', file: 'logout', desc: '\u53ea\u79fb\u9664username\u672a\u6e05\u9664\u5168\u90e8Session\u5c5e\u6027', sev: 'high', fix: '\u4f7f\u7528session.invalidate()\u5f7b\u5e95\u9500\u6bc1' },
+    { line: '8', file: 'logout', desc: '\u4f7f\u7528removeAttribute\u800c\u975einvalidate', sev: 'mid', fix: '\u66ff\u6362\u4e3asession.invalidate()' },
+    { line: '11', file: 'logout', desc: '\u91cd\u5b9a\u5411\u8def\u5f84\u5efa\u8bae\u4f7f\u7528\u5e38\u91cf\u5b9a\u4e49', sev: 'low', fix: '\u5b9a\u4e49\u5e38\u91cfLOGIN_URL' },
+    { line: '7-8', file: 'filter', desc: '\u53ea\u68c0\u67e5\u767b\u5f55\u72b6\u6001\u672a\u68c0\u67e5\u89d2\u8272\uff0c\u5b58\u5728\u8d8a\u6743\u98ce\u9669', sev: 'high', fix: '\u6dfb\u52a0role\u5c5e\u6027\u68c0\u67e5\uff0c\u9a8c\u8bc1\u662f\u5426\u4e3aadmin\u89d2\u8272' },
+    { line: '10', file: 'filter', desc: '\u91cd\u5b9a\u5411\u8def\u5f84\u786c\u7f16\u7801\uff0c\u672a\u4f7f\u7528contextPath', sev: 'mid', fix: '\u4f7f\u7528request.getContextPath()+"/login.jsp"' }
   ];
   findings.forEach(f => {
     addFindingRow();
     const lastRow = rows.lastElementChild;
     const inputs = lastRow.querySelectorAll('input');
-    const select = lastRow.querySelector('select');
+    const selects = lastRow.querySelectorAll('select');
     inputs[0].value = f.line;
+    selects[0].value = f.file;
     inputs[1].value = f.desc;
-    select.value = f.sev;
+    selects[1].value = f.sev;
     inputs[2].value = f.fix;
   });
 }
@@ -1090,10 +1770,11 @@ function addFindingRow() {
   const rows = document.getElementById('findingRows');
   const div = document.createElement('div');
   div.className = 'finding-row';
-  div.innerHTML = '<input type="text" placeholder="\u884C\u53F7" style="text-align:center">' +
-    '<input type="text" placeholder="\u95EE\u9898\u63CF\u8FF0">' +
-    '<select><option value="">\u4E25\u91CD\u7A0B\u5EA6</option><option value="high">\uD83D\uDD34 \u9AD8\u5371</option><option value="mid">\uD83D\uDFE0 \u4E2D\u5371</option><option value="low">\uD83D\uDFE2 \u5EFA\u8BAE</option></select>' +
-    '<input type="text" placeholder="\u4FEE\u590D\u5EFA\u8BAE">' +
+  div.innerHTML = '<input type="text" placeholder="\u884c\u53f7" style="text-align:center">' +
+    '<select class="file-select"><option value="logout">Logout</option><option value="filter">Filter</option></select>' +
+    '<input type="text" placeholder="\u95ee\u9898\u63cf\u8ff0">' +
+    '<select><option value="">\u4e25\u91cd\u7a0b\u5ea6</option><option value="high">\ud83d\udd34 \u9ad8\u5371</option><option value="mid">\ud83d\udfe0 \u4e2d\u5371</option><option value="low">\ud83d\udfe2 \u5efa\u8bae</option></select>' +
+    '<input type="text" placeholder="\u4fee\u590d\u5efa\u8bae">' +
     '<button class="remove-btn" onclick="removeRow(this)" title="\u5220\u9664">\u2715</button>';
   rows.appendChild(div);
 }
@@ -1108,29 +1789,51 @@ function removeRow(btn) {
 function startAIReveal() {
   const statusEl = document.getElementById('aiStatus');
   const scanLine = document.getElementById('aiScanLine');
+  const promptBox = document.getElementById('aiPromptBox');
   const findings = document.querySelectorAll('.ai-finding-item');
+  const thinkSteps = document.querySelectorAll('.ai-think-step');
+
+  // Show prompt box first
+  setTimeout(() => {
+    promptBox.style.display = 'block';
+    promptBox.style.animation = 'fadeSlideIn .5s ease';
+  }, 500);
 
   const phases = [
-    { text: '\u6B63\u5728\u52A0\u8F7D\u4EE3\u7801\u7ED3\u6784...', delay: 1200 },
-    { text: '\u6B63\u5728\u5206\u6790\u4EE3\u7801\u903B\u8F91...', delay: 1500 },
-    { text: '\u6B63\u5728\u68C0\u67E5\u5B89\u5168\u6F0F\u6D1E...', delay: 1500 },
-    { text: '\u6B63\u5728\u8BC4\u4F30\u98CE\u9669\u7B49\u7EA7...', delay: 1200 },
-    { text: '\u5BA1\u67E5\u5B8C\u6210\uFF01\u53D1\u73B0 5 \u4E2A\u95EE\u9898', delay: 800 }
+    { text: '\u6b63\u5728\u521d\u59cb\u5316\u5ba1\u67e5\u5f15\u64ce...', delay: 1000, thinkIdx: 0 },
+    { text: '\u6b63\u5728\u5206\u6790\u4ee3\u7801\u7ed3\u6784...', delay: 1200, thinkIdx: 0 },
+    { text: '\u68c0\u6d4b\u5230 LogoutServlet.java \u4e2d 2 \u4e2a\u6f5c\u5728\u95ee\u9898', delay: 1500, thinkIdx: 1 },
+    { text: '\u68c0\u6d4b\u5230 RoleBasedAuthFilter.java \u4e2d 3 \u4e2a\u6f5c\u5728\u95ee\u9898', delay: 1500, thinkIdx: 2 },
+    { text: '\u6b63\u5728\u8bc4\u4f30\u98ce\u9669\u7b49\u7ea7...', delay: 1200, thinkIdx: 3 },
+    { text: '\u5ba1\u67e5\u5b8c\u6210\uff01\u5171\u53d1\u73b0 8 \u4e2a\u95ee\u9898', delay: 800, thinkIdx: 4 }
   ];
 
-  let totalDelay = 0;
+  let totalDelay = 1500; // after prompt shows
   phases.forEach((phase, idx) => {
     setTimeout(() => {
-      statusEl.innerHTML = phase.text + (idx < 4 ? ' <span class="ai-typing-dots"><span></span><span></span><span></span></span>' : ' \u2705');
+      statusEl.innerHTML = phase.text + (idx < 5 ? ' <span class="ai-typing-dots"><span></span><span></span><span></span></span>' : ' \u2705');
+      // Show thinking step
+      const step = thinkSteps[phase.thinkIdx];
+      if (step) {
+        step.classList.add('visible');
+        if (idx > 0 && phase.thinkIdx > 0) {
+          thinkSteps[phase.thinkIdx - 1].classList.add('done');
+        }
+      }
     }, totalDelay);
     totalDelay += phase.delay;
   });
+
+  // Mark last think step as done
+  setTimeout(() => {
+    thinkSteps[thinkSteps.length - 1].classList.add('done');
+  }, totalDelay);
 
   // Reveal findings one by one after phases
   findings.forEach((f, i) => {
     setTimeout(() => {
       f.classList.add('revealed');
-    }, totalDelay + 400 + i * 600);
+    }, totalDelay + 400 + i * 500);
   });
 
   // Hide scan line when done
@@ -1207,6 +1910,29 @@ function animateCounters() {
   });
 }
 
+// ===== STEP 6: BATTLE CHART ANIMATION =====
+function animateBattleChart() {
+  const bars = document.querySelectorAll('#battleChart .battle-bar');
+  bars.forEach(bar => {
+    const targetH = parseInt(bar.dataset.targetH, 10);
+    setTimeout(() => {
+      bar.style.height = targetH + 'px';
+    }, 200);
+  });
+}
+
+// ===== EXPORT REPORT =====
+function exportReport() {
+  const btn = document.querySelector('.export-btn');
+  const originalText = btn.innerHTML;
+  btn.innerHTML = '\u2705 \u62a5\u544a\u5df2\u751f\u6210\uff0c\u6b63\u5728\u4e0b\u8f7d...';
+  btn.style.background = 'linear-gradient(135deg, #2ecc71, #27ae60)';
+  setTimeout(() => {
+    btn.innerHTML = originalText;
+    btn.style.background = '';
+  }, 3000);
+}
+
 // ===== FINDING HOVER HIGHLIGHTS (Step 4) =====
 document.querySelectorAll('.finding').forEach(f => {
   f.addEventListener('mouseenter', () => {
@@ -1214,7 +1940,7 @@ document.querySelectorAll('.finding').forEach(f => {
     if (!lines) return;
     clearHighlights();
     lines.split(',').forEach(n => {
-      const el = document.getElementById('code-' + n.trim());
+      const el = document.getElementById('code-' + currentFile + '-' + n.trim());
       if (el) el.classList.add('highlight');
     });
   });
