@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Code Review Battle - AI代码评审对战</title>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  :root{
+    --dark:#1e1e2e;--darker:#13131f;--human:#4472C4;--human-bg:#eef3fb;--human-glow:rgba(68,114,196,.3);
+    --ai:#7c3aed;--ai-bg:#f3eeff;--ai-glow:rgba(124,58,237,.3);
+    --gold:#ffd700;--red:#e74c3c;--orange:#f39c12;--green:#27ae60;--gray:#95a5a6;
+    --code-bg:#1e1e2e;--code-fg:#d4d4d4;
+  }
+  body{font-family:'Segoe UI','Microsoft YaHei',sans-serif;background:#f0f2f5;color:#333;overflow-x:hidden}
+
+  /* ===== HEADER ===== */
+  .header{background:linear-gradient(135deg,var(--dark) 0%,#2d1b69 50%,var(--dark) 100%);color:#fff;text-align:center;padding:28px 20px 22px;position:relative;overflow:hidden}
+  .header::before{content:'';position:absolute;top:0;left:0;right:0;bottom:0;background:repeating-linear-gradient(90deg,transparent,transparent 60px,rgba(255,255,255,.02) 60px,rgba(255,255,255,.02) 61px);pointer-events:none}
+  .header h1{font-size:32px;font-weight:800;letter-spacing:2px;text-shadow:0 0 30px rgba(124,58,237,.5)}
+  .header h1 .dot{color:var(--gold);font-size:36px}
+  .header .subtitle{font-size:16px;color:rgba(255,255,255,.7);margin-top:6px;letter-spacing:4px}
+  .header .subtitle em{font-style:normal;color:var(--gold);font-weight:600}
+  .header-decor{position:absolute;font-size:80px;opacity:.04;font-weight:900}
+  .header-decor.left{left:40px;top:-10px}
+  .header-decor.right{right:40px;top:-10px}
+
+  /* ===== CODE DISPLAY ===== */
+  .code-section{max-width:1400px;margin:24px auto 0;padding:0 24px}
+  .code-card{background:var(--code-bg);border-radius:12px;overflow:hidden;box-shadow:0 8px 32px rgba(0,0,0,.18)}
+  .code-header{display:flex;align-items:center;gap:10px;padding:12px 20px;background:#181825;border-bottom:1px solid #313244}
+  .code-header .dots{display:flex;gap:6px}
+  .code-header .dots span{width:12px;height:12px;border-radius:50%}
+  .code-header .dots span:nth-child(1){background:#f38ba8}
+  .code-header .dots span:nth-child(2){background:#f9e2af}
+  .code-header .dots span:nth-child(3){background:#a6e3a1}
+  .code-header .title{color:#cdd6f4;font-size:14px;font-family:'Consolas','Courier New',monospace}
+  .code-header .badge{margin-left:auto;background:rgba(243,139,168,.15);color:#f38ba8;font-size:11px;padding:3px 10px;border-radius:20px;font-weight:600}
+  .code-body{display:flex;overflow-x:auto}
+  .line-numbers{padding:16px 0;text-align:right;user-select:none;min-width:44px;background:#11111b}
+  .line-numbers span{display:block;padding:0 12px 0 8px;font-size:13px;line-height:22px;color:#585b70;font-family:'Consolas','Courier New',monospace}
+  .code-content{padding:16px 20px;flex:1;overflow-x:auto}
+  .code-content pre{font-size:13px;line-height:22px;font-family:'Consolas','Courier New',monospace;color:var(--code-fg);white-space:pre}
+  .code-line{display:block;padding:0 4px;border-radius:3px;transition:background .3s}
+  .code-line.highlight{background:rgba(255,215,0,.12);box-shadow:inset 3px 0 0 var(--gold)}
+  /* Syntax colors */
+  .kw{color:#c678dd} .ty{color:#e5c07b} .str{color:#98c379} .cm{color:#6a9955;font-style:italic}
+  .an{color:#e06c75} .fn{color:#61afef} .num{color:#d19a66} .op{color:#abb2bf}
+
+  /* ===== BATTLE ARENA ===== */
+  .arena{max-width:1400px;margin:24px auto 0;padding:0 24px;display:grid;grid-template-columns:1fr 80px 1fr;gap:0;align-items:start}
+
+  /* Panel shared */
+  .panel{background:#fff;border-radius:14px;padding:24px;box-shadow:0 4px 20px rgba(0,0,0,.06);border:2px solid transparent;position:relative;overflow:hidden}
+  .panel::before{content:'';position:absolute;top:0;left:0;right:0;height:4px}
+  .panel.human{border-color:rgba(68,114,196,.2)}.panel.human::before{background:linear-gradient(90deg,var(--human),#6a9fd8)}
+  .panel.ai{border-color:rgba(124,58,237,.2)}.panel.ai::before{background:linear-gradient(90deg,#a78bfa,var(--ai))}
+  .panel-header{display:flex;align-items:center;gap:12px;margin-bottom:18px}
+  .panel-icon{width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:22px}
+  .human .panel-icon{background:var(--human-bg);color:var(--human)}
+  .ai .panel-icon{background:var(--ai-bg);color:var(--ai)}
+  .panel-title{font-size:18px;font-weight:700}
+  .human .panel-title{color:var(--human)}
+  .ai .panel-title{color:var(--ai)}
+  .panel-label{font-size:12px;color:#888;font-weight:400}
+
+  /* Findings */
+  .finding{padding:14px;border-radius:10px;margin-bottom:10px;border-left:4px solid;position:relative;transition:transform .2s,box-shadow .2s;cursor:default}
+  .finding:hover{transform:translateX(4px);box-shadow:0 4px 16px rgba(0,0,0,.08)}
+  .finding.sev-high{background:#fef2f2;border-color:var(--red)}
+  .finding.sev-mid{background:#fffbeb;border-color:var(--orange)}
+  .finding.sev-low{background:#f0fdf4;border-color:var(--green)}
+  .finding.sev-fp{background:#f5f5f5;border-color:var(--gray);opacity:.7}
+  .finding-top{display:flex;align-items:center;gap:8px;margin-bottom:4px}
+  .sev-badge{font-size:11px;font-weight:700;padding:2px 8px;border-radius:20px;color:#fff;display:inline-flex;align-items:center;gap:4px}
+  .sev-badge.high{background:var(--red)}.sev-badge.mid{background:var(--orange)}.sev-badge.low{background:var(--green)}.sev-badge.fp{background:var(--gray)}
+  .line-ref{font-size:11px;color:#888;background:#f0f0f0;padding:2px 8px;border-radius:10px;cursor:pointer;transition:background .2s,color .2s;margin-left:auto}
+  .line-ref:hover{background:var(--gold);color:#333}
+  .finding-desc{font-size:13.5px;color:#444;line-height:1.5}
+  .rejected-tag{display:inline-block;font-size:10px;background:#e74c3c;color:#fff;padding:1px 6px;border-radius:4px;margin-left:6px;font-weight:600;animation:pulse 2s infinite}
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.5}}
+
+  /* Score bar */
+  .score-bar{margin-top:16px;padding:14px 16px;border-radius:10px;font-size:13px;font-weight:600;display:flex;align-items:center;gap:8px}
+  .human .score-bar{background:var(--human-bg);color:var(--human)}
+  .ai .score-bar{background:var(--ai-bg);color:var(--ai)}
+  .score-num{font-size:28px;font-weight:800;font-variant-numeric:tabular-nums}
+
+  /* ===== VS BADGE ===== */
+  .vs-col{display:flex;align-items:center;justify-content:center;position:relative;z-index:2}
+  .vs-badge{width:68px;height:68px;border-radius:50%;background:linear-gradient(135deg,#ffd700,#ff8c00);display:flex;align-items:center;justify-content:center;font-size:24px;font-weight:900;color:#1e1e2e;box-shadow:0 0 30px rgba(255,215,0,.4),0 0 60px rgba(255,215,0,.15);animation:vsGlow 2.5s ease-in-out infinite;position:relative;margin-top:120px}
+  .vs-badge::after{content:'';position:absolute;inset:-6px;border-radius:50%;border:2px solid rgba(255,215,0,.3);animation:vsRing 2.5s ease-in-out infinite}
+  @keyframes vsGlow{0%,100%{box-shadow:0 0 30px rgba(255,215,0,.4),0 0 60px rgba(255,215,0,.15)}50%{box-shadow:0 0 40px rgba(255,215,0,.6),0 0 80px rgba(255,215,0,.25)}}
+  @keyframes vsRing{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.15);opacity:.4}}
+  .vs-line{position:absolute;width:2px;background:linear-gradient(to bottom,transparent,rgba(255,215,0,.3),transparent);height:100%;top:0}
+
+  /* ===== COMPARISON TABLE ===== */
+  .comparison{max-width:1400px;margin:28px auto 0;padding:0 24px}
+  .comp-card{background:#fff;border-radius:14px;padding:28px 32px;box-shadow:0 4px 20px rgba(0,0,0,.06)}
+  .comp-title{text-align:center;font-size:20px;font-weight:700;color:var(--dark);margin-bottom:20px}
+  .comp-table{width:100%;border-collapse:separate;border-spacing:0}
+  .comp-table th,.comp-table td{padding:12px 16px;text-align:center;font-size:14px}
+  .comp-table thead th{background:#f8f9fa;color:#666;font-weight:600;font-size:12px;text-transform:uppercase;letter-spacing:1px}
+  .comp-table thead th:first-child{border-radius:8px 0 0 0;text-align:left}.comp-table thead th:last-child{border-radius:0 8px 0 0}
+  .comp-table tbody td{border-bottom:1px solid #f0f0f0}
+  .comp-table tbody tr:last-child td{border-bottom:none}
+  .comp-table td:first-child{text-align:left;font-weight:600;color:#555}
+  .comp-table .human-val{color:var(--human);font-weight:700}
+  .comp-table .ai-val{color:var(--ai);font-weight:700}
+  .winner{display:inline-flex;align-items:center;gap:4px;font-size:12px;font-weight:700;padding:3px 10px;border-radius:20px}
+  .winner.w-human{background:var(--human-bg);color:var(--human)}
+  .winner.w-ai{background:var(--ai-bg);color:var(--ai)}
+  .winner.w-tie{background:#fff9e6;color:#b8860b}
+  .stars{color:var(--gold);letter-spacing:2px}
+
+  /* Verdict */
+  .verdict{text-align:center;margin-top:24px;padding:20px;background:linear-gradient(135deg,rgba(68,114,196,.05),rgba(124,58,237,.05));border-radius:12px;border:2px dashed rgba(124,58,237,.2)}
+  .verdict-text{font-size:22px;font-weight:800;color:var(--dark);opacity:0;animation:fadeSlideUp .8s .5s forwards}
+  .verdict-sub{font-size:14px;color:#666;margin-top:6px;opacity:0;animation:fadeSlideUp .8s .9s forwards}
+  .collab-icon{font-size:28px;display:inline-block;animation:handshake 1.5s ease-in-out infinite}
+  @keyframes handshake{0%,100%{transform:rotate(0)}25%{transform:rotate(-8deg)}75%{transform:rotate(8deg)}}
+  @keyframes fadeSlideUp{from{opacity:0;transform:translateY(15px)}to{opacity:1;transform:translateY(0)}}
+
+  /* ===== TEACHING INSIGHTS ===== */
+  .insights{max-width:1400px;margin:28px auto 0;padding:0 24px 40px}
+  .insights-card{background:linear-gradient(135deg,#1e1e2e 0%,#2d1b69 100%);border-radius:14px;padding:28px 32px;color:#fff;box-shadow:0 8px 32px rgba(0,0,0,.15)}
+  .insights-title{font-size:18px;font-weight:700;margin-bottom:18px;display:flex;align-items:center;gap:8px}
+  .insights-title::before{content:'';width:4px;height:20px;background:var(--gold);border-radius:2px;display:inline-block}
+  .insight-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:20px}
+  .insight-item{background:rgba(255,255,255,.07);border-radius:10px;padding:16px;border:1px solid rgba(255,255,255,.08)}
+  .insight-label{font-size:11px;color:rgba(255,255,255,.5);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px}
+  .insight-content{font-size:13px;line-height:1.6;color:rgba(255,255,255,.85)}
+  .insight-tag{display:inline-block;font-size:10px;padding:2px 8px;border-radius:4px;font-weight:600;margin-top:6px}
+  .tag-learn{background:rgba(39,174,96,.2);color:#a6e3a1}
+  .tag-miss{background:rgba(108,117,125,.2);color:#aaa}
+  .tag-fp{background:rgba(231,76,60,.2);color:#f38ba8}
+  .takeaway{text-align:center;padding:16px;background:rgba(255,215,0,.1);border-radius:10px;border:1px solid rgba(255,215,0,.2);font-size:15px;font-weight:600;color:var(--gold);letter-spacing:.5px}
+
+  /* ===== COUNTER ANIMATION ===== */
+  .counter{display:inline-block;font-variant-numeric:tabular-nums}
+
+  /* ===== RESPONSIVE ===== */
+  @media(max-width:1200px){.arena{grid-template-columns:1fr}.vs-col{display:none}.insight-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="header">
+  <div class="header-decor left">&lt;/&gt;</div>
+  <div class="header-decor right">{ }</div>
+  <h1>Code Review Battle <span class="dot">&middot;</span> AI代码评审对战</h1>
+  <div class="subtitle">人 vs AI <em>&middot;</em> 谁能发现更多安全漏洞？</div>
+</header>
+
+<!-- CODE DISPLAY -->
+<section class="code-section">
+  <div class="code-card">
+    <div class="code-header">
+      <div class="dots"><span></span><span></span><span></span></div>
+      <span class="title">待审查代码 &middot; LogoutServlet.java</span>
+      <span class="badge">4 个已知漏洞</span>
+    </div>
+    <div class="code-body">
+      <div class="line-numbers" id="lineNums"></div>
+      <div class="code-content"><pre id="codeBlock"></pre></div>
+    </div>
+  </div>
+</section>
+
+<!-- BATTLE ARENA -->
+<section class="arena">
+  <!-- HUMAN PANEL -->
+  <div class="panel human">
+    <div class="panel-header">
+      <div class="panel-icon">&#128101;</div>
+      <div>
+        <div class="panel-title">学生团队审查结果</div>
+        <div class="panel-label">Human Review</div>
+      </div>
+    </div>
+
+    <div class="finding sev-high" data-lines="7">
+      <div class="finding-top">
+        <span class="sev-badge high">&#128308; 高危</span>
+        <span class="line-ref" onclick="highlightLine(7)">Line 7</span>
+      </div>
+      <div class="finding-desc">只移除username未清除全部Session属性</div>
+    </div>
+    <div class="finding sev-mid" data-lines="8">
+      <div class="finding-top">
+        <span class="sev-badge mid">&#128992; 中危</span>
+        <span class="line-ref" onclick="highlightLine(8)">Line 8</span>
+      </div>
+      <div class="finding-desc">使用removeAttribute而非invalidate</div>
+    </div>
+    <div class="finding sev-low" data-lines="11">
+      <div class="finding-top">
+        <span class="sev-badge low">&#128994; 建议</span>
+        <span class="line-ref" onclick="highlightLine(11)">Line 11</span>
+      </div>
+      <div class="finding-desc">重定向路径建议使用常量定义</div>
+    </div>
+
+    <div class="score-bar">
+      <span>发现</span>
+      <span class="score-num counter" data-target="3">0</span>
+      <span>个问题，命中</span>
+      <span class="score-num counter" data-target="2">0</span>
+      <span>个关键漏洞</span>
+    </div>
+  </div>
+
+  <!-- VS COLUMN -->
+  <div class="vs-col">
+    <div class="vs-line"></div>
+    <div class="vs-badge">VS</div>
+  </div>
+
+  <!-- AI PANEL -->
+  <div class="panel ai">
+    <div class="panel-header">
+      <div class="panel-icon">&#129302;</div>
+      <div>
+        <div class="panel-title">AI审查结果</div>
+        <div class="panel-label">AI Review</div>
+      </div>
+    </div>
+
+    <div class="finding sev-high" data-lines="7,8">
+      <div class="finding-top">
+        <span class="sev-badge high">&#128308; 高危</span>
+        <span class="line-ref" onclick="highlightLines([7,8])">Line 7-8</span>
+      </div>
+      <div class="finding-desc">Session未完全销毁，存在会话残留风险</div>
+    </div>
+    <div class="finding sev-high" data-lines="9">
+      <div class="finding-top">
+        <span class="sev-badge high">&#128308; 高危</span>
+        <span class="line-ref" onclick="highlightLine(9)">Line 9</span>
+      </div>
+      <div class="finding-desc">缺少Cache-Control/Pragma响应头</div>
+    </div>
+    <div class="finding sev-mid" data-lines="4">
+      <div class="finding-top">
+        <span class="sev-badge mid">&#128992; 中危</span>
+        <span class="line-ref" onclick="highlightLine(4)">Line 4</span>
+      </div>
+      <div class="finding-desc">getSession(false)返回null时仍执行重定向，逻辑可简化</div>
+    </div>
+    <div class="finding sev-low">
+      <div class="finding-top">
+        <span class="sev-badge low">&#128994; 建议</span>
+        <span class="line-ref" style="background:#e8e8e8;color:#aaa;cursor:default">new</span>
+      </div>
+      <div class="finding-desc">建议添加CSRF token验证防止跨站注销</div>
+    </div>
+    <div class="finding sev-fp">
+      <div class="finding-top">
+        <span class="sev-badge fp">&#9898; 误报</span>
+        <span class="rejected-tag">REJECTED</span>
+      </div>
+      <div class="finding-desc" style="text-decoration:line-through;color:#999">建议使用POST方法替代GET进行注销操作</div>
+    </div>
+
+    <div class="score-bar">
+      <span>发现</span>
+      <span class="score-num counter" data-target="5">0</span>
+      <span>个问题，命中</span>
+      <span class="score-num counter" data-target="3">0</span>
+      <span>个关键漏洞，</span>
+      <span class="score-num counter" data-target="1">0</span>
+      <span>个误报</span>
+    </div>
+  </div>
+</section>
+
+<!-- COMPARISON TABLE -->
+<section class="comparison">
+  <div class="comp-card">
+    <div class="comp-title">&#9876;&#65039; 对战结果总览</div>
+    <table class="comp-table">
+      <thead>
+        <tr><th>维度</th><th>学生</th><th>AI</th><th>胜出</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>发现数量</td>
+          <td class="human-val">3</td>
+          <td class="ai-val">5</td>
+          <td><span class="winner w-ai">&#129302; AI</span></td>
+        </tr>
+        <tr>
+          <td>关键漏洞命中</td>
+          <td class="human-val">2 / 4</td>
+          <td class="ai-val">3 / 4</td>
+          <td><span class="winner w-ai">&#129302; AI</span></td>
+        </tr>
+        <tr>
+          <td>误报数</td>
+          <td class="human-val">0</td>
+          <td class="ai-val">1</td>
+          <td><span class="winner w-human">&#128101; 学生</span></td>
+        </tr>
+        <tr>
+          <td>业务理解</td>
+          <td class="human-val"><span class="stars">&#9733;&#9733;&#9733;</span></td>
+          <td class="ai-val"><span class="stars">&#9733;&#9733;</span></td>
+          <td><span class="winner w-human">&#128101; 学生</span></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="verdict">
+      <div class="verdict-text"><span class="collab-icon">&#129309;</span> 结论：人机协同 &gt; 单独任何一方</div>
+      <div class="verdict-sub">AI擅长系统性扫描，人类擅长业务判断 &mdash; 最佳策略是协作而非替代</div>
+    </div>
+  </div>
+</section>
+
+<!-- TEACHING INSIGHTS -->
+<section class="insights">
+  <div class="insights-card">
+    <div class="insights-title">教学洞察 &middot; Teaching Insights</div>
+    <div class="insight-grid">
+      <div class="insight-item">
+        <div class="insight-label">&#128269; AI找到 但学生没找到的</div>
+        <div class="insight-content">
+          <strong>Cache-Control头问题</strong> &mdash; 浏览器后退可查看已登录页面，属于安全盲区。学生普遍缺乏HTTP头安全意识。
+          <br><span class="insight-tag tag-learn">&#127891; 学习机会</span>
+        </div>
+      </div>
+      <div class="insight-item">
+        <div class="insight-label">&#128064; 学生找到 但AI遗漏的</div>
+        <div class="insight-content">
+          无 &mdash; 本轮AI覆盖范围更广，但学生团队对已发现问题的<strong>业务上下文理解</strong>更准确。
+          <br><span class="insight-tag tag-miss">&#8212; 本轮无差异</span>
+        </div>
+      </div>
+      <div class="insight-item">
+        <div class="insight-label">&#9888;&#65039; AI的误报分析</div>
+        <div class="insight-content">
+          <strong>POST替代GET建议</strong> &mdash; 注销操作使用GET是行业惯例（如Spring Security默认行为），AI过度建议。
+          <br><span class="insight-tag tag-fp">&#10060; 需要人工判断</span>
+        </div>
+      </div>
+    </div>
+    <div class="takeaway">&#128161; AI是强大的审查工具，但需要人来判断其建议的合理性</div>
+  </div>
+</section>
+
+<script>
+// ===== CODE BLOCK RENDERING =====
+const codeLines = [
+  '<span class="an">@WebServlet</span>(<span class="str">"/logout"</span>)',
+  '<span class="kw">public class</span> <span class="ty">LogoutServlet</span> <span class="kw">extends</span> <span class="ty">HttpServlet</span> {',
+  '    <span class="kw">protected void</span> <span class="fn">doGet</span>(<span class="ty">HttpServletRequest</span> request, <span class="ty">HttpServletResponse</span> response)',
+  '            <span class="kw">throws</span> <span class="ty">ServletException</span>, <span class="ty">IOException</span> {',
+  '        <span class="ty">HttpSession</span> session = request.<span class="fn">getSession</span>(<span class="kw">false</span>);',
+  '        <span class="kw">if</span> (session != <span class="kw">null</span>) {',
+  '            <span class="cm">// 问题1: 只移除了username，未清除其他敏感属性(role, permissions)</span>',
+  '            session.<span class="fn">removeAttribute</span>(<span class="str">"username"</span>);',
+  '            <span class="cm">// 问题2: 应使用session.invalidate()彻底销毁会话</span>',
+  '            <span class="cm">// 问题3: 未设置Cache-Control头，浏览器后退可能看到已登录页面</span>',
+  '        }',
+  '        response.<span class="fn">sendRedirect</span>(<span class="str">"/login.jsp"</span>);',
+  '        <span class="cm">// 问题4: 重定向前未检查response是否已committed</span>',
+  '    }',
+  '}'
+];
+
+const lineNumsEl = document.getElementById('lineNums');
+const codeBlockEl = document.getElementById('codeBlock');
+
+codeLines.forEach((line, i) => {
+  const num = document.createElement('span');
+  num.textContent = i + 1;
+  num.id = 'ln-' + (i + 1);
+  lineNumsEl.appendChild(num);
+
+  const codeLine = document.createElement('span');
+  codeLine.className = 'code-line';
+  codeLine.id = 'code-' + (i + 1);
+  codeLine.innerHTML = line + '\n';
+  codeBlockEl.appendChild(codeLine);
+});
+
+// ===== LINE HIGHLIGHTING =====
+let highlightTimeout;
+function clearHighlights() {
+  document.querySelectorAll('.code-line.highlight').forEach(el => el.classList.remove('highlight'));
+}
+function highlightLine(n) {
+  clearHighlights();
+  const el = document.getElementById('code-' + n);
+  if (el) {
+    el.classList.add('highlight');
+    el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
+  clearTimeout(highlightTimeout);
+  highlightTimeout = setTimeout(clearHighlights, 4000);
+}
+function highlightLines(nums) {
+  clearHighlights();
+  nums.forEach(n => {
+    const el = document.getElementById('code-' + n);
+    if (el) el.classList.add('highlight');
+  });
+  const first = document.getElementById('code-' + nums[0]);
+  if (first) first.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  clearTimeout(highlightTimeout);
+  highlightTimeout = setTimeout(clearHighlights, 4000);
+}
+
+// ===== COUNTER ANIMATION =====
+function animateCounters() {
+  document.querySelectorAll('.counter').forEach(el => {
+    const target = parseInt(el.dataset.target, 10);
+    const duration = 1200;
+    const start = performance.now();
+    function tick(now) {
+      const elapsed = now - start;
+      const progress = Math.min(elapsed / duration, 1);
+      // ease out cubic
+      const eased = 1 - Math.pow(1 - progress, 3);
+      el.textContent = Math.round(eased * target);
+      if (progress < 1) requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+  });
+}
+
+// ===== INTERSECTION OBSERVER FOR COUNTERS =====
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      animateCounters();
+      observer.disconnect();
+    }
+  });
+}, { threshold: 0.3 });
+
+document.querySelectorAll('.score-bar').forEach(el => observer.observe(el));
+
+// ===== FINDING HOVER HIGHLIGHTS =====
+document.querySelectorAll('.finding').forEach(f => {
+  f.addEventListener('mouseenter', () => {
+    const lines = f.dataset.lines;
+    if (!lines) return;
+    clearHighlights();
+    lines.split(',').forEach(n => {
+      const el = document.getElementById('code-' + n.trim());
+      if (el) el.classList.add('highlight');
+    });
+  });
+  f.addEventListener('mouseleave', () => {
+    clearHighlights();
+  });
+});
+</script>
+</body>
+</html>

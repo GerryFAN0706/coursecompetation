@@ -1,0 +1,1223 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WebDev助教 - Java Web应用开发课程专属教学智能体</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --primary: #4472C4;
+    --primary-dark: #345a9e;
+    --primary-light: #6a94d4;
+    --accent: #70AD47;
+    --accent-dark: #5a8f38;
+    --bg: #f0f2f5;
+    --card: #ffffff;
+    --text: #1a1a2e;
+    --text-secondary: #5a5a7a;
+    --border: #e2e6ed;
+    --chat-bg: #f7f8fa;
+    --ai-bubble: #eaf0fb;
+    --user-bubble: #4472C4;
+    --shadow: 0 2px 12px rgba(0,0,0,0.08);
+    --shadow-lg: 0 8px 32px rgba(0,0,0,0.12);
+    --radius: 12px;
+    --radius-sm: 8px;
+  }
+
+  body {
+    font-family: "Microsoft YaHei", "PingFang SC", "Helvetica Neue", Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    height: 100vh;
+  }
+
+  /* ===== HEADER ===== */
+  .header {
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+    color: #fff;
+    padding: 16px 32px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 2px 8px rgba(68,114,196,0.3);
+    position: relative;
+    z-index: 10;
+  }
+
+  .header-left {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .header-logo {
+    width: 44px;
+    height: 44px;
+    background: rgba(255,255,255,0.2);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    backdrop-filter: blur(4px);
+  }
+
+  .header-title {
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+  }
+
+  .header-subtitle {
+    font-size: 13px;
+    opacity: 0.85;
+    margin-top: 2px;
+    font-weight: 400;
+  }
+
+  .header-status {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    opacity: 0.9;
+  }
+
+  .status-dot {
+    width: 8px;
+    height: 8px;
+    background: var(--accent);
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.6; transform: scale(1.3); }
+  }
+
+  /* ===== MAIN LAYOUT ===== */
+  .main {
+    flex: 1;
+    display: flex;
+    overflow: hidden;
+    gap: 0;
+  }
+
+  /* ===== CHAT PANEL ===== */
+  .chat-panel {
+    flex: 0 0 60%;
+    display: flex;
+    flex-direction: column;
+    background: var(--card);
+    border-right: 1px solid var(--border);
+  }
+
+  .chat-header {
+    padding: 14px 24px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: var(--card);
+  }
+
+  .chat-header-avatar {
+    width: 36px;
+    height: 36px;
+    background: linear-gradient(135deg, var(--primary), var(--primary-light));
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 700;
+  }
+
+  .chat-header-info h3 {
+    font-size: 15px;
+    font-weight: 600;
+  }
+
+  .chat-header-info span {
+    font-size: 12px;
+    color: var(--text-secondary);
+  }
+
+  .chat-messages {
+    flex: 1;
+    overflow-y: auto;
+    padding: 20px 24px;
+    background: var(--chat-bg);
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .chat-messages::-webkit-scrollbar { width: 6px; }
+  .chat-messages::-webkit-scrollbar-thumb { background: #ccc; border-radius: 3px; }
+
+  .message {
+    display: flex;
+    gap: 12px;
+    max-width: 85%;
+    animation: messageIn 0.4s ease-out;
+  }
+
+  @keyframes messageIn {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .message.user {
+    align-self: flex-end;
+    flex-direction: row-reverse;
+  }
+
+  .message-avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    font-weight: 700;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .message.ai .message-avatar {
+    background: linear-gradient(135deg, var(--primary), var(--primary-light));
+    color: #fff;
+  }
+
+  .message.user .message-avatar {
+    background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+    color: #fff;
+  }
+
+  .message-content {
+    padding: 14px 18px;
+    border-radius: 16px;
+    font-size: 14px;
+    line-height: 1.7;
+    position: relative;
+  }
+
+  .message.ai .message-content {
+    background: var(--ai-bubble);
+    color: var(--text);
+    border-top-left-radius: 4px;
+  }
+
+  .message.user .message-content {
+    background: var(--user-bubble);
+    color: #fff;
+    border-top-right-radius: 4px;
+  }
+
+  .message-content .ref-tag {
+    display: inline-block;
+    background: rgba(68,114,196,0.12);
+    color: var(--primary);
+    font-size: 12px;
+    padding: 2px 8px;
+    border-radius: 4px;
+    margin: 2px 4px 2px 0;
+    font-weight: 600;
+  }
+
+  .message-content .highlight {
+    background: rgba(112,173,71,0.15);
+    color: var(--accent-dark);
+    padding: 1px 6px;
+    border-radius: 3px;
+    font-weight: 600;
+  }
+
+  .message-content .code-block {
+    background: #1e1e2e;
+    color: #cdd6f4;
+    padding: 12px 16px;
+    border-radius: 8px;
+    margin: 10px 0;
+    font-family: "Cascadia Code", "Consolas", monospace;
+    font-size: 13px;
+    line-height: 1.5;
+    overflow-x: auto;
+  }
+
+  .message-content .code-block .kw { color: #cba6f7; }
+  .message-content .code-block .str { color: #a6e3a1; }
+  .message-content .code-block .cm { color: #6c7086; }
+  .message-content .code-block .fn { color: #89b4fa; }
+  .message-content .code-block .tp { color: #f9e2af; }
+
+  .message-time {
+    font-size: 11px;
+    color: var(--text-secondary);
+    margin-top: 6px;
+    opacity: 0.7;
+  }
+
+  .message.user .message-time { text-align: right; }
+
+  /* Typing indicator */
+  .typing-indicator {
+    display: none;
+    align-self: flex-start;
+    gap: 12px;
+    max-width: 85%;
+  }
+
+  .typing-indicator.visible { display: flex; }
+
+  .typing-dots {
+    padding: 14px 18px;
+    background: var(--ai-bubble);
+    border-radius: 16px;
+    border-top-left-radius: 4px;
+    display: flex;
+    gap: 5px;
+    align-items: center;
+  }
+
+  .typing-dots span {
+    width: 8px;
+    height: 8px;
+    background: var(--primary-light);
+    border-radius: 50%;
+    animation: typingBounce 1.2s infinite;
+  }
+
+  .typing-dots span:nth-child(2) { animation-delay: 0.2s; }
+  .typing-dots span:nth-child(3) { animation-delay: 0.4s; }
+
+  @keyframes typingBounce {
+    0%, 60%, 100% { transform: translateY(0); opacity: 0.4; }
+    30% { transform: translateY(-6px); opacity: 1; }
+  }
+
+  /* Chat input */
+  .chat-input-area {
+    padding: 16px 24px;
+    border-top: 1px solid var(--border);
+    background: var(--card);
+    display: flex;
+    gap: 12px;
+    align-items: flex-end;
+  }
+
+  .chat-input-wrapper {
+    flex: 1;
+    position: relative;
+  }
+
+  .chat-input {
+    width: 100%;
+    padding: 12px 16px;
+    border: 2px solid var(--border);
+    border-radius: 12px;
+    font-size: 14px;
+    font-family: inherit;
+    outline: none;
+    transition: border-color 0.2s;
+    resize: none;
+    min-height: 44px;
+    max-height: 120px;
+  }
+
+  .chat-input:focus {
+    border-color: var(--primary);
+  }
+
+  .chat-input::placeholder {
+    color: #aaa;
+  }
+
+  .chat-send-btn {
+    width: 44px;
+    height: 44px;
+    background: var(--primary);
+    border: none;
+    border-radius: 12px;
+    color: #fff;
+    font-size: 18px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s, transform 0.15s;
+    flex-shrink: 0;
+  }
+
+  .chat-send-btn:hover { background: var(--primary-dark); transform: scale(1.05); }
+  .chat-send-btn:active { transform: scale(0.95); }
+
+  /* ===== DASHBOARD PANEL ===== */
+  .dashboard-panel {
+    flex: 0 0 40%;
+    overflow-y: auto;
+    padding: 20px;
+    background: var(--bg);
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .dashboard-panel::-webkit-scrollbar { width: 6px; }
+  .dashboard-panel::-webkit-scrollbar-thumb { background: #ccc; border-radius: 3px; }
+
+  .dash-card {
+    background: var(--card);
+    border-radius: var(--radius);
+    padding: 20px;
+    box-shadow: var(--shadow);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+
+  .dash-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+  }
+
+  .dash-card-title {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .dash-card-title .icon {
+    width: 28px;
+    height: 28px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+  }
+
+  /* Active students card */
+  .active-card {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .active-card .ring-container {
+    position: relative;
+    width: 90px;
+    height: 90px;
+    flex-shrink: 0;
+  }
+
+  .active-card .ring-container svg {
+    width: 90px;
+    height: 90px;
+    transform: rotate(-90deg);
+  }
+
+  .active-card .ring-bg { stroke: #e8ecf1; }
+  .active-card .ring-fill {
+    stroke: var(--accent);
+    stroke-linecap: round;
+    stroke-dasharray: 245;
+    stroke-dashoffset: 245;
+    transition: stroke-dashoffset 1.5s ease-out;
+  }
+
+  .active-card .ring-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 22px;
+    font-weight: 800;
+    color: var(--accent-dark);
+  }
+
+  .active-card .ring-label {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--text-secondary);
+  }
+
+  .active-stats {
+    flex: 1;
+  }
+
+  .active-stats .stat-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 6px 0;
+    font-size: 13px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .active-stats .stat-row:last-child { border-bottom: none; }
+  .active-stats .stat-label { color: var(--text-secondary); }
+  .active-stats .stat-value { font-weight: 700; color: var(--text); }
+
+  /* Heatmap */
+  .heatmap-grid {
+    display: grid;
+    grid-template-columns: auto repeat(16, 1fr);
+    gap: 3px;
+    font-size: 11px;
+  }
+
+  .heatmap-label {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-right: 6px;
+    color: var(--text-secondary);
+    font-size: 10px;
+    white-space: nowrap;
+  }
+
+  .heatmap-header {
+    text-align: center;
+    color: var(--text-secondary);
+    font-size: 10px;
+    font-weight: 600;
+    padding-bottom: 2px;
+  }
+
+  .heatmap-cell {
+    aspect-ratio: 1;
+    border-radius: 3px;
+    min-width: 0;
+    cursor: pointer;
+    transition: transform 0.15s, box-shadow 0.15s;
+    position: relative;
+  }
+
+  .heatmap-cell:hover {
+    transform: scale(1.3);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    z-index: 2;
+  }
+
+  .heatmap-legend {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 10px;
+    justify-content: flex-end;
+    font-size: 10px;
+    color: var(--text-secondary);
+  }
+
+  .heatmap-legend-cell {
+    width: 14px;
+    height: 14px;
+    border-radius: 3px;
+  }
+
+  /* TOP 5 list */
+  .top5-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .top5-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 14px;
+    background: var(--chat-bg);
+    border-radius: var(--radius-sm);
+    transition: background 0.2s;
+  }
+
+  .top5-item:hover { background: var(--ai-bubble); }
+
+  .top5-rank {
+    width: 24px;
+    height: 24px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 800;
+    color: #fff;
+    flex-shrink: 0;
+  }
+
+  .top5-rank.r1 { background: #e74c3c; }
+  .top5-rank.r2 { background: #e67e22; }
+  .top5-rank.r3 { background: #f1c40f; color: #333; }
+  .top5-rank.r4, .top5-rank.r5 { background: #bdc3c7; color: #555; }
+
+  .top5-text {
+    flex: 1;
+    font-size: 13px;
+    line-height: 1.4;
+  }
+
+  .top5-count {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--primary);
+    flex-shrink: 0;
+  }
+
+  .top5-bar-bg {
+    width: 60px;
+    height: 6px;
+    background: #e8ecf1;
+    border-radius: 3px;
+    overflow: hidden;
+    flex-shrink: 0;
+  }
+
+  .top5-bar {
+    height: 100%;
+    background: var(--primary);
+    border-radius: 3px;
+    transition: width 1s ease-out;
+  }
+
+  /* Weak points */
+  .weak-points {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .weak-tag {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 14px;
+    background: #fff5f5;
+    border: 1px solid #fecaca;
+    border-radius: 20px;
+    font-size: 13px;
+    color: #c0392b;
+    font-weight: 500;
+    transition: transform 0.2s;
+  }
+
+  .weak-tag:hover { transform: scale(1.05); }
+
+  .weak-tag .weak-icon {
+    font-size: 12px;
+  }
+
+  .weak-tag .weak-pct {
+    font-size: 11px;
+    background: #fecaca;
+    padding: 1px 6px;
+    border-radius: 10px;
+    font-weight: 700;
+  }
+
+  /* ===== FOOTER ===== */
+  .footer {
+    background: var(--card);
+    border-top: 1px solid var(--border);
+    padding: 10px 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    flex-shrink: 0;
+  }
+
+  .tech-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 5px 14px;
+    background: var(--chat-bg);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text-secondary);
+    transition: all 0.2s;
+  }
+
+  .tech-badge:hover {
+    border-color: var(--primary);
+    color: var(--primary);
+    background: var(--ai-bubble);
+  }
+
+  .tech-badge .badge-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--accent);
+  }
+
+  /* ===== TOOLTIP ===== */
+  .tooltip {
+    position: fixed;
+    background: #1e1e2e;
+    color: #fff;
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 11px;
+    pointer-events: none;
+    z-index: 1000;
+    opacity: 0;
+    transition: opacity 0.15s;
+    white-space: nowrap;
+  }
+
+  .tooltip.visible { opacity: 1; }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="header">
+  <div class="header-left">
+    <div class="header-logo">&#x1F393;</div>
+    <div>
+      <div class="header-title">WebDev助教 &middot; Java Web应用开发课程专属教学智能体</div>
+      <div class="header-subtitle">基于RAG + DeepSeek的课程知识库问答系统</div>
+    </div>
+  </div>
+  <div class="header-status">
+    <span class="status-dot"></span>
+    <span>模型在线 &middot; 知识库已同步16讲</span>
+  </div>
+</header>
+
+<!-- MAIN -->
+<div class="main">
+
+  <!-- CHAT PANEL -->
+  <div class="chat-panel">
+    <div class="chat-header">
+      <div class="chat-header-avatar">W</div>
+      <div class="chat-header-info">
+        <h3>WebDev助教</h3>
+        <span>Java Web应用开发 &middot; 随时为你答疑解惑</span>
+      </div>
+    </div>
+
+    <div class="chat-messages" id="chatMessages">
+      <!-- Pre-loaded conversation -->
+      <div class="message ai">
+        <div class="message-avatar">W</div>
+        <div>
+          <div class="message-content">
+            你好！我是 <strong>WebDev助教</strong>，Java Web应用开发课程的AI教学助手。我熟悉课程全部16讲的内容，可以帮你解答课程相关问题、复习知识点、分析代码示例。有什么想问的吗？
+          </div>
+          <div class="message-time">14:20</div>
+        </div>
+      </div>
+
+      <div class="message user">
+        <div class="message-avatar">李</div>
+        <div>
+          <div class="message-content">老师好，我想问一下Session和Cookie到底有什么区别？什么时候该用哪个？</div>
+          <div class="message-time">14:22</div>
+        </div>
+      </div>
+
+      <div class="message ai">
+        <div class="message-avatar">W</div>
+        <div>
+          <div class="message-content">
+            这是个很好的问题！在 <span class="ref-tag">第5讲 会话管理</span> 中我们详细讲解了这个知识点，我帮你梳理一下核心区别：<br><br>
+            <strong>1. 存储位置不同</strong><br>
+            &bull; <span class="highlight">Cookie</span> 存储在<strong>客户端浏览器</strong>中<br>
+            &bull; <span class="highlight">Session</span> 存储在<strong>服务器端</strong>（默认在内存中）<br><br>
+            <strong>2. 安全性差异</strong><br>
+            &bull; Cookie 可被用户查看和篡改，安全性较低<br>
+            &bull; Session 数据在服务器端，相对安全<br><br>
+            <strong>3. 生命周期</strong><br>
+            &bull; Cookie 可设置过期时间，持久存储<br>
+            &bull; Session 默认随浏览器关闭而失效（Tomcat默认30分钟超时）<br><br>
+            <strong>4. 典型使用场景</strong><br>
+            &bull; Cookie：记住用户名、语言偏好等非敏感信息<br>
+            &bull; Session：登录状态、购物车、验证码等敏感数据<br><br>
+            <div class="code-block"><span class="cm">// 第5讲 代码示例：Session存储登录信息</span>
+<span class="tp">HttpSession</span> session = request.<span class="fn">getSession</span>();
+session.<span class="fn">setAttribute</span>(<span class="str">"currentUser"</span>, user);
+
+<span class="cm">// Cookie记住用户偏好</span>
+<span class="tp">Cookie</span> cookie = <span class="kw">new</span> <span class="tp">Cookie</span>(<span class="str">"theme"</span>, <span class="str">"dark"</span>);
+cookie.<span class="fn">setMaxAge</span>(<span class="str">7 * 24 * 3600</span>);
+response.<span class="fn">addCookie</span>(cookie);</div>
+            <strong>记忆口诀：</strong>敏感数据用Session，偏好记忆用Cookie。面试中也经常考到这个对比哦！
+          </div>
+          <div class="message-time">14:22</div>
+        </div>
+      </div>
+
+      <div class="message user">
+        <div class="message-avatar">李</div>
+        <div>
+          <div class="message-content">那Session的JSESSIONID和Cookie是什么关系？</div>
+          <div class="message-time">14:23</div>
+        </div>
+      </div>
+
+      <div class="message ai">
+        <div class="message-avatar">W</div>
+        <div>
+          <div class="message-content">
+            问得好！这正是 <span class="ref-tag">第5讲</span> 的一个重点，也是很多同学容易混淆的地方：<br><br>
+            Session <strong>依赖</strong> Cookie 来工作！具体流程是：<br><br>
+            &bull; 服务器创建Session后，生成一个唯一的 <span class="highlight">JSESSIONID</span><br>
+            &bull; 这个ID通过 <strong>Cookie</strong> 发送给浏览器（名为<code>JSESSIONID</code>的Cookie）<br>
+            &bull; 浏览器后续请求自动携带这个Cookie<br>
+            &bull; 服务器根据JSESSIONID找到对应的Session对象<br><br>
+            所以本质上：<strong>Session是机制，Cookie是载体</strong>。如果浏览器禁用了Cookie，可以用URL重写方式传递JSESSIONID。<br><br>
+            这部分在期末考试中占比较高，建议结合 <span class="ref-tag">第5讲 实验</span> 用Servlet代码实际调试一下！
+          </div>
+          <div class="message-time">14:24</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Typing indicator -->
+    <div class="typing-indicator" id="typingIndicator">
+      <div class="message-avatar" style="width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;background:linear-gradient(135deg,var(--primary),var(--primary-light));color:#fff;">W</div>
+      <div class="typing-dots">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+
+    <!-- Input area -->
+    <div class="chat-input-area">
+      <div class="chat-input-wrapper">
+        <input type="text" class="chat-input" id="chatInput" placeholder="输入你的问题... 试试问：Filter的作用是什么？" />
+      </div>
+      <button class="chat-send-btn" id="sendBtn" title="发送">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- DASHBOARD PANEL -->
+  <div class="dashboard-panel">
+
+    <!-- Active Students -->
+    <div class="dash-card">
+      <div class="dash-card-title">
+        <div class="icon" style="background:#e8f5e9;color:var(--accent);">&#x1F4CA;</div>
+        今日学情概览
+      </div>
+      <div class="active-card">
+        <div class="ring-container">
+          <svg viewBox="0 0 90 90">
+            <circle class="ring-bg" cx="45" cy="45" r="39" fill="none" stroke-width="7"/>
+            <circle class="ring-fill" id="activeRing" cx="45" cy="45" r="39" fill="none" stroke-width="7"/>
+          </svg>
+          <div class="ring-text">72%</div>
+        </div>
+        <div class="active-stats">
+          <div class="stat-row">
+            <span class="stat-label">今日活跃</span>
+            <span class="stat-value" style="color:var(--accent);">42 / 58 人</span>
+          </div>
+          <div class="stat-row">
+            <span class="stat-label">提问总数</span>
+            <span class="stat-value">127 条</span>
+          </div>
+          <div class="stat-row">
+            <span class="stat-label">平均对话轮次</span>
+            <span class="stat-value">3.8 轮</span>
+          </div>
+          <div class="stat-row">
+            <span class="stat-label">问题解决率</span>
+            <span class="stat-value" style="color:var(--accent);">89.2%</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Heatmap -->
+    <div class="dash-card">
+      <div class="dash-card-title">
+        <div class="icon" style="background:#fff3e0;color:#e67e22;">&#x1F525;</div>
+        学情热力图 &middot; 知识点查询频次
+      </div>
+      <div class="heatmap-grid" id="heatmapGrid"></div>
+      <div class="heatmap-legend">
+        <span>低</span>
+        <div class="heatmap-legend-cell" style="background:#dbeafe;"></div>
+        <div class="heatmap-legend-cell" style="background:#93c5fd;"></div>
+        <div class="heatmap-legend-cell" style="background:#f59e0b;"></div>
+        <div class="heatmap-legend-cell" style="background:#ef4444;"></div>
+        <span>高</span>
+      </div>
+    </div>
+
+    <!-- Top 5 -->
+    <div class="dash-card">
+      <div class="dash-card-title">
+        <div class="icon" style="background:#ede9fe;color:#7c3aed;">&#x1F4AC;</div>
+        高频问题 TOP 5
+      </div>
+      <div class="top5-list" id="top5List"></div>
+    </div>
+
+    <!-- Weak points -->
+    <div class="dash-card">
+      <div class="dash-card-title">
+        <div class="icon" style="background:#fef2f2;color:#dc2626;">&#x26A0;&#xFE0F;</div>
+        知识薄弱点预警
+      </div>
+      <div class="weak-points" id="weakPoints"></div>
+    </div>
+
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="tech-badge"><span class="badge-dot"></span>DeepSeek API</div>
+  <div class="tech-badge"><span class="badge-dot"></span>ChromaDB</div>
+  <div class="tech-badge"><span class="badge-dot"></span>RAG Pipeline</div>
+  <div class="tech-badge"><span class="badge-dot"></span>课程知识库 (16讲)</div>
+  <div class="tech-badge"><span class="badge-dot"></span>Spring Boot</div>
+  <div class="tech-badge"><span class="badge-dot"></span>Vue 3 前端</div>
+</footer>
+
+<!-- Tooltip element -->
+<div class="tooltip" id="tooltip"></div>
+
+<script>
+// ===== MOCK DATA =====
+
+// Heatmap data: rows = knowledge categories, cols = lectures 1-16
+const heatmapData = {
+  categories: ['Servlet基础', 'JSP/EL/JSTL', '会话管理', '数据库/JDBC', '框架/MVC', '安全/部署'],
+  lectures: Array.from({length: 16}, (_, i) => `L${i + 1}`),
+  values: [
+    // Servlet基础
+    [8, 15, 12, 6, 3, 2, 4, 2, 1, 3, 2, 1, 2, 1, 5, 3],
+    // JSP/EL/JSTL
+    [2, 3, 18, 22, 14, 5, 3, 8, 2, 1, 3, 2, 1, 2, 4, 3],
+    // 会话管理
+    [1, 1, 2, 3, 25, 18, 8, 4, 3, 5, 6, 2, 3, 2, 7, 5],
+    // 数据库/JDBC
+    [0, 1, 1, 2, 3, 4, 20, 24, 16, 8, 5, 6, 3, 4, 8, 6],
+    // 框架/MVC
+    [0, 0, 1, 1, 2, 3, 3, 5, 22, 28, 19, 12, 8, 6, 10, 7],
+    // 安全/部署
+    [0, 0, 0, 1, 2, 2, 3, 3, 4, 5, 8, 15, 20, 22, 18, 12],
+  ]
+};
+
+const top5Questions = [
+  { q: 'Session和Cookie的区别是什么？', count: 47, pct: 100 },
+  { q: 'MVC模式中Controller的职责？', count: 38, pct: 81 },
+  { q: 'JDBC连接池原理及配置方法？', count: 35, pct: 74 },
+  { q: 'Filter和Listener的执行顺序？', count: 31, pct: 66 },
+  { q: '如何防止SQL注入攻击？', count: 28, pct: 60 },
+];
+
+const weakPoints = [
+  { name: 'Session安全管理', pct: '34%' },
+  { name: 'Filter链机制', pct: '41%' },
+  { name: 'JSTL自定义标签', pct: '38%' },
+  { name: 'JDBC事务控制', pct: '45%' },
+  { name: 'MVC分层解耦', pct: '42%' },
+  { name: 'XSS/CSRF防护', pct: '31%' },
+];
+
+// Mock AI responses keyed by topic
+const mockResponses = {
+  session: {
+    content: `关于Session，我来帮你深入理解！<br><br>
+在 <span class="ref-tag">第5讲 会话管理</span> 中，Session是服务器端会话跟踪的核心机制：<br><br>
+<strong>Session工作原理：</strong><br>
+&bull; 客户端首次访问时，服务器创建Session对象并分配唯一ID<br>
+&bull; JSESSIONID通过Cookie或URL重写传递给客户端<br>
+&bull; 后续请求通过JSESSIONID定位服务器端的Session<br><br>
+<div class="code-block"><span class="cm">// 获取Session（不存在则创建）</span>
+<span class="tp">HttpSession</span> session = request.<span class="fn">getSession</span>(<span class="kw">true</span>);
+<span class="cm">// 存储数据</span>
+session.<span class="fn">setAttribute</span>(<span class="str">"user"</span>, userObj);
+<span class="cm">// 设置超时时间（秒）</span>
+session.<span class="fn">setMaxInactiveInterval</span>(<span class="str">1800</span>);</div>
+<strong>重点提示：</strong>Session安全管理（防止会话劫持和固定攻击）是考试重点，建议重点复习！`,
+    time: '14:25'
+  },
+  filter: {
+    content: `好问题！Filter是 <span class="ref-tag">第8讲 过滤器与监听器</span> 的核心内容。<br><br>
+<strong>Filter（过滤器）的作用：</strong><br>
+&bull; 在请求到达Servlet<strong>之前</strong>和响应返回客户端<strong>之前</strong>进行拦截处理<br>
+&bull; 典型应用：编码过滤、登录验证、日志记录、权限控制<br><br>
+<strong>Filter链（FilterChain）机制：</strong><br>
+&bull; 多个Filter按 <span class="highlight">web.xml中的声明顺序</span> 依次执行<br>
+&bull; 调用 <code>chain.doFilter()</code> 传递给下一个Filter<br>
+&bull; 不调用则请求被拦截，后续Filter和Servlet不执行<br><br>
+<div class="code-block"><span class="kw">public class</span> <span class="tp">LoginFilter</span> <span class="kw">implements</span> <span class="tp">Filter</span> {
+  <span class="kw">public void</span> <span class="fn">doFilter</span>(ServletRequest req,
+      ServletResponse resp, FilterChain chain) {
+    <span class="tp">HttpSession</span> session = ((HttpServletRequest)req)
+        .<span class="fn">getSession</span>(<span class="kw">false</span>);
+    <span class="kw">if</span> (session != <span class="kw">null</span> && session.<span class="fn">getAttribute</span>(<span class="str">"user"</span>) != <span class="kw">null</span>) {
+      chain.<span class="fn">doFilter</span>(req, resp); <span class="cm">// 放行</span>
+    } <span class="kw">else</span> {
+      ((HttpServletResponse)resp).<span class="fn">sendRedirect</span>(<span class="str">"/login.jsp"</span>);
+    }
+  }
+}</div>
+这个知识点在实际项目和面试中都非常重要！`,
+    time: '14:25'
+  },
+  mvc: {
+    content: `MVC模式在 <span class="ref-tag">第10讲 MVC设计模式</span> 和 <span class="ref-tag">第11讲 Spring MVC入门</span> 中有详细讲解。<br><br>
+<strong>MVC三层职责：</strong><br>
+&bull; <span class="highlight">Model（模型）</span>：业务逻辑和数据处理（JavaBean / Service / DAO）<br>
+&bull; <span class="highlight">View（视图）</span>：页面展示（JSP / Thymeleaf）<br>
+&bull; <span class="highlight">Controller（控制器）</span>：接收请求、调度Model、选择View（Servlet / @Controller）<br><br>
+<strong>Java Web中的MVC演进：</strong><br>
+&bull; Model 1：JSP + JavaBean（JSP既是V又是C，耦合严重）<br>
+&bull; Model 2：Servlet(C) + JSP(V) + JavaBean(M)<br>
+&bull; 框架时代：Spring MVC 通过注解大幅简化开发<br><br>
+<div class="code-block"><span class="kw">@Controller</span>
+<span class="kw">public class</span> <span class="tp">StudentController</span> {
+  <span class="kw">@Autowired</span>
+  <span class="kw">private</span> <span class="tp">StudentService</span> studentService;
+
+  <span class="kw">@GetMapping</span>(<span class="str">"/students"</span>)
+  <span class="kw">public</span> <span class="tp">String</span> <span class="fn">list</span>(<span class="tp">Model</span> model) {
+    model.<span class="fn">addAttribute</span>(<span class="str">"students"</span>,
+        studentService.<span class="fn">findAll</span>());
+    <span class="kw">return</span> <span class="str">"student/list"</span>;
+  }
+}</div>
+关键是理解 <strong>分层解耦</strong> 的思想，每一层各司其职、互不依赖！`,
+    time: '14:25'
+  },
+  sql: {
+    content: `SQL注入是 <span class="ref-tag">第13讲 Web安全基础</span> 的重要内容，也是企业开发中必须掌握的安全知识！<br><br>
+<strong>SQL注入原理：</strong><br>
+攻击者通过表单输入等方式，将恶意SQL代码拼接到查询语句中。<br><br>
+<strong>典型攻击示例：</strong><br>
+<div class="code-block"><span class="cm">// 危险！字符串拼接SQL</span>
+<span class="tp">String</span> sql = <span class="str">"SELECT * FROM users WHERE name='"</span>
+    + username + <span class="str">"' AND pwd='"</span> + password + <span class="str">"'"</span>;
+<span class="cm">// 输入: admin' OR '1'='1' --</span>
+<span class="cm">// 结果: 绕过密码验证！</span></div>
+<strong>防御方案（课程重点）：</strong><br>
+&bull; <span class="highlight">PreparedStatement</span>（参数化查询） &#x2014; 最核心的防御手段<br>
+&bull; 输入验证与过滤（白名单校验）<br>
+&bull; 最小数据库权限原则<br>
+&bull; MyBatis中使用 <code>#{}</code> 而非 <code>\${}</code><br><br>
+<div class="code-block"><span class="cm">// 安全！使用PreparedStatement</span>
+<span class="tp">String</span> sql = <span class="str">"SELECT * FROM users WHERE name=? AND pwd=?"</span>;
+<span class="tp">PreparedStatement</span> ps = conn.<span class="fn">prepareStatement</span>(sql);
+ps.<span class="fn">setString</span>(<span class="str">1</span>, username);
+ps.<span class="fn">setString</span>(<span class="str">2</span>, password);</div>
+这个知识点务必牢记，期末考试和实际工作中都会用到！`,
+    time: '14:25'
+  },
+  default: {
+    content: `这个问题涉及到课程中的重要知识点。让我在课程知识库中检索一下...<br><br>
+根据课程内容，我建议你：<br>
+&bull; 先回顾相关章节的PPT和代码示例<br>
+&bull; 动手完成对应的实验练习<br>
+&bull; 如果有具体的代码问题，可以把代码发给我帮你分析<br><br>
+你可以试着问我更具体的问题，比如：<br>
+&bull; "Session和Cookie有什么区别？"<br>
+&bull; "Filter的执行机制是怎样的？"<br>
+&bull; "MVC模式中Controller的职责？"<br>
+&bull; "如何防止SQL注入？"<br><br>
+我会结合课程具体内容给你详细解答！`,
+    time: '14:25'
+  }
+};
+
+
+// ===== RENDER FUNCTIONS =====
+
+function renderHeatmap() {
+  const grid = document.getElementById('heatmapGrid');
+  const maxVal = Math.max(...heatmapData.values.flat());
+
+  // Empty corner
+  grid.innerHTML = '<div></div>';
+
+  // Column headers
+  heatmapData.lectures.forEach(l => {
+    grid.innerHTML += `<div class="heatmap-header">${l}</div>`;
+  });
+
+  // Rows
+  heatmapData.categories.forEach((cat, ri) => {
+    grid.innerHTML += `<div class="heatmap-label">${cat}</div>`;
+    heatmapData.values[ri].forEach((v, ci) => {
+      const intensity = v / maxVal;
+      let color;
+      if (intensity < 0.2) color = '#dbeafe';
+      else if (intensity < 0.4) color = '#93c5fd';
+      else if (intensity < 0.6) color = '#60a5fa';
+      else if (intensity < 0.75) color = '#f59e0b';
+      else color = '#ef4444';
+      grid.innerHTML += `<div class="heatmap-cell" style="background:${color}" data-tip="${cat} / 第${ci+1}讲: ${v}次查询"></div>`;
+    });
+  });
+}
+
+function renderTop5() {
+  const list = document.getElementById('top5List');
+  top5Questions.forEach((item, i) => {
+    list.innerHTML += `
+      <div class="top5-item">
+        <div class="top5-rank r${i+1}">${i + 1}</div>
+        <div class="top5-text">${item.q}</div>
+        <div class="top5-count">${item.count}次</div>
+        <div class="top5-bar-bg"><div class="top5-bar" style="width:0%" data-target="${item.pct}"></div></div>
+      </div>`;
+  });
+  // Animate bars
+  setTimeout(() => {
+    document.querySelectorAll('.top5-bar').forEach(bar => {
+      bar.style.width = bar.dataset.target + '%';
+    });
+  }, 300);
+}
+
+function renderWeakPoints() {
+  const container = document.getElementById('weakPoints');
+  weakPoints.forEach(wp => {
+    container.innerHTML += `
+      <div class="weak-tag">
+        <span class="weak-icon">&#x26A0;&#xFE0F;</span>
+        ${wp.name}
+        <span class="weak-pct">正确率 ${wp.pct}</span>
+      </div>`;
+  });
+}
+
+function animateRing() {
+  const ring = document.getElementById('activeRing');
+  const circumference = 2 * Math.PI * 39; // ~245
+  const target = 0.724; // 42/58
+  setTimeout(() => {
+    ring.style.strokeDashoffset = circumference * (1 - target);
+  }, 500);
+}
+
+
+// ===== TOOLTIP =====
+const tooltip = document.getElementById('tooltip');
+document.addEventListener('mouseover', e => {
+  const cell = e.target.closest('.heatmap-cell');
+  if (cell && cell.dataset.tip) {
+    tooltip.textContent = cell.dataset.tip;
+    tooltip.classList.add('visible');
+  }
+});
+document.addEventListener('mousemove', e => {
+  if (tooltip.classList.contains('visible')) {
+    tooltip.style.left = e.clientX + 12 + 'px';
+    tooltip.style.top = e.clientY - 30 + 'px';
+  }
+});
+document.addEventListener('mouseout', e => {
+  if (e.target.closest('.heatmap-cell')) {
+    tooltip.classList.remove('visible');
+  }
+});
+
+
+// ===== CHAT LOGIC =====
+const chatMessages = document.getElementById('chatMessages');
+const chatInput = document.getElementById('chatInput');
+const sendBtn = document.getElementById('sendBtn');
+const typingIndicator = document.getElementById('typingIndicator');
+
+function getCurrentTime() {
+  const now = new Date();
+  return now.getHours().toString().padStart(2, '0') + ':' + now.getMinutes().toString().padStart(2, '0');
+}
+
+function addMessage(type, content) {
+  const avatar = type === 'user' ? '李' : 'W';
+  const time = getCurrentTime();
+  const msg = document.createElement('div');
+  msg.className = `message ${type}`;
+  msg.innerHTML = `
+    <div class="message-avatar">${avatar}</div>
+    <div>
+      <div class="message-content">${content}</div>
+      <div class="message-time">${time}</div>
+    </div>`;
+  chatMessages.appendChild(msg);
+  chatMessages.scrollTop = chatMessages.scrollHeight;
+}
+
+function getResponse(input) {
+  const lower = input.toLowerCase();
+  if (lower.includes('session') || lower.includes('会话') || lower.includes('cookie'))
+    return mockResponses.session;
+  if (lower.includes('filter') || lower.includes('过滤') || lower.includes('监听') || lower.includes('listener'))
+    return mockResponses.filter;
+  if (lower.includes('mvc') || lower.includes('控制器') || lower.includes('controller') || lower.includes('分层') || lower.includes('spring'))
+    return mockResponses.mvc;
+  if (lower.includes('sql') || lower.includes('注入') || lower.includes('安全') || lower.includes('xss') || lower.includes('csrf') || lower.includes('prepared'))
+    return mockResponses.sql;
+  return mockResponses.default;
+}
+
+function handleSend() {
+  const text = chatInput.value.trim();
+  if (!text) return;
+
+  // Add user message
+  addMessage('user', text);
+  chatInput.value = '';
+
+  // Show typing
+  typingIndicator.classList.add('visible');
+  chatMessages.scrollTop = chatMessages.scrollHeight;
+
+  // Simulate AI response delay
+  const delay = 1200 + Math.random() * 1000;
+  setTimeout(() => {
+    typingIndicator.classList.remove('visible');
+    const response = getResponse(text);
+    addMessage('ai', response.content);
+  }, delay);
+}
+
+sendBtn.addEventListener('click', handleSend);
+chatInput.addEventListener('keydown', e => {
+  if (e.key === 'Enter' && !e.shiftKey) {
+    e.preventDefault();
+    handleSend();
+  }
+});
+
+
+// ===== INIT =====
+renderHeatmap();
+renderTop5();
+renderWeakPoints();
+animateRing();
+
+// Scroll chat to bottom initially
+chatMessages.scrollTop = chatMessages.scrollHeight;
+</script>
+</body>
+</html>

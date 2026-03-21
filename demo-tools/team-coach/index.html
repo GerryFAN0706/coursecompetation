@@ -1,0 +1,1092 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1920">
+<title>TeamCoach - AI辅助团队协作项目教练</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --primary: #4472C4;
+    --primary-light: #d6e4f7;
+    --primary-dark: #2f5496;
+    --warning: #ff9800;
+    --danger: #f44336;
+    --success: #4caf50;
+    --bg: #f5f7fa;
+    --card: #ffffff;
+    --text: #1a1a2e;
+    --text-secondary: #6b7280;
+    --border: #e5e7eb;
+    --shadow: 0 1px 3px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.06);
+    --shadow-md: 0 4px 6px rgba(0,0,0,0.07), 0 2px 4px rgba(0,0,0,0.06);
+    --shadow-lg: 0 10px 15px rgba(0,0,0,0.08), 0 4px 6px rgba(0,0,0,0.05);
+    --radius: 12px;
+    --radius-sm: 8px;
+  }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+
+  /* Header */
+  .header {
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+    color: white;
+    padding: 20px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 2px 10px rgba(68,114,196,0.3);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .header-left { display: flex; align-items: center; gap: 16px; }
+  .header-logo {
+    width: 42px; height: 42px;
+    background: rgba(255,255,255,0.2);
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 22px;
+    backdrop-filter: blur(4px);
+  }
+  .header h1 { font-size: 22px; font-weight: 700; letter-spacing: 0.5px; }
+  .header .subtitle {
+    font-size: 13px;
+    opacity: 0.85;
+    margin-top: 2px;
+    font-weight: 400;
+    letter-spacing: 0.3px;
+  }
+  .header-right { display: flex; align-items: center; gap: 20px; }
+  .header-badge {
+    background: rgba(255,255,255,0.18);
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 13px;
+    backdrop-filter: blur(4px);
+  }
+  .header-dot {
+    width: 8px; height: 8px;
+    background: #4caf50;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 6px;
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+  }
+
+  /* Main Container */
+  .container { max-width: 1860px; margin: 0 auto; padding: 24px 30px; }
+
+  /* Section Headers */
+  .section-title {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .section-title .icon {
+    width: 28px; height: 28px;
+    background: var(--primary-light);
+    border-radius: 6px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 14px;
+  }
+
+  /* Team Overview */
+  .team-overview {
+    background: var(--card);
+    border-radius: var(--radius);
+    padding: 24px;
+    box-shadow: var(--shadow);
+    margin-bottom: 24px;
+  }
+  .team-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
+  .team-header-left { display: flex; align-items: center; gap: 12px; }
+  .team-label {
+    background: var(--primary);
+    color: white;
+    padding: 4px 12px;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 600;
+  }
+  .team-name { font-size: 20px; font-weight: 700; }
+  .team-meta { display: flex; gap: 20px; }
+  .team-meta-item {
+    font-size: 13px;
+    color: var(--text-secondary);
+    display: flex; align-items: center; gap: 4px;
+  }
+
+  .member-cards {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+  }
+  .member-card {
+    border: 2px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 20px;
+    transition: all 0.2s ease;
+    position: relative;
+  }
+  .member-card:hover {
+    border-color: var(--primary);
+    box-shadow: var(--shadow-md);
+    transform: translateY(-2px);
+  }
+  .member-card.alert {
+    border-color: var(--danger);
+    background: #fff5f5;
+  }
+  .member-card.alert::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: var(--danger);
+    border-radius: var(--radius-sm) var(--radius-sm) 0 0;
+  }
+  .member-top { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
+  .avatar {
+    width: 44px; height: 44px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    color: white;
+    font-weight: 700;
+    font-size: 18px;
+    flex-shrink: 0;
+  }
+  .avatar.c1 { background: linear-gradient(135deg, #4472C4, #2f5496); }
+  .avatar.c2 { background: linear-gradient(135deg, #7c3aed, #5b21b6); }
+  .avatar.c3 { background: linear-gradient(135deg, #059669, #047857); }
+  .avatar.c4 { background: linear-gradient(135deg, #dc2626, #b91c1c); }
+  .member-info { flex: 1; }
+  .member-name { font-size: 16px; font-weight: 600; }
+  .member-role {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 500;
+    margin-top: 3px;
+  }
+  .role-controller { background: #dbeafe; color: #1e40af; }
+  .role-dao { background: #ede9fe; color: #5b21b6; }
+  .role-jsp { background: #d1fae5; color: #065f46; }
+  .role-unassigned { background: #fee2e2; color: #991b1b; }
+  .alert-tag {
+    background: var(--danger);
+    color: white;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 11px;
+    font-weight: 600;
+    margin-left: 6px;
+  }
+  .member-stats { margin-top: 10px; }
+  .stat-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 6px;
+  }
+  .stat-label { font-size: 12px; color: var(--text-secondary); }
+  .stat-value { font-size: 14px; font-weight: 600; }
+  .contrib-bar {
+    width: 100%;
+    height: 6px;
+    background: #f0f0f0;
+    border-radius: 3px;
+    overflow: hidden;
+    margin-top: 8px;
+  }
+  .contrib-fill {
+    height: 100%;
+    border-radius: 3px;
+    transition: width 1s ease;
+  }
+  .contrib-fill.good { background: linear-gradient(90deg, var(--success), #66bb6a); }
+  .contrib-fill.warning { background: linear-gradient(90deg, var(--warning), #ffa726); }
+  .contrib-fill.alert { background: linear-gradient(90deg, var(--danger), #ef5350); }
+
+  /* Main Content Grid */
+  .main-grid {
+    display: grid;
+    grid-template-columns: 55% 45%;
+    gap: 24px;
+    margin-bottom: 24px;
+  }
+
+  /* AI Report */
+  .ai-report {
+    background: var(--card);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    overflow: hidden;
+  }
+  .report-header {
+    padding: 20px 24px 16px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .report-header-left { display: flex; align-items: center; gap: 10px; }
+  .ai-badge {
+    background: linear-gradient(135deg, #7c3aed, #4472C4);
+    color: white;
+    padding: 3px 10px;
+    border-radius: 12px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+  }
+  .generate-btn {
+    background: var(--primary);
+    color: white;
+    border: none;
+    padding: 8px 20px;
+    border-radius: var(--radius-sm);
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .generate-btn:hover {
+    background: var(--primary-dark);
+    box-shadow: 0 2px 8px rgba(68,114,196,0.4);
+  }
+  .report-body {
+    padding: 24px;
+    max-height: 580px;
+    overflow-y: auto;
+  }
+  .report-body::-webkit-scrollbar { width: 4px; }
+  .report-body::-webkit-scrollbar-thumb { background: #d1d5db; border-radius: 2px; }
+  .report-section { margin-bottom: 22px; }
+  .report-section:last-child { margin-bottom: 0; }
+  .report-section h3 {
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: 10px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid #f3f4f6;
+  }
+  .report-section .overview-stats {
+    display: flex;
+    gap: 24px;
+    padding: 12px 16px;
+    background: #f8fafc;
+    border-radius: var(--radius-sm);
+    margin-bottom: 6px;
+  }
+  .overview-stat {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .overview-stat .num {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--primary);
+  }
+  .overview-stat .label {
+    font-size: 12px;
+    color: var(--text-secondary);
+  }
+  .member-analysis { margin: 8px 0; }
+  .member-analysis-item {
+    padding: 10px 14px;
+    border-left: 3px solid var(--primary);
+    margin-bottom: 8px;
+    background: #fafbfc;
+    border-radius: 0 6px 6px 0;
+    font-size: 13px;
+    line-height: 1.7;
+  }
+  .member-analysis-item.warning-item { border-left-color: var(--warning); }
+  .member-analysis-item.danger-item { border-left-color: var(--danger); }
+  .member-analysis-item strong { color: var(--text); }
+  .risk-list, .suggest-list { list-style: none; padding: 0; }
+  .risk-list li, .suggest-list li {
+    padding: 8px 12px;
+    margin-bottom: 6px;
+    border-radius: 6px;
+    font-size: 13px;
+    line-height: 1.6;
+  }
+  .risk-list li {
+    background: #fff5f5;
+    border-left: 3px solid var(--danger);
+  }
+  .suggest-list li {
+    background: #f0fdf4;
+    border-left: 3px solid var(--success);
+  }
+  .report-footer {
+    padding: 12px 24px;
+    border-top: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 12px;
+    color: var(--text-secondary);
+    background: #fafbfc;
+  }
+
+  /* Visualizations */
+  .viz-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .viz-card {
+    background: var(--card);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 20px;
+  }
+  .viz-title {
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  /* Commit Timeline */
+  .timeline-grid {
+    display: grid;
+    grid-template-columns: 50px repeat(7, 1fr);
+    gap: 4px;
+    align-items: center;
+  }
+  .timeline-label {
+    font-size: 12px;
+    color: var(--text-secondary);
+    text-align: right;
+    padding-right: 8px;
+  }
+  .timeline-day {
+    text-align: center;
+    font-size: 11px;
+    color: var(--text-secondary);
+    padding-bottom: 4px;
+  }
+  .timeline-cell {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 32px;
+  }
+  .commit-dot {
+    border-radius: 50%;
+    transition: transform 0.2s;
+  }
+  .commit-dot:hover { transform: scale(1.4); }
+
+  /* Pie Chart */
+  .pie-container {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+  }
+  .pie-chart {
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    position: relative;
+    flex-shrink: 0;
+  }
+  .pie-legend { flex: 1; }
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 5px 0;
+    font-size: 13px;
+  }
+  .legend-color {
+    width: 12px;
+    height: 12px;
+    border-radius: 3px;
+    flex-shrink: 0;
+  }
+  .legend-item.danger-highlight {
+    background: #fff5f5;
+    padding: 5px 8px;
+    border-radius: 6px;
+    border: 1px dashed var(--danger);
+  }
+  .legend-pct { font-weight: 600; margin-left: auto; }
+
+  /* Radar Chart */
+  .radar-container {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+  }
+  .radar-chart {
+    width: 200px;
+    height: 200px;
+    position: relative;
+    flex-shrink: 0;
+  }
+  .radar-chart svg { width: 100%; height: 100%; }
+  .radar-legend { flex: 1; }
+  .radar-legend-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 4px 0;
+    font-size: 13px;
+  }
+  .radar-legend-color {
+    width: 10px; height: 10px;
+    border-radius: 50%;
+  }
+
+  /* Quality Trend */
+  .trend-chart {
+    display: flex;
+    align-items: flex-end;
+    gap: 2px;
+    height: 120px;
+    padding: 10px 0;
+    position: relative;
+  }
+  .trend-bar-group {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+    justify-content: flex-end;
+  }
+  .trend-bar {
+    width: 60%;
+    border-radius: 4px 4px 0 0;
+    position: relative;
+    transition: height 1s ease;
+  }
+  .trend-bar .value {
+    position: absolute;
+    top: -18px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--text-secondary);
+  }
+  .trend-label {
+    font-size: 11px;
+    color: var(--text-secondary);
+    margin-top: 6px;
+  }
+  .trend-baseline {
+    position: absolute;
+    left: 0; right: 0;
+    border-top: 1px dashed #d1d5db;
+    font-size: 10px;
+    color: #9ca3af;
+    padding-left: 4px;
+  }
+
+  /* Teacher Panel */
+  .teacher-panel {
+    background: var(--card);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 24px;
+  }
+  .teacher-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 16px;
+  }
+  .class-teams {
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    gap: 10px;
+  }
+  .class-team-card {
+    border: 2px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 14px 10px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.2s;
+    position: relative;
+  }
+  .class-team-card:hover {
+    box-shadow: var(--shadow-md);
+    transform: translateY(-2px);
+  }
+  .class-team-card.active {
+    border-color: var(--primary);
+    background: var(--primary-light);
+  }
+  .class-team-card.status-green { border-left: 4px solid var(--success); }
+  .class-team-card.status-yellow { border-left: 4px solid var(--warning); background: #fffbeb; }
+  .class-team-card.status-red { border-left: 4px solid var(--danger); background: #fff5f5; }
+  .team-num {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+  .team-score {
+    font-size: 22px;
+    font-weight: 800;
+    margin: 4px 0;
+  }
+  .team-score.green { color: var(--success); }
+  .team-score.yellow { color: var(--warning); }
+  .team-score.red { color: var(--danger); }
+  .team-project-name {
+    font-size: 10px;
+    color: var(--text-secondary);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .health-bar {
+    width: 100%;
+    height: 4px;
+    background: #f0f0f0;
+    border-radius: 2px;
+    margin-top: 8px;
+    overflow: hidden;
+  }
+  .health-fill {
+    height: 100%;
+    border-radius: 2px;
+  }
+
+  /* Animations */
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .animate-in {
+    animation: fadeInUp 0.5s ease forwards;
+    opacity: 0;
+  }
+  .delay-1 { animation-delay: 0.1s; }
+  .delay-2 { animation-delay: 0.2s; }
+  .delay-3 { animation-delay: 0.3s; }
+  .delay-4 { animation-delay: 0.4s; }
+
+  /* Loading shimmer for generate button */
+  @keyframes shimmer {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+  }
+  .generating {
+    background: linear-gradient(90deg, var(--primary) 25%, #6b9de8 50%, var(--primary) 75%) !important;
+    background-size: 200% 100% !important;
+    animation: shimmer 1.5s infinite !important;
+    pointer-events: none;
+  }
+
+  /* Responsive helper for 1920 */
+  @media (max-width: 1600px) {
+    .main-grid { grid-template-columns: 1fr 1fr; }
+    .class-teams { grid-template-columns: repeat(5, 1fr); }
+  }
+</style>
+</head>
+<body>
+
+<!-- Header -->
+<header class="header">
+  <div class="header-left">
+    <div class="header-logo">🎯</div>
+    <div>
+      <h1>TeamCoach · AI辅助团队协作项目教练</h1>
+      <div class="subtitle">Git数据分析 · 贡献度追踪 · 智能周报生成</div>
+    </div>
+  </div>
+  <div class="header-right">
+    <div class="header-badge"><span class="header-dot"></span>实时同步</div>
+    <div class="header-badge">📚 Java Web开发 · 2025-2026春</div>
+    <div class="header-badge">👤 范老师</div>
+  </div>
+</header>
+
+<div class="container">
+
+  <!-- Team Overview -->
+  <div class="team-overview animate-in delay-1">
+    <div class="team-header">
+      <div class="team-header-left">
+        <span class="team-label">第3组</span>
+        <span class="team-name">图书管理系统</span>
+      </div>
+      <div class="team-meta">
+        <span class="team-meta-item">📅 第10周 (3/10 - 3/16)</span>
+        <span class="team-meta-item">🔗 Git仓库: gitee.com/tyust-g3/library</span>
+        <span class="team-meta-item">📊 健康评分: <strong style="color:var(--warning);">72/100</strong></span>
+      </div>
+    </div>
+    <div class="member-cards">
+      <!-- 张三 -->
+      <div class="member-card">
+        <div class="member-top">
+          <div class="avatar c1">张</div>
+          <div class="member-info">
+            <div class="member-name">张三</div>
+            <span class="member-role role-controller">Controller层</span>
+          </div>
+        </div>
+        <div class="member-stats">
+          <div class="stat-row">
+            <span class="stat-label">本周提交</span>
+            <span class="stat-value">18次</span>
+          </div>
+          <div class="stat-row">
+            <span class="stat-label">代码行数</span>
+            <span class="stat-value" style="color:var(--success)">+312行</span>
+          </div>
+          <div class="contrib-bar">
+            <div class="contrib-fill good" style="width:90%"></div>
+          </div>
+        </div>
+      </div>
+      <!-- 李四 -->
+      <div class="member-card">
+        <div class="member-top">
+          <div class="avatar c2">李</div>
+          <div class="member-info">
+            <div class="member-name">李四</div>
+            <span class="member-role role-dao">DAO层</span>
+          </div>
+        </div>
+        <div class="member-stats">
+          <div class="stat-row">
+            <span class="stat-label">本周提交</span>
+            <span class="stat-value">12次</span>
+          </div>
+          <div class="stat-row">
+            <span class="stat-label">代码行数</span>
+            <span class="stat-value" style="color:var(--success)">+245行</span>
+          </div>
+          <div class="contrib-bar">
+            <div class="contrib-fill good" style="width:72%"></div>
+          </div>
+        </div>
+      </div>
+      <!-- 王五 -->
+      <div class="member-card">
+        <div class="member-top">
+          <div class="avatar c3">王</div>
+          <div class="member-info">
+            <div class="member-name">王五</div>
+            <span class="member-role role-jsp">JSP前端</span>
+          </div>
+        </div>
+        <div class="member-stats">
+          <div class="stat-row">
+            <span class="stat-label">本周提交</span>
+            <span class="stat-value">14次</span>
+          </div>
+          <div class="stat-row">
+            <span class="stat-label">代码行数</span>
+            <span class="stat-value" style="color:var(--success)">+198行</span>
+          </div>
+          <div class="contrib-bar">
+            <div class="contrib-fill good" style="width:78%"></div>
+          </div>
+        </div>
+      </div>
+      <!-- 赵六 (alert) -->
+      <div class="member-card alert">
+        <div class="member-top">
+          <div class="avatar c4">赵</div>
+          <div class="member-info">
+            <div class="member-name">赵六 <span class="alert-tag">⚠ 贡献不足</span></div>
+            <span class="member-role role-unassigned">待分配</span>
+          </div>
+        </div>
+        <div class="member-stats">
+          <div class="stat-row">
+            <span class="stat-label">本周提交</span>
+            <span class="stat-value" style="color:var(--danger)">3次</span>
+          </div>
+          <div class="stat-row">
+            <span class="stat-label">代码行数</span>
+            <span class="stat-value" style="color:var(--danger)">+68行</span>
+          </div>
+          <div class="contrib-bar">
+            <div class="contrib-fill alert" style="width:18%"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Content: Report + Viz -->
+  <div class="main-grid">
+
+    <!-- AI Weekly Report -->
+    <div class="ai-report animate-in delay-2">
+      <div class="report-header">
+        <div class="report-header-left">
+          <span class="section-title" style="margin-bottom:0"><span class="icon">📋</span> AI 周报分析</span>
+          <span class="ai-badge">AI GENERATED</span>
+        </div>
+        <button class="generate-btn" id="generateBtn" onclick="simulateGenerate()">
+          ✨ 生成本周报告
+        </button>
+      </div>
+      <div class="report-body" id="reportBody">
+        <!-- 📊 本周概况 -->
+        <div class="report-section">
+          <h3>📊 本周概况</h3>
+          <div class="overview-stats">
+            <div class="overview-stat">
+              <span class="num">47</span>
+              <span class="label">总提交次数</span>
+            </div>
+            <div class="overview-stat">
+              <span class="num">4/4</span>
+              <span class="label">活跃成员</span>
+            </div>
+            <div class="overview-stat">
+              <span class="num">+823</span>
+              <span class="label">新增代码行</span>
+            </div>
+            <div class="overview-stat">
+              <span class="num">-156</span>
+              <span class="label">删除代码行</span>
+            </div>
+            <div class="overview-stat">
+              <span class="num">72</span>
+              <span class="label">健康评分</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 👥 成员贡献分析 -->
+        <div class="report-section">
+          <h3>👥 成员贡献分析</h3>
+          <div class="member-analysis">
+            <div class="member-analysis-item">
+              <strong>张三 (Controller层)</strong> — 本周提交18次，新增312行代码。主要修改文件：<code>BookController.java</code>、<code>UserController.java</code>、<code>BorrowController.java</code>。完成了图书借阅和归还的完整接口，代码结构清晰，注释规范。<span style="color:var(--success)">● 贡献度：优秀</span>
+            </div>
+            <div class="member-analysis-item">
+              <strong>李四 (DAO层)</strong> — 本周提交12次，新增245行代码。主要修改文件：<code>BookDao.java</code>、<code>UserDao.java</code>、<code>db_init.sql</code>。完成了数据库表设计和基础CRUD操作，SQL语句优化良好。<span style="color:var(--success)">● 贡献度：良好</span>
+            </div>
+            <div class="member-analysis-item warning-item">
+              <strong>王五 (JSP前端)</strong> — 本周提交14次，新增198行代码。主要修改文件：<code>bookList.jsp</code>、<code>login.jsp</code>、<code>style.css</code>。前端页面框架已搭建，但部分JSP中包含大量Java代码，建议分离到Controller层。<span style="color:var(--warning)">● 贡献度：良好（需改进）</span>
+            </div>
+            <div class="member-analysis-item danger-item">
+              <strong>赵六 (待分配)</strong> — 本周仅提交3次，新增68行代码，且集中在周日完成。修改文件：<code>config.properties</code>、<code>web.xml</code>。贡献明显低于团队平均水平，尚未承担任何核心模块开发任务。<span style="color:var(--danger)">● 贡献度：不足 ⚠</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- ⚠ 风险提示 -->
+        <div class="report-section">
+          <h3>⚠ 风险提示</h3>
+          <ul class="risk-list">
+            <li><strong>赵六贡献严重不足</strong> — 本周贡献仅占团队总量的8.3%，且提交时间集中在截止日前，存在"搭便车"风险。建议教师关注并进行一对一沟通。</li>
+            <li><strong>Service层无人负责</strong> — 当前项目缺少业务逻辑层（Service Layer），Controller直接调用DAO层，不符合MVC三层架构规范。建议尽快分配成员负责。</li>
+            <li><strong>测试覆盖率为0%</strong> — 目前项目无任何单元测试代码，随着功能增加，代码质量风险将持续上升。建议本周开始编写JUnit测试。</li>
+          </ul>
+        </div>
+
+        <!-- 🎯 下周建议 -->
+        <div class="report-section">
+          <h3>🎯 下周建议</h3>
+          <ul class="suggest-list">
+            <li><strong>明确赵六职责</strong> — 建议将Service层开发任务分配给赵六，同时设定每日最低提交要求（至少2次commit），帮助其融入团队开发节奏。</li>
+            <li><strong>重构MVC架构</strong> — 当前Controller层存在业务逻辑代码，建议张三和赵六协作，将业务逻辑抽取到Service层，形成完整的Controller→Service→DAO调用链。</li>
+            <li><strong>启动测试计划</strong> — 建议李四为DAO层编写JUnit测试用例，目标覆盖核心CRUD方法，同时在<code>pom.xml</code>中配置JUnit依赖。</li>
+          </ul>
+        </div>
+      </div>
+      <div class="report-footer">
+        <span>🤖 AI生成时间：2026-03-16 08:00 · 数据来源：Gitee API</span>
+        <span>模型：DeepSeek-V3 · 置信度：92%</span>
+      </div>
+    </div>
+
+    <!-- Visualizations -->
+    <div class="viz-panel animate-in delay-3">
+
+      <!-- Commit Timeline -->
+      <div class="viz-card">
+        <div class="viz-title">📈 提交时间线（本周）</div>
+        <div class="timeline-grid" id="timeline">
+          <!-- Header row -->
+          <div class="timeline-label"></div>
+          <div class="timeline-day">周一</div>
+          <div class="timeline-day">周二</div>
+          <div class="timeline-day">周三</div>
+          <div class="timeline-day">周四</div>
+          <div class="timeline-day">周五</div>
+          <div class="timeline-day">周六</div>
+          <div class="timeline-day">周日</div>
+        </div>
+      </div>
+
+      <!-- Pie Chart -->
+      <div class="viz-card">
+        <div class="viz-title">🧩 代码层分布</div>
+        <div class="pie-container">
+          <div class="pie-chart" style="background: conic-gradient(
+            #4472C4 0deg 108deg,
+            #7c3aed 108deg 198deg,
+            #059669 198deg 288deg,
+            #f44336 288deg 306deg,
+            #ff9800 306deg 360deg
+          );">
+            <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:70px;height:70px;background:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;color:var(--text-secondary);text-align:center;line-height:1.3;">总计<br><strong style="font-size:16px;color:var(--text)">823</strong><br>行</div>
+          </div>
+          <div class="pie-legend">
+            <div class="legend-item">
+              <span class="legend-color" style="background:#4472C4"></span>
+              Controller层
+              <span class="legend-pct">30%</span>
+            </div>
+            <div class="legend-item">
+              <span class="legend-color" style="background:#7c3aed"></span>
+              DAO层
+              <span class="legend-pct">25%</span>
+            </div>
+            <div class="legend-item">
+              <span class="legend-color" style="background:#059669"></span>
+              JSP前端
+              <span class="legend-pct">25%</span>
+            </div>
+            <div class="legend-item danger-highlight">
+              <span class="legend-color" style="background:#f44336"></span>
+              Service层 ⚠
+              <span class="legend-pct" style="color:var(--danger)">5%</span>
+            </div>
+            <div class="legend-item">
+              <span class="legend-color" style="background:#ff9800"></span>
+              配置文件
+              <span class="legend-pct">15%</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Radar Chart -->
+      <div class="viz-card">
+        <div class="viz-title">🎯 贡献度雷达图</div>
+        <div class="radar-container">
+          <div class="radar-chart">
+            <svg viewBox="0 0 200 200">
+              <!-- Grid -->
+              <polygon points="100,20 180,100 100,180 20,100" fill="none" stroke="#e5e7eb" stroke-width="1"/>
+              <polygon points="100,40 160,100 100,160 40,100" fill="none" stroke="#e5e7eb" stroke-width="1"/>
+              <polygon points="100,60 140,100 100,140 60,100" fill="none" stroke="#e5e7eb" stroke-width="1"/>
+              <polygon points="100,80 120,100 100,120 80,100" fill="none" stroke="#e5e7eb" stroke-width="1"/>
+              <!-- Axes -->
+              <line x1="100" y1="20" x2="100" y2="180" stroke="#e5e7eb" stroke-width="1"/>
+              <line x1="20" y1="100" x2="180" y2="100" stroke="#e5e7eb" stroke-width="1"/>
+              <!-- Labels -->
+              <text x="100" y="12" text-anchor="middle" font-size="11" fill="#6b7280">代码量</text>
+              <text x="190" y="104" text-anchor="start" font-size="11" fill="#6b7280">提交频率</text>
+              <text x="100" y="197" text-anchor="middle" font-size="11" fill="#6b7280">代码质量</text>
+              <text x="5" y="104" text-anchor="start" font-size="11" fill="#6b7280">覆盖层面</text>
+              <!-- 张三 -->
+              <polygon points="100,28 172,100 100,40 36,100" fill="rgba(68,114,196,0.15)" stroke="#4472C4" stroke-width="2"/>
+              <!-- 李四 -->
+              <polygon points="100,38 148,100 100,48 40,100" fill="rgba(124,58,237,0.12)" stroke="#7c3aed" stroke-width="2"/>
+              <!-- 王五 -->
+              <polygon points="100,44 156,100 100,52 60,100" fill="rgba(5,150,105,0.12)" stroke="#059669" stroke-width="2"/>
+              <!-- 赵六 -->
+              <polygon points="100,72 112,100 100,76 40,100" fill="rgba(244,67,54,0.12)" stroke="#f44336" stroke-width="2"/>
+              <!-- Dots -->
+              <circle cx="100" cy="28" r="3" fill="#4472C4"/>
+              <circle cx="172" cy="100" r="3" fill="#4472C4"/>
+              <circle cx="100" cy="40" r="3" fill="#4472C4"/>
+              <circle cx="36" cy="100" r="3" fill="#4472C4"/>
+              <circle cx="100" cy="72" r="3" fill="#f44336"/>
+              <circle cx="112" cy="100" r="3" fill="#f44336"/>
+              <circle cx="100" cy="76" r="3" fill="#f44336"/>
+              <circle cx="40" cy="100" r="3" fill="#f44336"/>
+            </svg>
+          </div>
+          <div class="radar-legend">
+            <div class="radar-legend-item">
+              <span class="radar-legend-color" style="background:#4472C4"></span>
+              张三 — 全面发展，表现优秀
+            </div>
+            <div class="radar-legend-item">
+              <span class="radar-legend-color" style="background:#7c3aed"></span>
+              李四 — 代码质量高，频率稳定
+            </div>
+            <div class="radar-legend-item">
+              <span class="radar-legend-color" style="background:#059669"></span>
+              王五 — 前端专注，质量待提升
+            </div>
+            <div class="radar-legend-item">
+              <span class="radar-legend-color" style="background:#f44336"></span>
+              赵六 — 各维度均需改进 ⚠
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quality Trend -->
+      <div class="viz-card">
+        <div class="viz-title">📉 代码质量趋势（近4周）</div>
+        <div class="trend-chart">
+          <div style="position:absolute;left:0;right:0;bottom:75%;border-top:1px dashed #d1d5db;"><span style="font-size:10px;color:#9ca3af;position:absolute;right:0;top:-14px;">良好线 75</span></div>
+          <div class="trend-bar-group">
+            <div class="trend-bar" style="height:58%;background:linear-gradient(to top, #ff9800, #ffb74d);">
+              <span class="value">58</span>
+            </div>
+            <span class="trend-label">第7周</span>
+          </div>
+          <div class="trend-bar-group">
+            <div class="trend-bar" style="height:63%;background:linear-gradient(to top, #ff9800, #ffcc80);">
+              <span class="value">63</span>
+            </div>
+            <span class="trend-label">第8周</span>
+          </div>
+          <div class="trend-bar-group">
+            <div class="trend-bar" style="height:70%;background:linear-gradient(to top, #ff9800, #ffa726);">
+              <span class="value">70</span>
+            </div>
+            <span class="trend-label">第9周</span>
+          </div>
+          <div class="trend-bar-group">
+            <div class="trend-bar" style="height:72%;background:linear-gradient(to top, #4472C4, #6b9de8);">
+              <span class="value">72</span>
+            </div>
+            <span class="trend-label">第10周</span>
+          </div>
+        </div>
+        <div style="display:flex;align-items:center;gap:6px;margin-top:8px;font-size:12px;color:var(--success);">
+          <span>📈</span> 质量评分连续4周上升 (+14分)，保持良好势头
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Teacher Control Panel -->
+  <div class="teacher-panel animate-in delay-4">
+    <div class="teacher-header">
+      <div class="section-title"><span class="icon">🏫</span> 全班10组概览</div>
+      <div style="font-size:13px;color:var(--text-secondary);">
+        <span style="display:inline-block;width:10px;height:10px;background:var(--success);border-radius:2px;margin-right:4px;"></span>健康 (7组)
+        <span style="display:inline-block;width:10px;height:10px;background:var(--warning);border-radius:2px;margin:0 4px 0 12px;"></span>注意 (2组)
+        <span style="display:inline-block;width:10px;height:10px;background:var(--danger);border-radius:2px;margin:0 4px 0 12px;"></span>风险 (1组)
+      </div>
+    </div>
+    <div class="class-teams" id="classTeams">
+      <!-- Generated by JS -->
+    </div>
+  </div>
+
+</div>
+
+<script>
+// === Commit Timeline Data ===
+const timelineData = [
+  { name: '张三', color: '#4472C4', commits: [3, 4, 2, 3, 3, 2, 1] },
+  { name: '李四', color: '#7c3aed', commits: [2, 2, 1, 3, 2, 1, 1] },
+  { name: '王五', color: '#059669', commits: [2, 3, 2, 2, 2, 2, 1] },
+  { name: '赵六', color: '#f44336', commits: [0, 0, 0, 0, 0, 0, 3] },
+];
+
+const timelineEl = document.getElementById('timeline');
+timelineData.forEach(member => {
+  const label = document.createElement('div');
+  label.className = 'timeline-label';
+  label.textContent = member.name;
+  timelineEl.appendChild(label);
+  member.commits.forEach(count => {
+    const cell = document.createElement('div');
+    cell.className = 'timeline-cell';
+    if (count > 0) {
+      const dot = document.createElement('div');
+      dot.className = 'commit-dot';
+      const size = Math.min(8 + count * 5, 26);
+      dot.style.width = size + 'px';
+      dot.style.height = size + 'px';
+      dot.style.background = member.color;
+      dot.style.opacity = 0.3 + (count / 5) * 0.7;
+      dot.title = `${member.name}: ${count}次提交`;
+      cell.appendChild(dot);
+    }
+    timelineEl.appendChild(cell);
+  });
+});
+
+// === Class Teams Data ===
+const teams = [
+  { num: 1, name: '学生选课系统', score: 88, status: 'green' },
+  { num: 2, name: '在线考试平台', score: 91, status: 'green' },
+  { num: 3, name: '图书管理系统', score: 72, status: 'yellow' },
+  { num: 4, name: '校园论坛系统', score: 85, status: 'green' },
+  { num: 5, name: '宿舍管理系统', score: 82, status: 'green' },
+  { num: 6, name: '教务信息平台', score: 90, status: 'green' },
+  { num: 7, name: '实验室预约', score: 45, status: 'red' },
+  { num: 8, name: '二手交易平台', score: 79, status: 'green' },
+  { num: 9, name: '请假审批系统', score: 86, status: 'green' },
+  { num: 10, name: '班级相册管理', score: 83, status: 'green' },
+];
+
+const teamsEl = document.getElementById('classTeams');
+teams.forEach(team => {
+  const card = document.createElement('div');
+  card.className = `class-team-card status-${team.status}` + (team.num === 3 ? ' active' : '');
+  const healthColor = team.status === 'green' ? 'var(--success)' : team.status === 'yellow' ? 'var(--warning)' : 'var(--danger)';
+  card.innerHTML = `
+    <div class="team-num">第${team.num}组</div>
+    <div class="team-score ${team.status}">${team.score}</div>
+    <div class="team-project-name">${team.name}</div>
+    <div class="health-bar"><div class="health-fill" style="width:${team.score}%;background:${healthColor}"></div></div>
+  `;
+  card.onclick = function() {
+    document.querySelectorAll('.class-team-card').forEach(c => c.classList.remove('active'));
+    this.classList.add('active');
+  };
+  teamsEl.appendChild(card);
+});
+
+// === Generate Button Simulation ===
+function simulateGenerate() {
+  const btn = document.getElementById('generateBtn');
+  btn.classList.add('generating');
+  btn.innerHTML = '⏳ AI分析中...';
+  setTimeout(() => {
+    btn.classList.remove('generating');
+    btn.innerHTML = '✅ 报告已生成';
+    setTimeout(() => {
+      btn.innerHTML = '✨ 生成本周报告';
+    }, 2000);
+  }, 2500);
+}
+</script>
+</body>
+</html>
