@@ -155,11 +155,241 @@ body {
   color: var(--accent-orange);
 }
 
+/* ========== LESSON TAB BAR ========== */
+.lesson-tab-bar {
+  background: linear-gradient(180deg, #131325 0%, #0d0d1a 100%);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: stretch;
+  padding: 0 32px;
+  gap: 0;
+  position: relative;
+  z-index: 10;
+}
+
+.lesson-tab {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 28px;
+  cursor: pointer;
+  position: relative;
+  transition: all 0.3s ease;
+  border-bottom: 3px solid transparent;
+  color: var(--text-secondary);
+  font-size: 14px;
+  font-weight: 500;
+  user-select: none;
+}
+
+.lesson-tab:hover {
+  color: var(--text-primary);
+  background: rgba(0, 212, 255, 0.03);
+}
+
+.lesson-tab.active {
+  color: var(--accent-cyan);
+  border-bottom-color: var(--accent-cyan);
+  background: rgba(0, 212, 255, 0.06);
+}
+
+.lesson-tab .tab-icon {
+  font-size: 18px;
+}
+
+.lesson-tab .tab-label {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.lesson-tab .tab-lesson-num {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  opacity: 0.7;
+}
+
+.lesson-tab .tab-lesson-name {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.lesson-tab .tab-progress-badge {
+  background: rgba(0, 255, 136, 0.1);
+  border: 1px solid rgba(0, 255, 136, 0.3);
+  color: var(--accent-green);
+  padding: 2px 10px;
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: 600;
+  font-family: 'Consolas', monospace;
+  white-space: nowrap;
+}
+
+.lesson-tab.active .tab-progress-badge {
+  background: rgba(0, 212, 255, 0.12);
+  border-color: rgba(0, 212, 255, 0.4);
+  color: var(--accent-cyan);
+}
+
+.lesson-tab-separator {
+  width: 1px;
+  background: var(--border);
+  margin: 8px 0;
+}
+
 /* ========== MAIN LAYOUT ========== */
 .main-container {
   display: flex;
-  height: calc(100vh - 72px - 140px);
+  height: calc(100vh - 72px - 52px - 200px);
   overflow: hidden;
+}
+
+/* ========== CHALLENGE INFO PANEL ========== */
+.challenge-info-panel {
+  background: linear-gradient(135deg, rgba(0, 212, 255, 0.04) 0%, rgba(168, 85, 247, 0.04) 100%);
+  border: 1px solid rgba(0, 212, 255, 0.15);
+  border-radius: 10px;
+  padding: 16px 20px;
+  margin-bottom: 16px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px 24px;
+}
+
+.info-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+}
+
+.info-label {
+  color: var(--text-dim);
+  font-weight: 600;
+  min-width: 80px;
+  font-size: 12px;
+}
+
+.info-value {
+  color: var(--text-primary);
+}
+
+.info-value.owasp {
+  color: var(--accent-red);
+  font-weight: 600;
+  font-size: 12px;
+  background: rgba(255, 71, 87, 0.1);
+  padding: 2px 8px;
+  border-radius: 4px;
+  border: 1px solid rgba(255, 71, 87, 0.2);
+}
+
+.info-stars {
+  color: var(--accent-yellow);
+  font-size: 14px;
+  letter-spacing: 2px;
+}
+
+.info-tags {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.info-tag {
+  background: rgba(168, 85, 247, 0.12);
+  border: 1px solid rgba(168, 85, 247, 0.25);
+  color: var(--accent-purple);
+  padding: 2px 10px;
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: 500;
+}
+
+.info-objective {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 13px;
+  padding-top: 6px;
+  border-top: 1px solid rgba(255,255,255,0.04);
+  margin-top: 4px;
+}
+
+.info-objective .info-label {
+  min-width: 80px;
+  padding-top: 1px;
+}
+
+.info-objective .info-value {
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+/* Reference section */
+.reference-section {
+  margin-bottom: 16px;
+}
+
+.reference-toggle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: var(--text-secondary);
+  cursor: pointer;
+  padding: 8px 12px;
+  background: rgba(0,0,0,0.15);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  transition: all 0.2s;
+  user-select: none;
+}
+
+.reference-toggle:hover {
+  border-color: var(--accent-cyan);
+  color: var(--accent-cyan);
+}
+
+.reference-toggle .arrow {
+  transition: transform 0.3s;
+  font-size: 10px;
+}
+
+.reference-toggle.open .arrow {
+  transform: rotate(90deg);
+}
+
+.reference-links {
+  display: none;
+  padding: 10px 14px;
+  margin-top: 6px;
+  background: rgba(0,0,0,0.1);
+  border-radius: 6px;
+  border: 1px solid rgba(255,255,255,0.04);
+}
+
+.reference-links.show {
+  display: block;
+  animation: slideDown 0.3s ease;
+}
+
+.reference-links a {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--accent-cyan);
+  text-decoration: none;
+  font-size: 12px;
+  padding: 4px 0;
+  transition: color 0.2s;
+}
+
+.reference-links a:hover {
+  color: #fff;
 }
 
 /* ========== CHALLENGE AREA ========== */
@@ -321,14 +551,14 @@ body {
 }
 
 /* Syntax Highlighting */
-.kw { color: #c678dd; font-weight: 600; }     /* keywords: public, class, protected... */
-.tp { color: #e5c07b; }                         /* types: String, HttpServletRequest... */
-.st { color: #98c379; }                         /* strings */
-.cm { color: #5c6370; font-style: italic; }     /* comments */
-.an { color: #d19a66; }                         /* annotations */
-.mt { color: #61afef; }                         /* method calls */
-.op { color: #abb2bf; }                         /* operators & punctuation */
-.nm { color: #e06c75; }                         /* numbers/null */
+.kw { color: #c678dd; font-weight: 600; }
+.tp { color: #e5c07b; }
+.st { color: #98c379; }
+.cm { color: #5c6370; font-style: italic; }
+.an { color: #d19a66; }
+.mt { color: #61afef; }
+.op { color: #abb2bf; }
+.nm { color: #e06c75; }
 .bug-line {
   background: rgba(255, 71, 87, 0.08);
   display: inline-block;
@@ -827,7 +1057,7 @@ body {
 
 /* ========== BOTTOM DASHBOARD ========== */
 .dashboard {
-  height: 140px;
+  height: 200px;
   background: linear-gradient(180deg, var(--bg-card), var(--bg-dark));
   border-top: 1px solid var(--border);
   display: flex;
@@ -938,9 +1168,23 @@ body {
   color: var(--accent-cyan);
 }
 
+/* Radar / Mastery Chart */
+.mastery-chart-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  position: relative;
+}
+
+.mastery-chart-container canvas {
+  max-width: 100%;
+}
+
 /* Alert */
 .dash-alert-section {
-  flex: 0 0 380px;
+  flex: 0 0 350px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -994,6 +1238,45 @@ body {
 
 .alert-action:hover {
   background: rgba(255, 71, 87, 0.25);
+}
+
+/* Coming soon state */
+.coming-soon-overlay {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 20px;
+  text-align: center;
+}
+
+.coming-soon-icon {
+  font-size: 48px;
+  margin-bottom: 16px;
+  opacity: 0.6;
+}
+
+.coming-soon-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text-secondary);
+  margin-bottom: 8px;
+}
+
+.coming-soon-sub {
+  font-size: 13px;
+  color: var(--text-dim);
+  line-height: 1.5;
+}
+
+/* Lesson content transition */
+.lesson-content {
+  display: none;
+  animation: fadeInUp 0.4s ease;
+}
+
+.lesson-content.active {
+  display: flex;
 }
 
 /* ========== ANIMATIONS ========== */
@@ -1168,48 +1451,204 @@ body {
   </div>
 </header>
 
-<!-- Main Content -->
-<div class="main-container">
-  <!-- Challenge Area -->
-  <div class="challenge-area">
-    <div class="challenge-header">
-      <div class="challenge-tag">
-        <span class="level-badge">LEVEL 2</span>
-        <div class="difficulty">
-          <span></span><span></span><span></span><span class="dim"></span><span class="dim"></span>
-        </div>
-        <span style="font-size:12px; color: var(--text-dim);">难度: 中等</span>
-      </div>
+<!-- Lesson Tab Bar -->
+<div class="lesson-tab-bar">
+  <div class="lesson-tab" id="lessonTab14" onclick="switchLesson(14)">
+    <span class="tab-icon">&#128218;</span>
+    <div class="tab-label">
+      <span class="tab-lesson-num">Lesson 14</span>
+      <span class="tab-lesson-name">数据库事务与连接池</span>
+    </div>
+    <span class="tab-progress-badge" id="lesson14Badge">1/5 已完成</span>
+  </div>
+  <div class="lesson-tab-separator"></div>
+  <div class="lesson-tab active" id="lessonTab15" onclick="switchLesson(15)">
+    <span class="tab-icon">&#128272;</span>
+    <div class="tab-label">
+      <span class="tab-lesson-num">Lesson 15</span>
+      <span class="tab-lesson-name">用户认证与权限控制</span>
+    </div>
+    <span class="tab-progress-badge" id="lesson15Badge">1/5 已完成</span>
+  </div>
+</div>
+
+<!-- ==================== LESSON 14 CONTENT ==================== -->
+<div class="lesson-content" id="lesson14Content">
+  <div class="main-container">
+    <!-- Challenge Area -->
+    <div class="challenge-area" id="lesson14ChallengeArea">
+      <!-- Populated by JS -->
     </div>
 
-    <h2 class="challenge-title"><span class="num">第2关</span>：越权访问漏洞</h2>
-    <p class="challenge-desc">
-      以下 Servlet 负责管理员页面的访问控制，但存在越权访问漏洞。任何已登录用户（包括普通用户）都能访问管理页面。
-      请找到漏洞并编写修复代码，添加角色验证逻辑。
-    </p>
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <div class="progress-section">
+        <div class="section-title">
+          <span class="icon">&#127942;</span>
+          闯关进度 - 第十四讲
+        </div>
+        <div class="progress-track">
+          <div class="progress-line"></div>
+          <div class="progress-line-fill" style="height: 42px;"></div>
 
-    <!-- Code Editor -->
-    <div class="code-editor">
-      <div class="editor-tabs">
-        <div class="editor-tab active">
-          <span class="icon">&#9670;</span>
-          AdminUserServlet.java
-        </div>
-        <div class="editor-tab">
-          <span class="icon" style="color: var(--accent-green);">&#9670;</span>
-          User.java
-        </div>
-        <div class="editor-tab">
-          <span class="icon" style="color: var(--accent-cyan);">&#9670;</span>
-          web.xml
-        </div>
-        <div class="editor-actions">
-          <button class="editor-action-btn">&#9881; 设置</button>
-          <button class="editor-action-btn">&#128196; 复制</button>
+          <div class="level-item">
+            <div class="level-dot completed">&#10003;</div>
+            <div class="level-info">
+              <div class="level-name">第1关：SQL注入基础</div>
+              <div class="level-meta green">&#10003; 已通过</div>
+            </div>
+            <div class="level-time green">3:15</div>
+          </div>
+
+          <div class="level-item">
+            <div class="level-dot current">2</div>
+            <div class="level-info">
+              <div class="level-name">第2关：事务一致性</div>
+              <div class="level-meta orange">&#128293; 进行中</div>
+            </div>
+            <div class="level-time" id="l14CurrentTime" style="color: var(--accent-orange);">--:--</div>
+          </div>
+
+          <div class="level-item">
+            <div class="level-dot locked">&#128274;</div>
+            <div class="level-info">
+              <div class="level-name dim">第3关：连接池泄漏</div>
+              <div class="level-meta" style="color: var(--text-dim);">即将开放</div>
+            </div>
+            <div class="level-time">--:--</div>
+          </div>
+
+          <div class="level-item">
+            <div class="level-dot locked">&#128274;</div>
+            <div class="level-info">
+              <div class="level-name dim">第4关：批量操作优化</div>
+              <div class="level-meta" style="color: var(--text-dim);">即将开放</div>
+            </div>
+            <div class="level-time">--:--</div>
+          </div>
+
+          <div class="level-item">
+            <div class="level-dot locked" style="background: var(--accent-red); color: #fff; font-size: 10px;">B</div>
+            <div class="level-info">
+              <div class="level-name dim">第5关：综合挑战（BOSS关）</div>
+              <div class="level-meta" style="color: var(--text-dim);">即将开放</div>
+            </div>
+            <div class="level-time">--:--</div>
+          </div>
         </div>
       </div>
-      <div class="code-container">
-        <div class="line-numbers">1
+
+      <!-- Timer -->
+      <div class="timer-section">
+        <div>
+          <div class="timer-label">本关用时</div>
+          <div class="timer-value" id="l14TimerDisplay">00:00</div>
+        </div>
+        <div>
+          <div class="timer-detail">总用时 <span id="l14TotalTime" style="color: var(--accent-cyan);">03:15</span></div>
+          <div class="timer-detail" style="margin-top:4px;">尝试次数 <span id="l14Attempts" style="color: var(--accent-orange);">0</span></div>
+        </div>
+      </div>
+
+      <!-- Leaderboard -->
+      <div class="leaderboard-section">
+        <div class="section-title">
+          <span class="icon">&#127941;</span>
+          实时排行榜
+          <span style="margin-left:auto; font-size:11px; color: var(--text-dim); font-weight:400;">48人参与</span>
+        </div>
+        <div class="leaderboard-list" id="leaderboard14"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== LESSON 15 CONTENT ==================== -->
+<div class="lesson-content active" id="lesson15Content">
+  <div class="main-container">
+    <!-- Challenge Area -->
+    <div class="challenge-area">
+
+      <!-- Challenge Info Panel -->
+      <div class="challenge-info-panel" id="challengeInfoPanel">
+        <div class="info-row">
+          <span class="info-label">漏洞类型</span>
+          <span class="info-value">越权访问 (Broken Access Control)</span>
+        </div>
+        <div class="info-row">
+          <span class="info-label">OWASP分类</span>
+          <span class="info-value owasp">OWASP Top 10 - A01:2021</span>
+        </div>
+        <div class="info-row">
+          <span class="info-label">难度</span>
+          <span class="info-stars">&#9733;&#9733;&#9733;&#9734;&#9734;</span>
+        </div>
+        <div class="info-row">
+          <span class="info-label">知识点</span>
+          <div class="info-tags">
+            <span class="info-tag">Filter</span>
+            <span class="info-tag">Session</span>
+            <span class="info-tag">RBAC</span>
+          </div>
+        </div>
+        <div class="info-objective">
+          <span class="info-label">学习目标</span>
+          <span class="info-value">理解越权访问漏洞的成因，掌握基于角色的访问控制（RBAC）在Servlet中的实现方法，学会对管理接口进行权限验证。</span>
+        </div>
+      </div>
+
+      <!-- Reference Section -->
+      <div class="reference-section">
+        <div class="reference-toggle" id="refToggle" onclick="toggleReference()">
+          <span class="arrow">&#9654;</span>
+          &#128214; 参考资料
+        </div>
+        <div class="reference-links" id="refLinks">
+          <a href="#">&#128196; 第15讲课件 - 用户认证与权限控制.pptx</a>
+          <a href="#">&#128196; OWASP Top 10 - A01 Broken Access Control</a>
+          <a href="#">&#128196; Java Servlet Filter 官方文档</a>
+          <a href="#">&#128196; 实验手册 - RBAC权限模型实践</a>
+        </div>
+      </div>
+
+      <div class="challenge-header">
+        <div class="challenge-tag">
+          <span class="level-badge">LEVEL 2</span>
+          <div class="difficulty">
+            <span></span><span></span><span></span><span class="dim"></span><span class="dim"></span>
+          </div>
+          <span style="font-size:12px; color: var(--text-dim);">难度: 中等</span>
+        </div>
+      </div>
+
+      <h2 class="challenge-title"><span class="num">第2关</span>：越权访问漏洞</h2>
+      <p class="challenge-desc">
+        以下 Servlet 负责管理员页面的访问控制，但存在越权访问漏洞。任何已登录用户（包括普通用户）都能访问管理页面。
+        请找到漏洞并编写修复代码，添加角色验证逻辑。
+      </p>
+
+      <!-- Code Editor -->
+      <div class="code-editor">
+        <div class="editor-tabs">
+          <div class="editor-tab active">
+            <span class="icon">&#9670;</span>
+            AdminUserServlet.java
+          </div>
+          <div class="editor-tab">
+            <span class="icon" style="color: var(--accent-green);">&#9670;</span>
+            User.java
+          </div>
+          <div class="editor-tab">
+            <span class="icon" style="color: var(--accent-cyan);">&#9670;</span>
+            web.xml
+          </div>
+          <div class="editor-actions">
+            <button class="editor-action-btn">&#9881; 设置</button>
+            <button class="editor-action-btn">&#128196; 复制</button>
+          </div>
+        </div>
+        <div class="code-container">
+          <div class="line-numbers">1
 2
 3
 4
@@ -1225,7 +1664,7 @@ body {
 14
 15
 16</div>
-        <div class="code-content"><span class="an">@WebServlet</span>(<span class="st">"/admin/users"</span>)
+          <div class="code-content"><span class="an">@WebServlet</span>(<span class="st">"/admin/users"</span>)
 <span class="kw">public class</span> <span class="tp">AdminUserServlet</span> <span class="kw">extends</span> <span class="tp">HttpServlet</span> {
     <span class="kw">protected void</span> <span class="mt">doGet</span>(<span class="tp">HttpServletRequest</span> request, <span class="tp">HttpServletResponse</span> response)
             <span class="kw">throws</span> <span class="tp">ServletException</span>, <span class="tp">IOException</span> {
@@ -1241,194 +1680,182 @@ body {
         }
     }
 }</div>
-      </div>
-    </div>
-
-    <!-- Fix Area -->
-    <div class="fix-area">
-      <div class="fix-label">
-        <span class="icon">&#9998;</span>
-        修复方案
-      </div>
-      <textarea class="fix-textarea" id="fixTextarea" placeholder="// 在此编写修复代码...&#10;// 提示：需要在验证用户登录后，额外检查用户角色&#10;// 例如：从session中获取role属性，判断是否为admin"></textarea>
-    </div>
-
-    <!-- Action Buttons -->
-    <div class="fix-actions">
-      <button class="btn btn-primary" id="submitBtn" onclick="submitFix()">
-        &#9654; 提交修复
-      </button>
-      <button class="btn btn-hint" onclick="showHint()">
-        &#128161; AI提示
-      </button>
-      <button class="btn btn-reset" onclick="resetChallenge()">
-        &#8635; 重置
-      </button>
-    </div>
-
-    <!-- Hint Box -->
-    <div class="hint-box" id="hintBox">
-      <div class="hint-header">
-        &#129302; AI助手提示
-      </div>
-      <div class="hint-text">
-        提示：检查用户Session中是否存储了角色信息，对比是否为admin角色。<br><br>
-        建议修复思路：在验证 <code style="color: var(--accent-cyan);">username != null</code> 之后，
-        增加对 <code style="color: var(--accent-cyan);">session.getAttribute("role")</code> 的检查，
-        仅当角色为 <code style="color: var(--accent-cyan);">"admin"</code> 时才允许访问管理页面。
-        否则应返回403错误或重定向到无权限页面。
-      </div>
-    </div>
-
-    <!-- Test Results -->
-    <div class="test-results" id="testResults">
-      <div class="test-header">
-        <span>&#9881; 自动化测试结果</span>
-        <span class="test-status" id="testStatus"></span>
-      </div>
-      <div class="test-list" id="testList"></div>
-      <div class="test-summary" id="testSummary"></div>
-    </div>
-  </div>
-
-  <!-- Sidebar -->
-  <div class="sidebar">
-    <!-- Progress Tracker -->
-    <div class="progress-section">
-      <div class="section-title">
-        <span class="icon">&#127942;</span>
-        闯关进度
-      </div>
-      <div class="progress-track">
-        <div class="progress-line"></div>
-        <div class="progress-line-fill"></div>
-
-        <div class="level-item">
-          <div class="level-dot completed">&#10003;</div>
-          <div class="level-info">
-            <div class="level-name">第1关：SQL注入</div>
-            <div class="level-meta green">&#10003; 已通过</div>
-          </div>
-          <div class="level-time green">2:34</div>
-        </div>
-
-        <div class="level-item">
-          <div class="level-dot current">2</div>
-          <div class="level-info">
-            <div class="level-name">第2关：越权访问</div>
-            <div class="level-meta orange">&#128293; 进行中</div>
-          </div>
-          <div class="level-time" id="currentLevelTime" style="color: var(--accent-orange);">--:--</div>
-        </div>
-
-        <div class="level-item">
-          <div class="level-dot locked">&#128274;</div>
-          <div class="level-info">
-            <div class="level-name dim">第3关：Session劫持</div>
-            <div class="level-meta" style="color: var(--text-dim);">未解锁</div>
-          </div>
-          <div class="level-time">--:--</div>
-        </div>
-
-        <div class="level-item">
-          <div class="level-dot locked">&#128274;</div>
-          <div class="level-info">
-            <div class="level-name dim">第4关：XSS跨站脚本</div>
-            <div class="level-meta" style="color: var(--text-dim);">未解锁</div>
-          </div>
-          <div class="level-time">--:--</div>
-        </div>
-
-        <div class="level-item">
-          <div class="level-dot locked" style="background: var(--accent-red); color: #fff; font-size: 10px;">B</div>
-          <div class="level-info">
-            <div class="level-name dim">第5关：综合漏洞（BOSS关）</div>
-            <div class="level-meta" style="color: var(--text-dim);">未解锁</div>
-          </div>
-          <div class="level-time">--:--</div>
         </div>
       </div>
+
+      <!-- Fix Area -->
+      <div class="fix-area">
+        <div class="fix-label">
+          <span class="icon">&#9998;</span>
+          修复方案
+        </div>
+        <textarea class="fix-textarea" id="fixTextarea" placeholder="// 在此编写修复代码...&#10;// 提示：需要在验证用户登录后，额外检查用户角色&#10;// 例如：从session中获取role属性，判断是否为admin"></textarea>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="fix-actions">
+        <button class="btn btn-primary" id="submitBtn" onclick="submitFix()">
+          &#9654; 提交修复
+        </button>
+        <button class="btn btn-hint" onclick="showHint()">
+          &#128161; AI提示
+        </button>
+        <button class="btn btn-reset" onclick="resetChallenge()">
+          &#8635; 重置
+        </button>
+      </div>
+
+      <!-- Hint Box -->
+      <div class="hint-box" id="hintBox">
+        <div class="hint-header">
+          &#129302; AI助手提示
+        </div>
+        <div class="hint-text">
+          提示：检查用户Session中是否存储了角色信息，对比是否为admin角色。<br><br>
+          建议修复思路：在验证 <code style="color: var(--accent-cyan);">username != null</code> 之后，
+          增加对 <code style="color: var(--accent-cyan);">session.getAttribute("role")</code> 的检查，
+          仅当角色为 <code style="color: var(--accent-cyan);">"admin"</code> 时才允许访问管理页面。
+          否则应返回403错误或重定向到无权限页面。
+        </div>
+      </div>
+
+      <!-- Test Results -->
+      <div class="test-results" id="testResults">
+        <div class="test-header">
+          <span>&#9881; 自动化测试结果</span>
+          <span class="test-status" id="testStatus"></span>
+        </div>
+        <div class="test-list" id="testList"></div>
+        <div class="test-summary" id="testSummary"></div>
+      </div>
     </div>
 
-    <!-- Timer -->
-    <div class="timer-section">
-      <div>
-        <div class="timer-label">本关用时</div>
-        <div class="timer-value" id="timerDisplay">00:00</div>
-      </div>
-      <div>
-        <div class="timer-detail">总用时 <span id="totalTime" style="color: var(--accent-cyan);">02:34</span></div>
-        <div class="timer-detail" style="margin-top:4px;">尝试次数 <span id="attempts" style="color: var(--accent-orange);">0</span></div>
-      </div>
-    </div>
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <!-- Progress Tracker -->
+      <div class="progress-section">
+        <div class="section-title">
+          <span class="icon">&#127942;</span>
+          闯关进度 - 第十五讲
+        </div>
+        <div class="progress-track">
+          <div class="progress-line"></div>
+          <div class="progress-line-fill"></div>
 
-    <!-- Leaderboard -->
-    <div class="leaderboard-section">
-      <div class="section-title">
-        <span class="icon">&#127941;</span>
-        实时排行榜
-        <span style="margin-left:auto; font-size:11px; color: var(--text-dim); font-weight:400;">48人参与</span>
+          <div class="level-item">
+            <div class="level-dot completed">&#10003;</div>
+            <div class="level-info">
+              <div class="level-name">第1关：SQL注入</div>
+              <div class="level-meta green">&#10003; 已通过</div>
+            </div>
+            <div class="level-time green">2:34</div>
+          </div>
+
+          <div class="level-item">
+            <div class="level-dot current">2</div>
+            <div class="level-info">
+              <div class="level-name">第2关：越权访问</div>
+              <div class="level-meta orange">&#128293; 进行中</div>
+            </div>
+            <div class="level-time" id="currentLevelTime" style="color: var(--accent-orange);">--:--</div>
+          </div>
+
+          <div class="level-item">
+            <div class="level-dot locked">&#128274;</div>
+            <div class="level-info">
+              <div class="level-name dim">第3关：Session劫持</div>
+              <div class="level-meta" style="color: var(--text-dim);">未解锁</div>
+            </div>
+            <div class="level-time">--:--</div>
+          </div>
+
+          <div class="level-item">
+            <div class="level-dot locked">&#128274;</div>
+            <div class="level-info">
+              <div class="level-name dim">第4关：XSS跨站脚本</div>
+              <div class="level-meta" style="color: var(--text-dim);">未解锁</div>
+            </div>
+            <div class="level-time">--:--</div>
+          </div>
+
+          <div class="level-item">
+            <div class="level-dot locked" style="background: var(--accent-red); color: #fff; font-size: 10px;">B</div>
+            <div class="level-info">
+              <div class="level-name dim">第5关：综合漏洞（BOSS关）</div>
+              <div class="level-meta" style="color: var(--text-dim);">未解锁</div>
+            </div>
+            <div class="level-time">--:--</div>
+          </div>
+        </div>
       </div>
-      <div class="leaderboard-list" id="leaderboard"></div>
+
+      <!-- Timer -->
+      <div class="timer-section">
+        <div>
+          <div class="timer-label">本关用时</div>
+          <div class="timer-value" id="timerDisplay">00:00</div>
+        </div>
+        <div>
+          <div class="timer-detail">总用时 <span id="totalTime" style="color: var(--accent-cyan);">02:34</span></div>
+          <div class="timer-detail" style="margin-top:4px;">尝试次数 <span id="attempts" style="color: var(--accent-orange);">0</span></div>
+        </div>
+      </div>
+
+      <!-- Leaderboard -->
+      <div class="leaderboard-section">
+        <div class="section-title">
+          <span class="icon">&#127941;</span>
+          实时排行榜
+          <span style="margin-left:auto; font-size:11px; color: var(--text-dim); font-weight:400;">48人参与</span>
+        </div>
+        <div class="leaderboard-list" id="leaderboard"></div>
+      </div>
     </div>
   </div>
 </div>
 
 <!-- Bottom Dashboard -->
-<div class="dashboard">
+<div class="dashboard" id="dashboardArea">
   <!-- Class Progress Bars -->
-  <div class="dash-section" style="flex: 1.5;">
+  <div class="dash-section" style="flex: 1.3;">
     <div class="dash-title">
       <span>&#128202;</span>
-      班级闯关进度（实时）
+      <span id="dashProgressTitle">班级闯关进度（实时）- 第十五讲</span>
     </div>
     <div class="dash-bars" id="dashBars"></div>
   </div>
 
   <!-- Average Times -->
-  <div class="dash-section">
+  <div class="dash-section" style="flex: 0.8;">
     <div class="dash-title">
       <span>&#9201;</span>
       平均用时
     </div>
-    <div class="dash-avg-times">
-      <div class="avg-item">
-        <span class="avg-label">第1关</span>
-        <span class="avg-value">3:12</span>
-      </div>
-      <div class="avg-item">
-        <span class="avg-label">第2关</span>
-        <span class="avg-value" style="color: var(--accent-orange);">6:45</span>
-      </div>
-      <div class="avg-item">
-        <span class="avg-label">第3关</span>
-        <span class="avg-value" style="color: var(--text-dim);">--:--</span>
-      </div>
-      <div class="avg-item">
-        <span class="avg-label">第4关</span>
-        <span class="avg-value" style="color: var(--text-dim);">--:--</span>
-      </div>
-      <div class="avg-item">
-        <span class="avg-label">第5关</span>
-        <span class="avg-value" style="color: var(--text-dim);">--:--</span>
-      </div>
-      <div class="avg-item">
-        <span class="avg-label">最快通关</span>
-        <span class="avg-value" style="color: var(--accent-green);">2:34</span>
-      </div>
+    <div class="dash-avg-times" id="dashAvgTimes">
+    </div>
+  </div>
+
+  <!-- Mastery Radar Chart -->
+  <div class="dash-section" style="flex: 1.2;">
+    <div class="dash-title">
+      <span>&#127919;</span>
+      课程整体安全知识掌握度
+    </div>
+    <div class="mastery-chart-container">
+      <canvas id="masteryCanvas" width="300" height="150"></canvas>
     </div>
   </div>
 
   <!-- AI Alert -->
-  <div class="dash-alert-section">
-    <div class="alert-banner">
+  <div class="dash-alert-section" style="flex: 0 0 310px;">
+    <div class="alert-banner" id="alertBanner">
       <div class="alert-header">
         &#9888;&#65039; AI教学预警
       </div>
-      <div class="alert-text">
+      <div class="alert-text" id="alertText">
         第2关通过率过低（<strong style="color: var(--accent-red);">40%</strong>），建议暂停讲解越权访问漏洞的核心概念。
       </div>
-      <div class="alert-action" onclick="this.textContent='&#10003; 已发送课堂提醒'; this.style.borderColor='rgba(0,255,136,0.3)'; this.style.color='var(--accent-green)'; this.style.background='rgba(0,255,136,0.1)';">
+      <div class="alert-action" id="alertActionBtn" onclick="this.textContent='&#10003; 已发送课堂提醒'; this.style.borderColor='rgba(0,255,136,0.3)'; this.style.color='var(--accent-green)'; this.style.background='rgba(0,255,136,0.1)';">
         &#128227; 发送课堂提醒
       </div>
     </div>
@@ -1464,12 +1891,21 @@ body {
 </div>
 
 <script>
+// ========== LESSON STATE ==========
+let currentLesson = 15;
+let l14Challenge = 1; // which challenge is shown in lesson 14 (0-indexed from the challenges array)
+
 // ========== Timer ==========
 let timerSeconds = 0;
 let totalSeconds = 154; // 2:34 from level 1
 let attempts = 0;
 
+let l14TimerSeconds = 0;
+let l14TotalSeconds = 195; // 3:15
+let l14Attempts = 0;
+
 function updateTimer() {
+  // Lesson 15 timer
   timerSeconds++;
   totalSeconds++;
   const min = String(Math.floor(timerSeconds / 60)).padStart(2, '0');
@@ -1480,6 +1916,18 @@ function updateTimer() {
   const tMin = String(Math.floor(totalSeconds / 60)).padStart(2, '0');
   const tSec = String(totalSeconds % 60).padStart(2, '0');
   document.getElementById('totalTime').textContent = tMin + ':' + tSec;
+
+  // Lesson 14 timer
+  l14TimerSeconds++;
+  l14TotalSeconds++;
+  const l14min = String(Math.floor(l14TimerSeconds / 60)).padStart(2, '0');
+  const l14sec = String(l14TimerSeconds % 60).padStart(2, '0');
+  document.getElementById('l14TimerDisplay').textContent = l14min + ':' + l14sec;
+  document.getElementById('l14CurrentTime').textContent = l14min + ':' + l14sec;
+
+  const l14tMin = String(Math.floor(l14TotalSeconds / 60)).padStart(2, '0');
+  const l14tSec = String(l14TotalSeconds % 60).padStart(2, '0');
+  document.getElementById('l14TotalTime').textContent = l14tMin + ':' + l14tSec;
 }
 
 setInterval(updateTimer, 1000);
@@ -1499,6 +1947,399 @@ setInterval(updateTimer, 1000);
   }
 })();
 
+// ========== Lesson 14 Challenge Data ==========
+const lesson14Challenges = [
+  {
+    num: 1, title: 'SQL注入基础', levelBadge: 'LEVEL 1', diff: [1,1,0,0,0], diffLabel: '简单',
+    info: {
+      vulnType: 'SQL注入 (SQL Injection)',
+      owasp: 'OWASP Top 10 - A03:2021',
+      stars: 2,
+      tags: ['Statement', 'PreparedStatement', 'DAO'],
+      objective: '理解SQL注入的原理和危害，掌握使用PreparedStatement替代字符串拼接SQL的安全编码方法。'
+    },
+    desc: '以下DAO代码使用字符串拼接构建SQL查询，存在严重的SQL注入漏洞。攻击者可以通过构造恶意输入绕过身份验证或获取敏感数据。请找到漏洞并编写修复代码。',
+    fileName: 'UserDAO.java',
+    lineCount: 14,
+    code: '<span class="kw">public class</span> <span class="tp">UserDAO</span> {\n' +
+      '    <span class="kw">private</span> <span class="tp">Connection</span> connection;\n' +
+      '\n' +
+      '    <span class="kw">public</span> <span class="tp">User</span> <span class="mt">findByUsername</span>(<span class="tp">String</span> username) {\n' +
+      '<span class="bug-line">        <span class="cm">// <span class="bug-indicator">&#9888; BUG:</span> 字符串拼接SQL，存在SQL注入漏洞</span></span>\n' +
+      '        <span class="tp">String</span> sql = <span class="st">"SELECT * FROM users WHERE username = \'"</span> + username + <span class="st">"\';"</span>;\n' +
+      '        <span class="tp">Statement</span> stmt = connection.<span class="mt">createStatement</span>();\n' +
+      '        <span class="tp">ResultSet</span> rs = stmt.<span class="mt">executeQuery</span>(sql);\n' +
+      '        <span class="kw">if</span> (rs.<span class="mt">next</span>()) {\n' +
+      '            <span class="kw">return</span> <span class="mt">mapToUser</span>(rs);\n' +
+      '        }\n' +
+      '        <span class="kw">return</span> <span class="nm">null</span>;\n' +
+      '    }\n' +
+      '}',
+    hint: '提示：使用 <code style="color: var(--accent-cyan);">PreparedStatement</code> 替代 <code style="color: var(--accent-cyan);">Statement</code>，将参数通过 <code style="color: var(--accent-cyan);">setString()</code> 绑定，避免SQL拼接。',
+    refs: ['第14讲课件 - 数据库事务与连接池.pptx', 'OWASP SQL Injection Prevention Cheat Sheet', 'Java PreparedStatement 官方文档'],
+    fixPlaceholder: '// 使用PreparedStatement重写查询\n// 提示：String sql = "SELECT * FROM users WHERE username = ?";\n// PreparedStatement pstmt = connection.prepareStatement(sql);',
+    fixAnswer: 'String sql = "SELECT * FROM users WHERE username = ?";\nPreparedStatement pstmt = connection.prepareStatement(sql);\npstmt.setString(1, username);\nResultSet rs = pstmt.executeQuery();',
+    tests: [
+      { name: 'testNormalQuery()', desc: '正常查询返回正确结果' },
+      { name: 'testSQLInjectionBlocked()', desc: 'SQL注入攻击被阻止' },
+      { name: 'testParameterBinding()', desc: '使用参数化查询' },
+      { name: 'testPreparedStatement()', desc: '使用PreparedStatement' },
+    ],
+    state: 'active'
+  },
+  {
+    num: 2, title: '事务一致性', levelBadge: 'LEVEL 2', diff: [1,1,1,0,0], diffLabel: '中等',
+    info: {
+      vulnType: '事务缺陷 (Transaction Integrity)',
+      owasp: 'CWE-362: Race Condition',
+      stars: 3,
+      tags: ['Transaction', 'Rollback', 'ACID'],
+      objective: '理解数据库事务的ACID特性，掌握在转账等关键业务中正确使用事务和回滚的方法。'
+    },
+    desc: '以下代码实现了账户间转账功能，但没有正确使用事务控制。当扣款成功但入账失败时，会导致资金凭空消失。请修复事务处理逻辑。',
+    fileName: 'AccountService.java',
+    lineCount: 18,
+    code: '<span class="kw">public class</span> <span class="tp">AccountService</span> {\n' +
+      '    <span class="kw">public void</span> <span class="mt">transfer</span>(<span class="tp">String</span> fromId, <span class="tp">String</span> toId, <span class="kw">double</span> amount) {\n' +
+      '        <span class="tp">Connection</span> conn = <span class="mt">getConnection</span>();\n' +
+      '<span class="bug-line">        <span class="cm">// <span class="bug-indicator">&#9888; BUG:</span> 未使用事务，扣款和入账不是原子操作</span></span>\n' +
+      '        <span class="cm">// 如果入账失败，扣款不会回滚，导致资金丢失</span>\n' +
+      '        <span class="tp">String</span> sql1 = <span class="st">"UPDATE accounts SET balance = balance - ? WHERE id = ?"</span>;\n' +
+      '        <span class="tp">PreparedStatement</span> ps1 = conn.<span class="mt">prepareStatement</span>(sql1);\n' +
+      '        ps1.<span class="mt">setDouble</span>(<span class="nm">1</span>, amount);\n' +
+      '        ps1.<span class="mt">setString</span>(<span class="nm">2</span>, fromId);\n' +
+      '        ps1.<span class="mt">executeUpdate</span>();  <span class="cm">// 扣款执行</span>\n' +
+      '\n' +
+      '        <span class="tp">String</span> sql2 = <span class="st">"UPDATE accounts SET balance = balance + ? WHERE id = ?"</span>;\n' +
+      '        <span class="tp">PreparedStatement</span> ps2 = conn.<span class="mt">prepareStatement</span>(sql2);\n' +
+      '        ps2.<span class="mt">setDouble</span>(<span class="nm">1</span>, amount);\n' +
+      '        ps2.<span class="mt">setString</span>(<span class="nm">2</span>, toId);\n' +
+      '        ps2.<span class="mt">executeUpdate</span>();  <span class="cm">// 入账执行</span>\n' +
+      '\n' +
+      '        conn.<span class="mt">close</span>();\n' +
+      '}',
+    hint: '提示：使用 <code style="color: var(--accent-cyan);">conn.setAutoCommit(false)</code> 关闭自动提交，在所有操作完成后调用 <code style="color: var(--accent-cyan);">conn.commit()</code>，在catch块中调用 <code style="color: var(--accent-cyan);">conn.rollback()</code> 回滚事务。',
+    refs: ['第14讲课件 - 数据库事务与连接池.pptx', 'Java Transaction Management 教程', 'ACID事务特性详解'],
+    fixPlaceholder: '// 添加事务控制：\n// 1. conn.setAutoCommit(false);\n// 2. try-catch 包裹两个操作\n// 3. catch 中 conn.rollback();\n// 4. finally 中 conn.close();',
+    fixAnswer: 'conn.setAutoCommit(false);\ntry {\n    // ... 执行两个UPDATE\n    conn.commit();\n} catch (Exception e) {\n    conn.rollback();\n    throw e;\n} finally {\n    conn.setAutoCommit(true);\n    conn.close();\n}',
+    tests: [
+      { name: 'testSuccessfulTransfer()', desc: '正常转账成功' },
+      { name: 'testRollbackOnFailure()', desc: '失败时回滚' },
+      { name: 'testAutoCommitDisabled()', desc: '关闭了自动提交' },
+      { name: 'testBalanceConsistency()', desc: '转账后余额一致' },
+    ],
+    state: 'active'
+  },
+  {
+    num: 3, title: '连接池泄漏', levelBadge: 'LEVEL 3', diff: [1,1,1,0,0], diffLabel: '中等',
+    info: { vulnType: '资源泄漏 (Connection Leak)', owasp: 'CWE-404', stars: 3, tags: ['ConnectionPool', 'try-with-resources', 'finally'], objective: '理解连接池泄漏的危害，掌握使用try-with-resources或finally确保资源正确关闭。' },
+    desc: '', fileName: '', lineCount: 0, code: '', hint: '', refs: [], fixPlaceholder: '', fixAnswer: '', tests: [],
+    state: 'coming-soon'
+  },
+  {
+    num: 4, title: '批量操作优化', levelBadge: 'LEVEL 4', diff: [1,1,1,1,0], diffLabel: '较难',
+    info: { vulnType: '性能缺陷 (Performance Anti-pattern)', owasp: 'N/A', stars: 4, tags: ['Batch', 'addBatch', 'executeBatch'], objective: '理解批量操作的性能优势，掌握JDBC Batch操作替代循环单条执行的方法。' },
+    desc: '', fileName: '', lineCount: 0, code: '', hint: '', refs: [], fixPlaceholder: '', fixAnswer: '', tests: [],
+    state: 'coming-soon'
+  },
+  {
+    num: 5, title: '综合挑战', levelBadge: 'BOSS', diff: [1,1,1,1,1], diffLabel: '困难',
+    info: { vulnType: '综合漏洞', owasp: 'Multiple', stars: 5, tags: ['Transaction', 'SQL', 'Pool', 'Batch'], objective: '综合运用事务、连接池、SQL安全等知识，修复包含多个问题的代码。' },
+    desc: '', fileName: '', lineCount: 0, code: '', hint: '', refs: [], fixPlaceholder: '', fixAnswer: '', tests: [],
+    state: 'coming-soon'
+  }
+];
+
+// Current L14 challenge state
+let l14SubmitPhase = 0;
+let l14CurrentChallenge = 0; // index into lesson14Challenges for the displayed active challenge
+
+function renderLesson14Challenge() {
+  const area = document.getElementById('lesson14ChallengeArea');
+  // Find the first active (non-coming-soon) challenge that isn't completed
+  // For demo, show challenge at l14CurrentChallenge
+  const ch = lesson14Challenges[l14CurrentChallenge];
+
+  if (ch.state === 'coming-soon') {
+    area.innerHTML = `
+      <div class="challenge-info-panel">
+        <div class="info-row">
+          <span class="info-label">漏洞类型</span>
+          <span class="info-value">${ch.info.vulnType}</span>
+        </div>
+        <div class="info-row">
+          <span class="info-label">OWASP分类</span>
+          <span class="info-value owasp">${ch.info.owasp}</span>
+        </div>
+        <div class="info-row">
+          <span class="info-label">难度</span>
+          <span class="info-stars">${'&#9733;'.repeat(ch.info.stars)}${'&#9734;'.repeat(5 - ch.info.stars)}</span>
+        </div>
+        <div class="info-row">
+          <span class="info-label">知识点</span>
+          <div class="info-tags">${ch.info.tags.map(t => '<span class="info-tag">' + t + '</span>').join('')}</div>
+        </div>
+        <div class="info-objective">
+          <span class="info-label">学习目标</span>
+          <span class="info-value">${ch.info.objective}</span>
+        </div>
+      </div>
+      <div class="coming-soon-overlay">
+        <div class="coming-soon-icon">&#128274;</div>
+        <div class="coming-soon-title">第${ch.num}关：${ch.title} - 即将开放</div>
+        <div class="coming-soon-sub">完成前面的挑战即可解锁此关卡<br>敬请期待</div>
+      </div>
+    `;
+    return;
+  }
+
+  const starsHtml = '&#9733;'.repeat(ch.info.stars) + '&#9734;'.repeat(5 - ch.info.stars);
+  const diffDots = ch.diff.map(d => d ? '<span></span>' : '<span class="dim"></span>').join('');
+  const tagsHtml = ch.info.tags.map(t => '<span class="info-tag">' + t + '</span>').join('');
+  const refsHtml = ch.refs.map(r => '<a href="#">&#128196; ' + r + '</a>').join('');
+
+  area.innerHTML = `
+    <!-- Challenge Info Panel -->
+    <div class="challenge-info-panel">
+      <div class="info-row">
+        <span class="info-label">漏洞类型</span>
+        <span class="info-value">${ch.info.vulnType}</span>
+      </div>
+      <div class="info-row">
+        <span class="info-label">OWASP分类</span>
+        <span class="info-value owasp">${ch.info.owasp}</span>
+      </div>
+      <div class="info-row">
+        <span class="info-label">难度</span>
+        <span class="info-stars">${starsHtml}</span>
+      </div>
+      <div class="info-row">
+        <span class="info-label">知识点</span>
+        <div class="info-tags">${tagsHtml}</div>
+      </div>
+      <div class="info-objective">
+        <span class="info-label">学习目标</span>
+        <span class="info-value">${ch.info.objective}</span>
+      </div>
+    </div>
+
+    <!-- Reference Section -->
+    <div class="reference-section">
+      <div class="reference-toggle" onclick="this.classList.toggle('open'); this.nextElementSibling.classList.toggle('show');">
+        <span class="arrow">&#9654;</span>
+        &#128214; 参考资料
+      </div>
+      <div class="reference-links">
+        ${refsHtml}
+      </div>
+    </div>
+
+    <div class="challenge-header">
+      <div class="challenge-tag">
+        <span class="level-badge">${ch.levelBadge}</span>
+        <div class="difficulty">${diffDots}</div>
+        <span style="font-size:12px; color: var(--text-dim);">难度: ${ch.diffLabel}</span>
+      </div>
+    </div>
+
+    <h2 class="challenge-title"><span class="num">第${ch.num}关</span>：${ch.title}</h2>
+    <p class="challenge-desc">${ch.desc}</p>
+
+    <!-- Code Editor -->
+    <div class="code-editor">
+      <div class="editor-tabs">
+        <div class="editor-tab active">
+          <span class="icon">&#9670;</span>
+          ${ch.fileName}
+        </div>
+        <div class="editor-actions">
+          <button class="editor-action-btn">&#9881; 设置</button>
+          <button class="editor-action-btn">&#128196; 复制</button>
+        </div>
+      </div>
+      <div class="code-container">
+        <div class="line-numbers">${Array.from({length: ch.lineCount}, (_, i) => i + 1).join('\n')}</div>
+        <div class="code-content">${ch.code}</div>
+      </div>
+    </div>
+
+    <!-- Fix Area -->
+    <div class="fix-area">
+      <div class="fix-label">
+        <span class="icon">&#9998;</span>
+        修复方案
+      </div>
+      <textarea class="fix-textarea" id="l14FixTextarea" placeholder="${ch.fixPlaceholder}"></textarea>
+    </div>
+
+    <!-- Action Buttons -->
+    <div class="fix-actions">
+      <button class="btn btn-primary" id="l14SubmitBtn" onclick="submitL14Fix()">
+        &#9654; 提交修复
+      </button>
+      <button class="btn btn-hint" onclick="showL14Hint()">
+        &#128161; AI提示
+      </button>
+      <button class="btn btn-reset" onclick="resetL14Challenge()">
+        &#8635; 重置
+      </button>
+    </div>
+
+    <!-- Hint Box -->
+    <div class="hint-box" id="l14HintBox">
+      <div class="hint-header">&#129302; AI助手提示</div>
+      <div class="hint-text">${ch.hint}</div>
+    </div>
+
+    <!-- Test Results -->
+    <div class="test-results" id="l14TestResults">
+      <div class="test-header">
+        <span>&#9881; 自动化测试结果</span>
+        <span class="test-status" id="l14TestStatus"></span>
+      </div>
+      <div class="test-list" id="l14TestList"></div>
+      <div class="test-summary" id="l14TestSummary"></div>
+    </div>
+  `;
+}
+
+function showL14Hint() {
+  const hint = document.getElementById('l14HintBox');
+  if (hint) hint.classList.toggle('show');
+}
+
+function resetL14Challenge() {
+  l14SubmitPhase = 0;
+  const tr = document.getElementById('l14TestResults');
+  const hb = document.getElementById('l14HintBox');
+  const ta = document.getElementById('l14FixTextarea');
+  if (tr) tr.classList.remove('show');
+  if (hb) hb.classList.remove('show');
+  if (ta) ta.value = '';
+}
+
+function submitL14Fix() {
+  l14Attempts++;
+  document.getElementById('l14Attempts').textContent = l14Attempts;
+
+  const btn = document.getElementById('l14SubmitBtn');
+  btn.disabled = true;
+  btn.innerHTML = '&#9881; 运行测试中...';
+  btn.style.opacity = '0.7';
+
+  const ch = lesson14Challenges[l14CurrentChallenge];
+  const resultEl = document.getElementById('l14TestResults');
+  const listEl = document.getElementById('l14TestList');
+  const statusEl = document.getElementById('l14TestStatus');
+  const summaryEl = document.getElementById('l14TestSummary');
+
+  resultEl.classList.add('show');
+  listEl.innerHTML = '';
+  statusEl.innerHTML = '<span style="color: var(--accent-yellow);">&#9881; 运行中...</span>';
+  summaryEl.innerHTML = '';
+
+  const passAll = l14SubmitPhase >= 1;
+  const results = passAll
+    ? ch.tests.map(() => true)
+    : ch.tests.map((_, i) => i !== 1); // fail second test first time
+  const times = [35, 22, 41, 28];
+
+  let idx = 0;
+  function runNext() {
+    if (idx >= ch.tests.length) {
+      const passCount = results.filter(r => r).length;
+      const failCount = results.filter(r => !r).length;
+
+      statusEl.innerHTML = passAll
+        ? '<span style="color: var(--accent-green);">&#10003; 全部通过</span>'
+        : '<span style="color: var(--accent-red);">&#10007; 部分失败</span>';
+
+      summaryEl.innerHTML = `
+        <span><span class="test-pass-count">&#10003; ${passCount} 通过</span> &nbsp; <span class="test-fail-count">${failCount > 0 ? '&#10007; ' + failCount + ' 失败' : ''}</span></span>
+        <span style="color: var(--text-dim);">总耗时: ${times.slice(0, ch.tests.length).reduce((a,b) => a+b, 0)}ms</span>
+      `;
+
+      btn.disabled = false;
+      btn.style.opacity = '1';
+      btn.innerHTML = '&#9654; 提交修复';
+
+      if (!passAll) {
+        l14SubmitPhase = 1;
+        setTimeout(() => {
+          const ta = document.getElementById('l14FixTextarea');
+          if (ta && !ta.value.trim()) {
+            ta.value = ch.fixAnswer;
+          }
+        }, 500);
+      }
+      return;
+    }
+
+    const test = ch.tests[idx];
+    const pass = results[idx];
+    const ms = times[idx % times.length];
+
+    listEl.innerHTML += `
+      <div class="test-item" id="l14test-${idx}">
+        <span class="test-icon running">&#9881;</span>
+        <span class="test-name">${test.name} <span style="color:var(--text-dim);font-size:11px;">${test.desc}</span></span>
+        <span class="test-time">...</span>
+      </div>
+    `;
+
+    setTimeout(() => {
+      const item = document.getElementById('l14test-' + idx);
+      if (pass) {
+        item.innerHTML = `
+          <span class="test-icon pass">&#10003;</span>
+          <span class="test-name">${test.name} <span style="color:var(--text-dim);font-size:11px;">${test.desc}</span></span>
+          <span class="test-time">${ms}ms</span>
+        `;
+      } else {
+        item.innerHTML = `
+          <span class="test-icon fail">&#10007;</span>
+          <span class="test-name" style="color: var(--accent-red);">${test.name} <span style="font-size:11px;">FAILED - ${test.desc}</span></span>
+          <span class="test-time">${ms}ms</span>
+        `;
+      }
+      idx++;
+      runNext();
+    }, 350 + Math.random() * 250);
+  }
+
+  setTimeout(runNext, 400);
+}
+
+// ========== Lesson Switching ==========
+function switchLesson(lessonNum) {
+  if (currentLesson === lessonNum) return;
+  currentLesson = lessonNum;
+
+  // Update tabs
+  document.getElementById('lessonTab14').classList.toggle('active', lessonNum === 14);
+  document.getElementById('lessonTab15').classList.toggle('active', lessonNum === 15);
+
+  // Update content
+  document.getElementById('lesson14Content').classList.toggle('active', lessonNum === 14);
+  document.getElementById('lesson15Content').classList.toggle('active', lessonNum === 15);
+
+  // Re-render lesson 14 if switching to it
+  if (lessonNum === 14) {
+    renderLesson14Challenge();
+  }
+
+  // Update dashboard
+  updateDashboard();
+}
+
+// ========== Reference toggle ==========
+function toggleReference() {
+  const toggle = document.getElementById('refToggle');
+  const links = document.getElementById('refLinks');
+  toggle.classList.toggle('open');
+  links.classList.toggle('show');
+}
+
 // ========== Leaderboard ==========
 const leaderboardData = [
   { name: '李明', level: 3, levelName: '第3关', time: '08:21', pct: 60, colors: ['#ff6b35','#ff8c42'] },
@@ -1511,13 +2352,24 @@ const leaderboardData = [
   { name: '周婷', level: 1, levelName: '第1关', time: '12:44', pct: 15, colors: ['#fb923c','#f97316'] },
 ];
 
-function renderLeaderboard() {
-  const el = document.getElementById('leaderboard');
+const leaderboardData14 = [
+  { name: '王雪', level: 2, levelName: '第2关', time: '07:45', pct: 45, colors: ['#00d4ff','#0099cc'] },
+  { name: '李明', level: 2, levelName: '第2关', time: '08:10', pct: 40, colors: ['#ff6b35','#ff8c42'] },
+  { name: '张伟', level: 1, levelName: '第1关', time: '--:--', pct: 30, colors: ['#00d4ff','#00ff88'], me: true },
+  { name: '刘洋', level: 1, levelName: '第1关', time: '09:33', pct: 25, colors: ['#ffd93d','#f59e0b'] },
+  { name: '赵强', level: 1, levelName: '第1关', time: '10:15', pct: 20, colors: ['#a855f7','#7c3aed'] },
+  { name: '陈静', level: 1, levelName: '第1关', time: '10:42', pct: 20, colors: ['#f472b6','#ec4899'] },
+  { name: '孙鹏', level: 1, levelName: '第1关', time: '11:18', pct: 15, colors: ['#34d399','#10b981'] },
+  { name: '周婷', level: 1, levelName: '第1关', time: '12:01', pct: 10, colors: ['#fb923c','#f97316'] },
+];
+
+function renderLeaderboard(data, elId) {
+  const el = document.getElementById(elId);
   el.innerHTML = '';
   const rankClasses = ['top1', 'top2', 'top3'];
   const rankBadges = ['gold', 'silver', 'bronze'];
 
-  leaderboardData.forEach((item, i) => {
+  data.forEach((item, i) => {
     const itemClass = item.me ? 'me' : (i < 3 ? rankClasses[i] : '');
     const badgeClass = i < 3 ? rankBadges[i] : 'normal';
     const fillColor = `linear-gradient(90deg, ${item.colors[0]}, ${item.colors[1]})`;
@@ -1540,10 +2392,11 @@ function renderLeaderboard() {
   });
 }
 
-renderLeaderboard();
+renderLeaderboard(leaderboardData, 'leaderboard');
+renderLeaderboard(leaderboardData14, 'leaderboard14');
 
-// ========== Dashboard Bars ==========
-const classProgress = [
+// ========== Dashboard ==========
+const classProgressL15 = [
   { label: '第1关', pct: 92, color: 'var(--accent-green)' },
   { label: '第2关', pct: 40, color: 'var(--accent-orange)' },
   { label: '第3关', pct: 12, color: 'var(--accent-cyan)' },
@@ -1551,10 +2404,36 @@ const classProgress = [
   { label: '第5关', pct: 0, color: 'var(--accent-red)' },
 ];
 
-function renderDashBars() {
+const classProgressL14 = [
+  { label: '第1关', pct: 85, color: 'var(--accent-green)' },
+  { label: '第2关', pct: 35, color: 'var(--accent-orange)' },
+  { label: '第3关', pct: 0, color: 'var(--accent-cyan)' },
+  { label: '第4关', pct: 0, color: 'var(--accent-purple)' },
+  { label: '第5关', pct: 0, color: 'var(--accent-red)' },
+];
+
+const avgTimesL15 = [
+  { label: '第1关', value: '3:12', color: 'var(--accent-cyan)' },
+  { label: '第2关', value: '6:45', color: 'var(--accent-orange)' },
+  { label: '第3关', value: '--:--', color: 'var(--text-dim)' },
+  { label: '第4关', value: '--:--', color: 'var(--text-dim)' },
+  { label: '第5关', value: '--:--', color: 'var(--text-dim)' },
+  { label: '最快通关', value: '2:34', color: 'var(--accent-green)' },
+];
+
+const avgTimesL14 = [
+  { label: '第1关', value: '4:02', color: 'var(--accent-cyan)' },
+  { label: '第2关', value: '7:18', color: 'var(--accent-orange)' },
+  { label: '第3关', value: '--:--', color: 'var(--text-dim)' },
+  { label: '第4关', value: '--:--', color: 'var(--text-dim)' },
+  { label: '第5关', value: '--:--', color: 'var(--text-dim)' },
+  { label: '最快通关', value: '3:15', color: 'var(--accent-green)' },
+];
+
+function renderDashBars(data) {
   const el = document.getElementById('dashBars');
   el.innerHTML = '';
-  classProgress.forEach(item => {
+  data.forEach(item => {
     const pctColor = item.pct > 50 ? item.color : 'var(--text-secondary)';
     el.innerHTML += `
       <div class="dash-bar-row">
@@ -1570,7 +2449,108 @@ function renderDashBars() {
   });
 }
 
-renderDashBars();
+function renderAvgTimes(data) {
+  const el = document.getElementById('dashAvgTimes');
+  el.innerHTML = '';
+  data.forEach(item => {
+    el.innerHTML += `
+      <div class="avg-item">
+        <span class="avg-label">${item.label}</span>
+        <span class="avg-value" style="color: ${item.color};">${item.value}</span>
+      </div>
+    `;
+  });
+}
+
+function updateDashboard() {
+  if (currentLesson === 15) {
+    document.getElementById('dashProgressTitle').textContent = '班级闯关进度（实时）- 第十五讲';
+    renderDashBars(classProgressL15);
+    renderAvgTimes(avgTimesL15);
+    document.getElementById('alertText').innerHTML = '第2关通过率过低（<strong style="color: var(--accent-red);">40%</strong>），建议暂停讲解越权访问漏洞的核心概念。';
+  } else {
+    document.getElementById('dashProgressTitle').textContent = '班级闯关进度（实时）- 第十四讲';
+    renderDashBars(classProgressL14);
+    renderAvgTimes(avgTimesL14);
+    document.getElementById('alertText').innerHTML = '第2关（事务一致性）通过率较低（<strong style="color: var(--accent-red);">35%</strong>），建议补充讲解ACID事务特性和rollback用法。';
+  }
+  // Reset alert button
+  const ab = document.getElementById('alertActionBtn');
+  ab.textContent = '📢 发送课堂提醒';
+  ab.style.borderColor = '';
+  ab.style.color = '';
+  ab.style.background = '';
+
+  drawMasteryChart();
+}
+
+// Initial render
+renderDashBars(classProgressL15);
+renderAvgTimes(avgTimesL15);
+
+// ========== Mastery Radar/Bar Chart ==========
+function drawMasteryChart() {
+  const canvas = document.getElementById('masteryCanvas');
+  const ctx = canvas.getContext('2d');
+  const W = canvas.width;
+  const H = canvas.height;
+  ctx.clearRect(0, 0, W, H);
+
+  const categories = ['SQL注入', '越权访问', 'Session安全', 'XSS防护', '事务管理'];
+  const values = currentLesson === 15
+    ? [85, 40, 10, 5, 0]
+    : [72, 0, 0, 0, 35];
+  const colors = ['#00ff88', '#ff6b35', '#00d4ff', '#a855f7', '#ffd93d'];
+
+  const barWidth = 38;
+  const gap = 14;
+  const totalW = categories.length * barWidth + (categories.length - 1) * gap;
+  const startX = (W - totalW) / 2;
+  const maxH = H - 50;
+  const baseY = H - 22;
+
+  categories.forEach((cat, i) => {
+    const x = startX + i * (barWidth + gap);
+    const barH = (values[i] / 100) * maxH;
+
+    // Bar background
+    ctx.fillStyle = 'rgba(255,255,255,0.03)';
+    ctx.beginPath();
+    ctx.roundRect(x, baseY - maxH, barWidth, maxH, 3);
+    ctx.fill();
+
+    // Bar fill with gradient
+    if (barH > 0) {
+      const grad = ctx.createLinearGradient(0, baseY, 0, baseY - barH);
+      grad.addColorStop(0, colors[i]);
+      grad.addColorStop(1, colors[i] + '66');
+      ctx.fillStyle = grad;
+      ctx.beginPath();
+      ctx.roundRect(x, baseY - barH, barWidth, barH, 3);
+      ctx.fill();
+
+      // Value label
+      ctx.fillStyle = '#fff';
+      ctx.font = 'bold 11px Consolas, monospace';
+      ctx.textAlign = 'center';
+      ctx.fillText(values[i] + '%', x + barWidth / 2, baseY - barH - 5);
+    } else {
+      ctx.fillStyle = 'rgba(255,255,255,0.2)';
+      ctx.font = '10px Consolas, monospace';
+      ctx.textAlign = 'center';
+      ctx.fillText('--', x + barWidth / 2, baseY - 8);
+    }
+
+    // Category label
+    ctx.fillStyle = '#94a3b8';
+    ctx.font = '10px Microsoft YaHei, sans-serif';
+    ctx.textAlign = 'center';
+    ctx.fillText(cat, x + barWidth / 2, baseY + 14);
+  });
+}
+
+// Draw initial chart
+setTimeout(drawMasteryChart, 100);
 
 // ========== Hint ==========
 function showHint() {
@@ -1578,8 +2558,8 @@ function showHint() {
   hint.classList.toggle('show');
 }
 
-// ========== Submit Fix ==========
-let submitPhase = 0; // 0 = first submit (3 pass, 2 fail), 1 = second submit (all pass)
+// ========== Submit Fix (Lesson 15) ==========
+let submitPhase = 0;
 
 const tests = [
   { name: 'testAdminCanAccess()', desc: '管理员可以访问管理页面' },
@@ -1608,7 +2588,6 @@ function submitFix() {
   statusEl.innerHTML = '<span style="color: var(--accent-yellow);">&#9881; 运行中...</span>';
   summaryEl.innerHTML = '';
 
-  // Determine which tests pass
   const passAll = submitPhase >= 1;
   const results = passAll
     ? [true, true, true, true, true]
@@ -1619,7 +2598,6 @@ function submitFix() {
 
   function runNext() {
     if (idx >= tests.length) {
-      // Summary
       const passCount = results.filter(r => r).length;
       const failCount = results.filter(r => !r).length;
 
@@ -1642,7 +2620,6 @@ function submitFix() {
         }, 800);
       } else {
         submitPhase = 1;
-        // Auto fill the fix textarea as a hint
         setTimeout(() => {
           const ta = document.getElementById('fixTextarea');
           if (!ta.value.trim()) {
@@ -1653,12 +2630,10 @@ function submitFix() {
       return;
     }
 
-    // Show running state
     const test = tests[idx];
     const pass = results[idx];
     const ms = times[idx];
 
-    // Add spinning item
     listEl.innerHTML += `
       <div class="test-item" id="test-${idx}">
         <span class="test-icon running">&#9881;</span>
@@ -1714,7 +2689,6 @@ function resetChallenge() {
 
 // ========== Fake leaderboard movement ==========
 setInterval(() => {
-  // Randomly update a time
   const items = document.querySelectorAll('.lb-time');
   const idx = Math.floor(Math.random() * items.length);
   if (items[idx] && items[idx].textContent !== '--:--') {
@@ -1728,13 +2702,35 @@ setInterval(() => {
 
 // Update "my" time in leaderboard
 setInterval(() => {
-  const myItem = document.querySelector('.lb-item.me .lb-time');
-  if (myItem) {
-    const min = String(Math.floor((timerSeconds + 154) / 60)).padStart(2, '0');
-    const sec = String((timerSeconds + 154) % 60).padStart(2, '0');
-    myItem.textContent = min + ':' + sec;
-  }
+  const myItems = document.querySelectorAll('.lb-item.me .lb-time');
+  myItems.forEach(myItem => {
+    if (currentLesson === 15) {
+      const min = String(Math.floor((timerSeconds + 154) / 60)).padStart(2, '0');
+      const sec = String((timerSeconds + 154) % 60).padStart(2, '0');
+      myItem.textContent = min + ':' + sec;
+    } else {
+      const min = String(Math.floor((l14TimerSeconds + 195) / 60)).padStart(2, '0');
+      const sec = String((l14TimerSeconds + 195) % 60).padStart(2, '0');
+      myItem.textContent = min + ':' + sec;
+    }
+  });
 }, 1000);
+
+// ========== Initialize Lesson 14 Content ==========
+renderLesson14Challenge();
+
+// ========== Sidebar challenge navigation (click on level items) ==========
+document.querySelectorAll('.progress-track .level-item').forEach((item, idx) => {
+  item.style.cursor = 'pointer';
+  item.addEventListener('click', () => {
+    // Only for lesson 14 sidebar
+    if (currentLesson === 14) {
+      l14CurrentChallenge = idx;
+      l14SubmitPhase = 0;
+      renderLesson14Challenge();
+    }
+  });
+});
 </script>
 </body>
 </html>

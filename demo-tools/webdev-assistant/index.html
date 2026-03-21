@@ -38,17 +38,226 @@
     height: 100vh;
   }
 
+  /* ===== TRANSITIONS ===== */
+  .screen {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    transition: opacity 0.5s ease, transform 0.5s ease;
+    z-index: 1;
+  }
+  .screen.hidden {
+    opacity: 0;
+    transform: scale(0.97);
+    pointer-events: none;
+    z-index: 0;
+  }
+  .screen.active {
+    opacity: 1;
+    transform: scale(1);
+    pointer-events: all;
+    z-index: 2;
+  }
+
+  /* ===== LOGIN SCREEN ===== */
+  .login-screen {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #1a2a6c 0%, #345a9e 40%, #4472C4 70%, #6a94d4 100%);
+    min-height: 100vh;
+  }
+
+  .login-container {
+    text-align: center;
+    animation: loginFadeIn 0.8s ease;
+  }
+
+  @keyframes loginFadeIn {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .login-logo {
+    width: 90px;
+    height: 90px;
+    background: rgba(255,255,255,0.15);
+    border-radius: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 44px;
+    margin: 0 auto 24px;
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255,255,255,0.2);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+  }
+
+  .login-title {
+    font-size: 36px;
+    font-weight: 800;
+    color: #fff;
+    margin-bottom: 8px;
+    letter-spacing: 1px;
+  }
+
+  .login-subtitle {
+    font-size: 16px;
+    color: rgba(255,255,255,0.8);
+    margin-bottom: 48px;
+  }
+
+  .login-cards {
+    display: flex;
+    gap: 32px;
+    justify-content: center;
+  }
+
+  .login-card {
+    width: 320px;
+    background: rgba(255,255,255,0.1);
+    backdrop-filter: blur(16px);
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 20px;
+    padding: 36px 32px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: center;
+  }
+
+  .login-card:hover {
+    transform: translateY(-6px);
+    background: rgba(255,255,255,0.18);
+    box-shadow: 0 16px 48px rgba(0,0,0,0.2);
+  }
+
+  .login-card-icon {
+    width: 72px;
+    height: 72px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 32px;
+    margin: 0 auto 16px;
+  }
+
+  .login-card.student .login-card-icon {
+    background: rgba(112,173,71,0.2);
+  }
+
+  .login-card.teacher .login-card-icon {
+    background: rgba(68,114,196,0.3);
+  }
+
+  .login-card-title {
+    font-size: 22px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 8px;
+  }
+
+  .login-card-desc {
+    font-size: 14px;
+    color: rgba(255,255,255,0.7);
+    margin-bottom: 20px;
+    line-height: 1.5;
+  }
+
+  /* Login Forms */
+  .login-form {
+    display: none;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 16px;
+    animation: formSlide 0.3s ease;
+  }
+
+  .login-form.show {
+    display: flex;
+  }
+
+  @keyframes formSlide {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .login-form input {
+    width: 100%;
+    padding: 12px 16px;
+    border: 1px solid rgba(255,255,255,0.3);
+    border-radius: 10px;
+    background: rgba(255,255,255,0.1);
+    color: #fff;
+    font-size: 14px;
+    font-family: inherit;
+    outline: none;
+    transition: border-color 0.2s, background 0.2s;
+  }
+
+  .login-form input::placeholder {
+    color: rgba(255,255,255,0.5);
+  }
+
+  .login-form input:focus {
+    border-color: rgba(255,255,255,0.6);
+    background: rgba(255,255,255,0.15);
+  }
+
+  .login-form label {
+    font-size: 12px;
+    color: rgba(255,255,255,0.7);
+    text-align: left;
+    margin-bottom: -6px;
+  }
+
+  .login-enter-btn {
+    padding: 12px 0;
+    background: var(--accent);
+    border: none;
+    border-radius: 10px;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.15s;
+    font-family: inherit;
+    margin-top: 4px;
+  }
+
+  .login-enter-btn:hover { background: var(--accent-dark); }
+  .login-enter-btn:active { transform: scale(0.97); }
+
+  .login-enter-btn.teacher-btn {
+    background: var(--primary);
+  }
+  .login-enter-btn.teacher-btn:hover { background: var(--primary-dark); }
+
+  .login-footer {
+    margin-top: 48px;
+    color: rgba(255,255,255,0.5);
+    font-size: 13px;
+  }
+
+  /* ===== APP SCREEN (wraps header + main + footer) ===== */
+  .app-screen {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+  }
+
   /* ===== HEADER ===== */
   .header {
     background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
     color: #fff;
-    padding: 16px 32px;
+    padding: 14px 32px;
     display: flex;
     align-items: center;
     justify-content: space-between;
     box-shadow: 0 2px 8px rgba(68,114,196,0.3);
     position: relative;
     z-index: 10;
+    flex-shrink: 0;
   }
 
   .header-left {
@@ -58,28 +267,34 @@
   }
 
   .header-logo {
-    width: 44px;
-    height: 44px;
+    width: 40px;
+    height: 40px;
     background: rgba(255,255,255,0.2);
-    border-radius: 12px;
+    border-radius: 10px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 22px;
+    font-size: 20px;
     backdrop-filter: blur(4px);
   }
 
   .header-title {
-    font-size: 20px;
+    font-size: 18px;
     font-weight: 700;
     letter-spacing: 0.5px;
   }
 
   .header-subtitle {
-    font-size: 13px;
+    font-size: 12px;
     opacity: 0.85;
-    margin-top: 2px;
+    margin-top: 1px;
     font-weight: 400;
+  }
+
+  .header-right {
+    display: flex;
+    align-items: center;
+    gap: 16px;
   }
 
   .header-status {
@@ -103,6 +318,55 @@
     50% { opacity: 0.6; transform: scale(1.3); }
   }
 
+  .role-badge {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 14px;
+    background: rgba(255,255,255,0.15);
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 600;
+    backdrop-filter: blur(4px);
+    border: 1px solid rgba(255,255,255,0.2);
+  }
+
+  .role-badge .role-icon {
+    font-size: 16px;
+  }
+
+  .logout-btn {
+    padding: 6px 14px;
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.25);
+    border-radius: 8px;
+    color: #fff;
+    font-size: 12px;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-family: inherit;
+  }
+
+  .logout-btn:hover {
+    background: rgba(255,255,255,0.2);
+  }
+
+  .switch-view-btn {
+    padding: 6px 14px;
+    background: rgba(112,173,71,0.3);
+    border: 1px solid rgba(112,173,71,0.5);
+    border-radius: 8px;
+    color: #fff;
+    font-size: 12px;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-family: inherit;
+  }
+
+  .switch-view-btn:hover {
+    background: rgba(112,173,71,0.5);
+  }
+
   /* ===== MAIN LAYOUT ===== */
   .main {
     flex: 1;
@@ -113,20 +377,25 @@
 
   /* ===== CHAT PANEL ===== */
   .chat-panel {
-    flex: 0 0 60%;
+    flex: 1;
     display: flex;
     flex-direction: column;
     background: var(--card);
     border-right: 1px solid var(--border);
+    min-width: 0;
   }
 
+  .student-view .chat-panel { flex: 0 0 50%; }
+  .teacher-view .chat-panel { flex: 0 0 60%; }
+
   .chat-header {
-    padding: 14px 24px;
+    padding: 12px 24px;
     border-bottom: 1px solid var(--border);
     display: flex;
     align-items: center;
     gap: 12px;
     background: var(--card);
+    flex-shrink: 0;
   }
 
   .chat-header-avatar {
@@ -155,11 +424,11 @@
   .chat-messages {
     flex: 1;
     overflow-y: auto;
-    padding: 20px 24px;
+    padding: 16px 20px;
     background: var(--chat-bg);
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 16px;
   }
 
   .chat-messages::-webkit-scrollbar { width: 6px; }
@@ -167,7 +436,7 @@
 
   .message {
     display: flex;
-    gap: 12px;
+    gap: 10px;
     max-width: 85%;
     animation: messageIn 0.4s ease-out;
   }
@@ -183,13 +452,13 @@
   }
 
   .message-avatar {
-    width: 36px;
-    height: 36px;
+    width: 34px;
+    height: 34px;
     border-radius: 10px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 14px;
+    font-size: 13px;
     font-weight: 700;
     flex-shrink: 0;
     margin-top: 2px;
@@ -206,9 +475,9 @@
   }
 
   .message-content {
-    padding: 14px 18px;
-    border-radius: 16px;
-    font-size: 14px;
+    padding: 12px 16px;
+    border-radius: 14px;
+    font-size: 13.5px;
     line-height: 1.7;
     position: relative;
   }
@@ -247,11 +516,11 @@
   .message-content .code-block {
     background: #1e1e2e;
     color: #cdd6f4;
-    padding: 12px 16px;
+    padding: 10px 14px;
     border-radius: 8px;
-    margin: 10px 0;
+    margin: 8px 0;
     font-family: "Cascadia Code", "Consolas", monospace;
-    font-size: 13px;
+    font-size: 12.5px;
     line-height: 1.5;
     overflow-x: auto;
   }
@@ -265,7 +534,7 @@
   .message-time {
     font-size: 11px;
     color: var(--text-secondary);
-    margin-top: 6px;
+    margin-top: 4px;
     opacity: 0.7;
   }
 
@@ -275,16 +544,16 @@
   .typing-indicator {
     display: none;
     align-self: flex-start;
-    gap: 12px;
+    gap: 10px;
     max-width: 85%;
   }
 
   .typing-indicator.visible { display: flex; }
 
   .typing-dots {
-    padding: 14px 18px;
+    padding: 12px 16px;
     background: var(--ai-bubble);
-    border-radius: 16px;
+    border-radius: 14px;
     border-top-left-radius: 4px;
     display: flex;
     gap: 5px;
@@ -292,8 +561,8 @@
   }
 
   .typing-dots span {
-    width: 8px;
-    height: 8px;
+    width: 7px;
+    height: 7px;
     background: var(--primary-light);
     border-radius: 50%;
     animation: typingBounce 1.2s infinite;
@@ -309,12 +578,13 @@
 
   /* Chat input */
   .chat-input-area {
-    padding: 16px 24px;
+    padding: 12px 20px;
     border-top: 1px solid var(--border);
     background: var(--card);
     display: flex;
-    gap: 12px;
+    gap: 10px;
     align-items: flex-end;
+    flex-shrink: 0;
   }
 
   .chat-input-wrapper {
@@ -324,16 +594,16 @@
 
   .chat-input {
     width: 100%;
-    padding: 12px 16px;
+    padding: 10px 14px;
     border: 2px solid var(--border);
-    border-radius: 12px;
-    font-size: 14px;
+    border-radius: 10px;
+    font-size: 13.5px;
     font-family: inherit;
     outline: none;
     transition: border-color 0.2s;
     resize: none;
-    min-height: 44px;
-    max-height: 120px;
+    min-height: 42px;
+    max-height: 100px;
   }
 
   .chat-input:focus {
@@ -345,13 +615,13 @@
   }
 
   .chat-send-btn {
-    width: 44px;
-    height: 44px;
+    width: 42px;
+    height: 42px;
     background: var(--primary);
     border: none;
-    border-radius: 12px;
+    border-radius: 10px;
     color: #fff;
-    font-size: 18px;
+    font-size: 16px;
     cursor: pointer;
     display: flex;
     align-items: center;
@@ -363,15 +633,44 @@
   .chat-send-btn:hover { background: var(--primary-dark); transform: scale(1.05); }
   .chat-send-btn:active { transform: scale(0.95); }
 
+  /* AI Notice */
+  .ai-notice {
+    padding: 8px 20px;
+    background: #fff8e1;
+    border-top: 1px solid #ffe082;
+    font-size: 12px;
+    color: #f57f17;
+    text-align: center;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+  }
+
+  /* ===== STUDENT SIDEBAR ===== */
+  .student-sidebar {
+    flex: 0 0 50%;
+    overflow-y: auto;
+    padding: 16px;
+    background: var(--bg);
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .student-sidebar::-webkit-scrollbar { width: 6px; }
+  .student-sidebar::-webkit-scrollbar-thumb { background: #ccc; border-radius: 3px; }
+
   /* ===== DASHBOARD PANEL ===== */
   .dashboard-panel {
     flex: 0 0 40%;
     overflow-y: auto;
-    padding: 20px;
+    padding: 16px;
     background: var(--bg);
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    gap: 14px;
   }
 
   .dashboard-panel::-webkit-scrollbar { width: 6px; }
@@ -380,7 +679,7 @@
   .dash-card {
     background: var(--card);
     border-radius: var(--radius);
-    padding: 20px;
+    padding: 16px;
     box-shadow: var(--shadow);
     transition: transform 0.2s, box-shadow 0.2s;
   }
@@ -391,42 +690,43 @@
   }
 
   .dash-card-title {
-    font-size: 15px;
+    font-size: 14px;
     font-weight: 700;
     color: var(--text);
-    margin-bottom: 14px;
+    margin-bottom: 12px;
     display: flex;
     align-items: center;
     gap: 8px;
   }
 
   .dash-card-title .icon {
-    width: 28px;
-    height: 28px;
-    border-radius: 8px;
+    width: 26px;
+    height: 26px;
+    border-radius: 7px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 14px;
+    font-size: 13px;
+    flex-shrink: 0;
   }
 
   /* Active students card */
   .active-card {
     display: flex;
     align-items: center;
-    gap: 20px;
+    gap: 16px;
   }
 
   .active-card .ring-container {
     position: relative;
-    width: 90px;
-    height: 90px;
+    width: 80px;
+    height: 80px;
     flex-shrink: 0;
   }
 
   .active-card .ring-container svg {
-    width: 90px;
-    height: 90px;
+    width: 80px;
+    height: 80px;
     transform: rotate(-90deg);
   }
 
@@ -434,8 +734,8 @@
   .active-card .ring-fill {
     stroke: var(--accent);
     stroke-linecap: round;
-    stroke-dasharray: 245;
-    stroke-dashoffset: 245;
+    stroke-dasharray: 220;
+    stroke-dashoffset: 220;
     transition: stroke-dashoffset 1.5s ease-out;
   }
 
@@ -444,15 +744,9 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    font-size: 22px;
+    font-size: 20px;
     font-weight: 800;
     color: var(--accent-dark);
-  }
-
-  .active-card .ring-label {
-    font-size: 11px;
-    font-weight: 600;
-    color: var(--text-secondary);
   }
 
   .active-stats {
@@ -462,8 +756,8 @@
   .active-stats .stat-row {
     display: flex;
     justify-content: space-between;
-    padding: 6px 0;
-    font-size: 13px;
+    padding: 5px 0;
+    font-size: 12.5px;
     border-bottom: 1px solid var(--border);
   }
 
@@ -475,31 +769,31 @@
   .heatmap-grid {
     display: grid;
     grid-template-columns: auto repeat(16, 1fr);
-    gap: 3px;
-    font-size: 11px;
+    gap: 2px;
+    font-size: 10px;
   }
 
   .heatmap-label {
     display: flex;
     align-items: center;
     justify-content: flex-end;
-    padding-right: 6px;
+    padding-right: 4px;
     color: var(--text-secondary);
-    font-size: 10px;
+    font-size: 9px;
     white-space: nowrap;
   }
 
   .heatmap-header {
     text-align: center;
     color: var(--text-secondary);
-    font-size: 10px;
+    font-size: 9px;
     font-weight: 600;
     padding-bottom: 2px;
   }
 
   .heatmap-cell {
     aspect-ratio: 1;
-    border-radius: 3px;
+    border-radius: 2px;
     min-width: 0;
     cursor: pointer;
     transition: transform 0.15s, box-shadow 0.15s;
@@ -515,31 +809,31 @@
   .heatmap-legend {
     display: flex;
     align-items: center;
-    gap: 6px;
-    margin-top: 10px;
+    gap: 4px;
+    margin-top: 8px;
     justify-content: flex-end;
-    font-size: 10px;
+    font-size: 9px;
     color: var(--text-secondary);
   }
 
   .heatmap-legend-cell {
-    width: 14px;
-    height: 14px;
-    border-radius: 3px;
+    width: 12px;
+    height: 12px;
+    border-radius: 2px;
   }
 
   /* TOP 5 list */
   .top5-list {
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 6px;
   }
 
   .top5-item {
     display: flex;
     align-items: center;
-    gap: 12px;
-    padding: 10px 14px;
+    gap: 10px;
+    padding: 8px 12px;
     background: var(--chat-bg);
     border-radius: var(--radius-sm);
     transition: background 0.2s;
@@ -548,13 +842,13 @@
   .top5-item:hover { background: var(--ai-bubble); }
 
   .top5-rank {
-    width: 24px;
-    height: 24px;
+    width: 22px;
+    height: 22px;
     border-radius: 6px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 12px;
+    font-size: 11px;
     font-weight: 800;
     color: #fff;
     flex-shrink: 0;
@@ -567,20 +861,20 @@
 
   .top5-text {
     flex: 1;
-    font-size: 13px;
+    font-size: 12.5px;
     line-height: 1.4;
   }
 
   .top5-count {
-    font-size: 13px;
+    font-size: 12.5px;
     font-weight: 700;
     color: var(--primary);
     flex-shrink: 0;
   }
 
   .top5-bar-bg {
-    width: 60px;
-    height: 6px;
+    width: 50px;
+    height: 5px;
     background: #e8ecf1;
     border-radius: 3px;
     overflow: hidden;
@@ -598,18 +892,18 @@
   .weak-points {
     display: flex;
     flex-wrap: wrap;
-    gap: 8px;
+    gap: 6px;
   }
 
   .weak-tag {
     display: flex;
     align-items: center;
-    gap: 6px;
-    padding: 8px 14px;
+    gap: 5px;
+    padding: 6px 12px;
     background: #fff5f5;
     border: 1px solid #fecaca;
     border-radius: 20px;
-    font-size: 13px;
+    font-size: 12px;
     color: #c0392b;
     font-weight: 500;
     transition: transform 0.2s;
@@ -618,38 +912,390 @@
   .weak-tag:hover { transform: scale(1.05); }
 
   .weak-tag .weak-icon {
-    font-size: 12px;
+    font-size: 11px;
   }
 
   .weak-tag .weak-pct {
-    font-size: 11px;
+    font-size: 10px;
     background: #fecaca;
     padding: 1px 6px;
     border-radius: 10px;
     font-weight: 700;
   }
 
+  /* ===== STUDENT: Learning Data Card ===== */
+  .learning-data-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 12px;
+  }
+
+  .ld-stat {
+    background: var(--chat-bg);
+    padding: 12px;
+    border-radius: var(--radius-sm);
+    text-align: center;
+  }
+
+  .ld-stat-value {
+    font-size: 24px;
+    font-weight: 800;
+    color: var(--primary);
+  }
+
+  .ld-stat-value.green { color: var(--accent); }
+
+  .ld-stat-label {
+    font-size: 11px;
+    color: var(--text-secondary);
+    margin-top: 2px;
+  }
+
+  .ld-weak-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 10px;
+  }
+
+  .ld-weak-item {
+    padding: 4px 10px;
+    background: #fff3e0;
+    border: 1px solid #ffe0b2;
+    border-radius: 14px;
+    font-size: 11.5px;
+    color: #e65100;
+    font-weight: 500;
+  }
+
+  .ld-suggestion {
+    padding: 10px 14px;
+    background: #e8f5e9;
+    border-radius: var(--radius-sm);
+    font-size: 12.5px;
+    color: #2e7d32;
+    line-height: 1.5;
+    border-left: 3px solid var(--accent);
+  }
+
+  /* ===== STUDENT: Lecture Cards ===== */
+  .lecture-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+  }
+
+  .lecture-card {
+    padding: 10px;
+    background: var(--chat-bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-size: 12px;
+  }
+
+  .lecture-card:hover {
+    border-color: var(--primary);
+    background: var(--ai-bubble);
+    transform: translateY(-2px);
+  }
+
+  .lecture-card.current {
+    border-color: var(--primary);
+    background: var(--ai-bubble);
+    box-shadow: 0 0 0 2px rgba(68,114,196,0.2);
+  }
+
+  .lecture-card .lc-num {
+    font-size: 18px;
+    font-weight: 800;
+    color: var(--primary);
+  }
+
+  .lecture-card.current .lc-num { color: var(--primary-dark); }
+
+  .lecture-card .lc-title {
+    font-size: 11px;
+    color: var(--text-secondary);
+    margin-top: 2px;
+    line-height: 1.3;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .lecture-card .lc-badge {
+    display: inline-block;
+    padding: 1px 6px;
+    border-radius: 8px;
+    font-size: 9px;
+    font-weight: 700;
+    margin-top: 4px;
+  }
+
+  .lecture-card.current .lc-badge {
+    background: var(--primary);
+    color: #fff;
+  }
+
+  /* ===== TEACHER: Question Records Table ===== */
+  .records-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 12px;
+  }
+
+  .records-table th {
+    background: var(--chat-bg);
+    padding: 8px 10px;
+    text-align: left;
+    font-weight: 700;
+    color: var(--text-secondary);
+    border-bottom: 2px solid var(--border);
+    white-space: nowrap;
+    font-size: 11px;
+  }
+
+  .records-table td {
+    padding: 7px 10px;
+    border-bottom: 1px solid var(--border);
+    color: var(--text);
+    vertical-align: middle;
+  }
+
+  .records-table tr:hover td {
+    background: var(--chat-bg);
+  }
+
+  .quality-badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 10px;
+    font-size: 11px;
+    font-weight: 700;
+  }
+
+  .quality-badge.high { background: #e8f5e9; color: #2e7d32; }
+  .quality-badge.medium { background: #fff3e0; color: #ef6c00; }
+  .quality-badge.low { background: #fce4ec; color: #c62828; }
+
+  /* ===== TEACHER: AI Usage Stats ===== */
+  .usage-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    margin-bottom: 12px;
+  }
+
+  .usage-stat {
+    text-align: center;
+    padding: 12px 8px;
+    background: var(--chat-bg);
+    border-radius: var(--radius-sm);
+  }
+
+  .usage-stat-val {
+    font-size: 22px;
+    font-weight: 800;
+    color: var(--primary);
+  }
+
+  .usage-stat-val.accent { color: var(--accent); }
+  .usage-stat-val.warn { color: #e67e22; }
+
+  .usage-stat-label {
+    font-size: 11px;
+    color: var(--text-secondary);
+    margin-top: 2px;
+  }
+
+  .top3-students {
+    display: flex;
+    gap: 10px;
+  }
+
+  .top3-student {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 10px;
+    background: var(--chat-bg);
+    border-radius: var(--radius-sm);
+  }
+
+  .top3-avatar {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 800;
+    color: #fff;
+    flex-shrink: 0;
+  }
+
+  .top3-avatar.g1 { background: #e74c3c; }
+  .top3-avatar.g2 { background: #e67e22; }
+  .top3-avatar.g3 { background: #f1c40f; color: #333; }
+
+  .top3-info { font-size: 12px; }
+  .top3-name { font-weight: 700; }
+  .top3-count { color: var(--text-secondary); font-size: 11px; }
+
+  /* ===== TEACHER: Permission Panel ===== */
+  .perm-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .perm-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .perm-row:last-child { border-bottom: none; }
+
+  .perm-label {
+    font-size: 13px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .perm-detail {
+    font-size: 11px;
+    color: var(--text-secondary);
+    margin-left: 4px;
+  }
+
+  /* Toggle Switch */
+  .toggle {
+    position: relative;
+    width: 44px;
+    height: 24px;
+    flex-shrink: 0;
+  }
+
+  .toggle input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+
+  .toggle-slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: #ccc;
+    border-radius: 24px;
+    transition: 0.3s;
+  }
+
+  .toggle-slider::before {
+    content: '';
+    position: absolute;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: #fff;
+    left: 3px;
+    bottom: 3px;
+    transition: 0.3s;
+  }
+
+  .toggle input:checked + .toggle-slider {
+    background: var(--accent);
+  }
+
+  .toggle input:checked + .toggle-slider::before {
+    transform: translateX(20px);
+  }
+
+  /* Knowledge Base Manage */
+  .kb-manage-grid {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    gap: 6px;
+    margin-top: 12px;
+  }
+
+  .kb-item {
+    padding: 6px;
+    text-align: center;
+    border-radius: 6px;
+    font-size: 11px;
+    border: 1px solid var(--border);
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .kb-item.enabled {
+    background: #e8f5e9;
+    border-color: #a5d6a7;
+    color: #2e7d32;
+  }
+
+  .kb-item.disabled {
+    background: #fafafa;
+    border-color: #e0e0e0;
+    color: #bdbdbd;
+  }
+
+  .kb-item:hover { transform: scale(1.05); }
+
+  /* Export Button */
+  .export-btn {
+    width: 100%;
+    padding: 10px;
+    background: var(--primary);
+    color: #fff;
+    border: none;
+    border-radius: var(--radius-sm);
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.15s;
+    font-family: inherit;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+  }
+
+  .export-btn:hover { background: var(--primary-dark); }
+  .export-btn:active { transform: scale(0.97); }
+
   /* ===== FOOTER ===== */
   .footer {
     background: var(--card);
     border-top: 1px solid var(--border);
-    padding: 10px 32px;
+    padding: 8px 32px;
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 16px;
+    gap: 12px;
     flex-shrink: 0;
   }
 
   .tech-badge {
     display: inline-flex;
     align-items: center;
-    gap: 6px;
-    padding: 5px 14px;
+    gap: 5px;
+    padding: 4px 12px;
     background: var(--chat-bg);
     border: 1px solid var(--border);
     border-radius: 20px;
-    font-size: 12px;
+    font-size: 11px;
     font-weight: 600;
     color: var(--text-secondary);
     transition: all 0.2s;
@@ -662,8 +1308,8 @@
   }
 
   .tech-badge .badge-dot {
-    width: 6px;
-    height: 6px;
+    width: 5px;
+    height: 5px;
     border-radius: 50%;
     background: var(--accent);
   }
@@ -684,76 +1330,136 @@
   }
 
   .tooltip.visible { opacity: 1; }
+
+  /* Section title for student sidebar */
+  .section-label {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: -4px;
+  }
 </style>
 </head>
 <body>
 
-<!-- HEADER -->
-<header class="header">
-  <div class="header-left">
-    <div class="header-logo">&#x1F393;</div>
-    <div>
-      <div class="header-title">WebDev助教 &middot; Java Web应用开发课程专属教学智能体</div>
-      <div class="header-subtitle">基于RAG + DeepSeek的课程知识库问答系统</div>
-    </div>
-  </div>
-  <div class="header-status">
-    <span class="status-dot"></span>
-    <span>模型在线 &middot; 知识库已同步16讲</span>
-  </div>
-</header>
+<!-- ==================== LOGIN SCREEN ==================== -->
+<div class="screen login-screen active" id="loginScreen">
+  <div class="login-container">
+    <div class="login-logo">&#x1F393;</div>
+    <div class="login-title">WebDev助教</div>
+    <div class="login-subtitle">Java Web应用开发课程专属教学智能体 &middot; 基于RAG + DeepSeek</div>
 
-<!-- MAIN -->
-<div class="main">
+    <div class="login-cards">
+      <!-- Student Card -->
+      <div class="login-card student" id="studentCard">
+        <div class="login-card-icon">&#x1F9D1;&#x200D;&#x1F393;</div>
+        <div class="login-card-title">学生入口</div>
+        <div class="login-card-desc">AI助教答疑 &middot; 知识点查询 &middot; 学习数据</div>
+        <div class="login-form" id="studentForm">
+          <label>学号</label>
+          <input type="text" id="stuId" value="2023001" placeholder="请输入学号" />
+          <label>姓名</label>
+          <input type="text" id="stuName" value="李明" placeholder="请输入姓名" />
+          <button class="login-enter-btn" onclick="enterAs('student')">进入学习</button>
+        </div>
+      </div>
 
-  <!-- CHAT PANEL -->
-  <div class="chat-panel">
-    <div class="chat-header">
-      <div class="chat-header-avatar">W</div>
-      <div class="chat-header-info">
-        <h3>WebDev助教</h3>
-        <span>Java Web应用开发 &middot; 随时为你答疑解惑</span>
+      <!-- Teacher Card -->
+      <div class="login-card teacher" id="teacherCard">
+        <div class="login-card-icon">&#x1F468;&#x200D;&#x1F3EB;</div>
+        <div class="login-card-title">教师入口</div>
+        <div class="login-card-desc">学情分析 &middot; 数据看板 &middot; 权限管理</div>
+        <div class="login-form" id="teacherForm">
+          <label>工号</label>
+          <input type="text" id="tchId" value="T001" placeholder="请输入工号" />
+          <label>姓名</label>
+          <input type="text" id="tchName" value="XXX老师" placeholder="请输入姓名" />
+          <button class="login-enter-btn teacher-btn" onclick="enterAs('teacher')">进入管理</button>
+        </div>
       </div>
     </div>
 
-    <div class="chat-messages" id="chatMessages">
-      <!-- Pre-loaded conversation -->
-      <div class="message ai">
-        <div class="message-avatar">W</div>
-        <div>
-          <div class="message-content">
-            你好！我是 <strong>WebDev助教</strong>，Java Web应用开发课程的AI教学助手。我熟悉课程全部16讲的内容，可以帮你解答课程相关问题、复习知识点、分析代码示例。有什么想问的吗？
+    <div class="login-footer">太原科技大学 &middot; Java Web应用开发课程 &middot; 2025-2026学年</div>
+  </div>
+</div>
+
+<!-- ==================== APP SCREEN ==================== -->
+<div class="screen app-screen hidden" id="appScreen">
+
+  <!-- HEADER -->
+  <header class="header">
+    <div class="header-left">
+      <div class="header-logo">&#x1F393;</div>
+      <div>
+        <div class="header-title">WebDev助教 &middot; Java Web应用开发</div>
+        <div class="header-subtitle">基于RAG + DeepSeek的课程知识库问答系统</div>
+      </div>
+    </div>
+    <div class="header-right">
+      <div class="header-status">
+        <span class="status-dot"></span>
+        <span>模型在线 &middot; 知识库已同步16讲</span>
+      </div>
+      <div class="role-badge" id="roleBadge">
+        <span class="role-icon">&#x1F9D1;&#x200D;&#x1F393;</span>
+        <span id="roleBadgeText">学生: 李明</span>
+      </div>
+      <button class="switch-view-btn" id="switchViewBtn" style="display:none;" onclick="switchToStudentPreview()">&#x1F440; 切换到学生视图</button>
+      <button class="logout-btn" onclick="logout()">&#x2190; 退出登录</button>
+    </div>
+  </header>
+
+  <!-- ===== STUDENT VIEW ===== -->
+  <div class="main student-view" id="studentView" style="display:none;">
+    <!-- Chat Panel -->
+    <div class="chat-panel">
+      <div class="chat-header">
+        <div class="chat-header-avatar">W</div>
+        <div class="chat-header-info">
+          <h3>WebDev助教</h3>
+          <span>Java Web应用开发 &middot; 随时为你答疑解惑</span>
+        </div>
+      </div>
+
+      <div class="chat-messages" id="chatMessagesStudent">
+        <div class="message ai">
+          <div class="message-avatar">W</div>
+          <div>
+            <div class="message-content">
+              你好！我是 <strong>WebDev助教</strong>，Java Web应用开发课程的AI教学助手。我熟悉课程全部16讲的内容，可以帮你解答课程相关问题、复习知识点、分析代码示例。有什么想问的吗？
+            </div>
+            <div class="message-time">14:20</div>
           </div>
-          <div class="message-time">14:20</div>
         </div>
-      </div>
 
-      <div class="message user">
-        <div class="message-avatar">李</div>
-        <div>
-          <div class="message-content">老师好，我想问一下Session和Cookie到底有什么区别？什么时候该用哪个？</div>
-          <div class="message-time">14:22</div>
+        <div class="message user">
+          <div class="message-avatar">李</div>
+          <div>
+            <div class="message-content">老师好，我想问一下Session和Cookie到底有什么区别？什么时候该用哪个？</div>
+            <div class="message-time">14:22</div>
+          </div>
         </div>
-      </div>
 
-      <div class="message ai">
-        <div class="message-avatar">W</div>
-        <div>
-          <div class="message-content">
-            这是个很好的问题！在 <span class="ref-tag">第5讲 会话管理</span> 中我们详细讲解了这个知识点，我帮你梳理一下核心区别：<br><br>
-            <strong>1. 存储位置不同</strong><br>
-            &bull; <span class="highlight">Cookie</span> 存储在<strong>客户端浏览器</strong>中<br>
-            &bull; <span class="highlight">Session</span> 存储在<strong>服务器端</strong>（默认在内存中）<br><br>
-            <strong>2. 安全性差异</strong><br>
-            &bull; Cookie 可被用户查看和篡改，安全性较低<br>
-            &bull; Session 数据在服务器端，相对安全<br><br>
-            <strong>3. 生命周期</strong><br>
-            &bull; Cookie 可设置过期时间，持久存储<br>
-            &bull; Session 默认随浏览器关闭而失效（Tomcat默认30分钟超时）<br><br>
-            <strong>4. 典型使用场景</strong><br>
-            &bull; Cookie：记住用户名、语言偏好等非敏感信息<br>
-            &bull; Session：登录状态、购物车、验证码等敏感数据<br><br>
-            <div class="code-block"><span class="cm">// 第5讲 代码示例：Session存储登录信息</span>
+        <div class="message ai">
+          <div class="message-avatar">W</div>
+          <div>
+            <div class="message-content">
+              这是个很好的问题！在 <span class="ref-tag">第5讲 会话管理</span> 中我们详细讲解了这个知识点，我帮你梳理一下核心区别：<br><br>
+              <strong>1. 存储位置不同</strong><br>
+              &bull; <span class="highlight">Cookie</span> 存储在<strong>客户端浏览器</strong>中<br>
+              &bull; <span class="highlight">Session</span> 存储在<strong>服务器端</strong>（默认在内存中）<br><br>
+              <strong>2. 安全性差异</strong><br>
+              &bull; Cookie 可被用户查看和篡改，安全性较低<br>
+              &bull; Session 数据在服务器端，相对安全<br><br>
+              <strong>3. 生命周期</strong><br>
+              &bull; Cookie 可设置过期时间，持久存储<br>
+              &bull; Session 默认随浏览器关闭而失效（Tomcat默认30分钟超时）<br><br>
+              <strong>4. 典型使用场景</strong><br>
+              &bull; Cookie：记住用户名、语言偏好等非敏感信息<br>
+              &bull; Session：登录状态、购物车、验证码等敏感数据<br><br>
+              <div class="code-block"><span class="cm">// 第5讲 代码示例：Session存储登录信息</span>
 <span class="tp">HttpSession</span> session = request.<span class="fn">getSession</span>();
 session.<span class="fn">setAttribute</span>(<span class="str">"currentUser"</span>, user);
 
@@ -761,165 +1467,503 @@ session.<span class="fn">setAttribute</span>(<span class="str">"currentUser"</sp
 <span class="tp">Cookie</span> cookie = <span class="kw">new</span> <span class="tp">Cookie</span>(<span class="str">"theme"</span>, <span class="str">"dark"</span>);
 cookie.<span class="fn">setMaxAge</span>(<span class="str">7 * 24 * 3600</span>);
 response.<span class="fn">addCookie</span>(cookie);</div>
-            <strong>记忆口诀：</strong>敏感数据用Session，偏好记忆用Cookie。面试中也经常考到这个对比哦！
+              <strong>记忆口诀：</strong>敏感数据用Session，偏好记忆用Cookie。面试中也经常考到这个对比哦！
+            </div>
+            <div class="message-time">14:22</div>
           </div>
-          <div class="message-time">14:22</div>
+        </div>
+
+        <div class="message user">
+          <div class="message-avatar">李</div>
+          <div>
+            <div class="message-content">那Session的JSESSIONID和Cookie是什么关系？</div>
+            <div class="message-time">14:23</div>
+          </div>
+        </div>
+
+        <div class="message ai">
+          <div class="message-avatar">W</div>
+          <div>
+            <div class="message-content">
+              问得好！这正是 <span class="ref-tag">第5讲</span> 的一个重点，也是很多同学容易混淆的地方：<br><br>
+              Session <strong>依赖</strong> Cookie 来工作！具体流程是：<br><br>
+              &bull; 服务器创建Session后，生成一个唯一的 <span class="highlight">JSESSIONID</span><br>
+              &bull; 这个ID通过 <strong>Cookie</strong> 发送给浏览器（名为<code>JSESSIONID</code>的Cookie）<br>
+              &bull; 浏览器后续请求自动携带这个Cookie<br>
+              &bull; 服务器根据JSESSIONID找到对应的Session对象<br><br>
+              所以本质上：<strong>Session是机制，Cookie是载体</strong>。如果浏览器禁用了Cookie，可以用URL重写方式传递JSESSIONID。<br><br>
+              这部分在期末考试中占比较高，建议结合 <span class="ref-tag">第5讲 实验</span> 用Servlet代码实际调试一下！
+            </div>
+            <div class="message-time">14:24</div>
+          </div>
         </div>
       </div>
 
-      <div class="message user">
-        <div class="message-avatar">李</div>
-        <div>
-          <div class="message-content">那Session的JSESSIONID和Cookie是什么关系？</div>
-          <div class="message-time">14:23</div>
+      <!-- Typing indicator -->
+      <div class="typing-indicator" id="typingIndicatorStudent">
+        <div class="message-avatar" style="width:34px;height:34px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;background:linear-gradient(135deg,var(--primary),var(--primary-light));color:#fff;">W</div>
+        <div class="typing-dots">
+          <span></span><span></span><span></span>
         </div>
       </div>
 
-      <div class="message ai">
-        <div class="message-avatar">W</div>
-        <div>
-          <div class="message-content">
-            问得好！这正是 <span class="ref-tag">第5讲</span> 的一个重点，也是很多同学容易混淆的地方：<br><br>
-            Session <strong>依赖</strong> Cookie 来工作！具体流程是：<br><br>
-            &bull; 服务器创建Session后，生成一个唯一的 <span class="highlight">JSESSIONID</span><br>
-            &bull; 这个ID通过 <strong>Cookie</strong> 发送给浏览器（名为<code>JSESSIONID</code>的Cookie）<br>
-            &bull; 浏览器后续请求自动携带这个Cookie<br>
-            &bull; 服务器根据JSESSIONID找到对应的Session对象<br><br>
-            所以本质上：<strong>Session是机制，Cookie是载体</strong>。如果浏览器禁用了Cookie，可以用URL重写方式传递JSESSIONID。<br><br>
-            这部分在期末考试中占比较高，建议结合 <span class="ref-tag">第5讲 实验</span> 用Servlet代码实际调试一下！
-          </div>
-          <div class="message-time">14:24</div>
+      <!-- Input area -->
+      <div class="chat-input-area">
+        <div class="chat-input-wrapper">
+          <input type="text" class="chat-input" id="chatInputStudent" placeholder="输入你的问题... 试试问：Filter的作用是什么？" />
         </div>
+        <button class="chat-send-btn" id="sendBtnStudent" title="发送">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+        </button>
+      </div>
+
+      <!-- AI Notice -->
+      <div class="ai-notice">
+        &#x26A0;&#xFE0F; <strong>AI使用规范：</strong>AI是学习助手，不是答案机。请先独立思考，再向AI提问。
       </div>
     </div>
 
-    <!-- Typing indicator -->
-    <div class="typing-indicator" id="typingIndicator">
-      <div class="message-avatar" style="width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;background:linear-gradient(135deg,var(--primary),var(--primary-light));color:#fff;">W</div>
-      <div class="typing-dots">
-        <span></span><span></span><span></span>
+    <!-- Student Sidebar -->
+    <div class="student-sidebar">
+
+      <!-- My Learning Data -->
+      <div class="dash-card">
+        <div class="dash-card-title">
+          <div class="icon" style="background:#e3f2fd;color:var(--primary);">&#x1F4CA;</div>
+          我的学习数据
+        </div>
+        <div class="learning-data-grid">
+          <div class="ld-stat">
+            <div class="ld-stat-value">7</div>
+            <div class="ld-stat-label">本周提问次数</div>
+          </div>
+          <div class="ld-stat">
+            <div class="ld-stat-value green">78%</div>
+            <div class="ld-stat-label">知识点掌握率</div>
+          </div>
+        </div>
+        <div class="dash-card-title" style="font-size:12px;margin-bottom:6px;">
+          <div class="icon" style="background:#fff3e0;color:#e65100;width:22px;height:22px;font-size:11px;">&#x26A0;&#xFE0F;</div>
+          薄弱知识点
+        </div>
+        <div class="ld-weak-list">
+          <div class="ld-weak-item">Session安全</div>
+          <div class="ld-weak-item">JDBC事务</div>
+        </div>
+        <div class="ld-suggestion">
+          &#x1F4A1; <strong>学习建议（AI生成）：</strong>建议复习第5讲会话管理和第14讲事务控制，重点关注Session安全管理的防劫持策略和JDBC事务的ACID特性。
+        </div>
+      </div>
+
+      <!-- Course Knowledge Base -->
+      <div class="dash-card">
+        <div class="dash-card-title">
+          <div class="icon" style="background:#ede9fe;color:#7c3aed;">&#x1F4DA;</div>
+          课程知识库（16讲）
+        </div>
+        <div class="lecture-grid" id="lectureGrid"></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ===== TEACHER VIEW ===== -->
+  <div class="main teacher-view" id="teacherView" style="display:none;">
+    <!-- Chat Panel -->
+    <div class="chat-panel">
+      <div class="chat-header">
+        <div class="chat-header-avatar">W</div>
+        <div class="chat-header-info">
+          <h3>WebDev助教</h3>
+          <span>Java Web应用开发 &middot; 随时为你答疑解惑</span>
+        </div>
+      </div>
+
+      <div class="chat-messages" id="chatMessagesTeacher">
+        <div class="message ai">
+          <div class="message-avatar">W</div>
+          <div>
+            <div class="message-content">
+              你好！我是 <strong>WebDev助教</strong>，Java Web应用开发课程的AI教学助手。我熟悉课程全部16讲的内容，可以帮你解答课程相关问题、复习知识点、分析代码示例。有什么想问的吗？
+            </div>
+            <div class="message-time">14:20</div>
+          </div>
+        </div>
+
+        <div class="message user">
+          <div class="message-avatar">李</div>
+          <div>
+            <div class="message-content">老师好，我想问一下Session和Cookie到底有什么区别？什么时候该用哪个？</div>
+            <div class="message-time">14:22</div>
+          </div>
+        </div>
+
+        <div class="message ai">
+          <div class="message-avatar">W</div>
+          <div>
+            <div class="message-content">
+              这是个很好的问题！在 <span class="ref-tag">第5讲 会话管理</span> 中我们详细讲解了这个知识点，我帮你梳理一下核心区别：<br><br>
+              <strong>1. 存储位置不同</strong><br>
+              &bull; <span class="highlight">Cookie</span> 存储在<strong>客户端浏览器</strong>中<br>
+              &bull; <span class="highlight">Session</span> 存储在<strong>服务器端</strong>（默认在内存中）<br><br>
+              <strong>2. 安全性差异</strong><br>
+              &bull; Cookie 可被用户查看和篡改，安全性较低<br>
+              &bull; Session 数据在服务器端，相对安全<br><br>
+              <strong>3. 典型使用场景</strong><br>
+              &bull; Cookie：记住用户名、语言偏好等非敏感信息<br>
+              &bull; Session：登录状态、购物车、验证码等敏感数据<br><br>
+              <div class="code-block"><span class="cm">// Session存储登录信息</span>
+<span class="tp">HttpSession</span> session = request.<span class="fn">getSession</span>();
+session.<span class="fn">setAttribute</span>(<span class="str">"currentUser"</span>, user);</div>
+              <strong>记忆口诀：</strong>敏感数据用Session，偏好记忆用Cookie。
+            </div>
+            <div class="message-time">14:22</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Typing indicator -->
+      <div class="typing-indicator" id="typingIndicatorTeacher">
+        <div class="message-avatar" style="width:34px;height:34px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;background:linear-gradient(135deg,var(--primary),var(--primary-light));color:#fff;">W</div>
+        <div class="typing-dots">
+          <span></span><span></span><span></span>
+        </div>
+      </div>
+
+      <!-- Input area -->
+      <div class="chat-input-area">
+        <div class="chat-input-wrapper">
+          <input type="text" class="chat-input" id="chatInputTeacher" placeholder="输入你的问题... 试试问：Filter的作用是什么？" />
+        </div>
+        <button class="chat-send-btn" id="sendBtnTeacher" title="发送">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+        </button>
       </div>
     </div>
 
-    <!-- Input area -->
-    <div class="chat-input-area">
-      <div class="chat-input-wrapper">
-        <input type="text" class="chat-input" id="chatInput" placeholder="输入你的问题... 试试问：Filter的作用是什么？" />
+    <!-- Teacher Dashboard -->
+    <div class="dashboard-panel">
+
+      <!-- Active Students -->
+      <div class="dash-card">
+        <div class="dash-card-title">
+          <div class="icon" style="background:#e8f5e9;color:var(--accent);">&#x1F4CA;</div>
+          今日学情概览
+        </div>
+        <div class="active-card">
+          <div class="ring-container">
+            <svg viewBox="0 0 80 80">
+              <circle class="ring-bg" cx="40" cy="40" r="35" fill="none" stroke-width="6"/>
+              <circle class="ring-fill" id="activeRing" cx="40" cy="40" r="35" fill="none" stroke-width="6"/>
+            </svg>
+            <div class="ring-text">72%</div>
+          </div>
+          <div class="active-stats">
+            <div class="stat-row">
+              <span class="stat-label">今日活跃</span>
+              <span class="stat-value" style="color:var(--accent);">42 / 58 人</span>
+            </div>
+            <div class="stat-row">
+              <span class="stat-label">提问总数</span>
+              <span class="stat-value">127 条</span>
+            </div>
+            <div class="stat-row">
+              <span class="stat-label">平均对话轮次</span>
+              <span class="stat-value">3.8 轮</span>
+            </div>
+            <div class="stat-row">
+              <span class="stat-label">问题解决率</span>
+              <span class="stat-value" style="color:var(--accent);">89.2%</span>
+            </div>
+          </div>
+        </div>
       </div>
-      <button class="chat-send-btn" id="sendBtn" title="发送">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+
+      <!-- AI Usage Stats -->
+      <div class="dash-card">
+        <div class="dash-card-title">
+          <div class="icon" style="background:#e3f2fd;color:var(--primary);">&#x1F4C8;</div>
+          AI使用统计
+        </div>
+        <div class="usage-stats-grid">
+          <div class="usage-stat">
+            <div class="usage-stat-val">127</div>
+            <div class="usage-stat-label">本周总提问数</div>
+          </div>
+          <div class="usage-stat">
+            <div class="usage-stat-val accent">18.1</div>
+            <div class="usage-stat-label">日均提问</div>
+          </div>
+          <div class="usage-stat">
+            <div class="usage-stat-val warn">21-23</div>
+            <div class="usage-stat-label">高峰时段</div>
+          </div>
+          <div class="usage-stat">
+            <div class="usage-stat-val">58</div>
+            <div class="usage-stat-label">使用学生数</div>
+          </div>
+        </div>
+        <div class="dash-card-title" style="font-size:12px;margin-bottom:6px;">
+          <div class="icon" style="background:#fff3e0;color:#e67e22;width:22px;height:22px;font-size:11px;">&#x1F3C6;</div>
+          最活跃学生 TOP3
+        </div>
+        <div class="top3-students">
+          <div class="top3-student">
+            <div class="top3-avatar g1">1</div>
+            <div class="top3-info">
+              <div class="top3-name">张伟</div>
+              <div class="top3-count">23次提问</div>
+            </div>
+          </div>
+          <div class="top3-student">
+            <div class="top3-avatar g2">2</div>
+            <div class="top3-info">
+              <div class="top3-name">李明</div>
+              <div class="top3-count">19次提问</div>
+            </div>
+          </div>
+          <div class="top3-student">
+            <div class="top3-avatar g3">3</div>
+            <div class="top3-info">
+              <div class="top3-name">王芳</div>
+              <div class="top3-count">17次提问</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Heatmap -->
+      <div class="dash-card">
+        <div class="dash-card-title">
+          <div class="icon" style="background:#fff3e0;color:#e67e22;">&#x1F525;</div>
+          学情热力图 &middot; 知识点查询频次
+        </div>
+        <div class="heatmap-grid" id="heatmapGrid"></div>
+        <div class="heatmap-legend">
+          <span>低</span>
+          <div class="heatmap-legend-cell" style="background:#dbeafe;"></div>
+          <div class="heatmap-legend-cell" style="background:#93c5fd;"></div>
+          <div class="heatmap-legend-cell" style="background:#f59e0b;"></div>
+          <div class="heatmap-legend-cell" style="background:#ef4444;"></div>
+          <span>高</span>
+        </div>
+      </div>
+
+      <!-- Top 5 -->
+      <div class="dash-card">
+        <div class="dash-card-title">
+          <div class="icon" style="background:#ede9fe;color:#7c3aed;">&#x1F4AC;</div>
+          高频问题 TOP 5
+        </div>
+        <div class="top5-list" id="top5List"></div>
+      </div>
+
+      <!-- Weak points -->
+      <div class="dash-card">
+        <div class="dash-card-title">
+          <div class="icon" style="background:#fef2f2;color:#dc2626;">&#x26A0;&#xFE0F;</div>
+          知识薄弱点预警
+        </div>
+        <div class="weak-points" id="weakPoints"></div>
+      </div>
+
+      <!-- Student Question Records -->
+      <div class="dash-card">
+        <div class="dash-card-title">
+          <div class="icon" style="background:#e8f5e9;color:var(--accent);">&#x1F4DD;</div>
+          学生提问记录（近10条）
+        </div>
+        <div style="overflow-x:auto;">
+          <table class="records-table">
+            <thead>
+              <tr>
+                <th>时间</th>
+                <th>学生</th>
+                <th>问题摘要</th>
+                <th>涉及知识点</th>
+                <th>AI回答质量</th>
+              </tr>
+            </thead>
+            <tbody id="recordsBody"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Permissions -->
+      <div class="dash-card">
+        <div class="dash-card-title">
+          <div class="icon" style="background:#fce4ec;color:#c62828;">&#x1F512;</div>
+          权限设置
+        </div>
+        <div class="perm-list">
+          <div class="perm-row">
+            <span class="perm-label">允许学生查看AI完整代码</span>
+            <label class="toggle">
+              <input type="checkbox" />
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+          <div class="perm-row">
+            <span class="perm-label">允许课后使用</span>
+            <label class="toggle">
+              <input type="checkbox" checked />
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+          <div class="perm-row">
+            <span class="perm-label">限制每日提问次数 <span class="perm-detail">（上限: 20次）</span></span>
+            <label class="toggle">
+              <input type="checkbox" checked />
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+          <div class="perm-row">
+            <span class="perm-label">启用敏感内容过滤</span>
+            <label class="toggle">
+              <input type="checkbox" checked />
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+        </div>
+
+        <div class="dash-card-title" style="font-size:12px;margin-top:12px;margin-bottom:6px;">
+          <div class="icon" style="background:#e3f2fd;color:var(--primary);width:22px;height:22px;font-size:11px;">&#x1F4DA;</div>
+          知识库管理
+        </div>
+        <div class="kb-manage-grid" id="kbManageGrid"></div>
+      </div>
+
+      <!-- Export Button -->
+      <button class="export-btn" onclick="alert('学情报告已导出为PDF（演示功能）')">
+        &#x1F4E5; 导出学情报告
       </button>
+
     </div>
   </div>
 
-  <!-- DASHBOARD PANEL -->
-  <div class="dashboard-panel">
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="tech-badge"><span class="badge-dot"></span>DeepSeek API</div>
+    <div class="tech-badge"><span class="badge-dot"></span>ChromaDB</div>
+    <div class="tech-badge"><span class="badge-dot"></span>RAG Pipeline</div>
+    <div class="tech-badge"><span class="badge-dot"></span>课程知识库 (16讲)</div>
+    <div class="tech-badge"><span class="badge-dot"></span>Spring Boot</div>
+    <div class="tech-badge"><span class="badge-dot"></span>Vue 3 前端</div>
+  </footer>
 
-    <!-- Active Students -->
-    <div class="dash-card">
-      <div class="dash-card-title">
-        <div class="icon" style="background:#e8f5e9;color:var(--accent);">&#x1F4CA;</div>
-        今日学情概览
-      </div>
-      <div class="active-card">
-        <div class="ring-container">
-          <svg viewBox="0 0 90 90">
-            <circle class="ring-bg" cx="45" cy="45" r="39" fill="none" stroke-width="7"/>
-            <circle class="ring-fill" id="activeRing" cx="45" cy="45" r="39" fill="none" stroke-width="7"/>
-          </svg>
-          <div class="ring-text">72%</div>
-        </div>
-        <div class="active-stats">
-          <div class="stat-row">
-            <span class="stat-label">今日活跃</span>
-            <span class="stat-value" style="color:var(--accent);">42 / 58 人</span>
-          </div>
-          <div class="stat-row">
-            <span class="stat-label">提问总数</span>
-            <span class="stat-value">127 条</span>
-          </div>
-          <div class="stat-row">
-            <span class="stat-label">平均对话轮次</span>
-            <span class="stat-value">3.8 轮</span>
-          </div>
-          <div class="stat-row">
-            <span class="stat-label">问题解决率</span>
-            <span class="stat-value" style="color:var(--accent);">89.2%</span>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Heatmap -->
-    <div class="dash-card">
-      <div class="dash-card-title">
-        <div class="icon" style="background:#fff3e0;color:#e67e22;">&#x1F525;</div>
-        学情热力图 &middot; 知识点查询频次
-      </div>
-      <div class="heatmap-grid" id="heatmapGrid"></div>
-      <div class="heatmap-legend">
-        <span>低</span>
-        <div class="heatmap-legend-cell" style="background:#dbeafe;"></div>
-        <div class="heatmap-legend-cell" style="background:#93c5fd;"></div>
-        <div class="heatmap-legend-cell" style="background:#f59e0b;"></div>
-        <div class="heatmap-legend-cell" style="background:#ef4444;"></div>
-        <span>高</span>
-      </div>
-    </div>
-
-    <!-- Top 5 -->
-    <div class="dash-card">
-      <div class="dash-card-title">
-        <div class="icon" style="background:#ede9fe;color:#7c3aed;">&#x1F4AC;</div>
-        高频问题 TOP 5
-      </div>
-      <div class="top5-list" id="top5List"></div>
-    </div>
-
-    <!-- Weak points -->
-    <div class="dash-card">
-      <div class="dash-card-title">
-        <div class="icon" style="background:#fef2f2;color:#dc2626;">&#x26A0;&#xFE0F;</div>
-        知识薄弱点预警
-      </div>
-      <div class="weak-points" id="weakPoints"></div>
-    </div>
-
-  </div>
 </div>
-
-<!-- FOOTER -->
-<footer class="footer">
-  <div class="tech-badge"><span class="badge-dot"></span>DeepSeek API</div>
-  <div class="tech-badge"><span class="badge-dot"></span>ChromaDB</div>
-  <div class="tech-badge"><span class="badge-dot"></span>RAG Pipeline</div>
-  <div class="tech-badge"><span class="badge-dot"></span>课程知识库 (16讲)</div>
-  <div class="tech-badge"><span class="badge-dot"></span>Spring Boot</div>
-  <div class="tech-badge"><span class="badge-dot"></span>Vue 3 前端</div>
-</footer>
 
 <!-- Tooltip element -->
 <div class="tooltip" id="tooltip"></div>
 
 <script>
+// ===== STATE =====
+let currentRole = null; // 'student' or 'teacher'
+let isPreviewingStudent = false;
+
+// ===== LOGIN =====
+document.getElementById('studentCard').addEventListener('click', function(e) {
+  if (e.target.closest('.login-form')) return;
+  document.getElementById('studentForm').classList.toggle('show');
+  document.getElementById('teacherForm').classList.remove('show');
+});
+
+document.getElementById('teacherCard').addEventListener('click', function(e) {
+  if (e.target.closest('.login-form')) return;
+  document.getElementById('teacherForm').classList.toggle('show');
+  document.getElementById('studentForm').classList.remove('show');
+});
+
+function enterAs(role) {
+  currentRole = role;
+
+  const loginScreen = document.getElementById('loginScreen');
+  const appScreen = document.getElementById('appScreen');
+
+  loginScreen.classList.remove('active');
+  loginScreen.classList.add('hidden');
+  appScreen.classList.remove('hidden');
+  appScreen.classList.add('active');
+
+  if (role === 'student') {
+    const name = document.getElementById('stuName').value || '李明';
+    document.getElementById('roleBadgeText').textContent = '学生: ' + name;
+    document.getElementById('roleBadge').querySelector('.role-icon').innerHTML = '&#x1F9D1;&#x200D;&#x1F393;';
+    document.getElementById('studentView').style.display = 'flex';
+    document.getElementById('teacherView').style.display = 'none';
+    document.getElementById('switchViewBtn').style.display = 'none';
+  } else {
+    const name = document.getElementById('tchName').value || 'XXX老师';
+    document.getElementById('roleBadgeText').textContent = '教师: ' + name;
+    document.getElementById('roleBadge').querySelector('.role-icon').innerHTML = '&#x1F468;&#x200D;&#x1F3EB;';
+    document.getElementById('studentView').style.display = 'none';
+    document.getElementById('teacherView').style.display = 'flex';
+    document.getElementById('switchViewBtn').style.display = 'inline-flex';
+    document.getElementById('switchViewBtn').textContent = '\u{1F440} 切换到学生视图';
+    isPreviewingStudent = false;
+  }
+
+  // Initialize components after switching
+  setTimeout(() => {
+    if (role === 'teacher') {
+      renderHeatmap();
+      renderTop5();
+      renderWeakPoints();
+      renderRecords();
+      renderKBManage();
+      animateRing();
+    }
+    renderLectureGrid();
+  }, 100);
+}
+
+function logout() {
+  currentRole = null;
+  isPreviewingStudent = false;
+
+  const loginScreen = document.getElementById('loginScreen');
+  const appScreen = document.getElementById('appScreen');
+
+  appScreen.classList.remove('active');
+  appScreen.classList.add('hidden');
+  loginScreen.classList.remove('hidden');
+  loginScreen.classList.add('active');
+
+  document.getElementById('studentView').style.display = 'none';
+  document.getElementById('teacherView').style.display = 'none';
+}
+
+function switchToStudentPreview() {
+  if (!isPreviewingStudent) {
+    // Switch to student preview
+    isPreviewingStudent = true;
+    document.getElementById('teacherView').style.display = 'none';
+    document.getElementById('studentView').style.display = 'flex';
+    document.getElementById('switchViewBtn').textContent = '\u{1F4CA} 返回教师看板';
+    document.getElementById('roleBadgeText').textContent = '教师: ' + (document.getElementById('tchName').value || 'XXX老师') + ' (学生视图预览)';
+    renderLectureGrid();
+  } else {
+    // Switch back to teacher view
+    isPreviewingStudent = false;
+    document.getElementById('studentView').style.display = 'none';
+    document.getElementById('teacherView').style.display = 'flex';
+    document.getElementById('switchViewBtn').textContent = '\u{1F440} 切换到学生视图';
+    document.getElementById('roleBadgeText').textContent = '教师: ' + (document.getElementById('tchName').value || 'XXX老师');
+  }
+}
+
+
 // ===== MOCK DATA =====
 
-// Heatmap data: rows = knowledge categories, cols = lectures 1-16
 const heatmapData = {
   categories: ['Servlet基础', 'JSP/EL/JSTL', '会话管理', '数据库/JDBC', '框架/MVC', '安全/部署'],
   lectures: Array.from({length: 16}, (_, i) => `L${i + 1}`),
   values: [
-    // Servlet基础
     [8, 15, 12, 6, 3, 2, 4, 2, 1, 3, 2, 1, 2, 1, 5, 3],
-    // JSP/EL/JSTL
     [2, 3, 18, 22, 14, 5, 3, 8, 2, 1, 3, 2, 1, 2, 4, 3],
-    // 会话管理
     [1, 1, 2, 3, 25, 18, 8, 4, 3, 5, 6, 2, 3, 2, 7, 5],
-    // 数据库/JDBC
     [0, 1, 1, 2, 3, 4, 20, 24, 16, 8, 5, 6, 3, 4, 8, 6],
-    // 框架/MVC
     [0, 0, 1, 1, 2, 3, 3, 5, 22, 28, 19, 12, 8, 6, 10, 7],
-    // 安全/部署
     [0, 0, 0, 1, 2, 2, 3, 3, 4, 5, 8, 15, 20, 22, 18, 12],
   ]
 };
@@ -941,7 +1985,39 @@ const weakPoints = [
   { name: 'XSS/CSRF防护', pct: '31%' },
 ];
 
-// Mock AI responses keyed by topic
+const lectureData = [
+  { num: 1, title: 'Web开发概述' },
+  { num: 2, title: 'Servlet基础' },
+  { num: 3, title: 'HTTP协议' },
+  { num: 4, title: 'JSP技术' },
+  { num: 5, title: '会话管理' },
+  { num: 6, title: 'EL与JSTL' },
+  { num: 7, title: '数据库基础' },
+  { num: 8, title: 'JDBC编程' },
+  { num: 9, title: 'Filter/Listener' },
+  { num: 10, title: 'MVC设计模式' },
+  { num: 11, title: 'Spring MVC' },
+  { num: 12, title: 'MyBatis框架' },
+  { num: 13, title: 'Web安全基础' },
+  { num: 14, title: '事务与连接池' },
+  { num: 15, title: '项目实战(上)' },
+  { num: 16, title: '项目实战(下)' },
+];
+
+const questionRecords = [
+  { time: '21:32', student: '张伟', question: 'Session超时后如何自动跳转到登录页？', topic: '会话管理', quality: 'high', score: '4.8' },
+  { time: '21:28', student: '李明', question: 'PreparedStatement和Statement性能差异？', topic: 'JDBC', quality: 'high', score: '4.6' },
+  { time: '21:15', student: '王芳', question: 'Filter链的执行顺序由什么决定？', topic: 'Filter', quality: 'high', score: '4.7' },
+  { time: '20:58', student: '赵强', question: 'JSP中EL表达式如何访问Map？', topic: 'EL/JSTL', quality: 'medium', score: '3.9' },
+  { time: '20:45', student: '刘洋', question: 'Spring MVC的@RequestMapping用法？', topic: 'Spring MVC', quality: 'high', score: '4.5' },
+  { time: '20:30', student: '陈静', question: 'JDBC事务回滚的条件是什么？', topic: 'JDBC事务', quality: 'medium', score: '4.0' },
+  { time: '20:12', student: '黄磊', question: 'Cookie的Secure和HttpOnly属性区别？', topic: '会话管理', quality: 'high', score: '4.8' },
+  { time: '19:55', student: '周婷', question: 'MyBatis的#{}和${}有什么区别？', topic: 'MyBatis', quality: 'high', score: '4.9' },
+  { time: '19:40', student: '吴涛', question: 'XSS攻击的防御方法有哪些？', topic: 'Web安全', quality: 'medium', score: '3.8' },
+  { time: '19:22', student: '孙悦', question: 'MVC中Service层和DAO层的关系？', topic: 'MVC', quality: 'low', score: '3.2' },
+];
+
+// Mock AI responses
 const mockResponses = {
   session: {
     content: `关于Session，我来帮你深入理解！<br><br>
@@ -989,10 +2065,6 @@ session.<span class="fn">setMaxInactiveInterval</span>(<span class="str">1800</s
 &bull; <span class="highlight">Model（模型）</span>：业务逻辑和数据处理（JavaBean / Service / DAO）<br>
 &bull; <span class="highlight">View（视图）</span>：页面展示（JSP / Thymeleaf）<br>
 &bull; <span class="highlight">Controller（控制器）</span>：接收请求、调度Model、选择View（Servlet / @Controller）<br><br>
-<strong>Java Web中的MVC演进：</strong><br>
-&bull; Model 1：JSP + JavaBean（JSP既是V又是C，耦合严重）<br>
-&bull; Model 2：Servlet(C) + JSP(V) + JavaBean(M)<br>
-&bull; 框架时代：Spring MVC 通过注解大幅简化开发<br><br>
 <div class="code-block"><span class="kw">@Controller</span>
 <span class="kw">public class</span> <span class="tp">StudentController</span> {
   <span class="kw">@Autowired</span>
@@ -1009,26 +2081,24 @@ session.<span class="fn">setMaxInactiveInterval</span>(<span class="str">1800</s
     time: '14:25'
   },
   sql: {
-    content: `SQL注入是 <span class="ref-tag">第13讲 Web安全基础</span> 的重要内容，也是企业开发中必须掌握的安全知识！<br><br>
+    content: `SQL注入是 <span class="ref-tag">第13讲 Web安全基础</span> 的重要内容！<br><br>
 <strong>SQL注入原理：</strong><br>
-攻击者通过表单输入等方式，将恶意SQL代码拼接到查询语句中。<br><br>
-<strong>典型攻击示例：</strong><br>
+攻击者通过表单输入，将恶意SQL代码拼接到查询语句中。<br><br>
 <div class="code-block"><span class="cm">// 危险！字符串拼接SQL</span>
 <span class="tp">String</span> sql = <span class="str">"SELECT * FROM users WHERE name='"</span>
     + username + <span class="str">"' AND pwd='"</span> + password + <span class="str">"'"</span>;
 <span class="cm">// 输入: admin' OR '1'='1' --</span>
 <span class="cm">// 结果: 绕过密码验证！</span></div>
-<strong>防御方案（课程重点）：</strong><br>
-&bull; <span class="highlight">PreparedStatement</span>（参数化查询） &#x2014; 最核心的防御手段<br>
-&bull; 输入验证与过滤（白名单校验）<br>
-&bull; 最小数据库权限原则<br>
-&bull; MyBatis中使用 <code>#{}</code> 而非 <code>\${}</code><br><br>
+<strong>防御方案：</strong><br>
+&bull; <span class="highlight">PreparedStatement</span>（参数化查询）<br>
+&bull; 输入验证与过滤<br>
+&bull; 最小数据库权限原则<br><br>
 <div class="code-block"><span class="cm">// 安全！使用PreparedStatement</span>
 <span class="tp">String</span> sql = <span class="str">"SELECT * FROM users WHERE name=? AND pwd=?"</span>;
 <span class="tp">PreparedStatement</span> ps = conn.<span class="fn">prepareStatement</span>(sql);
 ps.<span class="fn">setString</span>(<span class="str">1</span>, username);
 ps.<span class="fn">setString</span>(<span class="str">2</span>, password);</div>
-这个知识点务必牢记，期末考试和实际工作中都会用到！`,
+这个知识点务必牢记，期末和工作中都会用到！`,
     time: '14:25'
   },
   default: {
@@ -1052,17 +2122,15 @@ ps.<span class="fn">setString</span>(<span class="str">2</span>, password);</div
 
 function renderHeatmap() {
   const grid = document.getElementById('heatmapGrid');
+  if (!grid) return;
   const maxVal = Math.max(...heatmapData.values.flat());
 
-  // Empty corner
   grid.innerHTML = '<div></div>';
 
-  // Column headers
   heatmapData.lectures.forEach(l => {
     grid.innerHTML += `<div class="heatmap-header">${l}</div>`;
   });
 
-  // Rows
   heatmapData.categories.forEach((cat, ri) => {
     grid.innerHTML += `<div class="heatmap-label">${cat}</div>`;
     heatmapData.values[ri].forEach((v, ci) => {
@@ -1080,6 +2148,8 @@ function renderHeatmap() {
 
 function renderTop5() {
   const list = document.getElementById('top5List');
+  if (!list) return;
+  list.innerHTML = '';
   top5Questions.forEach((item, i) => {
     list.innerHTML += `
       <div class="top5-item">
@@ -1089,7 +2159,6 @@ function renderTop5() {
         <div class="top5-bar-bg"><div class="top5-bar" style="width:0%" data-target="${item.pct}"></div></div>
       </div>`;
   });
-  // Animate bars
   setTimeout(() => {
     document.querySelectorAll('.top5-bar').forEach(bar => {
       bar.style.width = bar.dataset.target + '%';
@@ -1099,6 +2168,8 @@ function renderTop5() {
 
 function renderWeakPoints() {
   const container = document.getElementById('weakPoints');
+  if (!container) return;
+  container.innerHTML = '';
   weakPoints.forEach(wp => {
     container.innerHTML += `
       <div class="weak-tag">
@@ -1109,10 +2180,58 @@ function renderWeakPoints() {
   });
 }
 
+function renderRecords() {
+  const tbody = document.getElementById('recordsBody');
+  if (!tbody) return;
+  tbody.innerHTML = '';
+  questionRecords.forEach(r => {
+    tbody.innerHTML += `
+      <tr>
+        <td style="white-space:nowrap;">${r.time}</td>
+        <td style="white-space:nowrap;">${r.student}</td>
+        <td>${r.question}</td>
+        <td><span class="ref-tag">${r.topic}</span></td>
+        <td><span class="quality-badge ${r.quality}">${r.score}</span></td>
+      </tr>`;
+  });
+}
+
+function renderKBManage() {
+  const grid = document.getElementById('kbManageGrid');
+  if (!grid) return;
+  grid.innerHTML = '';
+  for (let i = 1; i <= 16; i++) {
+    const enabled = i !== 15 && i !== 16; // Last 2 disabled as demo
+    grid.innerHTML += `
+      <div class="kb-item ${enabled ? 'enabled' : 'disabled'}" onclick="this.classList.toggle('enabled');this.classList.toggle('disabled');">
+        第${i}讲
+      </div>`;
+  }
+}
+
+function renderLectureGrid() {
+  const grid = document.getElementById('lectureGrid');
+  if (!grid) return;
+  grid.innerHTML = '';
+  const currentLecture = 5; // Current progress at lecture 5
+  lectureData.forEach(l => {
+    const isCurrent = l.num === currentLecture;
+    grid.innerHTML += `
+      <div class="lecture-card ${isCurrent ? 'current' : ''}" title="第${l.num}讲: ${l.title}">
+        <div class="lc-num">${l.num}</div>
+        <div class="lc-title">${l.title}</div>
+        ${isCurrent ? '<div class="lc-badge">当前</div>' : ''}
+      </div>`;
+  });
+}
+
 function animateRing() {
   const ring = document.getElementById('activeRing');
-  const circumference = 2 * Math.PI * 39; // ~245
-  const target = 0.724; // 42/58
+  if (!ring) return;
+  const circumference = 2 * Math.PI * 35; // ~220
+  ring.style.strokeDasharray = circumference;
+  ring.style.strokeDashoffset = circumference;
+  const target = 0.724;
   setTimeout(() => {
     ring.style.strokeDashoffset = circumference * (1 - target);
   }, 500);
@@ -1142,17 +2261,12 @@ document.addEventListener('mouseout', e => {
 
 
 // ===== CHAT LOGIC =====
-const chatMessages = document.getElementById('chatMessages');
-const chatInput = document.getElementById('chatInput');
-const sendBtn = document.getElementById('sendBtn');
-const typingIndicator = document.getElementById('typingIndicator');
-
 function getCurrentTime() {
   const now = new Date();
   return now.getHours().toString().padStart(2, '0') + ':' + now.getMinutes().toString().padStart(2, '0');
 }
 
-function addMessage(type, content) {
+function addMessage(container, type, content) {
   const avatar = type === 'user' ? '李' : 'W';
   const time = getCurrentTime();
   const msg = document.createElement('div');
@@ -1163,8 +2277,8 @@ function addMessage(type, content) {
       <div class="message-content">${content}</div>
       <div class="message-time">${time}</div>
     </div>`;
-  chatMessages.appendChild(msg);
-  chatMessages.scrollTop = chatMessages.scrollHeight;
+  container.appendChild(msg);
+  container.scrollTop = container.scrollHeight;
 }
 
 function getResponse(input) {
@@ -1180,44 +2294,46 @@ function getResponse(input) {
   return mockResponses.default;
 }
 
-function handleSend() {
-  const text = chatInput.value.trim();
-  if (!text) return;
+function setupChat(inputId, sendBtnId, messagesId, typingId) {
+  const chatInput = document.getElementById(inputId);
+  const sendBtn = document.getElementById(sendBtnId);
+  const chatMessages = document.getElementById(messagesId);
+  const typingIndicator = document.getElementById(typingId);
 
-  // Add user message
-  addMessage('user', text);
-  chatInput.value = '';
+  function handleSend() {
+    const text = chatInput.value.trim();
+    if (!text) return;
 
-  // Show typing
-  typingIndicator.classList.add('visible');
-  chatMessages.scrollTop = chatMessages.scrollHeight;
+    addMessage(chatMessages, 'user', text);
+    chatInput.value = '';
 
-  // Simulate AI response delay
-  const delay = 1200 + Math.random() * 1000;
-  setTimeout(() => {
-    typingIndicator.classList.remove('visible');
-    const response = getResponse(text);
-    addMessage('ai', response.content);
-  }, delay);
+    typingIndicator.classList.add('visible');
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+
+    const delay = 1200 + Math.random() * 1000;
+    setTimeout(() => {
+      typingIndicator.classList.remove('visible');
+      const response = getResponse(text);
+      addMessage(chatMessages, 'ai', response.content);
+    }, delay);
+  }
+
+  sendBtn.addEventListener('click', handleSend);
+  chatInput.addEventListener('keydown', e => {
+    if (e.key === 'Enter' && !e.shiftKey) {
+      e.preventDefault();
+      handleSend();
+    }
+  });
 }
 
-sendBtn.addEventListener('click', handleSend);
-chatInput.addEventListener('keydown', e => {
-  if (e.key === 'Enter' && !e.shiftKey) {
-    e.preventDefault();
-    handleSend();
-  }
-});
+// Setup chat for both views
+setupChat('chatInputStudent', 'sendBtnStudent', 'chatMessagesStudent', 'typingIndicatorStudent');
+setupChat('chatInputTeacher', 'sendBtnTeacher', 'chatMessagesTeacher', 'typingIndicatorTeacher');
 
-
-// ===== INIT =====
-renderHeatmap();
-renderTop5();
-renderWeakPoints();
-animateRing();
-
-// Scroll chat to bottom initially
-chatMessages.scrollTop = chatMessages.scrollHeight;
+// Scroll chats to bottom initially
+document.getElementById('chatMessagesStudent').scrollTop = document.getElementById('chatMessagesStudent').scrollHeight;
+document.getElementById('chatMessagesTeacher').scrollTop = document.getElementById('chatMessagesTeacher').scrollHeight;
 </script>
 </body>
 </html>
