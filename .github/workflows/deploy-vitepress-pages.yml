@@ -5,6 +5,7 @@ on:
     branches: ["main"]
     paths:
       - "site/**"
+      - "demo-tools/**"
       - ".github/workflows/deploy-vitepress-pages.yml"
   workflow_dispatch:
 
@@ -47,6 +48,9 @@ jobs:
         uses: actions/configure-pages@v5
         with:
           enablement: true
+
+      - name: Copy demo-tools into dist
+        run: cp -r ../demo-tools docs/.vitepress/dist/demo-tools
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3

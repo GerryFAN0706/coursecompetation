@@ -18,7 +18,7 @@ anonSafe: true
     <div class="label">核心文档（D01-D07）</div>
   </div>
   <div class="metric-hero-card">
-    <div class="num cyan">10</div>
+    <div class="num cyan">18</div>
     <div class="label">AI提示词模板</div>
   </div>
   <div class="metric-hero-card">
@@ -62,6 +62,48 @@ anonSafe: true
     <p>个性化实验设计生成提示词、PPT生成工作流、分层任务模板</p>
   </div>
 </div>
+
+## 在线交互演示
+
+<div class="info-box emerald">
+  <span class="icon">🖥️</span>
+  <div>
+    <strong>原型Demo：</strong>以下交互式演示展示各AI融合创新工具在真实教学场景中的界面与操作流程（演示用途，非生产系统）。
+  </div>
+</div>
+
+<div class="summary-grid">
+  <div class="summary-card">
+    <div class="summary-icon">🤖</div>
+    <h3>智能助教 Demo</h3>
+    <p>RAG课程智能体的聊天界面、预习引导、学情热力图展示。</p>
+    <p><a href="https://gerryfan0706.github.io/coursecompetation/demo-tools/webdev-assistant/">打开演示 →</a></p>
+  </div>
+  <div class="summary-card">
+    <div class="summary-icon">🎮</div>
+    <h3>编程挑战 Demo</h3>
+    <p>安全漏洞闯关界面、代码编辑器、自动判定与排行榜展示。</p>
+    <p><a href="https://gerryfan0706.github.io/coursecompetation/demo-tools/websec-challenge/">打开演示 →</a></p>
+  </div>
+  <div class="summary-card">
+    <div class="summary-icon">👥</div>
+    <h3>团队教练 Demo</h3>
+    <p>Git贡献分析看板、AI周报生成、搭便车预警界面展示。</p>
+    <p><a href="https://gerryfan0706.github.io/coursecompetation/demo-tools/team-coach/">打开演示 →</a></p>
+  </div>
+  <div class="summary-card">
+    <div class="summary-icon">⚔️</div>
+    <h3>人机对抗 Demo</h3>
+    <p>人vs AI代码审查对战流程、结果对比、辩论界面展示。</p>
+    <p><a href="https://gerryfan0706.github.io/coursecompetation/demo-tools/code-review-battle/">打开演示 →</a></p>
+  </div>
+</div>
+
+<p style="text-align:center;margin:10px 0;">
+  <a href="https://gerryfan0706.github.io/coursecompetation/demo-tools/" style="display:inline-block;padding:8px 24px;background:linear-gradient(135deg,#2563eb,#0891b2);color:white;border-radius:999px;font-weight:600;text-decoration:none;box-shadow:0 4px 14px rgba(37,99,235,0.2);transition:all 0.3s;">查看全部工具演示 →</a>
+</p>
+
+<div class="section-divider"></div>
 
 ## 快速入口
 
