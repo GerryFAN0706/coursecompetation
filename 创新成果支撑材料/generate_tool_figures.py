@@ -34,7 +34,7 @@ def fig9_architecture():
     ax.set_xlim(0, 12)
     ax.set_ylim(0, 10)
     ax.axis('off')
-    ax.set_title('图9  四位一体AI教学工具架构', fontsize=16, fontweight='bold', pad=20)
+    ax.set_title('图9  五维AI融合创新教学工具架构', fontsize=16, fontweight='bold', pad=20)
 
     # Center circle
     center_x, center_y = 6, 5
@@ -142,7 +142,7 @@ def fig9_architecture():
     ax.text(6, -0.2, '教师角色: 审核决策者    学生角色: 理解判断者    AI角色: 辅助执行者',
             ha='center', va='center', fontsize=9, color='#888888', style='italic')
 
-    fig.savefig(os.path.join(OUT, '图9_四位一体AI教学工具架构.png'))
+    fig.savefig(os.path.join(OUT, '图9_五维AI融合创新教学工具架构.png'))
     plt.close(fig)
     print('[OK] Fig9 done')
 

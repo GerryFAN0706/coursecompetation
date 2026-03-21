@@ -62,7 +62,7 @@ anonSafe: true
     <div class="timeline-marker">2</div>
     <div class="timeline-content">
       <h4>AI教学创新设计</h4>
-      <p>课前-课中-课后架构、三大创新点、人机协同模式</p>
+      <p>课前-课中-课后架构、五维AI融合创新、人机协同模式</p>
       <p><a href="/coursecompetation/innovation/">→ AI教学创新设计</a></p>
     </div>
   </div>
@@ -117,7 +117,7 @@ anonSafe: true
 <tr>
   <td><strong>是否有真实教学问题</strong></td>
   <td><a href="/coursecompetation/innovation/">AI教学创新设计</a></td>
-  <td>三大痛点（抄袭45%、批改慢、脱节）→ 量化改善数据</td>
+  <td>五大痛点（抄袭45%、批改慢、盲信AI、搭便车、备课低效）→ 量化改善数据</td>
 </tr>
 <tr>
   <td><strong>AI应用是否覆盖2+教学情境</strong></td>
