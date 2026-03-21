@@ -1,4 +1,4 @@
-"""Generate all 8 figures for the Innovation Report (创新成果报告)."""
+"""Generate figures 1, 6-12 for the Innovation Report (创新成果报告)."""
 import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
@@ -26,14 +26,14 @@ os.makedirs(OUT, exist_ok=True)
 
 
 # ════════════════════════════════════════════════════════════════
-# 图1  AI赋能教学全流程闭环示意图
+# 图1  AI赋能教学全流程闭环架构
 # ════════════════════════════════════════════════════════════════
 def fig1_flowchart():
     fig, ax = plt.subplots(figsize=(14, 6))
     ax.set_xlim(0, 14)
     ax.set_ylim(0, 6)
     ax.axis('off')
-    ax.set_title('图1  AI赋能教学全流程闭环示意图', fontsize=16, fontweight='bold', pad=20)
+    ax.set_title('图1  AI赋能教学全流程闭环架构', fontsize=16, fontweight='bold', pad=20)
 
     # Main flow boxes
     phases = [
@@ -81,15 +81,15 @@ def fig1_flowchart():
     ax.text(0.2, 0.8, '教师角色：审核决策者    学生角色：理解判断者    AI角色：辅助执行者',
             fontsize=9, color='#444444', style='italic')
 
-    fig.savefig(os.path.join(OUT, '图1_AI赋能教学全流程闭环.png'))
+    fig.savefig(os.path.join(OUT, '图1_AI赋能教学全流程闭环架构.png'))
     plt.close(fig)
     print('[OK] Fig1 done')
 
 
 # ════════════════════════════════════════════════════════════════
-# 图2  代码相似度下降趋势图
+# 图6  MOSS代码相似度逐批次下降趋势
 # ════════════════════════════════════════════════════════════════
-def fig2_similarity():
+def fig6_similarity():
     fig, ax1 = plt.subplots(figsize=(10, 6))
 
     batches = ['HW03\nJSP页面', 'HW06\nJDBC', 'HW10\nMVC综合', 'HW14\n权限控制']
@@ -138,17 +138,17 @@ def fig2_similarity():
     h2, l2 = ax2.get_legend_handles_labels()
     ax1.legend(h1 + h2, l1 + l2, loc='upper right', fontsize=9, framealpha=0.9)
 
-    ax1.set_title('图2  MOSS代码相似度下降趋势（2024 vs 2025）', fontsize=14, fontweight='bold')
+    ax1.set_title('图6  MOSS代码相似度逐批次下降趋势（2024 vs 2025）', fontsize=14, fontweight='bold')
     ax1.grid(axis='y', alpha=0.3)
-    fig.savefig(os.path.join(OUT, '图2_代码相似度下降趋势.png'))
+    fig.savefig(os.path.join(OUT, '图6_MOSS代码相似度逐批次下降趋势.png'))
     plt.close(fig)
-    print('[OK] Fig2 done')
+    print('[OK] Fig6 done')
 
 
 # ════════════════════════════════════════════════════════════════
-# 图3  教师审查时间对比图
+# 图7  AI辅助前后教师单份作业审查时间对比
 # ════════════════════════════════════════════════════════════════
-def fig3_review_time():
+def fig7_review_time():
     fig, ax = plt.subplots(figsize=(10, 6))
 
     phases = ['代码规范检查', '功能正确性测试', '安全漏洞审查', '反馈意见撰写']
@@ -182,18 +182,18 @@ def fig3_review_time():
     ax.set_xticklabels(phases, fontsize=11)
     ax.set_ylim(0, 16)
     ax.legend(fontsize=10, loc='upper left')
-    ax.set_title('图3  教师单份作业审查时间对比', fontsize=14, fontweight='bold')
+    ax.set_title('图7  AI辅助前后教师单份作业审查时间对比', fontsize=14, fontweight='bold')
     ax.grid(axis='y', alpha=0.3)
 
-    fig.savefig(os.path.join(OUT, '图3_教师审查时间对比.png'))
+    fig.savefig(os.path.join(OUT, '图7_AI辅助前后教师单份作业审查时间对比.png'))
     plt.close(fig)
-    print('[OK] Fig3 done')
+    print('[OK] Fig7 done')
 
 
 # ════════════════════════════════════════════════════════════════
-# 图4  SQL注入识别率四时间点追踪
+# 图8  SQL注入安全意识四时间点纵向追踪
 # ════════════════════════════════════════════════════════════════
-def fig4_sql_injection():
+def fig8_sql_injection():
     fig, ax = plt.subplots(figsize=(10, 6))
 
     weeks = ['第1周\n学期初摸底', '第6周\nJDBC讲授后', '第11周\nAI辅助审查后', '第16周\n期末考核']
@@ -225,18 +225,18 @@ def fig4_sql_injection():
     ax.set_xticklabels(weeks, fontsize=10)
     ax.set_ylim(0, 105)
     ax.legend(fontsize=10, loc='upper left')
-    ax.set_title('图4  SQL注入安全意识四时间点追踪（N=58）', fontsize=14, fontweight='bold')
+    ax.set_title('图8  SQL注入安全意识四时间点纵向追踪（N=58）', fontsize=14, fontweight='bold')
     ax.grid(axis='y', alpha=0.3)
 
-    fig.savefig(os.path.join(OUT, '图4_SQL注入识别率追踪.png'))
+    fig.savefig(os.path.join(OUT, '图8_SQL注入安全意识四时间点纵向追踪.png'))
     plt.close(fig)
-    print('[OK] Fig4 done')
+    print('[OK] Fig8 done')
 
 
 # ════════════════════════════════════════════════════════════════
-# 图5  学生问卷满意度雷达图
+# 图12  学生问卷满意度多维评价雷达图
 # ════════════════════════════════════════════════════════════════
-def fig5_radar():
+def fig12_radar():
     fig, ax = plt.subplots(figsize=(8, 8), subplot_kw=dict(polar=True))
 
     categories = ['整体满意度\nQ1', '知识理解帮助\nQ2', '代码审查有效性\nQ3',
@@ -264,7 +264,7 @@ def fig5_radar():
     ax.set_yticklabels(['1', '2', '3', '4', '5'], fontsize=8)
     ax.set_rlabel_position(30)
 
-    ax.set_title('图5  学生问卷满意度分布（N=54, α=0.87）',
+    ax.set_title('图12  学生问卷满意度多维评价雷达图（N=54, α=0.87）',
                  fontsize=14, fontweight='bold', pad=30)
 
     # Add annotation
@@ -272,15 +272,15 @@ def fig5_radar():
             transform=ax.transAxes, ha='center', fontsize=10, color=RED, fontweight='bold',
             bbox=dict(boxstyle='round,pad=0.4', facecolor='#FFF0F0', edgecolor=RED))
 
-    fig.savefig(os.path.join(OUT, '图5_学生问卷满意度雷达图.png'))
+    fig.savefig(os.path.join(OUT, '图12_学生问卷满意度多维评价雷达图.png'))
     plt.close(fig)
-    print('[OK] Fig5 done')
+    print('[OK] Fig12 done')
 
 
 # ════════════════════════════════════════════════════════════════
-# 图6  核心成效指标对比图
+# 图9  实验组与对照组核心成效指标对比
 # ════════════════════════════════════════════════════════════════
-def fig6_core_metrics():
+def fig9_core_metrics():
     fig, axes = plt.subplots(1, 2, figsize=(16, 7), gridspec_kw={'width_ratios': [3, 2]})
 
     # Left: percentage-based metrics
@@ -347,18 +347,18 @@ def fig6_core_metrics():
     ax2.set_title('功能·安全·成绩指标', fontsize=12, fontweight='bold')
     ax2.grid(axis='y', alpha=0.3)
 
-    fig.suptitle('图6  核心成效指标对比（实验组N=58 vs 对照组N=62）',
+    fig.suptitle('图9  实验组与对照组核心成效指标对比（N=58 vs N=62）',
                  fontsize=14, fontweight='bold', y=1.02)
     fig.tight_layout()
-    fig.savefig(os.path.join(OUT, '图6_核心成效指标对比.png'))
+    fig.savefig(os.path.join(OUT, '图9_实验组与对照组核心成效指标对比.png'))
     plt.close(fig)
-    print('[OK] Fig6 done')
+    print('[OK] Fig9 done')
 
 
 # ════════════════════════════════════════════════════════════════
-# 图7  学业成绩分布对比
+# 图10  实验组与对照组学业成绩分布对比
 # ════════════════════════════════════════════════════════════════
-def fig7_grade_distribution():
+def fig10_grade_distribution():
     fig, ax = plt.subplots(figsize=(10, 6))
 
     grades = ['优秀\n(90-100)', '良好\n(80-89)', '中等\n(70-79)', '及格\n(60-69)', '不及格\n(<60)']
@@ -396,18 +396,18 @@ def fig7_grade_distribution():
     ax.set_xticklabels(grades, fontsize=11)
     ax.set_ylim(0, 45)
     ax.legend(fontsize=10, loc='upper left')
-    ax.set_title('图7  学业成绩分布对比', fontsize=14, fontweight='bold')
+    ax.set_title('图10  实验组与对照组学业成绩分布对比', fontsize=14, fontweight='bold')
     ax.grid(axis='y', alpha=0.3)
 
-    fig.savefig(os.path.join(OUT, '图7_学业成绩分布对比.png'))
+    fig.savefig(os.path.join(OUT, '图10_实验组与对照组学业成绩分布对比.png'))
     plt.close(fig)
-    print('[OK] Fig7 done')
+    print('[OK] Fig10 done')
 
 
 # ════════════════════════════════════════════════════════════════
-# 图8  安全漏洞分类统计对比
+# 图11  第14次作业五类安全漏洞出现率对比
 # ════════════════════════════════════════════════════════════════
-def fig8_vulnerabilities():
+def fig11_vulnerabilities():
     fig, ax = plt.subplots(figsize=(11, 6))
 
     vulns = ['SQL注入\n(字符串拼接)', '越权访问\n(Filter缺少角色检查)', 'Session残留\n(退出不彻底)',
@@ -439,22 +439,22 @@ def fig8_vulnerabilities():
     ax.set_yticklabels(vulns, fontsize=10)
     ax.set_xlim(0, 95)
     ax.legend(fontsize=10, loc='lower right')
-    ax.set_title('图8  安全漏洞分类统计对比（第14次作业，权限控制）', fontsize=14, fontweight='bold')
+    ax.set_title('图11  第14次作业五类安全漏洞出现率对比', fontsize=14, fontweight='bold')
     ax.grid(axis='x', alpha=0.3)
 
-    fig.savefig(os.path.join(OUT, '图8_安全漏洞分类统计对比.png'))
+    fig.savefig(os.path.join(OUT, '图11_第14次作业五类安全漏洞出现率对比.png'))
     plt.close(fig)
-    print('[OK] Fig8 done')
+    print('[OK] Fig11 done')
 
 
 # ── Run all ────────────────────────────────────────────────────
 if __name__ == '__main__':
     fig1_flowchart()
-    fig2_similarity()
-    fig3_review_time()
-    fig4_sql_injection()
-    fig5_radar()
-    fig6_core_metrics()
-    fig7_grade_distribution()
-    fig8_vulnerabilities()
+    fig6_similarity()
+    fig7_review_time()
+    fig8_sql_injection()
+    fig12_radar()
+    fig9_core_metrics()
+    fig10_grade_distribution()
+    fig11_vulnerabilities()
     print('\nAll 8 figures generated successfully.')

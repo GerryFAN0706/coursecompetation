@@ -27,39 +27,43 @@ os.makedirs(OUT, exist_ok=True)
 
 
 # ════════════════════════════════════════════════════════════════
-# Fig 9  Four-in-one AI Teaching Tool Architecture
+# Fig 2  Five-dimension AI Fusion Innovation Teaching Tool Architecture
 # ════════════════════════════════════════════════════════════════
-def fig9_architecture():
-    fig, ax = plt.subplots(figsize=(12, 10))
-    ax.set_xlim(0, 12)
-    ax.set_ylim(0, 10)
+def fig2_architecture():
+    fig, ax = plt.subplots(figsize=(14, 11))
+    ax.set_xlim(0, 14)
+    ax.set_ylim(-0.5, 11)
     ax.axis('off')
-    ax.set_title('图9  五维AI融合创新教学工具架构', fontsize=16, fontweight='bold', pad=20)
+    ax.set_title('图2  五维AI融合创新教学工具体系架构', fontsize=16, fontweight='bold', pad=20)
 
     # Center circle
-    center_x, center_y = 6, 5
+    center_x, center_y = 7, 5.5
     center_r = 1.3
     circle = plt.Circle((center_x, center_y), center_r, facecolor='#FFF8E1',
                          edgecolor=ORANGE, linewidth=2.5, zorder=5)
     ax.add_patch(circle)
-    ax.text(center_x, center_y + 0.15, 'AI赋能', ha='center', va='center',
-            fontsize=14, fontweight='bold', color=ORANGE, zorder=6)
-    ax.text(center_x, center_y - 0.35, '教学闭环', ha='center', va='center',
-            fontsize=14, fontweight='bold', color=ORANGE, zorder=6)
+    ax.text(center_x, center_y + 0.3, '五维融合', ha='center', va='center',
+            fontsize=13, fontweight='bold', color=ORANGE, zorder=6)
+    ax.text(center_x, center_y - 0.25, '数据闭环', ha='center', va='center',
+            fontsize=13, fontweight='bold', color=ORANGE, zorder=6)
 
-    # Tool definitions: (cx, cy, name, subtitle, color, bg_color, scenarios, phase_label)
+    # 5 tools arranged in a pentagon around center
+    # Positions: top, upper-right, lower-right, lower-left, upper-left
+    PINK = '#E91E63'
     tools = [
-        (6, 8.5, 'WebDev助教', '教学智能体', BLUE, '#D6E4F0',
-         '场景1 学情分层\n场景2 个性化出题', '课前'),
-        (10, 5, 'WebSec挑战', '攻防闯关', CYAN, '#E0F7FA',
-         '场景3 安全实训\n场景4 闯关驱动', '课中'),
-        (6, 1.5, 'TeamCoach', '项目教练', GREEN, '#E8F5E9',
-         '场景5 团队协作\n场景6 贡献分析', '课后'),
-        (2, 5, 'Code Review Battle', '评审对战', PURPLE, '#EDE7F6',
-         '场景7 人机对比\n场景8 批判思维', '数据反馈'),
+        (7, 9.5, '维度一：智能助教', 'WebDev助教 · RAG智能体', BLUE, '#D6E4F0',
+         '学情采集 · 24h问答 · 预习引导', '课前+课后'),
+        (11.5, 7.2, '维度二：编程挑战', 'WebSec挑战 · 攻防闯关', CYAN, '#E0F7FA',
+         '游戏化训练 · 自适应难度 · 实时大屏', '课中'),
+        (10.2, 2.5, '维度三：团队教练', 'TeamCoach · Git分析', GREEN, '#E8F5E9',
+         '贡献度追踪 · 搭便车预警 · AI周报', '课后'),
+        (3.8, 2.5, '维度四：人机对抗', 'Code Review Battle', PURPLE, '#EDE7F6',
+         '人机同台审查 · 批判性思维 · 辩论', '课中'),
+        (2.5, 7.2, '维度五：资料重构', 'AI辅助教学资料重构', PINK, '#FCE4EC',
+         '一人一题 · 分层任务 · AI课件生成', '课前'),
     ]
 
-    box_w, box_h = 3.0, 1.6
+    box_w, box_h = 3.2, 1.5
 
     for cx, cy, name, subtitle, color, bg_color, scenarios, phase in tools:
         # Main box
@@ -69,82 +73,52 @@ def fig9_architecture():
             edgecolor=color, linewidth=2.5, zorder=4)
         ax.add_patch(rect)
         ax.text(cx, cy + 0.3, name, ha='center', va='center',
-                fontsize=13, fontweight='bold', color=color, zorder=5)
-        ax.text(cx, cy - 0.3, subtitle, ha='center', va='center',
-                fontsize=10, color='#555555', zorder=5)
+                fontsize=11, fontweight='bold', color=color, zorder=5)
+        ax.text(cx, cy - 0.25, subtitle, ha='center', va='center',
+                fontsize=9, color='#555555', zorder=5)
 
-        # Phase badge above/below/side
-        badge_offsets = {
-            (6, 8.5): (cx, cy + box_h / 2 + 0.35),
-            (10, 5): (cx + box_w / 2 + 0.05, cy + box_h / 2 + 0.35),
-            (6, 1.5): (cx, cy - box_h / 2 - 0.35),
-            (2, 5): (cx - box_w / 2 - 0.05, cy + box_h / 2 + 0.35),
-        }
-        bx, by = badge_offsets[(cx, cy)]
-        ax.text(bx, by, phase, ha='center', va='center', fontsize=9,
+        # Phase badge
+        ax.text(cx + box_w / 2 - 0.1, cy + box_h / 2 - 0.1, phase,
+                ha='right', va='top', fontsize=8,
                 fontweight='bold', color='white',
-                bbox=dict(boxstyle='round,pad=0.25', facecolor=color, edgecolor='none'),
+                bbox=dict(boxstyle='round,pad=0.2', facecolor=color, edgecolor='none'),
                 zorder=6)
 
         # Scenario labels below box
-        scenario_offsets = {
-            (6, 8.5): (cx, cy - box_h / 2 - 0.35),
-            (10, 5): (cx, cy - box_h / 2 - 0.35),
-            (6, 1.5): (cx, cy + box_h / 2 + 0.35),
-            (2, 5): (cx, cy - box_h / 2 - 0.35),
-        }
-        sx, sy = scenario_offsets[(cx, cy)]
-        ax.text(sx, sy, scenarios, ha='center', va='center',
-                fontsize=8, color='#666666', linespacing=1.5, zorder=5)
+        ax.text(cx, cy - box_h / 2 - 0.25, scenarios, ha='center', va='top',
+                fontsize=7.5, color='#666666', zorder=5)
 
-    # Arrows connecting tools in a cycle: top->right->bottom->left->top
-    arrow_style = dict(arrowstyle='->', color='#555555', lw=2.0,
-                       connectionstyle='arc3,rad=0.3')
-
-    # Top (WebDev) -> Right (WebSec)
-    ax.annotate('', xy=(10 - box_w / 2, 5 + box_h / 2),
-                xytext=(6 + box_w / 2, 8.5 - box_h / 2),
-                arrowprops=dict(arrowstyle='->', color=BLUE, lw=2.0,
-                                connectionstyle='arc3,rad=0.2'), zorder=3)
-    ax.text(9.0, 7.5, '课前 --> 课中', fontsize=8, color='#666666',
-            ha='center', rotation=-40, zorder=3)
-
-    # Right (WebSec) -> Bottom (TeamCoach)
-    ax.annotate('', xy=(6 + box_w / 2, 1.5 + box_h / 2),
-                xytext=(10 - box_w / 2, 5 - box_h / 2),
-                arrowprops=dict(arrowstyle='->', color=CYAN, lw=2.0,
-                                connectionstyle='arc3,rad=0.2'), zorder=3)
-    ax.text(9.0, 2.5, '课中 --> 课后', fontsize=8, color='#666666',
-            ha='center', rotation=40, zorder=3)
-
-    # Bottom (TeamCoach) -> Left (CodeReview)
-    ax.annotate('', xy=(2 + box_w / 2, 5 - box_h / 2),
-                xytext=(6 - box_w / 2, 1.5 + box_h / 2),
-                arrowprops=dict(arrowstyle='->', color=GREEN, lw=2.0,
-                                connectionstyle='arc3,rad=0.2'), zorder=3)
-    ax.text(3.0, 2.5, '课后 --> 反馈', fontsize=8, color='#666666',
-            ha='center', rotation=-40, zorder=3)
-
-    # Left (CodeReview) -> Top (WebDev)
-    ax.annotate('', xy=(6 - box_w / 2, 8.5 - box_h / 2),
-                xytext=(2 + box_w / 2, 5 + box_h / 2),
-                arrowprops=dict(arrowstyle='->', color=PURPLE, lw=2.0,
-                                connectionstyle='arc3,rad=0.2'), zorder=3)
-    ax.text(3.0, 7.5, '反馈 --> 课前', fontsize=8, color='#666666',
-            ha='center', rotation=40, zorder=3)
-
-    # Connecting lines from tools to center
-    for cx, cy, _, _, color, _, _, _ in tools:
+        # Dashed line to center
         ax.plot([cx, center_x], [cy, center_y], '--', color=color,
-                linewidth=1.0, alpha=0.4, zorder=2)
+                linewidth=1.2, alpha=0.4, zorder=2)
+
+    # Arrows forming the cycle (pentagon edges)
+    arrow_pairs = [
+        (0, 1, '课前→课中'),
+        (1, 2, '课中→课后'),
+        (2, 3, '课后→课中'),
+        (3, 4, '对抗→重构'),
+        (4, 0, '重构→智能体'),
+    ]
+    for i_from, i_to, label in arrow_pairs:
+        x1, y1 = tools[i_from][0], tools[i_from][1]
+        x2, y2 = tools[i_to][0], tools[i_to][1]
+        color_from = tools[i_from][4]
+        ax.annotate('', xy=(x2, y2), xytext=(x1, y1),
+                    arrowprops=dict(arrowstyle='->', color=color_from, lw=1.8,
+                                    connectionstyle='arc3,rad=0.15'), zorder=3)
 
     # Footer
-    ax.text(6, -0.2, '教师角色: 审核决策者    学生角色: 理解判断者    AI角色: 辅助执行者',
+    ax.text(7, 0.0, '教师角色: 审核决策者    学生角色: 理解判断者    AI角色: 辅助执行者',
             ha='center', va='center', fontsize=9, color='#888888', style='italic')
 
-    fig.savefig(os.path.join(OUT, '图9_五维AI融合创新教学工具架构.png'))
+    # Coverage note
+    ax.text(7, -0.45, '五维融合覆盖全部六大AI教学情境：学情采集·数字资源·场景设计·多维评价·人机协同·个性化支持',
+            ha='center', va='center', fontsize=8, color='#999999')
+
+    fig.savefig(os.path.join(OUT, '图2_五维AI融合创新教学工具体系架构.png'))
     plt.close(fig)
-    print('[OK] Fig9 done')
+    print('[OK] Fig2 done')
 
 
 # ════════════════════════════════════════════════════════════════
@@ -205,12 +179,12 @@ def fig10_websec_passrate():
     ax.set_xticklabels(levels, fontsize=11)
     ax.set_ylim(0, 110)
     ax.legend(fontsize=11, loc='upper right')
-    ax.set_title('图10  WebSec挑战通关数据（N=58）', fontsize=14, fontweight='bold')
+    ax.set_title('图3  WebSec安全攻防闯关平台通关率数据（N=58）', fontsize=14, fontweight='bold')
     ax.grid(axis='y', alpha=0.3)
 
-    fig.savefig(os.path.join(OUT, '图10_WebSec挑战通关数据.png'))
+    fig.savefig(os.path.join(OUT, '图3_WebSec安全攻防闯关平台通关率数据.png'))
     plt.close(fig)
-    print('[OK] Fig10 done')
+    print('[OK] Fig3 done')
 
 
 # ════════════════════════════════════════════════════════════════
@@ -287,12 +261,12 @@ def fig11_codereview_comparison():
     ax.set_xticklabels(dimensions, fontsize=12)
     ax.set_ylim(0, 6.5)
     ax.legend(fontsize=11, loc='upper left')
-    ax.set_title('图11  Code Review人机对比（N=10组）', fontsize=14, fontweight='bold')
+    ax.set_title('图5  Code Review Battle人机审查发现对比（N=10组）', fontsize=14, fontweight='bold')
     ax.grid(axis='y', alpha=0.3)
 
-    fig.savefig(os.path.join(OUT, '图11_CodeReview人机对比.png'))
+    fig.savefig(os.path.join(OUT, '图5_CodeReviewBattle人机审查发现对比.png'))
     plt.close(fig)
-    print('[OK] Fig11 done')
+    print('[OK] Fig5 done')
 
 
 # ════════════════════════════════════════════════════════════════
@@ -386,17 +360,17 @@ def fig12_teamcoach_contribution():
     ax.set_xlim(0, 70)
     ax.set_ylim(-0.8, n_teams - 0.2 + 0.8)
     ax.invert_yaxis()
-    ax.set_title('图12  团队贡献度分布 (TeamCoach自动分析)', fontsize=14, fontweight='bold')
+    ax.set_title('图4  TeamCoach团队贡献度均衡化趋势', fontsize=14, fontweight='bold')
     ax.grid(axis='x', alpha=0.3)
 
-    fig.savefig(os.path.join(OUT, '图12_TeamCoach团队贡献度分布.png'))
+    fig.savefig(os.path.join(OUT, '图4_TeamCoach团队贡献度均衡化趋势.png'))
     plt.close(fig)
-    print('[OK] Fig12 done')
+    print('[OK] Fig4 done')
 
 
 # ── Run all ────────────────────────────────────────────────────
 if __name__ == '__main__':
-    fig9_architecture()
+    fig2_architecture()
     fig10_websec_passrate()
     fig11_codereview_comparison()
     fig12_teamcoach_contribution()
