@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1920, height=1080">
+<title>AI-Empowered Java Web Teaching Innovation Toolkit</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    width: 1920px;
+    height: 1080px;
+    overflow: hidden;
+    font-family: "Microsoft YaHei", "PingFang SC", "Helvetica Neue", Arial, sans-serif;
+    background: linear-gradient(135deg, #1a2a6c 0%, #2a4080 30%, #345a9e 55%, #4472C4 100%);
+    position: relative;
+    color: #fff;
+    text-align: center;
+  }
+
+  /* ── Background geometric patterns ── */
+  .bg-grid {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+    background-size: 60px 60px;
+    z-index: 0;
+  }
+
+  /* Circuit / network pattern overlay */
+  .bg-circuit {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    z-index: 0;
+    opacity: 0.04;
+  }
+  .bg-circuit .line {
+    position: absolute;
+    background: #fff;
+  }
+  .bg-circuit .h-line { height: 1px; }
+  .bg-circuit .v-line { width: 1px; }
+  .bg-circuit .dot {
+    position: absolute;
+    width: 6px; height: 6px;
+    background: #fff;
+    border-radius: 50%;
+  }
+
+  /* Hexagon pattern */
+  .hexagons {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    z-index: 0;
+    opacity: 0.025;
+  }
+  .hex {
+    position: absolute;
+    width: 80px; height: 92px;
+    border: 1px solid #fff;
+    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+    background: transparent;
+    border: none;
+    box-shadow: inset 0 0 0 1px rgba(255,255,255,1);
+  }
+  .hex::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+    border: 1px solid #fff;
+  }
+
+  /* Floating particles */
+  .particles {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    z-index: 0;
+  }
+  .particle {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.15);
+  }
+  .connection-line {
+    position: absolute;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.08), transparent);
+    transform-origin: left center;
+    z-index: 0;
+  }
+
+  /* ── Content layers ── */
+  .content {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+  }
+
+  /* ── Top Section (upper 40%) ── */
+  .top-section {
+    width: 100%;
+    height: 40%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-top: 40px;
+  }
+
+  .main-title {
+    font-size: 52px;
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: 6px;
+    text-shadow: 0 2px 20px rgba(0,0,0,0.3), 0 0 60px rgba(68,114,196,0.4);
+    margin-bottom: 20px;
+    line-height: 1.3;
+  }
+
+  .subtitle {
+    font-size: 26px;
+    font-weight: 400;
+    color: rgba(255,255,255,0.85);
+    letter-spacing: 4px;
+    margin-bottom: 14px;
+    text-shadow: 0 1px 10px rgba(0,0,0,0.2);
+  }
+
+  .subtitle-en {
+    font-size: 18px;
+    font-weight: 300;
+    color: rgba(255,255,255,0.6);
+    letter-spacing: 2px;
+    text-shadow: 0 1px 8px rgba(0,0,0,0.15);
+  }
+
+  /* Decorative line under title */
+  .title-divider {
+    width: 120px;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.5), transparent);
+    margin: 18px 0 14px;
+  }
+
+  /* ── Middle Section (center 30%) ── */
+  .middle-section {
+    width: 100%;
+    height: 32%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+
+  .cards-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 36px;
+    position: relative;
+  }
+
+  .tool-card {
+    width: 210px;
+    height: 130px;
+    background: rgba(255,255,255,0.08);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 16px;
+    border: 1px solid rgba(255,255,255,0.15);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 10px;
+    position: relative;
+    transition: all 0.3s;
+  }
+
+  .tool-card::before {
+    content: '';
+    position: absolute;
+    top: -1px; left: -1px;
+    right: -1px; bottom: -1px;
+    border-radius: 17px;
+    border: 2px solid transparent;
+    pointer-events: none;
+  }
+
+  /* Card glow effects */
+  .tool-card.blue { border-top: 2px solid #4a90d9; box-shadow: 0 4px 30px rgba(74,144,217,0.15), 0 0 40px rgba(74,144,217,0.08); }
+  .tool-card.cyan { border-top: 2px solid #00bcd4; box-shadow: 0 4px 30px rgba(0,188,212,0.15), 0 0 40px rgba(0,188,212,0.08); }
+  .tool-card.green { border-top: 2px solid #4caf50; box-shadow: 0 4px 30px rgba(76,175,80,0.15), 0 0 40px rgba(76,175,80,0.08); }
+  .tool-card.purple { border-top: 2px solid #9c27b0; box-shadow: 0 4px 30px rgba(156,39,176,0.15), 0 0 40px rgba(156,39,176,0.08); }
+
+  .card-icon {
+    font-size: 36px;
+    margin-bottom: 6px;
+    filter: drop-shadow(0 2px 8px rgba(0,0,0,0.2));
+  }
+
+  .card-name-zh {
+    font-size: 16px;
+    font-weight: 600;
+    color: #fff;
+    margin-bottom: 3px;
+    letter-spacing: 1px;
+  }
+
+  .card-name-en {
+    font-size: 11px;
+    color: rgba(255,255,255,0.55);
+    letter-spacing: 0.5px;
+  }
+
+  /* Arrow connectors between cards */
+  .arrow-connector {
+    width: 36px;
+    height: 2px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    margin: 0 -18px;
+    z-index: 2;
+  }
+  .arrow-connector .line-body {
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg, rgba(255,255,255,0.15), rgba(255,255,255,0.35), rgba(255,255,255,0.15));
+  }
+  .arrow-connector .arrow-head {
+    position: absolute;
+    right: -2px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 0;
+    height: 0;
+    border-left: 6px solid rgba(255,255,255,0.35);
+    border-top: 4px solid transparent;
+    border-bottom: 4px solid transparent;
+  }
+
+  /* ── Bottom Section (lower 20%) ── */
+  .bottom-section {
+    width: 100%;
+    height: 28%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 30px;
+  }
+
+  .competition-badge {
+    display: inline-block;
+    background: linear-gradient(135deg, rgba(255,255,255,0.12), rgba(255,255,255,0.06));
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 50px;
+    padding: 12px 40px;
+    font-size: 20px;
+    font-weight: 500;
+    color: rgba(255,255,255,0.92);
+    letter-spacing: 3px;
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    margin-bottom: 18px;
+    text-shadow: 0 1px 8px rgba(0,0,0,0.15);
+  }
+
+  .info-line {
+    font-size: 16px;
+    color: rgba(255,255,255,0.55);
+    letter-spacing: 3px;
+    font-weight: 300;
+  }
+
+  /* ── Glow effects behind cards ── */
+  .glow-blue {
+    position: absolute;
+    width: 250px; height: 150px;
+    background: radial-gradient(ellipse, rgba(74,144,217,0.12) 0%, transparent 70%);
+    border-radius: 50%;
+    z-index: -1;
+    pointer-events: none;
+  }
+  .glow-cyan {
+    position: absolute;
+    width: 250px; height: 150px;
+    background: radial-gradient(ellipse, rgba(0,188,212,0.12) 0%, transparent 70%);
+    border-radius: 50%;
+    z-index: -1;
+    pointer-events: none;
+  }
+  .glow-green {
+    position: absolute;
+    width: 250px; height: 150px;
+    background: radial-gradient(ellipse, rgba(76,175,80,0.12) 0%, transparent 70%);
+    border-radius: 50%;
+    z-index: -1;
+    pointer-events: none;
+  }
+  .glow-purple {
+    position: absolute;
+    width: 250px; height: 150px;
+    background: radial-gradient(ellipse, rgba(156,39,176,0.12) 0%, transparent 70%);
+    border-radius: 50%;
+    z-index: -1;
+    pointer-events: none;
+  }
+
+  /* Top decorative accent line */
+  .top-accent {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(90deg, transparent 10%, #4a90d9 25%, #00bcd4 42%, #4caf50 58%, #9c27b0 75%, transparent 90%);
+    opacity: 0.6;
+    z-index: 2;
+  }
+
+  /* Bottom decorative accent */
+  .bottom-accent {
+    position: absolute;
+    bottom: 0; left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent 20%, rgba(255,255,255,0.15) 50%, transparent 80%);
+    z-index: 2;
+  }
+
+  /* Large decorative corner elements */
+  .corner-decor {
+    position: absolute;
+    width: 120px;
+    height: 120px;
+    z-index: 0;
+    opacity: 0.06;
+  }
+  .corner-decor.tl { top: 30px; left: 30px; border-top: 2px solid #fff; border-left: 2px solid #fff; }
+  .corner-decor.tr { top: 30px; right: 30px; border-top: 2px solid #fff; border-right: 2px solid #fff; }
+  .corner-decor.bl { bottom: 30px; left: 30px; border-bottom: 2px solid #fff; border-left: 2px solid #fff; }
+  .corner-decor.br { bottom: 30px; right: 30px; border-bottom: 2px solid #fff; border-right: 2px solid #fff; }
+</style>
+</head>
+<body>
+
+<!-- Background layers -->
+<div class="bg-grid"></div>
+
+<!-- Circuit board pattern -->
+<div class="bg-circuit">
+  <!-- Horizontal lines -->
+  <div class="line h-line" style="top:150px; left:100px; width:300px;"></div>
+  <div class="line h-line" style="top:150px; left:500px; width:200px;"></div>
+  <div class="line h-line" style="top:300px; left:1200px; width:400px;"></div>
+  <div class="line h-line" style="top:500px; left:50px; width:250px;"></div>
+  <div class="line h-line" style="top:700px; left:1400px; width:350px;"></div>
+  <div class="line h-line" style="top:850px; left:200px; width:280px;"></div>
+  <div class="line h-line" style="top:950px; left:1100px; width:400px;"></div>
+  <div class="line h-line" style="top:200px; left:800px; width:350px;"></div>
+  <div class="line h-line" style="top:600px; left:700px; width:200px;"></div>
+  <div class="line h-line" style="top:400px; left:1500px; width:300px;"></div>
+  <!-- Vertical lines -->
+  <div class="line v-line" style="top:100px; left:400px; height:200px;"></div>
+  <div class="line v-line" style="top:250px; left:1200px; height:180px;"></div>
+  <div class="line v-line" style="top:500px; left:300px; height:250px;"></div>
+  <div class="line v-line" style="top:600px; left:1600px; height:200px;"></div>
+  <div class="line v-line" style="top:50px; left:900px; height:150px;"></div>
+  <div class="line v-line" style="top:800px; left:480px; height:180px;"></div>
+  <div class="line v-line" style="top:350px; left:1750px; height:220px;"></div>
+  <!-- Junction dots -->
+  <div class="dot" style="top:148px; left:398px;"></div>
+  <div class="dot" style="top:298px; left:1198px;"></div>
+  <div class="dot" style="top:498px; left:298px;"></div>
+  <div class="dot" style="top:698px; left:1398px;"></div>
+  <div class="dot" style="top:148px; left:698px;"></div>
+  <div class="dot" style="top:848px; left:478px;"></div>
+  <div class="dot" style="top:598px; left:898px;"></div>
+  <div class="dot" style="top:198px; left:1148px;"></div>
+  <div class="dot" style="top:948px; left:1498px;"></div>
+  <div class="dot" style="top:398px; left:1748px;"></div>
+  <div class="dot" style="top:498px; left:48px;"></div>
+  <div class="dot" style="top:848px; left:198px;"></div>
+</div>
+
+<!-- Hexagon decorations -->
+<div class="hexagons">
+  <div class="hex" style="top:80px; left:120px;"></div>
+  <div class="hex" style="top:200px; left:1700px;"></div>
+  <div class="hex" style="top:500px; left:60px;"></div>
+  <div class="hex" style="top:650px; left:1780px;"></div>
+  <div class="hex" style="top:900px; left:150px;"></div>
+  <div class="hex" style="top:350px; left:1650px;"></div>
+  <div class="hex" style="top:750px; left:100px;"></div>
+  <div class="hex" style="top:100px; left:1550px;"></div>
+  <div class="hex" style="top:950px; left:1700px;"></div>
+  <div class="hex" style="top:30px; left:800px;"></div>
+  <div class="hex" style="top:980px; left:900px;"></div>
+</div>
+
+<!-- Floating particles -->
+<div class="particles">
+  <div class="particle" style="top:120px; left:250px; width:3px; height:3px;"></div>
+  <div class="particle" style="top:80px; left:600px; width:4px; height:4px;"></div>
+  <div class="particle" style="top:200px; left:1500px; width:3px; height:3px;"></div>
+  <div class="particle" style="top:350px; left:100px; width:5px; height:5px;"></div>
+  <div class="particle" style="top:450px; left:1800px; width:3px; height:3px;"></div>
+  <div class="particle" style="top:600px; left:350px; width:4px; height:4px;"></div>
+  <div class="particle" style="top:700px; left:1650px; width:3px; height:3px;"></div>
+  <div class="particle" style="top:850px; left:500px; width:5px; height:5px;"></div>
+  <div class="particle" style="top:950px; left:1400px; width:3px; height:3px;"></div>
+  <div class="particle" style="top:180px; left:1100px; width:4px; height:4px;"></div>
+  <div class="particle" style="top:550px; left:800px; width:3px; height:3px;"></div>
+  <div class="particle" style="top:400px; left:1300px; width:4px; height:4px;"></div>
+  <div class="particle" style="top:750px; left:200px; width:3px; height:3px;"></div>
+  <div class="particle" style="top:300px; left:950px; width:5px; height:5px;"></div>
+  <div class="particle" style="top:1000px; left:700px; width:3px; height:3px;"></div>
+  <div class="particle" style="top:50px; left:1350px; width:4px; height:4px;"></div>
+  <div class="particle" style="top:650px; left:1100px; width:3px; height:3px;"></div>
+  <div class="particle" style="top:500px; left:550px; width:4px; height:4px;"></div>
+  <!-- Connection lines between some particles -->
+  <div class="connection-line" style="top:122px; left:253px; width:347px; transform:rotate(-7deg);"></div>
+  <div class="connection-line" style="top:352px; left:103px; width:250px; transform:rotate(50deg);"></div>
+  <div class="connection-line" style="top:202px; left:1103px; width:400px; transform:rotate(-3deg);"></div>
+  <div class="connection-line" style="top:702px; left:202px; width:150px; transform:rotate(25deg);"></div>
+  <div class="connection-line" style="top:552px; left:553px; width:250px; transform:rotate(12deg);"></div>
+  <div class="connection-line" style="top:82px; left:603px; width:500px; transform:rotate(15deg);"></div>
+  <div class="connection-line" style="top:652px; left:1103px; width:550px; transform:rotate(5deg);"></div>
+</div>
+
+<!-- Corner decorations -->
+<div class="corner-decor tl"></div>
+<div class="corner-decor tr"></div>
+<div class="corner-decor bl"></div>
+<div class="corner-decor br"></div>
+
+<!-- Top accent line -->
+<div class="top-accent"></div>
+<div class="bottom-accent"></div>
+
+<!-- Main content -->
+<div class="content">
+
+  <!-- Top Section -->
+  <div class="top-section">
+    <div class="main-title">AI赋能Java Web教学创新工具套件</div>
+    <div class="title-divider"></div>
+    <div class="subtitle">Java Web应用开发 &middot; 用户认证与权限控制</div>
+    <div class="subtitle-en">AI-Empowered Java Web Teaching Innovation Toolkit</div>
+  </div>
+
+  <!-- Middle Section -->
+  <div class="middle-section">
+    <div class="cards-container">
+      <!-- Card 1: WebDev Assistant -->
+      <div style="position:relative;">
+        <div class="glow-blue" style="top:-10px; left:-20px;"></div>
+        <div class="tool-card blue">
+          <div class="card-icon">&#x1F916;</div>
+          <div class="card-name-zh">WebDev助教</div>
+          <div class="card-name-en">Intelligent Teaching Assistant</div>
+        </div>
+      </div>
+
+      <!-- Arrow 1 -->
+      <div class="arrow-connector">
+        <div class="line-body"></div>
+        <div class="arrow-head"></div>
+      </div>
+
+      <!-- Card 2: WebSec Challenge -->
+      <div style="position:relative;">
+        <div class="glow-cyan" style="top:-10px; left:-20px;"></div>
+        <div class="tool-card cyan">
+          <div class="card-icon">&#x1F6E1;&#xFE0F;</div>
+          <div class="card-name-zh">WebSec挑战</div>
+          <div class="card-name-en">Security Challenge Platform</div>
+        </div>
+      </div>
+
+      <!-- Arrow 2 -->
+      <div class="arrow-connector">
+        <div class="line-body"></div>
+        <div class="arrow-head"></div>
+      </div>
+
+      <!-- Card 3: TeamCoach -->
+      <div style="position:relative;">
+        <div class="glow-green" style="top:-10px; left:-20px;"></div>
+        <div class="tool-card green">
+          <div class="card-icon">&#x1F465;</div>
+          <div class="card-name-zh">TeamCoach</div>
+          <div class="card-name-en">Team Collaboration Coach</div>
+        </div>
+      </div>
+
+      <!-- Arrow 3 -->
+      <div class="arrow-connector">
+        <div class="line-body"></div>
+        <div class="arrow-head"></div>
+      </div>
+
+      <!-- Card 4: Code Review Battle -->
+      <div style="position:relative;">
+        <div class="glow-purple" style="top:-10px; left:-20px;"></div>
+        <div class="tool-card purple">
+          <div class="card-icon">&#x2694;&#xFE0F;</div>
+          <div class="card-name-zh">Code Review Battle</div>
+          <div class="card-name-en">Competitive Code Review</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bottom Section -->
+  <div class="bottom-section">
+    <div class="competition-badge">第六届全国高校教师教学创新大赛 &middot; 人工智能赛道</div>
+    <div class="info-line">专业核心课程 &nbsp;|&nbsp; 32学时 &nbsp;|&nbsp; 2学分 &nbsp;|&nbsp; 覆盖6个AI教学情境</div>
+  </div>
+
+</div>
+
+</body>
+</html>
