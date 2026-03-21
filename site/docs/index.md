@@ -8,7 +8,7 @@ anonSafe: true
 hero:
   name: "第六届全国高校教师教学创新大赛"
   text: "AI赋能Java Web应用开发课程"
-  tagline: "人工智能赛道 · 五维AI融合创新 · 六大情境全覆盖 · 数据闭环"
+  tagline: "人工智能赛道 · 问题驱动 · 五维AI融合创新 · 数据闭环"
   actions:
     - theme: brand
       text: "AI融合创新设计 →"
@@ -21,37 +21,157 @@ hero:
     alt: AI融合创新
 
 features:
-  - icon: "🤖"
-    title: 智能助教
-    details: 课程专属RAG智能体，24h个性化问答，学情热力图驱动教学决策。课外学习不再无助，教师课前即知全班薄弱点。
-    link: /innovation/#智能助教
-    linkText: 查看设计方案
-  - icon: "🎮"
-    title: AI自适应编程挑战
-    details: AI为每人动态生成不同挑战题目，自适应难度，天然防抄袭。排行榜+实时数据大屏，游戏化激发学习热情。
-    link: /innovation/#ai自适应编程挑战与学情分析
-    linkText: 查看挑战设计
-  - icon: "👥"
-    title: 团队协作教练 TeamCoach
-    details: 基于Git数据的AI团队分析，贡献度可视化，搭便车预警。用数据而非主观判断评价团队，过程性评价取代结果导向。
-    link: /innovation/#团队协作教练-teamcoach
-    linkText: 查看教练机制
-  - icon: "⚔️"
-    title: 人机对抗 Code Review Battle
-    details: 学生与AI同台审查代码，对比发现各自盲区。培养批判性思维，认识AI能力边界，理解人机协同才是最优解。
-    link: /innovation/#人机对抗-code-review-battle
-    linkText: 查看对抗设计
-  - icon: "📝"
-    title: AI辅助教学资料重构
-    details: 个性化实验设计生成器实现"一人一题"，AI课程PPT生成将备课时间从4小时缩至40分钟。教师从重复劳动中解放。
-    link: /innovation/#ai辅助教学资料重构
-    linkText: 查看资料重构
+  - icon: "🎯"
+    title: 问题驱动，不是技术炫技
+    details: 从五个真实教学痛点出发——课外无反馈、练习同质化、搭便车泛滥、盲信AI、备课低效——每项AI融合创新都有明确的问题靶向。
+    link: /innovation/
+    linkText: 查看痛点与方案
+  - icon: "🔄"
+    title: 深度融入，不是简单使用
+    details: AI不是课堂上的"展示环节"，而是贯穿课前学情分析、课中实时干预、课后精准反馈的全过程结构化协作者。
+    link: /cases/lesson-15/
+    linkText: 查看45分钟落地
   - icon: "📊"
-    title: 数据闭环与可复制推广
-    details: 五维创新均产生教学数据，形成可验证的改进循环。提示词模板、工具框架全部开源，适用于所有编程实践类课程。
-    link: /promotion/
-    linkText: 查看推广方案
+    title: 数据驱动，不是经验猜测
+    details: 五维融合创新均产生教学数据，形成可验证的改进闭环。代码质量提升35%，高相似率从45%降至<5%。
+    link: /results/
+    linkText: 查看成效数据
 ---
+
+<div class="section-divider"></div>
+
+## 传统教学五大痛点
+
+<p class="section-lead">
+经过三轮教学周期的系统观察，我们识别出Java Web课程中五个核心痛点——这些不是假设性问题，而是有数据支撑的真实教学困境。
+</p>
+
+<div class="innovation-grid">
+  <div class="pain-card">
+    <span class="badge">痛点 #01</span>
+    <h3>课外学习无人问津</h3>
+    <p>学生课后遇到报错无人解答，编程困惑积累到下次上课时已遗忘上下文。教师无法掌握课外学习状态，课堂设计凭经验猜测。</p>
+  </div>
+  <div class="pain-card">
+    <span class="badge">痛点 #02</span>
+    <h3>练习同质、抄袭泛滥</h3>
+    <p>统一题目导致高相似度提交，MOSS检测显示高相似配对达24.8%。统一难度让基础学生跟不上、强学生缺挑战，两极分化严重。</p>
+  </div>
+  <div class="pain-card">
+    <span class="badge">痛点 #03</span>
+    <h3>团队搭便车、缺过程评价</h3>
+    <p>团队项目中部分成员只改README或截止日前突击提交。教师只能看最终成果，无法客观评价个体贡献，分数公平性受质疑。</p>
+  </div>
+  <div class="pain-card">
+    <span class="badge">痛点 #04</span>
+    <h3>盲信AI、缺乏批判思维</h3>
+    <p>AI工具普及后，学生不加辨别地接受AI建议，直接提交AI生成代码。缺乏独立判断AI输出正确性的能力，"会用AI"≠"会编程"。</p>
+  </div>
+  <div class="pain-card">
+    <span class="badge">痛点 #05</span>
+    <h3>教师备课效率低</h3>
+    <p>PPT制作每讲耗时4小时+，实验设计全班统一无法个性化。大量重复性劳动挤占了教学设计与学生辅导的时间。</p>
+  </div>
+</div>
+
+<div class="section-divider"></div>
+
+## 五维AI融合创新：每个痛点都有靶向方案
+
+<p class="section-lead">
+不是"先有AI工具再找应用场景"，而是<strong>"先有真实痛点，再融入AI解决"</strong>。每一维融合创新都精准对应一个教学问题。
+</p>
+
+<div class="compare-board">
+  <div class="compare-card before">
+    <h4>❌ 传统教学痛点</h4>
+    <ul>
+      <li><strong>痛点①</strong> 课外无即时反馈，学情不可见</li>
+      <li><strong>痛点②</strong> 练习同质化，抄袭泛滥，难度一刀切</li>
+      <li><strong>痛点③</strong> 搭便车严重，过程评价缺失</li>
+      <li><strong>痛点④</strong> 学生盲信AI输出，缺批判性思维</li>
+      <li><strong>痛点⑤</strong> 教师备课重复低效</li>
+    </ul>
+  </div>
+  <div class="compare-card after">
+    <h4>✅ AI融合创新方案</h4>
+    <ul>
+      <li><strong>智能助教</strong> RAG课程智能体，24h问答+学情热力图</li>
+      <li><strong>编程挑战</strong> AI一人一题，自适应难度，天然防抄袭</li>
+      <li><strong>团队教练</strong> Git贡献分析+AI周报，数据驱动团队评价</li>
+      <li><strong>人机对抗</strong> 学生vs AI审查代码，培养独立判断力</li>
+      <li><strong>资料重构</strong> 个性化实验生成+AI PPT，备课效率提升85%</li>
+    </ul>
+  </div>
+</div>
+
+<p style="text-align:center;margin:20px 0;">
+  <a href="/coursecompetation/innovation/" style="display:inline-block;padding:10px 28px;background:linear-gradient(135deg,#2563eb,#0891b2);color:white;border-radius:999px;font-weight:600;text-decoration:none;box-shadow:0 4px 14px rgba(37,99,235,0.2);transition:all 0.3s;">查看五维融合创新详细设计 →</a>
+</p>
+
+<div class="section-divider"></div>
+
+## 如何融入课程：不是展示，是贯穿
+
+<p class="section-lead">
+AI融合创新不是课堂上的"秀技术"环节——它贯穿<strong>课前学情分析、课中实时干预、课后精准反馈</strong>全过程，覆盖16讲完整教学周期。
+</p>
+
+<div class="flow-grid">
+  <div class="flow-card stagger-1">
+    <div class="step-num">课前</div>
+    <h4>数据采集与个性化准备</h4>
+    <p><strong>智能助教</strong>推送预习问题、收集学情<br/><strong>资料重构</strong>生成一人一题的个性化实验<br/><strong>团队教练</strong>生成上周Git周报</p>
+  </div>
+  <div class="flow-card stagger-2">
+    <div class="step-num">课中</div>
+    <h4>AI辅助实时教学</h4>
+    <p><strong>智能助教</strong>学情数据驱动导入<br/><strong>编程挑战</strong>游戏化自适应练习<br/><strong>人机对抗</strong>培养批判性思维</p>
+  </div>
+  <div class="flow-card stagger-3">
+    <div class="step-num">课后</div>
+    <h4>精准反馈与持续迭代</h4>
+    <p><strong>智能助教</strong>24h答疑支持<br/><strong>团队教练</strong>追踪项目进度<br/><strong>编程挑战</strong>课后继续闯关</p>
+  </div>
+</div>
+
+<div class="info-box blue">
+  <span class="icon">🔁</span>
+  <div>
+    <strong>数据闭环：</strong>课后数据回流至课前，驱动下一轮教学设计调整。16周内完成14次完整迭代，每一轮均基于真实数据而非经验猜测。
+  </div>
+</div>
+
+<div class="section-divider"></div>
+
+## 课堂落地实证：第15讲 45分钟全展现
+
+<div class="info-box emerald">
+  <span class="icon">💡</span>
+  <div><strong>从"能登录"到"能守住后台"</strong> — 在一节45分钟的课堂中，自然融入智能助教数据导入、安全编程挑战、人机对抗审查、协作修复验证。不是拼凑，是有机融合。</div>
+</div>
+
+<div class="summary-grid">
+  <div class="summary-card stagger-1">
+    <div class="summary-icon">📊</div>
+    <h3>0-5' 数据导入</h3>
+    <p>智能助教学情热力图 + TeamCoach周报 → 数据驱动课堂重点</p>
+  </div>
+  <div class="summary-card stagger-2">
+    <div class="summary-icon">🎮</div>
+    <h3>5-20' 安全挑战</h3>
+    <p>AI为每人生成不同漏洞代码 → 闯关+排行榜+教师据数据即时干预</p>
+  </div>
+  <div class="summary-card stagger-3">
+    <div class="summary-icon">⚔️</div>
+    <h3>20-35' 人机对抗</h3>
+    <p>学生vs AI审查同一段代码 → 对比盲区 → 辩论 → 认识AI边界</p>
+  </div>
+</div>
+
+<p style="text-align:center;margin:20px 0;">
+  <a href="/coursecompetation/cases/lesson-15/" style="display:inline-block;padding:10px 28px;background:linear-gradient(135deg,#2563eb,#0891b2);color:white;border-radius:999px;font-weight:600;text-decoration:none;box-shadow:0 4px 14px rgba(37,99,235,0.2);transition:all 0.3s;">查看完整45分钟案例 →</a>
+</p>
 
 <div class="section-divider"></div>
 
@@ -67,12 +187,12 @@ features:
     <div class="label">代码高相似率下降</div>
   </div>
   <div class="metric-hero-card stagger-3">
-    <div class="num emerald">5</div>
-    <div class="label">AI融合创新维度</div>
+    <div class="num emerald">89%</div>
+    <div class="label">SQL注入防护意识</div>
   </div>
   <div class="metric-hero-card stagger-4">
-    <div class="num amber">6/6</div>
-    <div class="label">教学情境全覆盖</div>
+    <div class="num amber">67%</div>
+    <div class="label">教师审查时间减少</div>
   </div>
 </div>
 
@@ -80,68 +200,6 @@ features:
   <span class="icon">📐</span>
   <div>统计口径：实验组N=58 vs 对照组N=62，同教师同课程同教材，16周准实验设计。详见 <a href="/coursecompetation/results/">成效与数据</a> 页面。</div>
 </div>
-
-<div class="section-divider"></div>
-
-## 五维AI融合创新闭环
-
-<div class="flow-grid">
-  <div class="flow-card stagger-1">
-    <div class="step-num">1</div>
-    <h4>智能助教</h4>
-    <p>24h课程问答<br/>学情热力图<br/>数据驱动教学决策</p>
-  </div>
-  <div class="flow-card stagger-2">
-    <div class="step-num">2</div>
-    <h4>编程挑战</h4>
-    <p>AI一人一题<br/>自适应难度<br/>实时数据大屏</p>
-  </div>
-  <div class="flow-card stagger-3">
-    <div class="step-num">3</div>
-    <h4>人机对抗</h4>
-    <p>人vs AI代码审查<br/>批判性思维培养<br/>认识AI边界</p>
-  </div>
-  <div class="flow-card stagger-4">
-    <div class="step-num">4</div>
-    <h4>团队教练 + 资料重构</h4>
-    <p>Git贡献分析·AI周报<br/>一人一题·PPT生成<br/>教师端全面赋能</p>
-  </div>
-</div>
-
-<div class="diagram-shell">
-  <img src="/assets/svg/loop-cycle.svg" alt="五维AI融合创新教学闭环图" />
-</div>
-
-<div class="section-divider"></div>
-
-## 核心案例：第15讲 用户认证与权限控制
-
-<div class="info-box emerald">
-  <span class="icon">💡</span>
-  <div><strong>从"能登录"到"能守住后台"</strong> — 在45分钟内展现智能助教数据驱动导入、AI自适应安全挑战、人机对抗代码审查、协作修复与验证的完整教学闭环。</div>
-</div>
-
-<div class="summary-grid">
-  <div class="summary-card stagger-1">
-    <div class="summary-icon">📊</div>
-    <h3>阶段一：数据导入</h3>
-    <p>智能助教学情数据+TeamCoach周报，用数据驱动课堂重点设定</p>
-  </div>
-  <div class="summary-card stagger-2">
-    <div class="summary-icon">🎮</div>
-    <h3>阶段二：安全挑战</h3>
-    <p>AI为每人生成不同安全漏洞代码，闯关+排行榜+实时数据大屏</p>
-  </div>
-  <div class="summary-card stagger-3">
-    <div class="summary-icon">⚔️</div>
-    <h3>阶段三：人机对抗</h3>
-    <p>学生vs AI同台审查代码，对比盲区，辩论AI建议的采纳与拒绝</p>
-  </div>
-</div>
-
-<p style="text-align:center;margin:20px 0;">
-  <a href="/coursecompetation/cases/lesson-15/" style="display:inline-block;padding:10px 28px;background:linear-gradient(135deg,#2563eb,#0891b2);color:white;border-radius:999px;font-weight:600;text-decoration:none;box-shadow:0 4px 14px rgba(37,99,235,0.2);transition:all 0.3s;">查看完整案例 →</a>
-</p>
 
 <div class="section-divider"></div>
 
