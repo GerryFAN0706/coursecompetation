@@ -1,6 +1,6 @@
 ---
 title: 教学资源
-description: 提供提示词模板、测试清单、课程文档下载与学生成果展示入口。
+description: 提供提示词模板、测试清单与学生成果展示入口。
 lastUpdated: 2026-03-17
 evidenceLevel: public
 anonSafe: true
@@ -8,15 +8,11 @@ anonSafe: true
 
 # 教学资源
 
-<div class="section-lead">本页面汇聚课程全部教学资源，包括文档下载、AI提示词库、测试清单和学生成果展示。所有资源均经过结构化整理，支持评审快速定位与深度核验。</div>
+<div class="section-lead">本页面汇聚课程全部教学资源，包括AI提示词库、测试清单和学生成果展示。所有资源均经过结构化整理，支持评审快速定位与深度核验。</div>
 
 ## 资源总览
 
 <div class="metric-hero">
-  <div class="metric-hero-card">
-    <div class="num blue">7</div>
-    <div class="label">核心文档（D01-D07）</div>
-  </div>
   <div class="metric-hero-card">
     <div class="num cyan">18</div>
     <div class="label">AI提示词模板</div>
@@ -104,71 +100,6 @@ anonSafe: true
 </p>
 
 <div class="section-divider"></div>
-
-## 快速入口
-
-<div class="summary-grid">
-  <div class="summary-card">
-    <div class="summary-icon">🧠</div>
-    <h3>AI提示词库</h3>
-    <p>覆盖课前-课中-课后全流程的10条提示词模板，可直接复用。</p>
-    <p><a href="/coursecompetation/resources/prompts/">进入提示词库 →</a></p>
-  </div>
-  <div class="summary-card">
-    <div class="summary-icon">📦</div>
-    <h3>课程文档下载</h3>
-    <p>D01-D07全量文档，支持评审快速核验。</p>
-    <p><a href="#课程文档下载-d01-d07">查看下载列表 ↓</a></p>
-  </div>
-  <div class="summary-card">
-    <div class="summary-icon">🎓</div>
-    <h3>学生成果展示</h3>
-    <p>采用"摘要卡片 + PDF原件"双层呈现。</p>
-    <p><a href="/coursecompetation/resources/student-evidence/">进入成果页 →</a></p>
-  </div>
-  <div class="summary-card">
-    <div class="summary-icon">🧪</div>
-    <h3>测试验证清单</h3>
-    <p>三套课堂测试清单，覆盖权限、一致性、Session验证。</p>
-    <p><a href="#三套课堂测试清单">查看清单 ↓</a></p>
-  </div>
-</div>
-
-<div class="section-divider"></div>
-
-## 课程文档下载（D01-D07）
-
-<div class="info-box blue">
-  <span class="icon">📂</span>
-  <div>以下文档为参赛提交的完整支撑材料。点击即可下载PDF原件。文档编号与竞赛材料清单一一对应。</div>
-</div>
-
-<div class="download-grid">
-  <a class="download-card" href="/coursecompetation/assets/docs/D01_教学大纲.pdf">
-    <div class="file-icon">📄</div>
-    <div class="file-info"><h4>D01 教学大纲</h4><p>48学时完整课程大纲，含16讲教学安排与能力目标</p></div>
-  </a>
-  <a class="download-card" href="/coursecompetation/assets/docs/D02_第十五讲教学设计.pdf">
-    <div class="file-icon">📄</div>
-    <div class="file-info"><h4>D02 第十五讲教学设计</h4><p>录课对应教案，含教学目标、活动设计与评价方案</p></div>
-  </a>
-  <a class="download-card" href="/coursecompetation/assets/docs/D03_课堂视频选题与AI应用方案.pdf">
-    <div class="file-icon">📄</div>
-    <div class="file-info"><h4>D03 视频选题与AI方案</h4><p>课堂录制选题说明与AI应用场景设计</p></div>
-  </a>
-  <a class="download-card" href="/coursecompetation/assets/docs/D04_存在缺陷的示例工程设计方案.pdf">
-    <div class="file-icon">📄</div>
-    <div class="file-info"><h4>D04 缺陷示例工程方案</h4><p>教学用"问题版"Java Web工程的设计说明</p></div>
-  </a>
-  <a class="download-card" href="/coursecompetation/assets/docs/D06_AI提示词与测试清单.pdf">
-    <div class="file-icon">📄</div>
-    <div class="file-info"><h4>D06 AI提示词与测试清单</h4><p>课堂使用的全部AI提示词模板与验证清单</p></div>
-  </a>
-  <a class="download-card" href="/coursecompetation/assets/docs/D07_问题版工程README.pdf">
-    <div class="file-icon">📄</div>
-    <div class="file-info"><h4>D07 问题版工程README</h4><p>学生实验用问题工程的使用说明与缺陷索引</p></div>
-  </a>
-</div>
 
 <div class="section-divider"></div>
 

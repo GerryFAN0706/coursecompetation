@@ -250,19 +250,15 @@ anonSafe: true
   <div class="metric-box"><div class="metric-value">🎨</div><div>Marp / VitePress<br/><small>课件制作·网站展示</small></div></div>
 </div>
 
-## 配套文档
+## 配套资源
 
 <div class="download-grid">
-  <a class="download-card" href="/coursecompetation/assets/docs/D01_教学大纲.pdf">
-    <div class="file-icon">📄</div>
-    <div class="file-info"><h4>D01 教学大纲</h4><p>完整课程大纲 PDF</p></div>
-  </a>
-  <a class="download-card" href="/coursecompetation/assets/docs/D02_第十五讲教学设计.pdf">
-    <div class="file-icon">📄</div>
-    <div class="file-info"><h4>D02 第十五讲教学设计</h4><p>录课对应教案 PDF</p></div>
-  </a>
   <a class="download-card" href="/coursecompetation/cases/lesson-15/">
     <div class="file-icon">🔗</div>
     <div class="file-info"><h4>核心案例：第15讲</h4><p>完整案例详情页面</p></div>
+  </a>
+  <a class="download-card" href="/coursecompetation/resources/prompts/">
+    <div class="file-icon">🧠</div>
+    <div class="file-info"><h4>AI提示词库</h4><p>覆盖课前-课中-课后全流程</p></div>
   </a>
 </div>
