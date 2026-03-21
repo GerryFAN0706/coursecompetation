@@ -1,0 +1,1740 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1920">
+<title>WebSec挑战 - AI驱动的安全攻防闯关平台</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+@font-face {
+  font-family: 'CodeFont';
+  src: local('Consolas'), local('Monaco'), local('Courier New');
+}
+
+:root {
+  --bg-dark: #0d0d1a;
+  --bg-main: #1a1a2e;
+  --bg-card: #16213e;
+  --bg-code: #0f0f23;
+  --accent-cyan: #00d4ff;
+  --accent-orange: #ff6b35;
+  --accent-green: #00ff88;
+  --accent-red: #ff4757;
+  --accent-purple: #a855f7;
+  --accent-yellow: #ffd93d;
+  --text-primary: #e2e8f0;
+  --text-secondary: #94a3b8;
+  --text-dim: #475569;
+  --border: #1e3a5f;
+}
+
+body {
+  background: var(--bg-dark);
+  color: var(--text-primary);
+  font-family: 'Microsoft YaHei', 'PingFang SC', -apple-system, sans-serif;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* ========== HEADER ========== */
+.header {
+  background: linear-gradient(135deg, #0d0d1a 0%, #1a1a2e 50%, #0d1117 100%);
+  border-bottom: 1px solid var(--border);
+  padding: 14px 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  overflow: hidden;
+}
+
+.header::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--accent-cyan), var(--accent-purple), var(--accent-cyan), transparent);
+  animation: headerGlow 3s ease-in-out infinite;
+}
+
+@keyframes headerGlow {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 1; }
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.logo-icon {
+  width: 42px;
+  height: 42px;
+  background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple));
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  font-weight: bold;
+  color: #fff;
+  box-shadow: 0 0 20px rgba(0, 212, 255, 0.3);
+}
+
+.header-title {
+  font-size: 22px;
+  font-weight: 700;
+  background: linear-gradient(90deg, var(--accent-cyan), #fff, var(--accent-cyan));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  letter-spacing: 1px;
+}
+
+.header-subtitle {
+  font-size: 12px;
+  color: var(--text-secondary);
+  margin-top: 2px;
+  letter-spacing: 2px;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.header-badge {
+  background: rgba(0, 212, 255, 0.1);
+  border: 1px solid rgba(0, 212, 255, 0.3);
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 12px;
+  color: var(--accent-cyan);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.header-badge .dot {
+  width: 6px;
+  height: 6px;
+  background: var(--accent-green);
+  border-radius: 50%;
+  animation: pulse 2s infinite;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.avatar {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--accent-orange), var(--accent-purple));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.user-name {
+  font-size: 14px;
+  color: var(--text-primary);
+}
+
+.user-role {
+  font-size: 11px;
+  color: var(--accent-orange);
+}
+
+/* ========== MAIN LAYOUT ========== */
+.main-container {
+  display: flex;
+  height: calc(100vh - 72px - 140px);
+  overflow: hidden;
+}
+
+/* ========== CHALLENGE AREA ========== */
+.challenge-area {
+  flex: 0 0 65%;
+  padding: 20px 24px;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+}
+
+.challenge-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.challenge-tag {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.level-badge {
+  background: linear-gradient(135deg, var(--accent-orange), #ff8c42);
+  padding: 4px 14px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.difficulty {
+  display: flex;
+  gap: 3px;
+}
+
+.difficulty span {
+  width: 8px;
+  height: 8px;
+  background: var(--accent-orange);
+  border-radius: 2px;
+}
+
+.difficulty span.dim {
+  background: var(--text-dim);
+}
+
+.challenge-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: #fff;
+}
+
+.challenge-title .num {
+  color: var(--accent-cyan);
+}
+
+.challenge-desc {
+  color: var(--text-secondary);
+  font-size: 13px;
+  margin-bottom: 16px;
+  line-height: 1.6;
+  padding: 10px 14px;
+  background: rgba(0, 212, 255, 0.05);
+  border-left: 3px solid var(--accent-cyan);
+  border-radius: 0 6px 6px 0;
+}
+
+/* Code Editor */
+.code-editor {
+  background: var(--bg-code);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 16px;
+  flex-shrink: 0;
+}
+
+.editor-tabs {
+  display: flex;
+  align-items: center;
+  background: #1a1a30;
+  border-bottom: 1px solid var(--border);
+  padding: 0 8px;
+}
+
+.editor-tab {
+  padding: 8px 16px;
+  font-size: 12px;
+  color: var(--text-secondary);
+  border-bottom: 2px solid transparent;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.editor-tab.active {
+  color: var(--text-primary);
+  border-bottom-color: var(--accent-cyan);
+  background: rgba(0, 212, 255, 0.05);
+}
+
+.editor-tab .icon {
+  color: var(--accent-orange);
+  font-size: 11px;
+}
+
+.editor-actions {
+  margin-left: auto;
+  display: flex;
+  gap: 6px;
+  padding: 6px 0;
+}
+
+.editor-action-btn {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.1);
+  color: var(--text-secondary);
+  padding: 4px 10px;
+  border-radius: 4px;
+  font-size: 11px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.editor-action-btn:hover {
+  background: rgba(0, 212, 255, 0.1);
+  border-color: var(--accent-cyan);
+  color: var(--accent-cyan);
+}
+
+.code-container {
+  display: flex;
+  font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+  font-size: 13px;
+  line-height: 1.7;
+  overflow-x: auto;
+}
+
+.line-numbers {
+  padding: 14px 12px 14px 16px;
+  text-align: right;
+  color: var(--text-dim);
+  user-select: none;
+  border-right: 1px solid rgba(255,255,255,0.05);
+  font-size: 12px;
+  background: rgba(0,0,0,0.15);
+}
+
+.code-content {
+  padding: 14px 20px;
+  white-space: pre;
+  flex: 1;
+  overflow-x: auto;
+}
+
+/* Syntax Highlighting */
+.kw { color: #c678dd; font-weight: 600; }     /* keywords: public, class, protected... */
+.tp { color: #e5c07b; }                         /* types: String, HttpServletRequest... */
+.st { color: #98c379; }                         /* strings */
+.cm { color: #5c6370; font-style: italic; }     /* comments */
+.an { color: #d19a66; }                         /* annotations */
+.mt { color: #61afef; }                         /* method calls */
+.op { color: #abb2bf; }                         /* operators & punctuation */
+.nm { color: #e06c75; }                         /* numbers/null */
+.bug-line {
+  background: rgba(255, 71, 87, 0.08);
+  display: inline-block;
+  width: 100%;
+  margin: 0 -20px;
+  padding: 0 20px;
+  border-left: 3px solid var(--accent-red);
+}
+
+.bug-indicator {
+  color: var(--accent-red);
+  font-weight: bold;
+  animation: bugPulse 2s infinite;
+}
+
+@keyframes bugPulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+/* Fix Area */
+.fix-area {
+  margin-bottom: 16px;
+}
+
+.fix-label {
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.fix-label .icon {
+  color: var(--accent-green);
+}
+
+.fix-textarea {
+  width: 100%;
+  min-height: 100px;
+  background: var(--bg-code);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 14px 16px;
+  color: var(--text-primary);
+  font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+  font-size: 13px;
+  line-height: 1.6;
+  resize: vertical;
+  transition: border-color 0.3s;
+}
+
+.fix-textarea:focus {
+  outline: none;
+  border-color: var(--accent-cyan);
+  box-shadow: 0 0 0 3px rgba(0, 212, 255, 0.1);
+}
+
+.fix-actions {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.btn {
+  padding: 10px 24px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  transition: all 0.3s;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--accent-cyan), #0099cc);
+  color: #fff;
+  box-shadow: 0 0 20px rgba(0, 212, 255, 0.2);
+}
+
+.btn-primary:hover {
+  box-shadow: 0 0 30px rgba(0, 212, 255, 0.4);
+  transform: translateY(-1px);
+}
+
+.btn-hint {
+  background: rgba(168, 85, 247, 0.15);
+  border: 1px solid rgba(168, 85, 247, 0.4);
+  color: var(--accent-purple);
+}
+
+.btn-hint:hover {
+  background: rgba(168, 85, 247, 0.25);
+}
+
+.btn-reset {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.1);
+  color: var(--text-secondary);
+}
+
+.btn-reset:hover {
+  border-color: var(--accent-red);
+  color: var(--accent-red);
+}
+
+/* Hint Box */
+.hint-box {
+  background: rgba(168, 85, 247, 0.08);
+  border: 1px solid rgba(168, 85, 247, 0.3);
+  border-radius: 8px;
+  padding: 14px 18px;
+  margin-bottom: 16px;
+  display: none;
+  animation: slideDown 0.3s ease;
+}
+
+.hint-box.show {
+  display: block;
+}
+
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.hint-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--accent-purple);
+  margin-bottom: 8px;
+}
+
+.hint-text {
+  font-size: 13px;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+/* Test Results */
+.test-results {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+  display: none;
+  animation: slideDown 0.3s ease;
+}
+
+.test-results.show {
+  display: block;
+}
+
+.test-header {
+  padding: 10px 16px;
+  background: rgba(0,0,0,0.2);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 13px;
+  font-weight: 600;
+  border-bottom: 1px solid var(--border);
+}
+
+.test-status {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.test-list {
+  padding: 8px 0;
+}
+
+.test-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 16px;
+  font-size: 13px;
+  font-family: 'Consolas', monospace;
+  transition: all 0.3s;
+}
+
+.test-icon {
+  font-size: 14px;
+  width: 20px;
+  text-align: center;
+}
+
+.test-icon.pass { color: var(--accent-green); }
+.test-icon.fail { color: var(--accent-red); }
+.test-icon.running { color: var(--accent-yellow); animation: spin 1s linear infinite; }
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.test-name {
+  color: var(--text-secondary);
+  flex: 1;
+}
+
+.test-time {
+  color: var(--text-dim);
+  font-size: 11px;
+}
+
+.test-summary {
+  padding: 10px 16px;
+  border-top: 1px solid var(--border);
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.test-pass-count { color: var(--accent-green); }
+.test-fail-count { color: var(--accent-red); }
+
+/* ========== SIDEBAR ========== */
+.sidebar {
+  flex: 0 0 35%;
+  border-left: 1px solid var(--border);
+  background: rgba(22, 33, 62, 0.5);
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+}
+
+/* Progress Tracker */
+.progress-section {
+  padding: 20px;
+  border-bottom: 1px solid var(--border);
+}
+
+.section-title {
+  font-size: 14px;
+  font-weight: 700;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--text-primary);
+}
+
+.section-title .icon {
+  font-size: 16px;
+}
+
+.progress-track {
+  position: relative;
+  padding-left: 24px;
+}
+
+.progress-line {
+  position: absolute;
+  left: 11px;
+  top: 12px;
+  bottom: 12px;
+  width: 2px;
+  background: var(--border);
+}
+
+.progress-line-fill {
+  position: absolute;
+  left: 11px;
+  top: 12px;
+  width: 2px;
+  height: 42px;
+  background: linear-gradient(180deg, var(--accent-green), var(--accent-cyan));
+  transition: height 0.5s;
+}
+
+.level-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 0;
+  position: relative;
+}
+
+.level-dot {
+  position: absolute;
+  left: -24px;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  z-index: 1;
+}
+
+.level-dot.completed {
+  background: var(--accent-green);
+  color: #000;
+  box-shadow: 0 0 10px rgba(0, 255, 136, 0.3);
+}
+
+.level-dot.current {
+  background: var(--accent-orange);
+  color: #fff;
+  box-shadow: 0 0 15px rgba(255, 107, 53, 0.4);
+  animation: currentPulse 2s infinite;
+}
+
+@keyframes currentPulse {
+  0%, 100% { box-shadow: 0 0 10px rgba(255, 107, 53, 0.3); }
+  50% { box-shadow: 0 0 25px rgba(255, 107, 53, 0.6); }
+}
+
+.level-dot.locked {
+  background: var(--text-dim);
+  color: #1a1a2e;
+}
+
+.level-info {
+  flex: 1;
+}
+
+.level-name {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.level-name.dim {
+  color: var(--text-dim);
+}
+
+.level-meta {
+  font-size: 11px;
+  color: var(--text-secondary);
+  margin-top: 2px;
+}
+
+.level-meta.green { color: var(--accent-green); }
+.level-meta.orange { color: var(--accent-orange); }
+
+.level-time {
+  font-size: 12px;
+  font-family: 'Consolas', monospace;
+  color: var(--text-dim);
+}
+
+.level-time.green { color: var(--accent-green); }
+
+/* Timer */
+.timer-section {
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.timer-label {
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+
+.timer-value {
+  font-size: 28px;
+  font-weight: 700;
+  font-family: 'Consolas', monospace;
+  color: var(--accent-cyan);
+  text-shadow: 0 0 20px rgba(0, 212, 255, 0.3);
+}
+
+.timer-detail {
+  font-size: 11px;
+  color: var(--text-dim);
+  text-align: right;
+}
+
+/* Leaderboard */
+.leaderboard-section {
+  padding: 20px;
+  flex: 1;
+}
+
+.leaderboard-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.lb-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 12px;
+  background: rgba(0,0,0,0.15);
+  border-radius: 6px;
+  border: 1px solid transparent;
+  transition: all 0.3s;
+}
+
+.lb-item.top1 {
+  background: rgba(255, 217, 61, 0.08);
+  border-color: rgba(255, 217, 61, 0.2);
+}
+
+.lb-item.top2 {
+  background: rgba(192, 192, 192, 0.05);
+  border-color: rgba(192, 192, 192, 0.15);
+}
+
+.lb-item.top3 {
+  background: rgba(205, 127, 50, 0.05);
+  border-color: rgba(205, 127, 50, 0.15);
+}
+
+.lb-item.me {
+  background: rgba(0, 212, 255, 0.08);
+  border-color: rgba(0, 212, 255, 0.3);
+}
+
+.lb-rank {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.lb-rank.gold { background: #ffd93d; color: #000; }
+.lb-rank.silver { background: #c0c0c0; color: #000; }
+.lb-rank.bronze { background: #cd7f32; color: #fff; }
+.lb-rank.normal { background: var(--text-dim); color: var(--bg-dark); }
+
+.lb-avatar {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  flex-shrink: 0;
+}
+
+.lb-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.lb-name {
+  font-size: 13px;
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.lb-progress-bar {
+  height: 4px;
+  background: rgba(255,255,255,0.05);
+  border-radius: 2px;
+  margin-top: 4px;
+  overflow: hidden;
+}
+
+.lb-progress-fill {
+  height: 100%;
+  border-radius: 2px;
+  transition: width 1s ease;
+}
+
+.lb-level {
+  font-size: 11px;
+  color: var(--text-secondary);
+  white-space: nowrap;
+}
+
+.lb-time {
+  font-size: 11px;
+  font-family: 'Consolas', monospace;
+  color: var(--text-dim);
+  white-space: nowrap;
+}
+
+/* ========== BOTTOM DASHBOARD ========== */
+.dashboard {
+  height: 140px;
+  background: linear-gradient(180deg, var(--bg-card), var(--bg-dark));
+  border-top: 1px solid var(--border);
+  display: flex;
+  align-items: stretch;
+  padding: 0;
+}
+
+.dash-section {
+  flex: 1;
+  padding: 14px 24px;
+  border-right: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.dash-section:last-child {
+  border-right: none;
+}
+
+.dash-title {
+  font-size: 11px;
+  color: var(--text-secondary);
+  margin-bottom: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.dash-bars {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.dash-bar-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 11px;
+}
+
+.dash-bar-label {
+  width: 50px;
+  color: var(--text-secondary);
+  white-space: nowrap;
+}
+
+.dash-bar-track {
+  flex: 1;
+  height: 16px;
+  background: rgba(255,255,255,0.03);
+  border-radius: 3px;
+  overflow: hidden;
+  position: relative;
+}
+
+.dash-bar-fill {
+  height: 100%;
+  border-radius: 3px;
+  transition: width 1.5s ease;
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding-left: 6px;
+}
+
+.dash-bar-fill .pct-text {
+  font-size: 10px;
+  font-weight: 700;
+  color: rgba(0,0,0,0.7);
+  position: absolute;
+  right: 6px;
+}
+
+.dash-bar-pct {
+  width: 36px;
+  text-align: right;
+  font-weight: 600;
+  font-family: 'Consolas', monospace;
+  font-size: 12px;
+}
+
+/* Avg times */
+.dash-avg-times {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px 16px;
+}
+
+.avg-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 12px;
+}
+
+.avg-label {
+  color: var(--text-secondary);
+}
+
+.avg-value {
+  font-family: 'Consolas', monospace;
+  font-weight: 600;
+  color: var(--accent-cyan);
+}
+
+/* Alert */
+.dash-alert-section {
+  flex: 0 0 380px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 14px 24px;
+}
+
+.alert-banner {
+  background: rgba(255, 71, 87, 0.08);
+  border: 1px solid rgba(255, 71, 87, 0.3);
+  border-radius: 8px;
+  padding: 12px 16px;
+  animation: alertPulse 3s infinite;
+}
+
+@keyframes alertPulse {
+  0%, 100% { border-color: rgba(255, 71, 87, 0.3); }
+  50% { border-color: rgba(255, 71, 87, 0.6); }
+}
+
+.alert-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--accent-red);
+  margin-bottom: 6px;
+}
+
+.alert-text {
+  font-size: 12px;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+.alert-action {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  margin-top: 8px;
+  padding: 4px 12px;
+  background: rgba(255, 71, 87, 0.15);
+  border: 1px solid rgba(255, 71, 87, 0.3);
+  border-radius: 4px;
+  color: var(--accent-red);
+  font-size: 11px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.alert-action:hover {
+  background: rgba(255, 71, 87, 0.25);
+}
+
+/* ========== ANIMATIONS ========== */
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--text-dim); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-secondary); }
+
+/* Success overlay */
+.success-overlay {
+  display: none;
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  z-index: 1000;
+  align-items: center;
+  justify-content: center;
+  animation: fadeIn 0.3s ease;
+}
+
+.success-overlay.show {
+  display: flex;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.success-card {
+  background: var(--bg-card);
+  border: 2px solid var(--accent-green);
+  border-radius: 16px;
+  padding: 40px 48px;
+  text-align: center;
+  box-shadow: 0 0 60px rgba(0, 255, 136, 0.2);
+  animation: successPop 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes successPop {
+  from { transform: scale(0.8); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+.success-icon {
+  font-size: 56px;
+  margin-bottom: 16px;
+}
+
+.success-title {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--accent-green);
+  margin-bottom: 8px;
+}
+
+.success-sub {
+  font-size: 14px;
+  color: var(--text-secondary);
+  margin-bottom: 6px;
+}
+
+.success-stats {
+  display: flex;
+  gap: 32px;
+  justify-content: center;
+  margin: 20px 0;
+}
+
+.success-stat {
+  text-align: center;
+}
+
+.success-stat-value {
+  font-size: 28px;
+  font-weight: 700;
+  font-family: 'Consolas', monospace;
+}
+
+.success-stat-label {
+  font-size: 11px;
+  color: var(--text-secondary);
+  margin-top: 2px;
+}
+
+.btn-next {
+  margin-top: 16px;
+  background: linear-gradient(135deg, var(--accent-green), #00cc6a);
+  color: #000;
+  font-weight: 700;
+  padding: 12px 32px;
+  border: none;
+  border-radius: 8px;
+  font-size: 15px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.btn-next:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 30px rgba(0, 255, 136, 0.3);
+}
+
+/* Particles background */
+.particles {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.particle {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background: var(--accent-cyan);
+  border-radius: 50%;
+  opacity: 0.15;
+  animation: float linear infinite;
+}
+
+@keyframes float {
+  0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+  10% { opacity: 0.15; }
+  90% { opacity: 0.15; }
+  100% { transform: translateY(-10vh) rotate(720deg); opacity: 0; }
+}
+</style>
+</head>
+<body>
+
+<!-- Background Particles -->
+<div class="particles" id="particles"></div>
+
+<!-- Header -->
+<header class="header">
+  <div class="header-left">
+    <div class="logo-icon">WS</div>
+    <div>
+      <div class="header-title">WebSec挑战 &middot; AI驱动的安全攻防闯关平台</div>
+      <div class="header-subtitle">每人题目不同 &middot; AI动态生成 &middot; 自动判定</div>
+    </div>
+  </div>
+  <div class="header-right">
+    <div class="header-badge">
+      <span class="dot"></span>
+      48人在线
+    </div>
+    <div class="header-badge" style="border-color: rgba(168,85,247,0.3); color: var(--accent-purple);">
+      AI引擎 v2.3
+    </div>
+    <div class="user-info">
+      <div class="avatar">张</div>
+      <div>
+        <div class="user-name">张伟同学</div>
+        <div class="user-role">软件工程 2024级</div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- Main Content -->
+<div class="main-container">
+  <!-- Challenge Area -->
+  <div class="challenge-area">
+    <div class="challenge-header">
+      <div class="challenge-tag">
+        <span class="level-badge">LEVEL 2</span>
+        <div class="difficulty">
+          <span></span><span></span><span></span><span class="dim"></span><span class="dim"></span>
+        </div>
+        <span style="font-size:12px; color: var(--text-dim);">难度: 中等</span>
+      </div>
+    </div>
+
+    <h2 class="challenge-title"><span class="num">第2关</span>：越权访问漏洞</h2>
+    <p class="challenge-desc">
+      以下 Servlet 负责管理员页面的访问控制，但存在越权访问漏洞。任何已登录用户（包括普通用户）都能访问管理页面。
+      请找到漏洞并编写修复代码，添加角色验证逻辑。
+    </p>
+
+    <!-- Code Editor -->
+    <div class="code-editor">
+      <div class="editor-tabs">
+        <div class="editor-tab active">
+          <span class="icon">&#9670;</span>
+          AdminUserServlet.java
+        </div>
+        <div class="editor-tab">
+          <span class="icon" style="color: var(--accent-green);">&#9670;</span>
+          User.java
+        </div>
+        <div class="editor-tab">
+          <span class="icon" style="color: var(--accent-cyan);">&#9670;</span>
+          web.xml
+        </div>
+        <div class="editor-actions">
+          <button class="editor-action-btn">&#9881; 设置</button>
+          <button class="editor-action-btn">&#128196; 复制</button>
+        </div>
+      </div>
+      <div class="code-container">
+        <div class="line-numbers">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16</div>
+        <div class="code-content"><span class="an">@WebServlet</span>(<span class="st">"/admin/users"</span>)
+<span class="kw">public class</span> <span class="tp">AdminUserServlet</span> <span class="kw">extends</span> <span class="tp">HttpServlet</span> {
+    <span class="kw">protected void</span> <span class="mt">doGet</span>(<span class="tp">HttpServletRequest</span> request, <span class="tp">HttpServletResponse</span> response)
+            <span class="kw">throws</span> <span class="tp">ServletException</span>, <span class="tp">IOException</span> {
+<span class="bug-line">        <span class="cm">// <span class="bug-indicator">&#9888; BUG:</span> 未检查用户角色，任何已登录用户都能访问管理页面</span></span>
+        <span class="tp">HttpSession</span> session = request.<span class="mt">getSession</span>();
+        <span class="tp">String</span> username = (<span class="tp">String</span>) session.<span class="mt">getAttribute</span>(<span class="st">"username"</span>);
+        <span class="kw">if</span> (username != <span class="nm">null</span>) {
+            <span class="tp">List</span>&lt;<span class="tp">User</span>&gt; users = userDAO.<span class="mt">findAll</span>();
+            request.<span class="mt">setAttribute</span>(<span class="st">"users"</span>, users);
+            request.<span class="mt">getRequestDispatcher</span>(<span class="st">"/WEB-INF/admin/users.jsp"</span>).<span class="mt">forward</span>(request, response);
+        } <span class="kw">else</span> {
+            response.<span class="mt">sendRedirect</span>(<span class="st">"/login.jsp"</span>);
+        }
+    }
+}</div>
+      </div>
+    </div>
+
+    <!-- Fix Area -->
+    <div class="fix-area">
+      <div class="fix-label">
+        <span class="icon">&#9998;</span>
+        修复方案
+      </div>
+      <textarea class="fix-textarea" id="fixTextarea" placeholder="// 在此编写修复代码...&#10;// 提示：需要在验证用户登录后，额外检查用户角色&#10;// 例如：从session中获取role属性，判断是否为admin"></textarea>
+    </div>
+
+    <!-- Action Buttons -->
+    <div class="fix-actions">
+      <button class="btn btn-primary" id="submitBtn" onclick="submitFix()">
+        &#9654; 提交修复
+      </button>
+      <button class="btn btn-hint" onclick="showHint()">
+        &#128161; AI提示
+      </button>
+      <button class="btn btn-reset" onclick="resetChallenge()">
+        &#8635; 重置
+      </button>
+    </div>
+
+    <!-- Hint Box -->
+    <div class="hint-box" id="hintBox">
+      <div class="hint-header">
+        &#129302; AI助手提示
+      </div>
+      <div class="hint-text">
+        提示：检查用户Session中是否存储了角色信息，对比是否为admin角色。<br><br>
+        建议修复思路：在验证 <code style="color: var(--accent-cyan);">username != null</code> 之后，
+        增加对 <code style="color: var(--accent-cyan);">session.getAttribute("role")</code> 的检查，
+        仅当角色为 <code style="color: var(--accent-cyan);">"admin"</code> 时才允许访问管理页面。
+        否则应返回403错误或重定向到无权限页面。
+      </div>
+    </div>
+
+    <!-- Test Results -->
+    <div class="test-results" id="testResults">
+      <div class="test-header">
+        <span>&#9881; 自动化测试结果</span>
+        <span class="test-status" id="testStatus"></span>
+      </div>
+      <div class="test-list" id="testList"></div>
+      <div class="test-summary" id="testSummary"></div>
+    </div>
+  </div>
+
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <!-- Progress Tracker -->
+    <div class="progress-section">
+      <div class="section-title">
+        <span class="icon">&#127942;</span>
+        闯关进度
+      </div>
+      <div class="progress-track">
+        <div class="progress-line"></div>
+        <div class="progress-line-fill"></div>
+
+        <div class="level-item">
+          <div class="level-dot completed">&#10003;</div>
+          <div class="level-info">
+            <div class="level-name">第1关：SQL注入</div>
+            <div class="level-meta green">&#10003; 已通过</div>
+          </div>
+          <div class="level-time green">2:34</div>
+        </div>
+
+        <div class="level-item">
+          <div class="level-dot current">2</div>
+          <div class="level-info">
+            <div class="level-name">第2关：越权访问</div>
+            <div class="level-meta orange">&#128293; 进行中</div>
+          </div>
+          <div class="level-time" id="currentLevelTime" style="color: var(--accent-orange);">--:--</div>
+        </div>
+
+        <div class="level-item">
+          <div class="level-dot locked">&#128274;</div>
+          <div class="level-info">
+            <div class="level-name dim">第3关：Session劫持</div>
+            <div class="level-meta" style="color: var(--text-dim);">未解锁</div>
+          </div>
+          <div class="level-time">--:--</div>
+        </div>
+
+        <div class="level-item">
+          <div class="level-dot locked">&#128274;</div>
+          <div class="level-info">
+            <div class="level-name dim">第4关：XSS跨站脚本</div>
+            <div class="level-meta" style="color: var(--text-dim);">未解锁</div>
+          </div>
+          <div class="level-time">--:--</div>
+        </div>
+
+        <div class="level-item">
+          <div class="level-dot locked" style="background: var(--accent-red); color: #fff; font-size: 10px;">B</div>
+          <div class="level-info">
+            <div class="level-name dim">第5关：综合漏洞（BOSS关）</div>
+            <div class="level-meta" style="color: var(--text-dim);">未解锁</div>
+          </div>
+          <div class="level-time">--:--</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Timer -->
+    <div class="timer-section">
+      <div>
+        <div class="timer-label">本关用时</div>
+        <div class="timer-value" id="timerDisplay">00:00</div>
+      </div>
+      <div>
+        <div class="timer-detail">总用时 <span id="totalTime" style="color: var(--accent-cyan);">02:34</span></div>
+        <div class="timer-detail" style="margin-top:4px;">尝试次数 <span id="attempts" style="color: var(--accent-orange);">0</span></div>
+      </div>
+    </div>
+
+    <!-- Leaderboard -->
+    <div class="leaderboard-section">
+      <div class="section-title">
+        <span class="icon">&#127941;</span>
+        实时排行榜
+        <span style="margin-left:auto; font-size:11px; color: var(--text-dim); font-weight:400;">48人参与</span>
+      </div>
+      <div class="leaderboard-list" id="leaderboard"></div>
+    </div>
+  </div>
+</div>
+
+<!-- Bottom Dashboard -->
+<div class="dashboard">
+  <!-- Class Progress Bars -->
+  <div class="dash-section" style="flex: 1.5;">
+    <div class="dash-title">
+      <span>&#128202;</span>
+      班级闯关进度（实时）
+    </div>
+    <div class="dash-bars" id="dashBars"></div>
+  </div>
+
+  <!-- Average Times -->
+  <div class="dash-section">
+    <div class="dash-title">
+      <span>&#9201;</span>
+      平均用时
+    </div>
+    <div class="dash-avg-times">
+      <div class="avg-item">
+        <span class="avg-label">第1关</span>
+        <span class="avg-value">3:12</span>
+      </div>
+      <div class="avg-item">
+        <span class="avg-label">第2关</span>
+        <span class="avg-value" style="color: var(--accent-orange);">6:45</span>
+      </div>
+      <div class="avg-item">
+        <span class="avg-label">第3关</span>
+        <span class="avg-value" style="color: var(--text-dim);">--:--</span>
+      </div>
+      <div class="avg-item">
+        <span class="avg-label">第4关</span>
+        <span class="avg-value" style="color: var(--text-dim);">--:--</span>
+      </div>
+      <div class="avg-item">
+        <span class="avg-label">第5关</span>
+        <span class="avg-value" style="color: var(--text-dim);">--:--</span>
+      </div>
+      <div class="avg-item">
+        <span class="avg-label">最快通关</span>
+        <span class="avg-value" style="color: var(--accent-green);">2:34</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- AI Alert -->
+  <div class="dash-alert-section">
+    <div class="alert-banner">
+      <div class="alert-header">
+        &#9888;&#65039; AI教学预警
+      </div>
+      <div class="alert-text">
+        第2关通过率过低（<strong style="color: var(--accent-red);">40%</strong>），建议暂停讲解越权访问漏洞的核心概念。
+      </div>
+      <div class="alert-action" onclick="this.textContent='&#10003; 已发送课堂提醒'; this.style.borderColor='rgba(0,255,136,0.3)'; this.style.color='var(--accent-green)'; this.style.background='rgba(0,255,136,0.1)';">
+        &#128227; 发送课堂提醒
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Success Overlay -->
+<div class="success-overlay" id="successOverlay">
+  <div class="success-card">
+    <div class="success-icon">&#127881;</div>
+    <div class="success-title">第2关 通关成功！</div>
+    <div class="success-sub">越权访问漏洞已修复</div>
+    <div class="success-stats">
+      <div class="success-stat">
+        <div class="success-stat-value" style="color: var(--accent-cyan);" id="successTime">--:--</div>
+        <div class="success-stat-label">用时</div>
+      </div>
+      <div class="success-stat">
+        <div class="success-stat-value" style="color: var(--accent-green);">5/5</div>
+        <div class="success-stat-label">测试通过</div>
+      </div>
+      <div class="success-stat">
+        <div class="success-stat-value" style="color: var(--accent-orange);" id="successAttempts">-</div>
+        <div class="success-stat-label">尝试次数</div>
+      </div>
+      <div class="success-stat">
+        <div class="success-stat-value" style="color: var(--accent-purple);">+150</div>
+        <div class="success-stat-label">积分</div>
+      </div>
+    </div>
+    <button class="btn-next" onclick="closeSuccess()">继续挑战 第3关 &#8594;</button>
+  </div>
+</div>
+
+<script>
+// ========== Timer ==========
+let timerSeconds = 0;
+let totalSeconds = 154; // 2:34 from level 1
+let attempts = 0;
+
+function updateTimer() {
+  timerSeconds++;
+  totalSeconds++;
+  const min = String(Math.floor(timerSeconds / 60)).padStart(2, '0');
+  const sec = String(timerSeconds % 60).padStart(2, '0');
+  document.getElementById('timerDisplay').textContent = min + ':' + sec;
+  document.getElementById('currentLevelTime').textContent = min + ':' + sec;
+
+  const tMin = String(Math.floor(totalSeconds / 60)).padStart(2, '0');
+  const tSec = String(totalSeconds % 60).padStart(2, '0');
+  document.getElementById('totalTime').textContent = tMin + ':' + tSec;
+}
+
+setInterval(updateTimer, 1000);
+
+// ========== Particles ==========
+(function createParticles() {
+  const container = document.getElementById('particles');
+  for (let i = 0; i < 30; i++) {
+    const p = document.createElement('div');
+    p.className = 'particle';
+    p.style.left = Math.random() * 100 + '%';
+    p.style.animationDuration = (15 + Math.random() * 25) + 's';
+    p.style.animationDelay = (Math.random() * 20) + 's';
+    p.style.width = p.style.height = (1 + Math.random() * 2) + 'px';
+    if (Math.random() > 0.7) p.style.background = 'var(--accent-purple)';
+    container.appendChild(p);
+  }
+})();
+
+// ========== Leaderboard ==========
+const leaderboardData = [
+  { name: '李明', level: 3, levelName: '第3关', time: '08:21', pct: 60, colors: ['#ff6b35','#ff8c42'] },
+  { name: '王雪', level: 2, levelName: '第2关', time: '09:15', pct: 40, colors: ['#00d4ff','#0099cc'] },
+  { name: '赵强', level: 2, levelName: '第2关', time: '09:42', pct: 40, colors: ['#a855f7','#7c3aed'] },
+  { name: '张伟', level: 2, levelName: '第2关', time: '--:--', pct: 35, colors: ['#00d4ff','#00ff88'], me: true },
+  { name: '刘洋', level: 2, levelName: '第2关', time: '10:55', pct: 30, colors: ['#ffd93d','#f59e0b'] },
+  { name: '陈静', level: 1, levelName: '第1关', time: '11:23', pct: 20, colors: ['#f472b6','#ec4899'] },
+  { name: '孙鹏', level: 1, levelName: '第1关', time: '12:01', pct: 20, colors: ['#34d399','#10b981'] },
+  { name: '周婷', level: 1, levelName: '第1关', time: '12:44', pct: 15, colors: ['#fb923c','#f97316'] },
+];
+
+function renderLeaderboard() {
+  const el = document.getElementById('leaderboard');
+  el.innerHTML = '';
+  const rankClasses = ['top1', 'top2', 'top3'];
+  const rankBadges = ['gold', 'silver', 'bronze'];
+
+  leaderboardData.forEach((item, i) => {
+    const itemClass = item.me ? 'me' : (i < 3 ? rankClasses[i] : '');
+    const badgeClass = i < 3 ? rankBadges[i] : 'normal';
+    const fillColor = `linear-gradient(90deg, ${item.colors[0]}, ${item.colors[1]})`;
+    const avatarBg = `linear-gradient(135deg, ${item.colors[0]}, ${item.colors[1]})`;
+
+    el.innerHTML += `
+      <div class="lb-item ${itemClass}">
+        <div class="lb-rank ${badgeClass}">${i + 1}</div>
+        <div class="lb-avatar" style="background: ${avatarBg}">${item.name[0]}</div>
+        <div class="lb-info">
+          <div class="lb-name">${item.name}${item.me ? ' <span style="font-size:10px;color:var(--accent-cyan);">(我)</span>' : ''}</div>
+          <div class="lb-progress-bar">
+            <div class="lb-progress-fill" style="width: ${item.pct}%; background: ${fillColor};"></div>
+          </div>
+        </div>
+        <div class="lb-level">${item.levelName}</div>
+        <div class="lb-time">${item.time}</div>
+      </div>
+    `;
+  });
+}
+
+renderLeaderboard();
+
+// ========== Dashboard Bars ==========
+const classProgress = [
+  { label: '第1关', pct: 92, color: 'var(--accent-green)' },
+  { label: '第2关', pct: 40, color: 'var(--accent-orange)' },
+  { label: '第3关', pct: 12, color: 'var(--accent-cyan)' },
+  { label: '第4关', pct: 0, color: 'var(--accent-purple)' },
+  { label: '第5关', pct: 0, color: 'var(--accent-red)' },
+];
+
+function renderDashBars() {
+  const el = document.getElementById('dashBars');
+  el.innerHTML = '';
+  classProgress.forEach(item => {
+    const pctColor = item.pct > 50 ? item.color : 'var(--text-secondary)';
+    el.innerHTML += `
+      <div class="dash-bar-row">
+        <span class="dash-bar-label">${item.label}</span>
+        <div class="dash-bar-track">
+          <div class="dash-bar-fill" style="width: ${item.pct}%; background: ${item.color};">
+            ${item.pct > 8 ? `<span class="pct-text">${item.pct}%</span>` : ''}
+          </div>
+        </div>
+        <span class="dash-bar-pct" style="color: ${pctColor};">${item.pct}%</span>
+      </div>
+    `;
+  });
+}
+
+renderDashBars();
+
+// ========== Hint ==========
+function showHint() {
+  const hint = document.getElementById('hintBox');
+  hint.classList.toggle('show');
+}
+
+// ========== Submit Fix ==========
+let submitPhase = 0; // 0 = first submit (3 pass, 2 fail), 1 = second submit (all pass)
+
+const tests = [
+  { name: 'testAdminCanAccess()', desc: '管理员可以访问管理页面' },
+  { name: 'testNormalUserBlocked()', desc: '普通用户被拒绝访问' },
+  { name: 'testNotLoggedInRedirect()', desc: '未登录用户重定向到登录页' },
+  { name: 'testRoleCheckExists()', desc: '角色检查逻辑存在' },
+  { name: 'testReturn403OnForbidden()', desc: '无权限时返回403状态码' },
+];
+
+function submitFix() {
+  attempts++;
+  document.getElementById('attempts').textContent = attempts;
+
+  const btn = document.getElementById('submitBtn');
+  btn.disabled = true;
+  btn.innerHTML = '&#9881; 运行测试中...';
+  btn.style.opacity = '0.7';
+
+  const resultEl = document.getElementById('testResults');
+  const listEl = document.getElementById('testList');
+  const statusEl = document.getElementById('testStatus');
+  const summaryEl = document.getElementById('testSummary');
+
+  resultEl.classList.add('show');
+  listEl.innerHTML = '';
+  statusEl.innerHTML = '<span style="color: var(--accent-yellow);">&#9881; 运行中...</span>';
+  summaryEl.innerHTML = '';
+
+  // Determine which tests pass
+  const passAll = submitPhase >= 1;
+  const results = passAll
+    ? [true, true, true, true, true]
+    : [true, false, true, false, true];
+
+  let idx = 0;
+  const times = [42, 18, 31, 56, 23];
+
+  function runNext() {
+    if (idx >= tests.length) {
+      // Summary
+      const passCount = results.filter(r => r).length;
+      const failCount = results.filter(r => !r).length;
+
+      statusEl.innerHTML = passAll
+        ? '<span style="color: var(--accent-green);">&#10003; 全部通过</span>'
+        : '<span style="color: var(--accent-red);">&#10007; 部分失败</span>';
+
+      summaryEl.innerHTML = `
+        <span><span class="test-pass-count">&#10003; ${passCount} 通过</span> &nbsp; <span class="test-fail-count">${failCount > 0 ? '&#10007; ' + failCount + ' 失败' : ''}</span></span>
+        <span style="color: var(--text-dim);">总耗时: ${times.reduce((a,b) => a+b, 0)}ms</span>
+      `;
+
+      btn.disabled = false;
+      btn.style.opacity = '1';
+      btn.innerHTML = '&#9654; 提交修复';
+
+      if (passAll) {
+        setTimeout(() => {
+          showSuccess();
+        }, 800);
+      } else {
+        submitPhase = 1;
+        // Auto fill the fix textarea as a hint
+        setTimeout(() => {
+          const ta = document.getElementById('fixTextarea');
+          if (!ta.value.trim()) {
+            ta.value = 'String role = (String) session.getAttribute("role");\nif (!"admin".equals(role)) {\n    response.sendError(HttpServletResponse.SC_FORBIDDEN, "无权限访问");\n    return;\n}';
+          }
+        }, 500);
+      }
+      return;
+    }
+
+    // Show running state
+    const test = tests[idx];
+    const pass = results[idx];
+    const ms = times[idx];
+
+    // Add spinning item
+    listEl.innerHTML += `
+      <div class="test-item" id="test-${idx}">
+        <span class="test-icon running">&#9881;</span>
+        <span class="test-name">${test.name} <span style="color:var(--text-dim);font-size:11px;">${test.desc}</span></span>
+        <span class="test-time">...</span>
+      </div>
+    `;
+
+    setTimeout(() => {
+      const item = document.getElementById('test-' + idx);
+      if (pass) {
+        item.innerHTML = `
+          <span class="test-icon pass">&#10003;</span>
+          <span class="test-name">${test.name} <span style="color:var(--text-dim);font-size:11px;">${test.desc}</span></span>
+          <span class="test-time">${ms}ms</span>
+        `;
+      } else {
+        item.innerHTML = `
+          <span class="test-icon fail">&#10007;</span>
+          <span class="test-name" style="color: var(--accent-red);">${test.name} <span style="font-size:11px;">FAILED - ${test.desc}</span></span>
+          <span class="test-time">${ms}ms</span>
+        `;
+      }
+      idx++;
+      runNext();
+    }, 350 + Math.random() * 250);
+  }
+
+  setTimeout(runNext, 400);
+}
+
+// ========== Success Overlay ==========
+function showSuccess() {
+  const overlay = document.getElementById('successOverlay');
+  const min = String(Math.floor(timerSeconds / 60)).padStart(2, '0');
+  const sec = String(timerSeconds % 60).padStart(2, '0');
+  document.getElementById('successTime').textContent = min + ':' + sec;
+  document.getElementById('successAttempts').textContent = attempts;
+  overlay.classList.add('show');
+}
+
+function closeSuccess() {
+  document.getElementById('successOverlay').classList.remove('show');
+}
+
+// ========== Reset ==========
+function resetChallenge() {
+  submitPhase = 0;
+  document.getElementById('testResults').classList.remove('show');
+  document.getElementById('hintBox').classList.remove('show');
+  document.getElementById('fixTextarea').value = '';
+}
+
+// ========== Fake leaderboard movement ==========
+setInterval(() => {
+  // Randomly update a time
+  const items = document.querySelectorAll('.lb-time');
+  const idx = Math.floor(Math.random() * items.length);
+  if (items[idx] && items[idx].textContent !== '--:--') {
+    const parts = items[idx].textContent.split(':');
+    const s = parseInt(parts[1]) + 1;
+    if (s < 60) {
+      items[idx].textContent = parts[0] + ':' + String(s).padStart(2, '0');
+    }
+  }
+}, 3000);
+
+// Update "my" time in leaderboard
+setInterval(() => {
+  const myItem = document.querySelector('.lb-item.me .lb-time');
+  if (myItem) {
+    const min = String(Math.floor((timerSeconds + 154) / 60)).padStart(2, '0');
+    const sec = String((timerSeconds + 154) % 60).padStart(2, '0');
+    myItem.textContent = min + ':' + sec;
+  }
+}, 1000);
+</script>
+</body>
+</html>
