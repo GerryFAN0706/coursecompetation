@@ -23,115 +23,132 @@ hero:
 features:
   - icon: "🎯"
     title: 问题驱动，不是技术炫技
-    details: 从五个真实教学痛点出发——课外无反馈、练习同质化、搭便车泛滥、盲信AI、备课低效——每项AI融合创新都有明确的问题靶向。
+    details: 从五个真实教学痛点出发，每项AI融合创新都有明确的问题靶向，先有问题再有方案。
     link: /innovation/
     linkText: 查看痛点与方案
   - icon: "🔄"
     title: 深度融入，不是简单使用
-    details: AI不是课堂上的"展示环节"，而是贯穿课前学情分析、课中实时干预、课后精准反馈的全过程结构化协作者。
+    details: AI贯穿课前学情分析、课中实时干预、课后精准反馈全过程，是结构化协作者而非展示道具。
     link: /cases/lesson-15/
     linkText: 查看45分钟落地
   - icon: "📊"
     title: 数据驱动，不是经验猜测
-    details: 五维融合创新均产生教学数据，形成可验证的改进闭环。代码质量提升35%，高相似率从45%降至<5%。
+    details: 五维创新均产生教学数据，16周14次闭环迭代。代码质量提升35%，高相似率从45%降至<5%。
     link: /results/
     linkText: 查看成效数据
 ---
 
 <div class="section-divider"></div>
 
-## 传统教学五大痛点
+## 五个真实痛点，五维AI融合方案
 
 <p class="section-lead">
-经过三轮教学周期的系统观察，我们识别出Java Web课程中五个核心痛点——这些不是假设性问题，而是有数据支撑的真实教学困境。
+不是"先有AI工具再找应用场景"，而是<strong>"先有真实教学痛点，再精准融入AI解决"</strong>。以下每一对面板展示一个痛点及其对应的AI融合方案。
 </p>
 
-<div class="innovation-grid">
-  <div class="pain-card">
-    <span class="badge">痛点 #01</span>
+<!-- ─── 痛点①  →  智能助教 ─── -->
+<div class="fusion-panel">
+  <div class="fusion-problem">
+    <span class="fusion-tag">痛点 ①</span>
     <h3>课外学习无人问津</h3>
-    <p>学生课后遇到报错无人解答，编程困惑积累到下次上课时已遗忘上下文。教师无法掌握课外学习状态，课堂设计凭经验猜测。</p>
+    <p>学生课后遇到报错无人解答，编程困惑积累到下次上课时已遗忘上下文。教师无法掌握课外学习状态，课堂设计只能凭经验猜测。</p>
   </div>
-  <div class="pain-card">
-    <span class="badge">痛点 #02</span>
-    <h3>练习同质、抄袭泛滥</h3>
-    <p>统一题目导致高相似度提交，MOSS检测显示高相似配对达24.8%。统一难度让基础学生跟不上、强学生缺挑战，两极分化严重。</p>
+  <div class="fusion-arrow">→</div>
+  <div class="fusion-solution">
+    <span class="fusion-tag">融合方案 ①</span>
+    <h3>智能助教 — RAG课程智能体</h3>
+    <p>基于课程大纲、16讲课件、实验手册构建的专属AI助教。24小时个性化问答，学情热力图让教师课前即知全班薄弱点，数据驱动教学决策。</p>
+    <a class="fusion-link" href="/coursecompetation/innovation/#智能助教">查看详细设计 →</a>
   </div>
-  <div class="pain-card">
-    <span class="badge">痛点 #03</span>
+</div>
+
+<!-- ─── 痛点②  →  编程挑战 ─── -->
+<div class="fusion-panel">
+  <div class="fusion-problem">
+    <span class="fusion-tag">痛点 ②</span>
+    <h3>练习同质化、抄袭泛滥</h3>
+    <p>统一题目导致高相似度提交（MOSS检测高相似配对达24.8%）。统一难度让基础学生跟不上、强学生缺乏挑战，课堂两极分化严重。</p>
+  </div>
+  <div class="fusion-arrow">→</div>
+  <div class="fusion-solution">
+    <span class="fusion-tag">融合方案 ②</span>
+    <h3>AI自适应编程挑战</h3>
+    <p>AI为每人动态生成不同代码题目，自适应难度三级匹配，天然防抄袭。排行榜+实时数据大屏让教师精准发现薄弱点并即时干预。覆盖JDBC到安全的多讲次知识领域。</p>
+    <a class="fusion-link" href="/coursecompetation/innovation/#ai自适应编程挑战与学情分析">查看详细设计 →</a>
+  </div>
+</div>
+
+<!-- ─── 痛点③  →  团队教练 ─── -->
+<div class="fusion-panel">
+  <div class="fusion-problem">
+    <span class="fusion-tag">痛点 ③</span>
     <h3>团队搭便车、缺过程评价</h3>
-    <p>团队项目中部分成员只改README或截止日前突击提交。教师只能看最终成果，无法客观评价个体贡献，分数公平性受质疑。</p>
+    <p>团队项目中部分成员只改README或截止日前突击提交。教师只能看最终成果打分，无法客观评价个体贡献，分数公平性长期受质疑。</p>
   </div>
-  <div class="pain-card">
-    <span class="badge">痛点 #04</span>
-    <h3>盲信AI、缺乏批判思维</h3>
-    <p>AI工具普及后，学生不加辨别地接受AI建议，直接提交AI生成代码。缺乏独立判断AI输出正确性的能力，"会用AI"≠"会编程"。</p>
-  </div>
-  <div class="pain-card">
-    <span class="badge">痛点 #05</span>
-    <h3>教师备课效率低</h3>
-    <p>PPT制作每讲耗时4小时+，实验设计全班统一无法个性化。大量重复性劳动挤占了教学设计与学生辅导的时间。</p>
+  <div class="fusion-arrow">→</div>
+  <div class="fusion-solution">
+    <span class="fusion-tag">融合方案 ③</span>
+    <h3>团队协作教练 TeamCoach</h3>
+    <p>基于Git提交数据的AI团队分析——贡献度可视化、分工合理性检测、搭便车自动预警。每周生成AI项目健康报告，用数据而非主观判断评价团队。</p>
+    <a class="fusion-link" href="/coursecompetation/innovation/#团队协作教练-teamcoach">查看详细设计 →</a>
   </div>
 </div>
 
-<div class="section-divider"></div>
-
-## 五维AI融合创新：每个痛点都有靶向方案
-
-<p class="section-lead">
-不是"先有AI工具再找应用场景"，而是<strong>"先有真实痛点，再融入AI解决"</strong>。每一维融合创新都精准对应一个教学问题。
-</p>
-
-<div class="compare-board">
-  <div class="compare-card before">
-    <h4>❌ 传统教学痛点</h4>
-    <ul>
-      <li><strong>痛点①</strong> 课外无即时反馈，学情不可见</li>
-      <li><strong>痛点②</strong> 练习同质化，抄袭泛滥，难度一刀切</li>
-      <li><strong>痛点③</strong> 搭便车严重，过程评价缺失</li>
-      <li><strong>痛点④</strong> 学生盲信AI输出，缺批判性思维</li>
-      <li><strong>痛点⑤</strong> 教师备课重复低效</li>
-    </ul>
+<!-- ─── 痛点④  →  人机对抗 ─── -->
+<div class="fusion-panel">
+  <div class="fusion-problem">
+    <span class="fusion-tag">痛点 ④</span>
+    <h3>盲信AI输出、缺批判性思维</h3>
+    <p>AI工具普及后，学生不加辨别地接受AI建议。直接提交AI生成代码，缺乏独立判断能力。"会用AI" ≠ "会编程"，这是AI时代的新教学挑战。</p>
   </div>
-  <div class="compare-card after">
-    <h4>✅ AI融合创新方案</h4>
-    <ul>
-      <li><strong>智能助教</strong> RAG课程智能体，24h问答+学情热力图</li>
-      <li><strong>编程挑战</strong> AI一人一题，自适应难度，天然防抄袭</li>
-      <li><strong>团队教练</strong> Git贡献分析+AI周报，数据驱动团队评价</li>
-      <li><strong>人机对抗</strong> 学生vs AI审查代码，培养独立判断力</li>
-      <li><strong>资料重构</strong> 个性化实验生成+AI PPT，备课效率提升85%</li>
-    </ul>
+  <div class="fusion-arrow">→</div>
+  <div class="fusion-solution">
+    <span class="fusion-tag">融合方案 ④</span>
+    <h3>人机对抗 Code Review Battle</h3>
+    <p>学生与AI同台审查代码，对比各自发现的问题——AI擅长模式识别，人类擅长业务理解。通过辩论认识AI能力边界，培养批判性思维与独立判断力。</p>
+    <a class="fusion-link" href="/coursecompetation/innovation/#人机对抗-code-review-battle">查看详细设计 →</a>
   </div>
 </div>
 
-<p style="text-align:center;margin:20px 0;">
-  <a href="/coursecompetation/innovation/" style="display:inline-block;padding:10px 28px;background:linear-gradient(135deg,#2563eb,#0891b2);color:white;border-radius:999px;font-weight:600;text-decoration:none;box-shadow:0 4px 14px rgba(37,99,235,0.2);transition:all 0.3s;">查看五维融合创新详细设计 →</a>
+<!-- ─── 痛点⑤  →  资料重构 ─── -->
+<div class="fusion-panel">
+  <div class="fusion-problem">
+    <span class="fusion-tag">痛点 ⑤</span>
+    <h3>教师备课重复低效</h3>
+    <p>PPT制作每讲耗时4小时以上，实验设计全班统一无法个性化。大量重复性备课劳动挤占了教学设计与学生辅导的宝贵时间。</p>
+  </div>
+  <div class="fusion-arrow">→</div>
+  <div class="fusion-solution">
+    <span class="fusion-tag">融合方案 ⑤</span>
+    <h3>AI辅助教学资料重构</h3>
+    <p>个性化实验设计生成器实现"一人一题"（同知识点、不同场景、分层难度），AI课程PPT生成将单讲制作从4小时缩短至30-40分钟，释放教师精力。</p>
+    <a class="fusion-link" href="/coursecompetation/innovation/#ai辅助教学资料重构">查看详细设计 →</a>
+  </div>
+</div>
+
+<p style="text-align:center;margin:24px 0;">
+  <a href="/coursecompetation/innovation/" style="display:inline-block;padding:12px 32px;background:linear-gradient(135deg,#2563eb,#0891b2);color:white;border-radius:999px;font-weight:700;text-decoration:none;box-shadow:0 4px 18px rgba(37,99,235,0.25);transition:all 0.3s;font-size:1.05rem;">查看五维融合创新完整设计 →</a>
 </p>
 
 <div class="section-divider"></div>
 
-## 如何融入课程：不是展示，是贯穿
-
-<p class="section-lead">
-AI融合创新不是课堂上的"秀技术"环节——它贯穿<strong>课前学情分析、课中实时干预、课后精准反馈</strong>全过程，覆盖16讲完整教学周期。
-</p>
+## 如何融入课程：贯穿课前·课中·课后
 
 <div class="flow-grid">
   <div class="flow-card stagger-1">
     <div class="step-num">课前</div>
     <h4>数据采集与个性化准备</h4>
-    <p><strong>智能助教</strong>推送预习问题、收集学情<br/><strong>资料重构</strong>生成一人一题的个性化实验<br/><strong>团队教练</strong>生成上周Git周报</p>
+    <p><strong>智能助教</strong> 推送预习·收集学情<br/><strong>资料重构</strong> 生成一人一题实验<br/><strong>团队教练</strong> 生成上周Git周报</p>
   </div>
   <div class="flow-card stagger-2">
     <div class="step-num">课中</div>
     <h4>AI辅助实时教学</h4>
-    <p><strong>智能助教</strong>学情数据驱动导入<br/><strong>编程挑战</strong>游戏化自适应练习<br/><strong>人机对抗</strong>培养批判性思维</p>
+    <p><strong>智能助教</strong> 学情数据驱动导入<br/><strong>编程挑战</strong> 游戏化自适应练习<br/><strong>人机对抗</strong> 培养批判性思维</p>
   </div>
   <div class="flow-card stagger-3">
     <div class="step-num">课后</div>
     <h4>精准反馈与持续迭代</h4>
-    <p><strong>智能助教</strong>24h答疑支持<br/><strong>团队教练</strong>追踪项目进度<br/><strong>编程挑战</strong>课后继续闯关</p>
+    <p><strong>智能助教</strong> 24h答疑支持<br/><strong>团队教练</strong> 追踪项目进度<br/><strong>编程挑战</strong> 课后继续闯关</p>
   </div>
 </div>
 
