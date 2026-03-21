@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>代码对比 - 第十五讲</title>
+<link rel="stylesheet" href="styles.css">
+<style>
+  .tab-bar { display:flex; gap:0; margin-bottom:0; }
+  .tab { padding:10px 20px; cursor:pointer; font-weight:600; font-size:0.9rem; border:2px solid #d1d5db; border-bottom:none; border-radius:8px 8px 0 0; background:#f9fafb; color:#6b7280; }
+  .tab:hover { background:#f3f4f6; }
+  .tab.active { background:white; color:#1e3a5f; border-bottom:2px solid white; margin-bottom:-2px; z-index:1; }
+  .tab-content { border:2px solid #d1d5db; border-radius:0 8px 8px 8px; padding:24px; background:white; display:none; }
+  .tab-content.active { display:block; }
+  .file-path { font-family:monospace; font-size:0.8rem; color:#6b7280; background:#f3f4f6; padding:4px 10px; border-radius:4px; display:inline-block; margin-bottom:8px; }
+  .line-num { color:#64748b; user-select:none; display:inline-block; width:28px; text-align:right; margin-right:12px; }
+  pre .del { background:rgba(239,68,68,0.15); display:block; border-left:3px solid #ef4444; padding-left:8px; margin:0 -16px; padding-right:16px; }
+  pre .add { background:rgba(34,197,94,0.15); display:block; border-left:3px solid #22c55e; padding-left:8px; margin:0 -16px; padding-right:16px; }
+  pre .ctx { display:block; padding-left:11px; }
+  .knowledge-box { background:#eff6ff; border:1px solid #bfdbfe; border-radius:6px; padding:12px 16px; margin-top:16px; }
+  .knowledge-box h4 { color:#1e40af; margin-bottom:6px; font-size:0.9rem; }
+  .knowledge-box ul { margin:0; padding-left:20px; font-size:0.85rem; color:#1e3a5f; }
+  .test-table { width:100%; border-collapse:collapse; font-size:0.85rem; margin-top:12px; }
+  .test-table th, .test-table td { padding:8px 12px; border:1px solid #e5e7eb; text-align:left; }
+  .test-table th { background:#f9fafb; }
+  .pass { color:#16a34a; font-weight:700; }
+  .fail { color:#dc2626; font-weight:700; }
+</style>
+</head>
+<body>
+
+<div class="page-header">
+  <h1>代码对比</h1>
+  <div class="subtitle">逐缺陷对比问题代码与修复代码，标注关键改动</div>
+  <nav>
+    <a href="index.html">概览</a>
+    <a href="demo-problem.html">问题版演示</a>
+    <a href="demo-fixed.html">修复版演示</a>
+    <a href="code-compare.html" class="active">代码对比</a>
+  </nav>
+</div>
+
+<div class="container">
+
+  <!-- Tab Navigation -->
+  <div class="tab-bar">
+    <div class="tab active" onclick="showTab('defect1')">缺陷一：Filter越权</div>
+    <div class="tab" onclick="showTab('defect2')">缺陷二：菜单越权</div>
+    <div class="tab" onclick="showTab('defect3')">缺陷三：会话残留</div>
+    <div class="tab" onclick="showTab('defect4')">额外：Session冗余</div>
+    <div class="tab" onclick="showTab('tests')">测试验证</div>
+  </div>
+
+  <!-- ═══ 缺陷一：Filter ═══ -->
+  <div class="tab-content active" id="tab-defect1">
+    <h2>缺陷一：RoleBasedAuthFilter 越权访问 <span class="defect-badge">高危</span></h2>
+    <p style="margin-bottom:16px;">Filter 拦截 <code>/admin/*</code> 请求，但只检查是否登录，<strong>不检查角色</strong>。任何登录用户都能访问管理后台。</p>
+
+    <div class="compare-grid">
+      <div class="compare-col problem">
+        <div class="compare-label">问题代码 RoleBasedAuthFilter.java</div>
+        <div class="file-path">filter/RoleBasedAuthFilter.java &mdash; doFilter()</div>
+<pre>
+<span class="ctx"><span class="line-num">10</span><span class="keyword">public void</span> doFilter(ServletRequest req,</span>
+<span class="ctx"><span class="line-num">11</span>    ServletResponse res, FilterChain chain) {</span>
+<span class="ctx"><span class="line-num">12</span>  HttpServletRequest request = (HttpServletRequest) req;</span>
+<span class="ctx"><span class="line-num">13</span>  HttpSession session = request.getSession(<span class="keyword">false</span>);</span>
+<span class="ctx"><span class="line-num">14</span></span>
+<span class="del"><span class="line-num">15</span>  <span class="keyword">boolean</span> loggedIn = session != <span class="keyword">null</span></span>
+<span class="del"><span class="line-num">16</span>      && Boolean.TRUE.equals(</span>
+<span class="del"><span class="line-num">17</span>          session.getAttribute(<span class="string">"isLoggedIn"</span>));</span>
+<span class="del"><span class="line-num">18</span></span>
+<span class="del"><span class="line-num">19</span>  <span class="keyword">if</span> (loggedIn) {</span>
+<span class="del"><span class="line-num">20</span>      chain.doFilter(req, res); <span class="comment">// 放行所有登录用户!</span></span>
+<span class="del"><span class="line-num">21</span>  } <span class="keyword">else</span> {</span>
+<span class="del"><span class="line-num">22</span>      response.sendRedirect(<span class="string">"login.jsp"</span>);</span>
+<span class="del"><span class="line-num">23</span>  }</span>
+<span class="ctx"><span class="line-num">24</span>}</span>
+</pre>
+      </div>
+      <div class="compare-col fixed">
+        <div class="compare-label">修复代码 RoleBasedAuthFilter.java</div>
+        <div class="file-path">filter/RoleBasedAuthFilter.java &mdash; doFilter()</div>
+<pre>
+<span class="ctx"><span class="line-num">10</span><span class="keyword">public void</span> doFilter(ServletRequest req,</span>
+<span class="ctx"><span class="line-num">11</span>    ServletResponse res, FilterChain chain) {</span>
+<span class="ctx"><span class="line-num">12</span>  HttpServletRequest request = (HttpServletRequest) req;</span>
+<span class="ctx"><span class="line-num">13</span>  HttpSession session = request.getSession(<span class="keyword">false</span>);</span>
+<span class="ctx"><span class="line-num">14</span></span>
+<span class="add"><span class="line-num">15</span>  User user = (session != <span class="keyword">null</span>)</span>
+<span class="add"><span class="line-num">16</span>      ? (User) session.getAttribute(<span class="string">"user"</span>)</span>
+<span class="add"><span class="line-num">17</span>      : <span class="keyword">null</span>;</span>
+<span class="add"><span class="line-num">18</span></span>
+<span class="add"><span class="line-num">19</span>  <span class="keyword">if</span> (user != <span class="keyword">null</span> && <span class="string">"ADMIN"</span>.equals(user.getRole())) {</span>
+<span class="add"><span class="line-num">20</span>      chain.doFilter(req, res); <span class="comment">// 仅ADMIN放行</span></span>
+<span class="add"><span class="line-num">21</span>  } <span class="keyword">else if</span> (user != <span class="keyword">null</span>) {</span>
+<span class="add"><span class="line-num">22</span>      response.sendError(<span class="keyword">403</span>); <span class="comment">// 已登录非ADMIN→403</span></span>
+<span class="add"><span class="line-num">23</span>  } <span class="keyword">else</span> {</span>
+<span class="add"><span class="line-num">24</span>      response.sendRedirect(<span class="string">"login.jsp"</span>); <span class="comment">// 未登录→登录页</span></span>
+<span class="add"><span class="line-num">25</span>  }</span>
+<span class="ctx"><span class="line-num">26</span>}</span>
+</pre>
+      </div>
+    </div>
+
+    <div class="knowledge-box">
+      <h4>涉及知识点</h4>
+      <ul>
+        <li><strong>Filter doFilter()</strong>：Servlet规范中的请求拦截机制，在请求到达Servlet前执行</li>
+        <li><strong>@WebFilter("/admin/*")</strong>：URL模式匹配，拦截所有 /admin/ 下的请求</li>
+        <li><strong>HttpSession getAttribute()</strong>：从Session中获取属性，返回Object需强制转换</li>
+        <li><strong>认证 vs 授权</strong>：认证（Authentication）= 你是谁；授权（Authorization）= 你能做什么</li>
+        <li><strong>HttpServletResponse.SC_FORBIDDEN (403)</strong>：标准HTTP状态码，表示服务器理解请求但拒绝执行</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ═══ 缺陷二：JSP菜单 ═══ -->
+  <div class="tab-content" id="tab-defect2">
+    <h2>缺陷二：index.jsp 菜单越权 <span class="defect-badge">中危</span></h2>
+    <p style="margin-bottom:16px;">首页导航对所有登录用户显示"管理后台"链接，不按角色区分。即使 Filter 修复了，用户仍能看到不该看到的入口。</p>
+
+    <div class="compare-grid">
+      <div class="compare-col problem">
+        <div class="compare-label">问题代码 index.jsp</div>
+        <div class="file-path">webapp/index.jsp &mdash; 导航菜单部分</div>
+<pre>
+<span class="ctx"><span class="line-num">38</span>&lt;c:choose&gt;</span>
+<span class="ctx"><span class="line-num">39</span>  &lt;c:when test=<span class="string">"${empty sessionScope.user}"</span>&gt;</span>
+<span class="ctx"><span class="line-num">40</span>    &lt;a href=<span class="string">"login.jsp"</span>&gt;登录&lt;/a&gt;</span>
+<span class="ctx"><span class="line-num">41</span>  &lt;/c:when&gt;</span>
+<span class="del"><span class="line-num">42</span>  &lt;c:when test=<span class="string">"${sessionScope.isLoggedIn}"</span>&gt;</span>
+<span class="del"><span class="line-num">43</span>    &lt;a href=<span class="string">"logout"</span>&gt;退出&lt;/a&gt;</span>
+<span class="del"><span class="line-num">44</span>    &lt;a href=<span class="string">"admin/panel.jsp"</span>&gt;管理后台&lt;/a&gt;</span>
+<span class="del"><span class="line-num">45</span>  &lt;/c:when&gt; <span class="comment">&lt;!-- 所有登录用户都能看到! --&gt;</span></span>
+<span class="ctx"><span class="line-num">46</span>&lt;/c:choose&gt;</span>
+</pre>
+      </div>
+      <div class="compare-col fixed">
+        <div class="compare-label">修复代码 index.jsp</div>
+        <div class="file-path">webapp/index.jsp &mdash; 导航菜单部分</div>
+<pre>
+<span class="ctx"><span class="line-num">38</span>&lt;c:choose&gt;</span>
+<span class="ctx"><span class="line-num">39</span>  &lt;c:when test=<span class="string">"${empty sessionScope.user}"</span>&gt;</span>
+<span class="ctx"><span class="line-num">40</span>    &lt;a href=<span class="string">"login.jsp"</span>&gt;登录&lt;/a&gt;</span>
+<span class="ctx"><span class="line-num">41</span>  &lt;/c:when&gt;</span>
+<span class="add"><span class="line-num">42</span>  &lt;c:otherwise&gt;</span>
+<span class="add"><span class="line-num">43</span>    &lt;a href=<span class="string">"logout"</span>&gt;退出&lt;/a&gt;</span>
+<span class="add"><span class="line-num">44</span>    &lt;c:if test=<span class="string">"${sessionScope.user.role == 'ADMIN'}"</span>&gt;</span>
+<span class="add"><span class="line-num">45</span>      &lt;a href=<span class="string">"admin/panel.jsp"</span>&gt;管理后台&lt;/a&gt;</span>
+<span class="add"><span class="line-num">46</span>    &lt;/c:if&gt; <span class="comment">&lt;!-- 仅ADMIN可见 --&gt;</span></span>
+<span class="add"><span class="line-num">47</span>  &lt;/c:otherwise&gt;</span>
+<span class="ctx"><span class="line-num">48</span>&lt;/c:choose&gt;</span>
+</pre>
+      </div>
+    </div>
+
+    <div class="knowledge-box">
+      <h4>涉及知识点</h4>
+      <ul>
+        <li><strong>JSTL &lt;c:if&gt;</strong>：条件标签，test属性为true时渲染标签体内容</li>
+        <li><strong>EL表达式 ${sessionScope.user.role}</strong>：通过点号导航访问JavaBean属性（调用getRole()）</li>
+        <li><strong>视图层权限控制</strong>：前端菜单隐藏是"体验优化"，不是安全屏障——真正的安全靠后端Filter</li>
+        <li><strong>纵深防御</strong>：Filter（后端拦截）+ JSP（前端隐藏）双重保护，即使一层被绕过另一层仍有效</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ═══ 缺陷三：会话残留 ═══ -->
+  <div class="tab-content" id="tab-defect3">
+    <h2>缺陷三：LogoutServlet 会话残留 <span class="defect-badge">中危</span></h2>
+    <p style="margin-bottom:16px;">退出登录时只移除了 user 属性，Session 中的 isLoggedIn、role 等属性仍然存在。可能导致会话劫持。</p>
+
+    <div class="compare-grid">
+      <div class="compare-col problem">
+        <div class="compare-label">问题代码 LogoutServlet.java</div>
+        <div class="file-path">controller/LogoutServlet.java &mdash; doGet()</div>
+<pre>
+<span class="ctx"><span class="line-num">12</span><span class="keyword">protected void</span> doGet(HttpServletRequest request,</span>
+<span class="ctx"><span class="line-num">13</span>    HttpServletResponse response) {</span>
+<span class="ctx"><span class="line-num">14</span>  HttpSession session = request.getSession(<span class="keyword">false</span>);</span>
+<span class="ctx"><span class="line-num">15</span>  <span class="keyword">if</span> (session != <span class="keyword">null</span>) {</span>
+<span class="del"><span class="line-num">16</span>      session.removeAttribute(<span class="string">"user"</span>);</span>
+<span class="del"><span class="line-num">17</span>      <span class="comment">// isLoggedIn = true  仍残留!</span></span>
+<span class="del"><span class="line-num">18</span>      <span class="comment">// role = "USER"       仍残留!</span></span>
+<span class="del"><span class="line-num">19</span>      <span class="comment">// displayName = "Tom" 仍残留!</span></span>
+<span class="ctx"><span class="line-num">20</span>  }</span>
+<span class="ctx"><span class="line-num">21</span>  response.sendRedirect(<span class="string">"login.jsp"</span>);</span>
+<span class="ctx"><span class="line-num">22</span>}</span>
+</pre>
+        <div class="alert alert-danger" style="margin-top:8px;">
+          Session 中 4 个属性只清除了 1 个，<br>isLoggedIn=true 残留导致 Filter 可能仍判定为已登录。
+        </div>
+      </div>
+      <div class="compare-col fixed">
+        <div class="compare-label">修复代码 LogoutServlet.java</div>
+        <div class="file-path">controller/LogoutServlet.java &mdash; doGet()</div>
+<pre>
+<span class="ctx"><span class="line-num">12</span><span class="keyword">protected void</span> doGet(HttpServletRequest request,</span>
+<span class="ctx"><span class="line-num">13</span>    HttpServletResponse response) {</span>
+<span class="ctx"><span class="line-num">14</span>  HttpSession session = request.getSession(<span class="keyword">false</span>);</span>
+<span class="ctx"><span class="line-num">15</span>  <span class="keyword">if</span> (session != <span class="keyword">null</span>) {</span>
+<span class="add"><span class="line-num">16</span>      session.invalidate();</span>
+<span class="add"><span class="line-num">17</span>      <span class="comment">// 整个 Session 销毁:</span></span>
+<span class="add"><span class="line-num">18</span>      <span class="comment">// - 所有属性清除</span></span>
+<span class="add"><span class="line-num">19</span>      <span class="comment">// - Session ID 失效</span></span>
+<span class="add"><span class="line-num">20</span>      <span class="comment">// - Cookie JSESSIONID 作废</span></span>
+<span class="ctx"><span class="line-num">21</span>  }</span>
+<span class="ctx"><span class="line-num">22</span>  response.sendRedirect(<span class="string">"login.jsp"</span>);</span>
+<span class="ctx"><span class="line-num">23</span>}</span>
+</pre>
+        <div class="alert alert-success" style="margin-top:8px;">
+          invalidate() 一行代码解决所有问题：<br>属性清除 + Session ID 失效 + Cookie 作废。
+        </div>
+      </div>
+    </div>
+
+    <div class="knowledge-box">
+      <h4>涉及知识点</h4>
+      <ul>
+        <li><strong>session.invalidate()</strong>：销毁整个Session对象，所有属性被清除，Session ID失效</li>
+        <li><strong>session.removeAttribute()</strong>：只移除一个指定属性，Session和其他属性继续存在</li>
+        <li><strong>Session固定攻击（Session Fixation）</strong>：如果旧Session ID可复用，攻击者可劫持用户身份</li>
+        <li><strong>Cookie JSESSIONID</strong>：invalidate 后服务器不再认识该ID，即使浏览器Cookie仍在也无法复用</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ═══ 额外：Session冗余 ═══ -->
+  <div class="tab-content" id="tab-defect4">
+    <h2>额外修复：LoginServlet Session 冗余存储</h2>
+    <p style="margin-bottom:16px;">问题版在Session中存了4个属性（user + isLoggedIn + role + displayName），修复版只存1个User对象——<strong>单一数据源原则</strong>。</p>
+
+    <div class="compare-grid">
+      <div class="compare-col problem">
+        <div class="compare-label">问题代码 LoginServlet.java</div>
+        <div class="file-path">controller/LoginServlet.java &mdash; doPost()</div>
+<pre>
+<span class="ctx"><span class="line-num">22</span>User user = userService.login(username, password);</span>
+<span class="ctx"><span class="line-num">23</span><span class="keyword">if</span> (user != <span class="keyword">null</span>) {</span>
+<span class="ctx"><span class="line-num">24</span>    HttpSession session = request.getSession();</span>
+<span class="ctx"><span class="line-num">25</span>    session.setAttribute(<span class="string">"user"</span>, user);</span>
+<span class="del"><span class="line-num">26</span>    session.setAttribute(<span class="string">"isLoggedIn"</span>, <span class="keyword">true</span>);</span>
+<span class="del"><span class="line-num">27</span>    session.setAttribute(<span class="string">"role"</span>, user.getRole());</span>
+<span class="del"><span class="line-num">28</span>    session.setAttribute(<span class="string">"displayName"</span>,</span>
+<span class="del"><span class="line-num">29</span>        user.getDisplayName());</span>
+<span class="ctx"><span class="line-num">30</span>    response.sendRedirect(<span class="string">"index.jsp"</span>);</span>
+<span class="ctx"><span class="line-num">31</span>}</span>
+</pre>
+        <div class="alert alert-warning" style="margin-top:8px;">
+          4个属性冗余存储，修改 User 后还需同步更新 Session 中的副本。<br>
+          LogoutServlet 需要逐个 removeAttribute。
+        </div>
+      </div>
+      <div class="compare-col fixed">
+        <div class="compare-label">修复代码 LoginServlet.java</div>
+        <div class="file-path">controller/LoginServlet.java &mdash; doPost()</div>
+<pre>
+<span class="ctx"><span class="line-num">22</span>User user = userService.login(username, password);</span>
+<span class="ctx"><span class="line-num">23</span><span class="keyword">if</span> (user != <span class="keyword">null</span>) {</span>
+<span class="ctx"><span class="line-num">24</span>    HttpSession session = request.getSession();</span>
+<span class="add"><span class="line-num">25</span>    session.setAttribute(<span class="string">"user"</span>, user);</span>
+<span class="add"><span class="line-num">26</span>    <span class="comment">// 单一数据源：角色通过 user.getRole() 获取</span></span>
+<span class="add"><span class="line-num">27</span>    <span class="comment">// 登录状态通过 user != null 判断</span></span>
+<span class="add"><span class="line-num">28</span>    <span class="comment">// 显示名通过 user.getDisplayName() 获取</span></span>
+<span class="ctx"><span class="line-num">29</span>    response.sendRedirect(<span class="string">"index.jsp"</span>);</span>
+<span class="ctx"><span class="line-num">30</span>}</span>
+</pre>
+        <div class="alert alert-success" style="margin-top:8px;">
+          1个对象 = 1个数据源。<br>
+          JSP 中用 ${sessionScope.user.role}、${sessionScope.user.displayName} 直接访问。
+        </div>
+      </div>
+    </div>
+
+    <div class="knowledge-box">
+      <h4>涉及知识点</h4>
+      <ul>
+        <li><strong>单一数据源原则</strong>：同一信息只存一处，避免不一致（如修改role后Session中的副本未同步）</li>
+        <li><strong>JavaBean 规范</strong>：User 类的 getRole()、getDisplayName() 遵循 getter 命名规范，EL 可直接导航</li>
+        <li><strong>EL 点号导航</strong>：${sessionScope.user.role} 自动调用 user.getRole()，无需手动类型转换</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ═══ 测试验证 ═══ -->
+  <div class="tab-content" id="tab-tests">
+    <h2>测试验证清单</h2>
+    <p style="margin-bottom:16px;">以下6个测试用例覆盖全部3个缺陷的修复验证。问题版至少失败3项，修复版应全部通过。</p>
+
+    <table class="test-table">
+      <thead>
+        <tr><th>编号</th><th>测试操作</th><th>预期结果</th><th>问题版</th><th>修复版</th><th>验证缺陷</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>T1</td>
+          <td>未登录状态直接访问 /admin/panel.jsp</td>
+          <td>重定向到 login.jsp</td>
+          <td class="pass">PASS</td>
+          <td class="pass">PASS</td>
+          <td>Filter基本功能</td>
+        </tr>
+        <tr>
+          <td>T2</td>
+          <td>用 tom (USER) 登录后访问 /admin/panel.jsp</td>
+          <td>返回 403 Forbidden</td>
+          <td class="fail">FAIL — tom 成功进入</td>
+          <td class="pass">PASS — 403</td>
+          <td>缺陷一：Filter角色检查</td>
+        </tr>
+        <tr>
+          <td>T3</td>
+          <td>用 admin (ADMIN) 登录后访问 /admin/panel.jsp</td>
+          <td>正常显示管理面板</td>
+          <td class="pass">PASS</td>
+          <td class="pass">PASS</td>
+          <td>ADMIN正常放行</td>
+        </tr>
+        <tr>
+          <td>T4</td>
+          <td>用 tom (USER) 登录后查看首页导航</td>
+          <td>不显示"管理后台"链接</td>
+          <td class="fail">FAIL — 链接可见</td>
+          <td class="pass">PASS — 不可见</td>
+          <td>缺陷二：JSP菜单角色条件</td>
+        </tr>
+        <tr>
+          <td>T5</td>
+          <td>用 admin (ADMIN) 登录后查看首页导航</td>
+          <td>显示"管理后台"链接</td>
+          <td class="pass">PASS</td>
+          <td class="pass">PASS</td>
+          <td>ADMIN菜单正常</td>
+        </tr>
+        <tr>
+          <td>T6</td>
+          <td>退出登录后访问 /admin/panel.jsp</td>
+          <td>重定向到 login.jsp（Session已销毁）</td>
+          <td class="fail">FAIL — Session残留可能放行</td>
+          <td class="pass">PASS — Session已invalidate</td>
+          <td>缺陷三：Session完整销毁</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="compare-grid" style="margin-top:24px;">
+      <div class="compare-col problem" style="padding:16px;">
+        <div class="compare-label">问题版：3/6 FAIL</div>
+        <div class="alert alert-danger">
+          T2 FAIL：tom 越权访问管理后台<br>
+          T4 FAIL：tom 看到管理后台链接<br>
+          T6 FAIL：退出后Session残留
+        </div>
+      </div>
+      <div class="compare-col fixed" style="padding:16px;">
+        <div class="compare-label">修复版：6/6 PASS</div>
+        <div class="alert alert-success">
+          T2 PASS：tom 收到 403<br>
+          T4 PASS：tom 看不到管理链接<br>
+          T6 PASS：Session 完全销毁
+        </div>
+      </div>
+    </div>
+
+    <div class="knowledge-box">
+      <h4>课堂验证流程</h4>
+      <ul>
+        <li>先用<a href="demo-problem.html">问题版</a>逐项执行T1-T6，记录失败项</li>
+        <li>学生诊断并提出修复方案</li>
+        <li>再用<a href="demo-fixed.html">修复版</a>逐项验证T1-T6，确认全部通过</li>
+        <li>对照<strong>代码对比</strong>（前四个标签页），逐行理解改动原因</li>
+      </ul>
+    </div>
+  </div>
+
+</div>
+
+<script>
+function showTab(id) {
+  document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('tab-' + id).classList.add('active');
+  event.target.classList.add('active');
+}
+</script>
+
+</body>
+</html>
