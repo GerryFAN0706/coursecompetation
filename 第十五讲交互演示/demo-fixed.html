@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>修复版演示 - 第十五讲</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div class="page-header">
+  <h1>修复版演示 <span class="fix-badge" style="font-size:0.8rem;">3个缺陷已修复</span></h1>
+  <div class="subtitle">课程作业管理系统 · 角色检查 + 菜单隔离 + 完整退出</div>
+  <nav>
+    <a href="index.html">概览</a>
+    <a href="demo-problem.html">问题版演示</a>
+    <a href="demo-fixed.html" class="active">修复版演示</a>
+    <a href="code-compare.html">代码对比</a>
+  </nav>
+</div>
+
+<div class="container">
+
+  <div class="steps" id="steps">
+    <span class="step active" data-step="login">1. 选择用户登录</span>
+    <span class="step" data-step="home">2. 查看首页菜单</span>
+    <span class="step" data-step="admin">3. 访问管理后台</span>
+    <span class="step" data-step="logout">4. 退出登录</span>
+    <span class="step" data-step="session">5. 检查Session</span>
+  </div>
+
+  <div class="browser-frame">
+    <div class="browser-bar">
+      <div class="browser-dots"><span class="r"></span><span class="y"></span><span class="g"></span></div>
+      <div class="browser-url" id="url-bar">http://localhost:8080/demo/login.jsp</div>
+    </div>
+    <div class="browser-body" id="app-view"></div>
+  </div>
+
+  <div class="card" id="analysis-panel">
+    <h2>服务器端处理过程</h2>
+    <div id="analysis-content">
+      <p style="color:#6b7280;">选择用户并登录后，这里将展示修复后的服务器端处理过程。</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>当前Session状态</h2>
+    <table class="session-table">
+      <thead><tr><th>属性名</th><th>值</th><th>说明</th></tr></thead>
+      <tbody id="session-table-body">
+        <tr><td>user</td><td class="val-null">null</td><td>用户对象（唯一的Session属性）</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>
+
+<script>
+const users = {
+  admin: { username: 'admin', role: 'ADMIN', displayName: '管理员张老师' },
+  tom:   { username: 'tom',   role: 'USER',  displayName: '学生Tom' }
+};
+
+let session = {};
+let currentUser = null;
+
+function setUrl(url) { document.getElementById('url-bar').textContent = url; }
+
+function setStep(step) {
+  document.querySelectorAll('.step').forEach(s => {
+    s.classList.remove('active');
+    const order = ['login','home','admin','logout','session'];
+    if (order.indexOf(s.dataset.step) < order.indexOf(step)) s.classList.add('done');
+  });
+  document.querySelector(`[data-step="${step}"]`).classList.add('active');
+}
+
+function updateSessionTable() {
+  const u = session.user;
+  if (u) {
+    document.getElementById('session-table-body').innerHTML = `
+      <tr><td>user</td><td class="val-set">User{${u.username}, ${u.role}, "${u.displayName}"}</td><td>用户对象（唯一的Session属性）</td></tr>
+    `;
+  } else {
+    document.getElementById('session-table-body').innerHTML = `
+      <tr><td colspan="3" class="val-null" style="text-align:center;">Session 已销毁（invalidate），所有属性清除</td></tr>
+    `;
+  }
+}
+
+function renderLogin() {
+  setUrl('http://localhost:8080/demo/login.jsp');
+  setStep('login');
+  session = {};
+  currentUser = null;
+  updateSessionTable();
+  document.getElementById('app-view').innerHTML = `
+    <div class="login-box">
+      <h2>课程作业管理系统</h2>
+      <div class="form-group">
+        <label>选择登录用户：</label>
+        <select id="user-select">
+          <option value="tom">tom / tom123（普通用户 USER）</option>
+          <option value="admin">admin / admin123（管理员 ADMIN）</option>
+        </select>
+      </div>
+      <button class="btn btn-primary" onclick="doLogin()">登 录</button>
+      <p style="margin-top:12px;font-size:0.8rem;color:#9ca3af;text-align:center;">修复版：Session只存User对象，角色通过user.getRole()获取</p>
+    </div>
+  `;
+  document.getElementById('analysis-content').innerHTML = `
+    <p style="color:#6b7280;">等待用户登录...</p>
+    <div class="alert alert-info">提示：分别用 <strong>tom</strong> 和 <strong>admin</strong> 登录，对比行为差异。</div>
+  `;
+}
+
+function doLogin() {
+  const username = document.getElementById('user-select').value;
+  currentUser = users[username];
+  // 修复版：只存 user 对象，不存冗余属性
+  session = { user: currentUser };
+  updateSessionTable();
+  renderHome();
+}
+
+function renderHome() {
+  setUrl('http://localhost:8080/demo/index.jsp');
+  setStep('home');
+
+  const user = session.user;
+  const isAdmin = user && user.role === 'ADMIN';
+
+  // 修复版：菜单按角色条件渲染
+  const adminLink = isAdmin
+    ? `<span onclick="renderAdmin()" style="cursor:pointer;">管理后台</span>`
+    : '';
+
+  document.getElementById('app-view').innerHTML = `
+    <div class="app-nav">
+      <span class="brand">课程作业管理系统</span>
+      <div class="nav-links">
+        <span>首页</span>
+        ${user ? `<span class="user-badge">欢迎, ${user.displayName}</span>` : ''}
+        ${adminLink}
+        ${user ? `<span class="danger" onclick="doLogout()">退出登录</span>` : ''}
+      </div>
+    </div>
+    <div class="app-content">
+      <h2>欢迎使用课程作业管理系统</h2>
+      <p>当前用户：<strong>${user.displayName}</strong>（角色：${user.role}）</p>
+      ${!isAdmin ? `
+        <div class="alert alert-success fix-highlight" style="margin-top:16px;">
+          <strong>修复二生效：</strong>你是普通用户（USER），导航栏中<strong>不显示</strong>"管理后台"链接。<br>
+          <code>index.jsp</code> 使用 <code>&lt;c:if test="\${sessionScope.user.role == 'ADMIN'}"&gt;</code> 按角色条件渲染菜单。<br>
+          <strong>→ 尝试直接在地址栏输入 /admin/panel.jsp：</strong>
+          <button onclick="renderAdmin()" style="margin-top:8px;padding:4px 12px;background:#dc2626;color:white;border:none;border-radius:4px;cursor:pointer;">模拟直接访问 /admin/panel.jsp</button>
+        </div>
+      ` : `
+        <div class="alert alert-success" style="margin-top:16px;">
+          你是管理员，菜单正确显示了"管理后台"链接。点击进入。
+        </div>
+      `}
+    </div>
+  `;
+
+  document.getElementById('analysis-content').innerHTML = `
+    <h3>LoginServlet 处理过程（已修复）</h3>
+    <pre><span class="comment">// 修复后的 LoginServlet.doPost()</span>
+User user = userService.login(<span class="string">"${currentUser.username}"</span>, <span class="string">"***"</span>);
+HttpSession session = request.getSession();
+<span class="highlight-good">session.setAttribute(<span class="string">"user"</span>, user);  <span class="comment">// 只存一个对象，单一数据源</span></span>
+<span class="comment">// 不再存储 isLoggedIn、role、displayName（通过 user.getXxx() 获取）</span>
+response.sendRedirect(<span class="string">"index.jsp"</span>);</pre>
+    <h3 style="margin-top:16px;">index.jsp 菜单渲染（已修复）</h3>
+    <pre><span class="comment">&lt;!-- 修复后：按角色条件渲染 --&gt;</span>
+<span class="highlight-good">&lt;c:if test=<span class="string">"\${sessionScope.user.role == 'ADMIN'}"</span>&gt;
+    &lt;a href=<span class="string">"admin/panel.jsp"</span>&gt;管理后台&lt;/a&gt;
+&lt;/c:if&gt;</span>
+<span class="comment">&lt;!-- USER 用户根本看不到这个链接 --&gt;</span></pre>
+  `;
+}
+
+function renderAdmin() {
+  setUrl('http://localhost:8080/demo/admin/panel.jsp');
+  setStep('admin');
+
+  const user = session.user;
+
+  // 修复版：Filter 检查角色
+  if (!user) {
+    // 未登录 → 重定向到登录页
+    document.getElementById('app-view').innerHTML = `
+      <div class="login-box">
+        <h2>请先登录</h2>
+        <div class="alert alert-warning">未登录用户被 Filter 重定向到登录页。</div>
+        <button class="btn btn-primary" onclick="renderLogin()">去登录</button>
+      </div>
+    `;
+    return;
+  }
+
+  if (user.role !== 'ADMIN') {
+    // 已登录但非 ADMIN → 403
+    document.getElementById('app-view').innerHTML = `
+      <div class="app-nav">
+        <span class="brand">课程作业管理系统</span>
+        <div class="nav-links">
+          <span onclick="renderHome()" style="cursor:pointer;">首页</span>
+          <span class="user-badge">欢迎, ${user.displayName}</span>
+          <span class="danger" onclick="doLogout()">退出登录</span>
+        </div>
+      </div>
+      <div class="error-403">
+        <h1>403</h1>
+        <p>禁止访问 — 您没有管理员权限</p>
+        <p style="margin-top:8px;font-size:0.9rem;">当前角色：${user.role}，需要角色：ADMIN</p>
+        <div class="alert alert-success fix-highlight" style="margin-top:24px;text-align:left;max-width:500px;margin-left:auto;margin-right:auto;">
+          <strong>修复一生效！</strong>RoleBasedAuthFilter 正确拦截了越权访问。<br>
+          Filter 检查了 <code>user.getRole().equals("ADMIN")</code>，tom（USER）被返回 403 Forbidden。<br>
+          <strong>→ 点击"退出登录"测试修复三</strong>
+        </div>
+      </div>
+    `;
+
+    document.getElementById('analysis-content').innerHTML = `
+      <h3>RoleBasedAuthFilter 处理过程（已修复）</h3>
+      <pre><span class="comment">// 修复后的 RoleBasedAuthFilter.doFilter()</span>
+<span class="comment">// 请求：GET /admin/panel.jsp</span>
+<span class="comment">// 用户：${user.username}（角色：${user.role}）</span>
+
+HttpSession session = request.getSession(false);
+User user = (User) session.getAttribute(<span class="string">"user"</span>);
+
+<span class="highlight-good"><span class="keyword">if</span> (user != null && <span class="string">"ADMIN"</span>.equals(user.getRole())) {
+    chain.doFilter(req, res);  <span class="comment">// 仅 ADMIN 放行</span>
+} <span class="keyword">else if</span> (user != null) {
+    response.sendError(HttpServletResponse.SC_FORBIDDEN);  <span class="comment">// 403</span>
+} <span class="keyword">else</span> {
+    response.sendRedirect(<span class="string">"login.jsp"</span>);  <span class="comment">// 未登录</span>
+}</span>
+
+<span class="comment">// 结果：tom（USER）被拦截，返回 403 Forbidden</span></pre>
+    `;
+    return;
+  }
+
+  // ADMIN → 正常显示
+  document.getElementById('app-view').innerHTML = `
+    <div class="app-nav">
+      <span class="brand">课程作业管理系统</span>
+      <div class="nav-links">
+        <span onclick="renderHome()" style="cursor:pointer;">首页</span>
+        <span class="user-badge">欢迎, ${user.displayName}</span>
+        <span class="danger" onclick="doLogout()">退出登录</span>
+      </div>
+    </div>
+    <div class="app-content">
+      <div class="admin-panel">
+        <h3>管理后台面板</h3>
+        <p style="margin-top:8px;">学生作业提交统计、成绩管理、系统设置...</p>
+        <table class="session-table" style="margin-top:12px;">
+          <tr><th>功能</th><th>操作</th></tr>
+          <tr><td>查看全班成绩</td><td><span style="color:#2563eb;">查看</span></td></tr>
+          <tr><td>修改学生成绩</td><td><span style="color:#2563eb;">编辑</span></td></tr>
+          <tr><td>删除学生提交</td><td><span style="color:#dc2626;">删除</span></td></tr>
+        </table>
+      </div>
+      <div class="alert alert-success" style="margin-top:16px;">
+        管理员正常访问管理后台，这是预期行为。
+      </div>
+    </div>
+  `;
+
+  document.getElementById('analysis-content').innerHTML = `
+    <h3>RoleBasedAuthFilter — ADMIN 用户放行</h3>
+    <pre><span class="comment">// user.getRole() = "ADMIN" → 检查通过，放行</span>
+chain.doFilter(req, res);</pre>
+  `;
+}
+
+function doLogout() {
+  setUrl('http://localhost:8080/demo/logout → login.jsp');
+  setStep('logout');
+
+  const prevUser = session.user;
+  // 修复版：session.invalidate() 清除所有属性
+  session = {};
+  currentUser = null;
+  updateSessionTable();
+
+  document.getElementById('app-view').innerHTML = `
+    <div class="login-box">
+      <h2>课程作业管理系统</h2>
+      <div class="alert alert-success">
+        <strong>已安全退出</strong> — Session 已完全销毁
+      </div>
+      <button class="btn btn-primary" onclick="checkSessionAfterLogout()">检查Session状态 →</button>
+    </div>
+  `;
+
+  document.getElementById('analysis-content').innerHTML = `
+    <h3>LogoutServlet 处理过程（已修复）</h3>
+    <pre><span class="comment">// 修复后的 LogoutServlet.doGet()</span>
+HttpSession session = request.getSession(false);
+<span class="keyword">if</span> (session != null) {
+    <span class="highlight-good">session.invalidate();  <span class="comment">// 一次性销毁整个Session！</span></span>
+    <span class="comment">// 所有属性（user、以及任何其他属性）全部清除</span>
+    <span class="comment">// Session ID 也失效，无法被复用</span>
+}
+response.sendRedirect(<span class="string">"login.jsp"</span>);</pre>
+  `;
+}
+
+function checkSessionAfterLogout() {
+  setStep('session');
+
+  document.getElementById('app-view').innerHTML = `
+    <div style="padding:32px;text-align:center;">
+      <h2 style="color:#16a34a;">Session状态：已完全销毁</h2>
+      <div style="display:inline-block;text-align:left;margin-top:16px;">
+        <table class="session-table">
+          <thead><tr><th>属性</th><th>退出前</th><th>退出后</th><th>状态</th></tr></thead>
+          <tbody>
+            <tr><td>user</td><td>User{...}</td><td class="val-null">-</td><td class="val-set">已销毁</td></tr>
+            <tr><td>Session ID</td><td>abc123...</td><td class="val-null">失效</td><td class="val-set">已销毁</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="alert alert-success fix-highlight" style="margin-top:20px;text-align:left;max-width:600px;margin-left:auto;margin-right:auto;">
+        <strong>修复三生效！</strong><code>session.invalidate()</code> 一次性销毁了整个Session。<br><br>
+        <strong>对比问题版：</strong><br>
+        &bull; 问题版用 <code>removeAttribute("user")</code> → 只删1个属性，其余残留<br>
+        &bull; 修复版用 <code>session.invalidate()</code> → Session整体销毁，Session ID也失效<br><br>
+        <strong>安全意义：</strong>即使攻击者获得了旧的 Session ID（Cookie），也无法复用——因为服务器已不认识这个ID。
+      </div>
+      <div style="margin-top:20px;">
+        <a href="demo-problem.html" style="margin-right:16px;">← 对比问题版</a>
+        <a href="code-compare.html">查看代码对比 →</a>
+      </div>
+    </div>
+  `;
+
+  document.getElementById('analysis-content').innerHTML = `
+    <h3>三个修复总结</h3>
+    <div class="alert alert-success">
+      <strong>修复一（Filter）：</strong>增加 <code>user.getRole().equals("ADMIN")</code> 角色检查，非ADMIN返回403。<br><br>
+      <strong>修复二（JSP）：</strong>用 <code>&lt;c:if test="\${sessionScope.user.role == 'ADMIN'}"&gt;</code> 按角色渲染菜单。<br><br>
+      <strong>修复三（Servlet）：</strong>用 <code>session.invalidate()</code> 替代 <code>removeAttribute()</code>，彻底销毁Session。<br><br>
+      <strong>额外修复（LoginServlet）：</strong>只存 <code>user</code> 一个属性，通过 <code>user.getRole()</code> 访问角色——单一数据源原则。
+    </div>
+  `;
+}
+
+document.querySelectorAll('.step').forEach(s => {
+  s.addEventListener('click', () => {
+    const step = s.dataset.step;
+    if (step === 'login') renderLogin();
+    else if (step === 'home' && session.user) renderHome();
+    else if (step === 'admin') renderAdmin();
+    else if (step === 'session' && !session.user) checkSessionAfterLogout();
+  });
+});
+
+renderLogin();
+updateSessionTable();
+</script>
+
+</body>
+</html>

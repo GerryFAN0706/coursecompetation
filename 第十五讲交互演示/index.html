@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第十五讲 用户认证与权限控制 - 交互演示</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div class="page-header">
+  <h1>第十五讲 用户认证与权限控制</h1>
+  <div class="subtitle">Java Web应用开发 · 课堂交互演示 · 课程作业管理系统</div>
+  <nav>
+    <a href="index.html" class="active">概览</a>
+    <a href="demo-problem.html">问题版演示</a>
+    <a href="demo-fixed.html">修复版演示</a>
+    <a href="code-compare.html">代码对比</a>
+  </nav>
+</div>
+
+<div class="container">
+
+  <!-- 教学目标 -->
+  <div class="card">
+    <h2>教学目标</h2>
+    <p>通过一个<strong>可运行但带逻辑缺陷</strong>的「课程作业管理系统」，学生完成：</p>
+    <ol style="margin:12px 0 0 20px;">
+      <li><strong>认证（Authentication）</strong>：理解"你是谁"——登录验证用户身份</li>
+      <li><strong>授权（Authorization）</strong>：理解"你能做什么"——角色权限控制访问</li>
+      <li><strong>会话管理（Session）</strong>：理解登录状态维持与安全退出</li>
+    </ol>
+    <div class="alert alert-info" style="margin-top:16px;">
+      核心认知：<strong>能登录 &ne; 能安全控制访问</strong>。登录只解决了认证，授权需要Filter+角色检查。
+    </div>
+  </div>
+
+  <!-- 系统架构 -->
+  <div class="card">
+    <h2>系统架构（MVC + Filter）</h2>
+    <pre>
+<span class="comment">// 分层架构</span>
+┌─────────────┐     ┌──────────────────┐     ┌──────────────┐
+│  <span class="keyword">View 层</span>     │     │  <span class="keyword">Controller 层</span>   │     │  <span class="keyword">Service 层</span>   │
+│  login.jsp   │────▶│  LoginServlet     │────▶│  UserService  │
+│  index.jsp   │     │  LogoutServlet    │     │  login()      │
+│  admin/panel │     └──────────────────┘     └──────┬───────┘
+└─────────────┘              ▲                        │
+                             │                        ▼
+                    ┌────────┴────────┐        ┌──────────────┐
+                    │  <span class="keyword">Filter 层</span>      │        │  <span class="keyword">DAO 层</span>      │
+                    │  RoleBasedAuth   │        │  UserDao      │
+                    │  拦截 /admin/*   │        │  findByName() │
+                    └─────────────────┘        └──────────────┘
+
+<span class="comment">// 测试账号</span>
+admin / admin123  → 角色：ADMIN（管理员）
+tom   / tom123    → 角色：USER（普通用户）
+</pre>
+  </div>
+
+  <!-- 三个缺陷概览 -->
+  <div class="card">
+    <h2>三个待诊断的安全缺陷</h2>
+    <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap:16px; margin-top:12px;">
+
+      <div style="border:2px solid #fecaca; border-radius:8px; padding:16px; background:#fef2f2;">
+        <div style="font-weight:700; color:#dc2626; margin-bottom:8px;">缺陷一：越权访问 <span class="defect-badge">Filter</span></div>
+        <p style="font-size:0.85rem; color:#991b1b;">RoleBasedAuthFilter 只检查是否登录，<strong>不检查角色</strong>。普通用户 tom 可以直接访问 /admin/panel.jsp</p>
+        <p style="font-size:0.8rem; color:#6b7280; margin-top:8px;">涉及知识点：Filter doFilter()、HttpSession getAttribute()、角色检查逻辑</p>
+      </div>
+
+      <div style="border:2px solid #fecaca; border-radius:8px; padding:16px; background:#fef2f2;">
+        <div style="font-weight:700; color:#dc2626; margin-bottom:8px;">缺陷二：菜单越权 <span class="defect-badge">JSP</span></div>
+        <p style="font-size:0.85rem; color:#991b1b;">index.jsp 对所有已登录用户都显示"管理后台"链接，<strong>不按角色区分</strong>。tom 能看到并点击管理入口。</p>
+        <p style="font-size:0.8rem; color:#6b7280; margin-top:8px;">涉及知识点：JSTL &lt;c:if&gt; 条件判断、EL 表达式 ${sessionScope.user.role}</p>
+      </div>
+
+      <div style="border:2px solid #fecaca; border-radius:8px; padding:16px; background:#fef2f2;">
+        <div style="font-weight:700; color:#dc2626; margin-bottom:8px;">缺陷三：会话残留 <span class="defect-badge">Servlet</span></div>
+        <p style="font-size:0.85rem; color:#991b1b;">LogoutServlet 只调用 removeAttribute("user")，<strong>不调用 session.invalidate()</strong>。退出后 isLoggedIn、role 等属性仍残留在 Session 中。</p>
+        <p style="font-size:0.8rem; color:#6b7280; margin-top:8px;">涉及知识点：HttpSession invalidate() vs removeAttribute()、会话安全</p>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 演示入口 -->
+  <div class="card">
+    <h2>交互演示入口</h2>
+    <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap:16px; margin-top:12px;">
+
+      <a href="demo-problem.html" style="display:block; text-decoration:none; border:2px solid #fecaca; border-radius:8px; padding:20px; background:#fff; transition:all 0.2s;">
+        <div style="font-size:1.5rem; margin-bottom:8px;">&#9888;&#65039;</div>
+        <div style="font-weight:700; color:#dc2626; margin-bottom:4px;">问题版演示</div>
+        <div style="font-size:0.85rem; color:#6b7280;">体验三个安全缺陷：用 tom 登录后尝试访问管理后台，观察异常行为</div>
+      </a>
+
+      <a href="demo-fixed.html" style="display:block; text-decoration:none; border:2px solid #bbf7d0; border-radius:8px; padding:20px; background:#fff; transition:all 0.2s;">
+        <div style="font-size:1.5rem; margin-bottom:8px;">&#9989;</div>
+        <div style="font-weight:700; color:#16a34a; margin-bottom:4px;">修复版演示</div>
+        <div style="font-size:0.85rem; color:#6b7280;">体验修复后的安全行为：角色检查、菜单隔离、完整退出</div>
+      </a>
+
+      <a href="code-compare.html" style="display:block; text-decoration:none; border:2px solid #bfdbfe; border-radius:8px; padding:20px; background:#fff; transition:all 0.2s;">
+        <div style="font-size:1.5rem; margin-bottom:8px;">&#128269;</div>
+        <div style="font-weight:700; color:#2563eb; margin-bottom:4px;">代码对比</div>
+        <div style="font-size:0.85rem; color:#6b7280;">逐缺陷对比问题代码与修复代码，标注关键改动行</div>
+      </a>
+
+    </div>
+  </div>
+
+  <!-- 课堂流程 -->
+  <div class="card">
+    <h2>课堂使用流程</h2>
+    <ol style="margin:8px 0 0 20px; font-size:0.9rem;">
+      <li><strong>问题导入（3分钟）</strong>：教师用 tom 账号登录问题版，演示越权访问管理后台</li>
+      <li><strong>学生诊断（10分钟）</strong>：学生阅读代码，找出三个缺陷的位置和原因</li>
+      <li><strong>Code Review Battle（15分钟）</strong>：学生 vs AI 同时审查，对比各自发现</li>
+      <li><strong>修复验证（7分钟）</strong>：切换到修复版，验证 tom 被拦截、菜单隐藏、会话清除</li>
+      <li><strong>代码对比总结（5分钟）</strong>：打开代码对比页面，逐行讲解修复逻辑</li>
+    </ol>
+  </div>
+
+</div>
+
+</body>
+</html>
