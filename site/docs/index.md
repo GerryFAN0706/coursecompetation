@@ -46,84 +46,108 @@ features:
 不是"先有AI工具再找应用场景"，而是<strong>"先有真实教学痛点，再精准融入AI解决"</strong>。以下每一对面板展示一个痛点及其对应的AI融合方案。
 </p>
 
-<!-- ─── 痛点①  →  智能助教 ─── -->
-<div class="fusion-panel">
-  <div class="fusion-problem">
-    <span class="fusion-tag">痛点 ①</span>
-    <h3>课外学习无人问津</h3>
-    <p>学生课后遇到报错无人解答，编程困惑积累到下次上课时已遗忘上下文。教师无法掌握课外学习状态，课堂设计只能凭经验猜测。</p>
-  </div>
-  <div class="fusion-arrow">→</div>
-  <div class="fusion-solution">
-    <span class="fusion-tag">融合方案 ①</span>
-    <h3>智能助教 — RAG课程智能体</h3>
-    <p>基于课程大纲、16讲课件、实验手册构建的专属AI助教。24小时个性化问答，学情热力图让教师课前即知全班薄弱点，数据驱动教学决策。</p>
-    <a class="fusion-link" href="/coursecompetation/innovation/#智能助教">查看详细设计 →</a>
+<div class="fusion-grid">
+
+<!-- ─── ①  智能助教 ─── -->
+<div class="fusion-panel fp-blue">
+  <div class="fusion-inner">
+    <div class="fusion-num">01</div>
+    <div class="fusion-problem">
+      <span class="fp-icon">😶‍🌫️</span>
+      <span class="fp-label">传统痛点</span>
+      <h3>课外学习无人问津</h3>
+      <p>学生课后遇到报错无人解答，困惑积累遗忘。教师无法掌握课外学习状态，课堂设计凭经验猜测。</p>
+    </div>
+    <div class="fusion-divider"></div>
+    <div class="fusion-solution">
+      <span class="fp-label">AI融合方案</span>
+      <h3>智能助教 — RAG课程智能体</h3>
+      <p>基于课程知识库构建的专属AI助教。24h个性化问答，学情热力图让教师课前即知全班薄弱点。</p>
+      <a class="fusion-link" href="/coursecompetation/innovation/#智能助教">查看设计 →</a>
+    </div>
   </div>
 </div>
 
-<!-- ─── 痛点②  →  编程挑战 ─── -->
-<div class="fusion-panel">
-  <div class="fusion-problem">
-    <span class="fusion-tag">痛点 ②</span>
-    <h3>练习同质化、抄袭泛滥</h3>
-    <p>统一题目导致高相似度提交（MOSS检测高相似配对达24.8%）。统一难度让基础学生跟不上、强学生缺乏挑战，课堂两极分化严重。</p>
-  </div>
-  <div class="fusion-arrow">→</div>
-  <div class="fusion-solution">
-    <span class="fusion-tag">融合方案 ②</span>
-    <h3>AI自适应编程挑战</h3>
-    <p>AI为每人动态生成不同代码题目，自适应难度三级匹配，天然防抄袭。排行榜+实时数据大屏让教师精准发现薄弱点并即时干预。覆盖JDBC到安全的多讲次知识领域。</p>
-    <a class="fusion-link" href="/coursecompetation/innovation/#ai自适应编程挑战与学情分析">查看详细设计 →</a>
-  </div>
-</div>
-
-<!-- ─── 痛点③  →  团队教练 ─── -->
-<div class="fusion-panel">
-  <div class="fusion-problem">
-    <span class="fusion-tag">痛点 ③</span>
-    <h3>团队搭便车、缺过程评价</h3>
-    <p>团队项目中部分成员只改README或截止日前突击提交。教师只能看最终成果打分，无法客观评价个体贡献，分数公平性长期受质疑。</p>
-  </div>
-  <div class="fusion-arrow">→</div>
-  <div class="fusion-solution">
-    <span class="fusion-tag">融合方案 ③</span>
-    <h3>团队协作教练 TeamCoach</h3>
-    <p>基于Git提交数据的AI团队分析——贡献度可视化、分工合理性检测、搭便车自动预警。每周生成AI项目健康报告，用数据而非主观判断评价团队。</p>
-    <a class="fusion-link" href="/coursecompetation/innovation/#团队协作教练-teamcoach">查看详细设计 →</a>
+<!-- ─── ②  编程挑战 ─── -->
+<div class="fusion-panel fp-cyan">
+  <div class="fusion-inner">
+    <div class="fusion-num">02</div>
+    <div class="fusion-problem">
+      <span class="fp-icon">📋</span>
+      <span class="fp-label">传统痛点</span>
+      <h3>练习同质化、抄袭泛滥</h3>
+      <p>统一题目高相似配对达24.8%，统一难度让基础学生掉队、强学生无聊，两极分化严重。</p>
+    </div>
+    <div class="fusion-divider"></div>
+    <div class="fusion-solution">
+      <span class="fp-label">AI融合方案</span>
+      <h3>AI自适应编程挑战</h3>
+      <p>AI为每人动态生成不同题目，三级自适应难度，天然防抄袭。排行榜+实时数据大屏驱动精准干预。</p>
+      <a class="fusion-link" href="/coursecompetation/innovation/#ai自适应编程挑战与学情分析">查看设计 →</a>
+    </div>
   </div>
 </div>
 
-<!-- ─── 痛点④  →  人机对抗 ─── -->
-<div class="fusion-panel">
-  <div class="fusion-problem">
-    <span class="fusion-tag">痛点 ④</span>
-    <h3>盲信AI输出、缺批判性思维</h3>
-    <p>AI工具普及后，学生不加辨别地接受AI建议。直接提交AI生成代码，缺乏独立判断能力。"会用AI" ≠ "会编程"，这是AI时代的新教学挑战。</p>
-  </div>
-  <div class="fusion-arrow">→</div>
-  <div class="fusion-solution">
-    <span class="fusion-tag">融合方案 ④</span>
-    <h3>人机对抗 Code Review Battle</h3>
-    <p>学生与AI同台审查代码，对比各自发现的问题——AI擅长模式识别，人类擅长业务理解。通过辩论认识AI能力边界，培养批判性思维与独立判断力。</p>
-    <a class="fusion-link" href="/coursecompetation/innovation/#人机对抗-code-review-battle">查看详细设计 →</a>
+<!-- ─── ③  团队教练 ─── -->
+<div class="fusion-panel fp-emerald">
+  <div class="fusion-inner">
+    <div class="fusion-num">03</div>
+    <div class="fusion-problem">
+      <span class="fp-icon">🫥</span>
+      <span class="fp-label">传统痛点</span>
+      <h3>团队搭便车、缺过程评价</h3>
+      <p>部分成员只改README或截止日突击提交。教师只看最终成果打分，无法客观评价个体贡献。</p>
+    </div>
+    <div class="fusion-divider"></div>
+    <div class="fusion-solution">
+      <span class="fp-label">AI融合方案</span>
+      <h3>团队协作教练 TeamCoach</h3>
+      <p>基于Git数据的AI团队分析——贡献度可视化、搭便车预警、每周AI健康报告，用数据评价团队。</p>
+      <a class="fusion-link" href="/coursecompetation/innovation/#团队协作教练-teamcoach">查看设计 →</a>
+    </div>
   </div>
 </div>
 
-<!-- ─── 痛点⑤  →  资料重构 ─── -->
-<div class="fusion-panel">
-  <div class="fusion-problem">
-    <span class="fusion-tag">痛点 ⑤</span>
-    <h3>教师备课重复低效</h3>
-    <p>PPT制作每讲耗时4小时以上，实验设计全班统一无法个性化。大量重复性备课劳动挤占了教学设计与学生辅导的宝贵时间。</p>
+<!-- ─── ④  人机对抗 ─── -->
+<div class="fusion-panel fp-amber">
+  <div class="fusion-inner">
+    <div class="fusion-num">04</div>
+    <div class="fusion-problem">
+      <span class="fp-icon">🤖</span>
+      <span class="fp-label">传统痛点</span>
+      <h3>盲信AI、缺批判性思维</h3>
+      <p>学生不加辨别地接受AI建议，直接提交AI生成代码。"会用AI" ≠ "会编程"，这是AI时代新挑战。</p>
+    </div>
+    <div class="fusion-divider"></div>
+    <div class="fusion-solution">
+      <span class="fp-label">AI融合方案</span>
+      <h3>人机对抗 Code Review Battle</h3>
+      <p>学生与AI同台审查代码，对比各自盲区。通过辩论认识AI边界，培养批判性思维与独立判断力。</p>
+      <a class="fusion-link" href="/coursecompetation/innovation/#人机对抗-code-review-battle">查看设计 →</a>
+    </div>
   </div>
-  <div class="fusion-arrow">→</div>
-  <div class="fusion-solution">
-    <span class="fusion-tag">融合方案 ⑤</span>
-    <h3>AI辅助教学资料重构</h3>
-    <p>个性化实验设计生成器实现"一人一题"（同知识点、不同场景、分层难度），AI课程PPT生成将单讲制作从4小时缩短至30-40分钟，释放教师精力。</p>
-    <a class="fusion-link" href="/coursecompetation/innovation/#ai辅助教学资料重构">查看详细设计 →</a>
+</div>
+
+<!-- ─── ⑤  资料重构 ─── -->
+<div class="fusion-panel fp-purple">
+  <div class="fusion-inner">
+    <div class="fusion-num">05</div>
+    <div class="fusion-problem">
+      <span class="fp-icon">⏳</span>
+      <span class="fp-label">传统痛点</span>
+      <h3>教师备课重复低效</h3>
+      <p>PPT每讲耗时4小时+，实验全班统一无法个性化。重复劳动挤占教学设计与学生辅导时间。</p>
+    </div>
+    <div class="fusion-divider"></div>
+    <div class="fusion-solution">
+      <span class="fp-label">AI融合方案</span>
+      <h3>AI辅助教学资料重构</h3>
+      <p>个性化实验生成器实现一人一题，AI课程PPT生成将单讲从4小时缩至30-40分钟，释放教师精力。</p>
+      <a class="fusion-link" href="/coursecompetation/innovation/#ai辅助教学资料重构">查看设计 →</a>
+    </div>
   </div>
+</div>
+
 </div>
 
 <p style="text-align:center;margin:24px 0;">
