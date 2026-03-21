@@ -284,6 +284,7 @@
     padding: 20px;
     transition: all 0.3s ease;
     position: relative;
+    cursor: pointer;
   }
   .member-card:hover {
     border-color: var(--primary);
@@ -346,6 +347,10 @@
   .role-unassigned { background: #fee2e2; color: #991b1b; }
   .role-test { background: #f3e8ff; color: #6b21a8; }
   .role-frontend { background: #ccfbf1; color: #0d9488; }
+  .role-backend { background: #fef3c7; color: #92400e; }
+  .role-db { background: #fce7f3; color: #9d174d; }
+  .role-ui { background: #ede9fe; color: #5b21b6; }
+  .role-inactive { background: #f3f4f6; color: #6b7280; }
   .alert-tag {
     background: var(--danger);
     color: white;
@@ -443,7 +448,7 @@
   }
   .report-body {
     padding: 24px;
-    max-height: 580px;
+    max-height: 680px;
     overflow-y: auto;
   }
   .report-body::-webkit-scrollbar { width: 4px; }
@@ -464,6 +469,7 @@
     background: #f8fafc;
     border-radius: var(--radius-sm);
     margin-bottom: 6px;
+    flex-wrap: wrap;
   }
   .overview-stat {
     display: flex;
@@ -520,6 +526,39 @@
     background: #fafbfc;
   }
 
+  /* Code quality metrics in report */
+  .code-metrics-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 8px;
+    margin: 8px 0;
+    padding: 10px;
+    background: #f8fafc;
+    border-radius: 6px;
+  }
+  .code-metric-item {
+    text-align: center;
+    font-size: 12px;
+  }
+  .code-metric-item .metric-val {
+    font-size: 18px;
+    font-weight: 700;
+  }
+  .code-metric-item .metric-label {
+    color: var(--text-secondary);
+    font-size: 11px;
+  }
+  .commit-evidence {
+    background: #f1f5f9;
+    border-radius: 6px;
+    padding: 8px 12px;
+    margin: 6px 0;
+    font-size: 12px;
+    font-family: 'Consolas', 'Monaco', monospace;
+    color: #475569;
+    border-left: 3px solid #94a3b8;
+  }
+
   /* Visualizations */
   .viz-panel {
     display: flex;
@@ -544,7 +583,7 @@
   /* Commit Timeline */
   .timeline-grid {
     display: grid;
-    grid-template-columns: 50px repeat(7, 1fr);
+    grid-template-columns: 60px repeat(7, 1fr);
     gap: 4px;
     align-items: center;
   }
@@ -850,15 +889,15 @@
   /* Scatter Plot */
   .scatter-plot {
     width: 100%;
-    height: 240px;
+    height: 280px;
     position: relative;
     border-left: 2px solid var(--border);
     border-bottom: 2px solid var(--border);
   }
   .scatter-point {
     position: absolute;
-    width: 28px;
-    height: 28px;
+    width: 32px;
+    height: 32px;
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -874,6 +913,16 @@
     transform: scale(1.3);
     z-index: 10;
   }
+  .scatter-point-label {
+    position: absolute;
+    font-size: 10px;
+    color: var(--text-secondary);
+    white-space: nowrap;
+    pointer-events: none;
+    top: -16px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
   .scatter-axis-label {
     position: absolute;
     font-size: 11px;
@@ -885,9 +934,11 @@
     display: flex;
     gap: 20px;
     margin-bottom: 24px;
+    flex-wrap: wrap;
   }
   .summary-stat-card {
     flex: 1;
+    min-width: 120px;
     background: var(--card);
     border-radius: var(--radius);
     box-shadow: var(--shadow);
@@ -895,13 +946,129 @@
     text-align: center;
   }
   .summary-stat-value {
-    font-size: 32px;
+    font-size: 28px;
     font-weight: 800;
   }
   .summary-stat-label {
     font-size: 13px;
     color: var(--text-secondary);
     margin-top: 4px;
+  }
+
+  /* Risk ranking table */
+  .risk-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+  }
+  .risk-table th {
+    padding: 10px 12px;
+    text-align: left;
+    font-weight: 600;
+    background: #f8fafc;
+    border-bottom: 2px solid var(--border);
+  }
+  .risk-table td {
+    padding: 8px 12px;
+    border-bottom: 1px solid var(--border);
+  }
+  .risk-badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 10px;
+    font-size: 11px;
+    font-weight: 600;
+  }
+  .risk-high { background: #ffebee; color: #c62828; }
+  .risk-medium { background: #fff3e0; color: #e65100; }
+  .risk-low { background: #e8f5e9; color: #2e7d32; }
+
+  /* Intervention log */
+  .intervention-log {
+    background: var(--card);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 24px;
+    margin-bottom: 24px;
+  }
+  .intervention-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .intervention-item:last-child { border-bottom: none; }
+  .intervention-date {
+    font-size: 12px;
+    color: var(--text-secondary);
+    white-space: nowrap;
+    min-width: 80px;
+    font-weight: 600;
+  }
+  .intervention-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    margin-top: 6px;
+    flex-shrink: 0;
+  }
+  .intervention-content {
+    flex: 1;
+    font-size: 13px;
+    line-height: 1.6;
+  }
+  .intervention-result {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 10px;
+    font-size: 11px;
+    font-weight: 500;
+    margin-left: 6px;
+  }
+  .result-success { background: #e8f5e9; color: #2e7d32; }
+  .result-pending { background: #fff3e0; color: #e65100; }
+  .result-failed { background: #ffebee; color: #c62828; }
+
+  /* History weekly report */
+  .history-week-card {
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 16px;
+    margin-bottom: 12px;
+    transition: all 0.2s;
+    cursor: pointer;
+  }
+  .history-week-card:hover {
+    box-shadow: var(--shadow-md);
+    border-color: var(--primary);
+  }
+  .history-week-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+  }
+  .history-week-title {
+    font-weight: 600;
+    font-size: 14px;
+  }
+  .history-week-score {
+    font-weight: 700;
+    font-size: 16px;
+  }
+  .history-week-summary {
+    font-size: 13px;
+    color: var(--text-secondary);
+    line-height: 1.6;
+  }
+  .history-week-highlight {
+    background: #fffbeb;
+    border-left: 3px solid #f59e0b;
+    padding: 6px 10px;
+    margin-top: 8px;
+    font-size: 12px;
+    border-radius: 0 6px 6px 0;
   }
 
   /* Modal */
@@ -919,9 +1086,11 @@
     background: white;
     border-radius: var(--radius);
     padding: 28px;
-    max-width: 500px;
+    max-width: 700px;
     width: 90%;
     box-shadow: var(--shadow-lg);
+    max-height: 85vh;
+    overflow-y: auto;
   }
   .modal h3 {
     font-size: 18px;
@@ -962,6 +1131,97 @@
   }
   .modal-btn.primary:hover { background: var(--primary-dark); }
 
+  /* Member detail modal */
+  .detail-section {
+    margin-bottom: 20px;
+  }
+  .detail-section h4 {
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 10px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid var(--border);
+  }
+  .detail-commits-list {
+    list-style: none;
+    padding: 0;
+  }
+  .detail-commits-list li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 0;
+    border-bottom: 1px solid #f3f4f6;
+    font-size: 13px;
+  }
+  .detail-commits-list li:last-child { border-bottom: none; }
+  .commit-hash {
+    font-family: 'Consolas', monospace;
+    font-size: 11px;
+    color: var(--primary);
+    background: var(--primary-light);
+    padding: 2px 6px;
+    border-radius: 4px;
+  }
+  .commit-time {
+    font-size: 11px;
+    color: var(--text-secondary);
+    white-space: nowrap;
+  }
+  .detail-files-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .file-tag {
+    background: #f1f5f9;
+    padding: 3px 10px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-family: 'Consolas', monospace;
+    color: #475569;
+  }
+  .quality-breakdown {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+  .quality-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .quality-item-label {
+    font-size: 13px;
+    min-width: 80px;
+  }
+  .quality-bar-bg {
+    flex: 1;
+    height: 8px;
+    background: #f0f0f0;
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  .quality-bar-fill {
+    height: 100%;
+    border-radius: 4px;
+    transition: width 0.6s;
+  }
+  .quality-pct {
+    font-size: 13px;
+    font-weight: 600;
+    min-width: 36px;
+    text-align: right;
+  }
+  .ai-advice {
+    background: linear-gradient(135deg, #f8f0ff, #eef2ff);
+    border: 1px solid #e0d4ff;
+    border-radius: var(--radius-sm);
+    padding: 12px;
+    font-size: 13px;
+    line-height: 1.7;
+  }
+
   /* Animations */
   @keyframes fadeInUp {
     from { opacity: 0; transform: translateY(16px); }
@@ -985,6 +1245,26 @@
     background-size: 200% 100% !important;
     animation: shimmer 1.5s infinite !important;
     pointer-events: none;
+  }
+
+  /* Best practices section */
+  .best-practice-card {
+    background: linear-gradient(135deg, #f0fdf4, #ecfdf5);
+    border: 1px solid #bbf7d0;
+    border-radius: var(--radius-sm);
+    padding: 16px;
+    margin-bottom: 12px;
+  }
+  .best-practice-card h4 {
+    font-size: 14px;
+    font-weight: 600;
+    color: #166534;
+    margin-bottom: 8px;
+  }
+  .best-practice-card p {
+    font-size: 13px;
+    line-height: 1.6;
+    color: #15803d;
   }
 
   /* Responsive */
@@ -1056,11 +1336,14 @@
     <!-- View Tabs -->
     <div class="view-tabs">
       <div class="view-tab active" onclick="switchView('team')" id="tab-team">📊 团队详情</div>
+      <div class="view-tab" onclick="switchView('history')" id="tab-history">📅 历史周报</div>
       <div class="view-tab" onclick="switchView('compare')" id="tab-compare">📈 全班对比</div>
+      <div class="view-tab" onclick="switchView('intervention')" id="tab-intervention">📝 干预记录</div>
     </div>
 
-    <!-- Team Detail View -->
+    <!-- Content Body -->
     <div class="content-body">
+      <!-- Team Detail View -->
       <div class="view-container active" id="view-team">
 
         <!-- Team Overview -->
@@ -1104,8 +1387,18 @@
 
       </div>
 
+      <!-- History Weekly Report View -->
+      <div class="view-container" id="view-history">
+        <!-- Populated by JS -->
+      </div>
+
       <!-- Comparison View -->
       <div class="view-container" id="view-compare">
+        <!-- Populated by JS -->
+      </div>
+
+      <!-- Intervention Log View -->
+      <div class="view-container" id="view-intervention">
         <!-- Populated by JS -->
       </div>
     </div>
@@ -1116,8 +1409,10 @@
 <div class="modal-overlay" id="modalOverlay" onclick="closeModal(event)">
   <div class="modal" onclick="event.stopPropagation()">
     <h3 id="modalTitle">发送提醒</h3>
-    <textarea id="modalText"></textarea>
-    <div class="modal-actions">
+    <div id="modalContent">
+      <textarea id="modalText"></textarea>
+    </div>
+    <div class="modal-actions" id="modalActions">
       <button class="modal-btn" onclick="closeModal()">取消</button>
       <button class="modal-btn primary" onclick="sendReminder()">发送提醒</button>
     </div>
@@ -1126,13 +1421,13 @@
 
 <script>
 // ============================================================
-// FULL TEAM DATA
+// FULL TEAM DATA WITH REALISTIC CHINESE NAMES & ENRICHED REPORTS
 // ============================================================
 const TEAMS = {
   1: {
     num: 1,
     name: '在线选课系统',
-    members: ['陈伟', '刘洋', '周静', '吴强'],
+    members: ['陈思远', '林雨桐', '王浩然', '刘诗琪'],
     score: 88,
     status: 'healthy',
     statusText: '🟢 健康',
@@ -1141,23 +1436,75 @@ const TEAMS = {
     week: '第10周 (3/10 - 3/16)',
     watched: false,
     memberData: [
-      { name: '陈伟', role: 'Controller层', roleClass: 'role-controller', color: 'c1', commits: 15, lines: 280, contribPct: 85, contribClass: 'good', cardClass: '', tag: '', commitsWeek: [2, 3, 2, 3, 2, 2, 1] },
-      { name: '刘洋', role: 'DAO层', roleClass: 'role-dao', color: 'c2', commits: 14, lines: 265, contribPct: 82, contribClass: 'good', cardClass: '', tag: '', commitsWeek: [2, 2, 3, 2, 2, 2, 1] },
-      { name: '周静', role: 'JSP前端', roleClass: 'role-jsp', color: 'c3', commits: 13, lines: 240, contribPct: 78, contribClass: 'good', cardClass: '', tag: '', commitsWeek: [2, 2, 2, 2, 2, 2, 1] },
-      { name: '吴强', role: 'Service层', roleClass: 'role-service', color: 'c4', commits: 12, lines: 220, contribPct: 75, contribClass: 'good', cardClass: '', tag: '', commitsWeek: [1, 2, 2, 2, 2, 2, 1] }
+      { name: '陈思远', role: 'Controller层', roleClass: 'role-controller', color: 'c1', commits: 15, lines: 280, contribPct: 85, contribClass: 'good', cardClass: '', tag: '',
+        commitsWeek: [2, 3, 2, 3, 2, 2, 1],
+        detailCommits: [
+          { hash: 'a3f21c8', msg: 'feat: 完成选课冲突检测接口', time: '03-16 14:32' },
+          { hash: 'b7e04d1', msg: 'fix: 修复课程容量并发扣减问题', time: '03-15 20:15' },
+          { hash: 'c9a38e5', msg: 'refactor: 统一Controller返回格式ResultVO', time: '03-14 16:48' },
+          { hash: 'd2f67b3', msg: 'feat: 添加课程搜索模糊查询接口', time: '03-13 11:20' },
+          { hash: 'e8c41a9', msg: 'feat: 实现选课时间段校验逻辑', time: '03-12 09:55' }
+        ],
+        detailFiles: ['CourseSelectController.java', 'CourseSearchController.java', 'ResultVO.java', 'CourseConflictService.java', 'GlobalExceptionHandler.java', 'application.properties'],
+        detailMetrics: { added: 280, deleted: 45, avgCommitSize: 18 },
+        qualityScores: { naming: 88, exception: 75, comment: 72, layering: 92 },
+        aiAdvice: '代码结构清晰，命名规范。建议：(1) CourseSelectController中部分方法超过40行，可拆分为私有方法；(2) 增加@Validated参数校验注解；(3) 为核心选课逻辑补充JavaDoc注释。'
+      },
+      { name: '林雨桐', role: 'Service层', roleClass: 'role-service', color: 'c2', commits: 14, lines: 265, contribPct: 82, contribClass: 'good', cardClass: '', tag: '',
+        commitsWeek: [2, 2, 3, 2, 2, 2, 1],
+        detailCommits: [
+          { hash: 'f1b23d7', msg: 'feat: 实现选课事务管理和乐观锁', time: '03-16 15:10' },
+          { hash: 'g4c56e8', msg: 'feat: 添加课程冲突检测Service', time: '03-15 19:30' },
+          { hash: 'h7d89f0', msg: 'refactor: 抽取公共校验方法到BaseService', time: '03-14 13:45' },
+          { hash: 'i0e12a3', msg: 'feat: 完成退课业务逻辑', time: '03-13 10:20' },
+          { hash: 'j3f45b6', msg: 'test: 添加CourseService单元测试3个', time: '03-11 16:30' }
+        ],
+        detailFiles: ['CourseSelectService.java', 'CourseConflictService.java', 'BaseService.java', 'DropCourseService.java', 'CourseServiceTest.java', 'CourseValidator.java'],
+        detailMetrics: { added: 265, deleted: 38, avgCommitSize: 19 },
+        qualityScores: { naming: 85, exception: 80, comment: 70, layering: 95 },
+        aiAdvice: '事务管理使用规范，分层清晰。建议：(1) 在Service层统一使用自定义BusinessException而非直接抛RuntimeException；(2) 补充更多单元测试用例，当前覆盖率仅18%。'
+      },
+      { name: '王浩然', role: 'DAO层', roleClass: 'role-dao', color: 'c3', commits: 13, lines: 240, contribPct: 78, contribClass: 'good', cardClass: '', tag: '',
+        commitsWeek: [2, 2, 2, 2, 2, 2, 1],
+        detailCommits: [
+          { hash: 'k6g78c9', msg: 'feat: 完成选课记录表CRUD和分页查询', time: '03-16 11:20' },
+          { hash: 'l9h01d2', msg: 'feat: 添加课程表索引优化查询性能', time: '03-15 14:45' },
+          { hash: 'm2i34e5', msg: 'feat: 实现学生课表DAO查询方法', time: '03-14 09:30' },
+          { hash: 'n5j67f8', msg: 'fix: 修复SQL注入风险（参数化查询）', time: '03-13 16:00' },
+          { hash: 'o8k90g1', msg: 'feat: 添加数据库初始化脚本和测试数据', time: '03-12 10:15' }
+        ],
+        detailFiles: ['CourseDao.java', 'SelectionDao.java', 'StudentScheduleDao.java', 'db_init.sql', 'test_data.sql', 'BaseDao.java'],
+        detailMetrics: { added: 240, deleted: 32, avgCommitSize: 18 },
+        qualityScores: { naming: 82, exception: 68, comment: 65, layering: 88 },
+        aiAdvice: 'SQL编写规范，已注意防注入。建议：(1) DAO方法缺少异常处理，数据库连接异常时会直接抛出；(2) 建议使用连接池(Druid)替换每次新建Connection；(3) 补充方法注释说明返回值含义。'
+      },
+      { name: '刘诗琪', role: 'JSP前端', roleClass: 'role-jsp', color: 'c4', commits: 12, lines: 220, contribPct: 75, contribClass: 'good', cardClass: '', tag: '',
+        commitsWeek: [1, 2, 2, 2, 2, 2, 1],
+        detailCommits: [
+          { hash: 'p1l23h4', msg: 'feat: 完成选课界面和课程列表展示', time: '03-16 13:40' },
+          { hash: 'q4m56i7', msg: 'feat: 添加课表日历视图页面', time: '03-15 17:20' },
+          { hash: 'r7n89j0', msg: 'style: 统一页面样式和响应式布局', time: '03-14 15:10' },
+          { hash: 's0o12k3', msg: 'feat: 实现选课确认弹窗交互', time: '03-13 11:45' },
+          { hash: 't3p45l6', msg: 'fix: 修复课表显示时间段重叠问题', time: '03-11 14:30' }
+        ],
+        detailFiles: ['courseList.jsp', 'schedule.jsp', 'selectConfirm.jsp', 'header.jsp', 'style.css', 'common.js'],
+        detailMetrics: { added: 220, deleted: 25, avgCommitSize: 18 },
+        qualityScores: { naming: 80, exception: 60, comment: 68, layering: 85 },
+        aiAdvice: '页面设计美观，交互流畅。建议：(1) courseList.jsp中有3处内嵌Java代码(scriptlet)，应迁移到Controller层；(2) CSS文件缺少注释分组，建议按页面模块分区注释；(3) JS中使用var较多，建议统一使用let/const。'
+      }
     ],
     totalCommits: 54,
     activeMembers: '4/4',
     addedLines: '+1005',
-    deletedLines: '-120',
+    deletedLines: '-140',
     pie: {
       gradient: 'conic-gradient(#4472C4 0deg 97deg, #7c3aed 97deg 194deg, #059669 194deg 284deg, #ff9800 284deg 360deg)',
       total: 1005,
       items: [
-        { color: '#4472C4', label: 'Controller层', pct: '27%', highlight: false },
-        { color: '#7c3aed', label: 'DAO层', pct: '27%', highlight: false },
-        { color: '#059669', label: 'JSP前端', pct: '25%', highlight: false },
-        { color: '#ff9800', label: 'Service层', pct: '21%', highlight: false }
+        { color: '#4472C4', label: '陈思远 (Controller)', pct: '27%', highlight: false },
+        { color: '#7c3aed', label: '林雨桐 (Service)', pct: '27%', highlight: false },
+        { color: '#059669', label: '王浩然 (DAO)', pct: '25%', highlight: false },
+        { color: '#ff9800', label: '刘诗琪 (JSP)', pct: '21%', highlight: false }
       ]
     },
     trend: [
@@ -1177,45 +1524,58 @@ const TEAMS = {
             { num: '54', label: '总提交次数' },
             { num: '4/4', label: '活跃成员' },
             { num: '+1005', label: '新增代码行' },
-            { num: '-120', label: '删除代码行' },
-            { num: '88', label: '健康评分' }
+            { num: '-140', label: '删除代码行' },
+            { num: '88', label: '健康评分' },
+            { num: '82%', label: '命名规范率' },
+            { num: '18%', label: '注释覆盖率' }
           ]
         },
         {
           title: '👥 成员贡献分析',
           type: 'members',
           items: [
-            { text: '<strong>陈伟 (Controller层)</strong> — 本周提交15次，新增280行代码。主要完成选课接口和冲突检测逻辑，代码结构规范，命名清晰。<span style="color:var(--success)">● 贡献度：优秀</span>', class: '' },
-            { text: '<strong>刘洋 (DAO层)</strong> — 本周提交14次，新增265行代码。完成课程表、选课记录等核心数据表设计，SQL效率良好。<span style="color:var(--success)">● 贡献度：优秀</span>', class: '' },
-            { text: '<strong>周静 (JSP前端)</strong> — 本周提交13次，新增240行代码。完成选课界面、课表展示页面，CSS布局整洁。<span style="color:var(--success)">● 贡献度：良好</span>', class: '' },
-            { text: '<strong>吴强 (Service层)</strong> — 本周提交12次，新增220行代码。完成选课业务逻辑层，事务处理合理。<span style="color:var(--success)">● 贡献度：良好</span>', class: '' }
+            { text: '<strong>陈思远 (Controller层)</strong> — 本周提交15次，新增280行代码。主要修改了<code>CourseSelectController.java</code>、<code>CourseSearchController.java</code>、<code>ResultVO.java</code>等6个文件。完成选课冲突检测接口和课程搜索模糊查询，引入统一返回格式ResultVO，代码结构规范。典型提交：<code>feat: 完成选课冲突检测接口</code>、<code>refactor: 统一Controller返回格式ResultVO</code>。代码质量指标——命名规范率88%、注释率72%、圈复杂度均值5.2(良好)。<span style="color:var(--success)">● 贡献度：优秀</span>', class: '' },
+            { text: '<strong>林雨桐 (Service层)</strong> — 本周提交14次，新增265行代码。主要修改了<code>CourseSelectService.java</code>、<code>CourseConflictService.java</code>、<code>BaseService.java</code>等6个文件。实现了选课事务管理（乐观锁机制）、退课业务逻辑，并编写了3个CourseService单元测试。典型提交：<code>feat: 实现选课事务管理和乐观锁</code>。代码质量指标——命名规范率85%、注释率70%、圈复杂度均值4.8(良好)。<span style="color:var(--success)">● 贡献度：优秀</span>', class: '' },
+            { text: '<strong>王浩然 (DAO层)</strong> — 本周提交13次，新增240行代码。主要修改了<code>CourseDao.java</code>、<code>SelectionDao.java</code>、<code>db_init.sql</code>等6个文件。完成选课记录表分页查询、添加数据库索引优化性能，并修复了一处SQL注入风险（改为参数化查询）。典型提交：<code>fix: 修复SQL注入风险（参数化查询）</code>。代码质量指标——命名规范率82%、注释率65%、圈复杂度均值3.6(优秀)。<span style="color:var(--success)">● 贡献度：良好</span>', class: '' },
+            { text: '<strong>刘诗琪 (JSP前端)</strong> — 本周提交12次，新增220行代码。主要修改了<code>courseList.jsp</code>、<code>schedule.jsp</code>、<code>style.css</code>等6个文件。完成选课界面、课表日历视图和选课确认弹窗交互，CSS布局整洁、响应式良好。典型提交：<code>feat: 添加课表日历视图页面</code>。代码质量指标——命名规范率80%、注释率68%。注意：<code>courseList.jsp</code>中存在3处内嵌Java代码(scriptlet)，应迁移至Controller层。<span style="color:var(--success)">● 贡献度：良好</span>', class: '' }
           ]
+        },
+        {
+          title: '📈 代码质量总览',
+          type: 'quality_metrics',
+          content: '<div class="code-metrics-grid"><div class="code-metric-item"><div class="metric-val" style="color:var(--success)">83.8%</div><div class="metric-label">命名规范率</div></div><div class="code-metric-item"><div class="metric-val" style="color:var(--warning)">68.8%</div><div class="metric-label">注释覆盖率</div></div><div class="code-metric-item"><div class="metric-val" style="color:var(--success)">4.6</div><div class="metric-label">圈复杂度均值</div></div></div><p style="font-size:13px;margin-top:8px;line-height:1.7;">整体代码质量良好。命名规范率较上周提升3.2个百分点(陈思远引入ResultVO统一格式功不可没)。注释覆盖率偏低(68.8%)，主要集中在DAO层和JSP文件。圈复杂度控制良好，仅<code>CourseSelectController.handleConflict()</code>方法达到8，建议拆分。</p>'
         },
         {
           title: '🎉 亮点表现',
           type: 'highlights',
-          content: '<ul class="suggest-list"><li><strong>团队协作优秀</strong> — 四位成员贡献度差异仅为10%，是全班协作最均衡的团队之一。每位成员每天都有稳定的提交记录，说明团队沟通良好。</li><li><strong>架构完整</strong> — 已形成完整的Controller→Service→DAO三层架构，代码分层合理，各层职责清晰。</li></ul>'
+          content: '<ul class="suggest-list"><li><strong>团队协作优秀</strong> — 四位成员贡献度差异仅10%(27%/27%/25%/21%)，是全班协作最均衡的团队。每位成员每天都有稳定的提交记录，说明团队沟通良好，分工明确。</li><li><strong>架构完整</strong> — 已形成完整的Controller→Service→DAO三层架构，代码分层合理，各层职责清晰。林雨桐的BaseService抽象设计是亮点。</li><li><strong>安全意识</strong> — 王浩然主动修复SQL注入风险并改为参数化查询，安全编码意识值得肯定。</li></ul>'
         },
         {
           title: '🎯 下周建议',
           type: 'suggestions',
-          content: '<ul class="suggest-list"><li><strong>添加单元测试</strong> — 当前项目无JUnit测试，建议吴强为Service层编写核心测试用例，提升代码质量保障。</li><li><strong>完善异常处理</strong> — Controller层部分接口缺少统一的异常处理机制，建议陈伟添加全局异常处理类。</li></ul>'
+          content: '<ul class="suggest-list"><li><strong>提升测试覆盖率</strong> — 当前仅林雨桐编写了3个测试用例(覆盖率约18%)，建议全员参与，目标将核心Service方法覆盖率提升到50%以上。</li><li><strong>完善异常处理</strong> — Controller层部分接口缺少统一的异常处理机制，建议陈思远基于<code>GlobalExceptionHandler.java</code>完善全局异常捕获。</li><li><strong>消除前端scriptlet</strong> — 刘诗琪需将courseList.jsp中3处内嵌Java代码迁移到Controller，保持前端纯净。</li></ul>'
         }
       ],
       confidence: '95%'
     },
-    aiSuggest: '该团队表现健康，成员贡献均衡。建议：(1) 保持当前节奏，可适当提高代码审查标准；(2) 引入单元测试作为团队成长目标；(3) 可安排陈伟分享开发经验给其他需要帮助的团队。',
+    aiSuggest: '该团队表现健康，成员贡献均衡。建议：(1) 保持当前节奏，可适当提高代码审查标准；(2) 引入单元测试作为团队成长目标，覆盖率从18%提升到50%；(3) 可安排陈思远分享ResultVO统一格式设计经验给其他需要帮助的团队。',
     reminderTemplates: {
-      '陈伟': '陈伟同学你好，你在第1组表现很好，请继续保持并关注测试覆盖率。',
-      '刘洋': '刘洋同学你好，DAO层设计不错，建议注意SQL注入防护。',
-      '周静': '周静同学你好，前端页面完成度很好，注意JSP中减少Java代码。',
-      '吴强': '吴强同学你好，Service层逻辑清晰，建议添加JUnit测试。'
-    }
+      '陈思远': '陈思远同学你好，你在第1组表现很好。ResultVO统一格式设计是全班亮点，请继续保持并关注异常处理和测试覆盖率的提升。',
+      '林雨桐': '林雨桐同学你好，Service层事务管理和BaseService抽象设计不错。建议下周继续扩展单元测试，目标覆盖核心方法。',
+      '王浩然': '王浩然同学你好，主动修复SQL注入风险很好！建议注意DAO层的异常处理，同时考虑引入连接池(如Druid)。',
+      '刘诗琪': '刘诗琪同学你好，前端页面完成度很好。请注意将JSP中3处内嵌Java代码迁移到Controller层，保持前端纯净。'
+    },
+    historyWeeks: [
+      { week: '第7周 (2/24 - 3/2)', score: 78, summary: '项目启动周。完成需求分析和数据库设计。陈思远搭建项目骨架，各成员开始分模块开发。初始提交集中在周末。', highlight: null },
+      { week: '第8周 (3/3 - 3/9)', score: 82, summary: '核心功能开发阶段。Controller和DAO层基础CRUD完成，前端页面框架搭建。团队开始使用每日提交节奏。', highlight: '林雨桐提出BaseService抽象设计，被团队采纳' },
+      { week: '第9周 (3/10 - 3/16)', score: 85, summary: '功能细化阶段。选课冲突检测算法完成，前端交互优化。王浩然发现并修复SQL注入风险。提交频率稳定。', highlight: '王浩然主动修复SQL注入漏洞，安全意识提升' },
+      { week: '第10周 (3/17 - 3/21)', score: 88, summary: '本周重点完善接口统一格式和事务管理。ResultVO统一返回格式引入，课表日历视图完成。团队贡献度差异仅10%，为全班最佳。', highlight: null }
+    ]
   },
   2: {
     num: 2,
     name: '实验室预约系统',
-    members: ['孙磊', '杨帆', '黄丽', '马超'],
+    members: ['赵天宇', '周雅婷', '孙嘉禾', '吴若晨'],
     score: 91,
     status: 'excellent',
     statusText: '🟢 优秀',
@@ -1224,23 +1584,75 @@ const TEAMS = {
     week: '第10周 (3/10 - 3/16)',
     watched: false,
     memberData: [
-      { name: '孙磊', role: '全栈开发', roleClass: 'role-full', color: 'c1', commits: 28, lines: 520, contribPct: 98, contribClass: 'excellent', cardClass: 'star', tag: '<span class="star-tag">★ 明星贡献者</span>', commitsWeek: [4, 5, 4, 5, 4, 4, 2] },
-      { name: '杨帆', role: 'DAO层', roleClass: 'role-dao', color: 'c2', commits: 12, lines: 210, contribPct: 70, contribClass: 'good', cardClass: '', tag: '', commitsWeek: [2, 1, 2, 2, 2, 2, 1] },
-      { name: '黄丽', role: 'JSP前端', roleClass: 'role-jsp', color: 'c3', commits: 10, lines: 180, contribPct: 65, contribClass: 'good', cardClass: '', tag: '', commitsWeek: [1, 2, 1, 2, 1, 2, 1] },
-      { name: '马超', role: 'Service层', roleClass: 'role-service', color: 'c4', commits: 11, lines: 195, contribPct: 68, contribClass: 'good', cardClass: '', tag: '', commitsWeek: [2, 1, 2, 2, 1, 2, 1] }
+      { name: '赵天宇', role: '全栈开发', roleClass: 'role-full', color: 'c1', commits: 28, lines: 520, contribPct: 98, contribClass: 'excellent', cardClass: 'star', tag: '<span class="star-tag">★ 明星贡献者</span>',
+        commitsWeek: [4, 5, 4, 5, 4, 4, 2],
+        detailCommits: [
+          { hash: 'u6q78m9', msg: 'feat: 实现预约冲突检测算法(时间段交叉判断)', time: '03-16 21:15' },
+          { hash: 'v9r01n2', msg: 'feat: 完成管理员审批流程和状态机', time: '03-15 19:40' },
+          { hash: 'w2s34o5', msg: 'code-review: 为周雅婷的PR提供6条修改建议', time: '03-14 22:10' },
+          { hash: 'x5t67p8', msg: 'refactor: 重构预约Service层，引入策略模式', time: '03-13 15:30' },
+          { hash: 'y8u90q1', msg: 'feat: 添加实验室使用率统计报表接口', time: '03-12 10:45' }
+        ],
+        detailFiles: ['BookingConflictService.java', 'BookingController.java', 'AdminApprovalService.java', 'BookingStrategy.java', 'LabStatisticsController.java', 'BookingDao.java', 'labDetail.jsp', 'bookingCalendar.jsp'],
+        detailMetrics: { added: 520, deleted: 85, avgCommitSize: 19 },
+        qualityScores: { naming: 92, exception: 88, comment: 85, layering: 95 },
+        aiAdvice: '代码质量全班最高，架构设计能力突出。建议：(1) 适当放手让队友主导新模块，避免"一人依赖"风险；(2) 将Code Review经验整理成团队编码规范文档；(3) 策略模式的使用是亮点，可在全班分享。'
+      },
+      { name: '周雅婷', role: '后端开发', roleClass: 'role-backend', color: 'c2', commits: 12, lines: 210, contribPct: 70, contribClass: 'good', cardClass: '', tag: '',
+        commitsWeek: [2, 1, 2, 2, 2, 2, 1],
+        detailCommits: [
+          { hash: 'z1v23r3', msg: 'feat: 完成实验室信息管理CRUD', time: '03-16 16:20' },
+          { hash: 'a4w56s6', msg: 'feat: 添加预约记录分页查询', time: '03-15 14:30' },
+          { hash: 'b7x89t9', msg: 'fix: 修复预约时间段验证逻辑bug', time: '03-14 11:15' },
+          { hash: 'c0y12u2', msg: 'feat: 实现用户预约历史查询', time: '03-13 09:40' },
+          { hash: 'd3z45v5', msg: 'refactor: 优化DAO层数据库连接管理', time: '03-11 15:50' }
+        ],
+        detailFiles: ['LabManageService.java', 'BookingHistoryDao.java', 'BookingQueryService.java', 'LabDao.java', 'ConnectionPool.java'],
+        detailMetrics: { added: 210, deleted: 28, avgCommitSize: 17 },
+        qualityScores: { naming: 83, exception: 72, comment: 68, layering: 88 },
+        aiAdvice: '代码功能正确，逐步提升中。建议：(1) 学习赵天宇的异常处理模式，Service层需统一捕获DAO异常；(2) 方法命名可以更具描述性(如getList改为getBookingsByUserId)；(3) 下周尝试主导一个新功能模块的开发。'
+      },
+      { name: '孙嘉禾', role: '前端开发', roleClass: 'role-frontend', color: 'c3', commits: 10, lines: 180, contribPct: 65, contribClass: 'good', cardClass: '', tag: '',
+        commitsWeek: [1, 2, 1, 2, 1, 2, 1],
+        detailCommits: [
+          { hash: 'e6a78w8', msg: 'feat: 完成预约日历组件(周视图)', time: '03-16 15:30' },
+          { hash: 'f9b01x1', msg: 'feat: 实现实验室列表页面和搜索', time: '03-15 13:20' },
+          { hash: 'g2c34y4', msg: 'style: 统一页面配色和组件样式', time: '03-14 10:45' },
+          { hash: 'h5d67z7', msg: 'feat: 添加预约状态标识(已批准/待审批/已拒绝)', time: '03-12 16:10' },
+          { hash: 'i8e90a0', msg: 'fix: 修复日历组件在Safari下的兼容性问题', time: '03-11 11:30' }
+        ],
+        detailFiles: ['bookingCalendar.jsp', 'labList.jsp', 'bookingStatus.jsp', 'calendar.css', 'calendar.js', 'common.css'],
+        detailMetrics: { added: 180, deleted: 22, avgCommitSize: 18 },
+        qualityScores: { naming: 78, exception: 55, comment: 62, layering: 82 },
+        aiAdvice: '前端设计能力强，日历组件是亮点。建议：(1) JSP中避免使用内联样式，统一到CSS文件；(2) JavaScript函数缺少注释；(3) 建议学习JSTL标签库替代scriptlet。'
+      },
+      { name: '吴若晨', role: '测试', roleClass: 'role-test', color: 'c4', commits: 11, lines: 195, contribPct: 68, contribClass: 'good', cardClass: '', tag: '',
+        commitsWeek: [2, 1, 2, 2, 1, 2, 1],
+        detailCommits: [
+          { hash: 'j1f23b3', msg: 'test: 编写BookingService完整单元测试(12个用例)', time: '03-16 17:40' },
+          { hash: 'k4g56c6', msg: 'test: 添加LabDao集成测试', time: '03-15 14:15' },
+          { hash: 'l7h89d9', msg: 'feat: 编写测试数据初始化脚本', time: '03-14 09:50' },
+          { hash: 'm0i12e2', msg: 'test: 预约冲突检测边界条件测试', time: '03-13 11:30' },
+          { hash: 'n3j45f5', msg: 'docs: 编写接口测试文档(Postman集合)', time: '03-12 15:20' }
+        ],
+        detailFiles: ['BookingServiceTest.java', 'LabDaoTest.java', 'ConflictDetectionTest.java', 'test_data.sql', 'api_test.json', 'TestBase.java'],
+        detailMetrics: { added: 195, deleted: 15, avgCommitSize: 17 },
+        qualityScores: { naming: 80, exception: 70, comment: 75, layering: 85 },
+        aiAdvice: '测试意识强，12个单元测试用例是全班最多的。建议：(1) 补充更多边界条件测试(如并发预约场景)；(2) 考虑引入Mock框架(Mockito)隔离DAO层依赖；(3) 测试覆盖率报告可作为每周质量指标。'
+      }
     ],
     totalCommits: 61,
     activeMembers: '4/4',
     addedLines: '+1105',
-    deletedLines: '-180',
+    deletedLines: '-150',
     pie: {
       gradient: 'conic-gradient(#4472C4 0deg 166deg, #7c3aed 166deg 234deg, #059669 234deg 296deg, #ff9800 296deg 360deg)',
       total: 1105,
       items: [
-        { color: '#4472C4', label: '孙磊 (全栈)', pct: '46%', highlight: false },
-        { color: '#7c3aed', label: 'DAO层', pct: '19%', highlight: false },
-        { color: '#059669', label: 'JSP前端', pct: '17%', highlight: false },
-        { color: '#ff9800', label: 'Service层', pct: '18%', highlight: false }
+        { color: '#4472C4', label: '赵天宇 (全栈)', pct: '46%', highlight: false },
+        { color: '#7c3aed', label: '周雅婷 (后端)', pct: '19%', highlight: false },
+        { color: '#059669', label: '孙嘉禾 (前端)', pct: '17%', highlight: false },
+        { color: '#ff9800', label: '吴若晨 (测试)', pct: '18%', highlight: false }
       ]
     },
     trend: [
@@ -1260,45 +1672,58 @@ const TEAMS = {
             { num: '61', label: '总提交次数' },
             { num: '4/4', label: '活跃成员' },
             { num: '+1105', label: '新增代码行' },
-            { num: '-180', label: '删除代码行' },
-            { num: '91', label: '健康评分' }
+            { num: '-150', label: '删除代码行' },
+            { num: '91', label: '健康评分' },
+            { num: '86%', label: '命名规范率' },
+            { num: '35%', label: '测试覆盖率' }
           ]
         },
         {
           title: '👥 成员贡献分析',
           type: 'members',
           items: [
-            { text: '<strong>孙磊 (全栈开发) ★</strong> — 本周提交28次，新增520行代码。独立完成预约冲突检测算法、时间段管理和管理员审批流程。代码质量极高，主动进行Code Review并帮助队友解决技术问题。<span style="color:#2196F3">● 贡献度：卓越 ★</span>', class: 'star-item' },
-            { text: '<strong>杨帆 (DAO层)</strong> — 本周提交12次，新增210行代码。完成实验室、预约记录等数据表设计和CRUD操作。<span style="color:var(--success)">● 贡献度：良好</span>', class: '' },
-            { text: '<strong>黄丽 (JSP前端)</strong> — 本周提交10次，新增180行代码。完成预约日历界面和实验室列表页面。<span style="color:var(--success)">● 贡献度：良好</span>', class: '' },
-            { text: '<strong>马超 (Service层)</strong> — 本周提交11次，新增195行代码。完成预约业务逻辑和通知服务。<span style="color:var(--success)">● 贡献度：良好</span>', class: '' }
+            { text: '<strong>赵天宇 (全栈开发) ★</strong> — 本周提交28次，新增520行代码，涉及<code>BookingConflictService.java</code>、<code>AdminApprovalService.java</code>、<code>BookingStrategy.java</code>等8个文件。独立完成预约冲突检测算法、管理员审批状态机和使用率统计报表。引入策略模式重构Service层，并为周雅婷的PR提供12条建设性修改建议。典型提交：<code>feat: 实现预约冲突检测算法(时间段交叉判断)</code>、<code>refactor: 重构预约Service层，引入策略模式</code>。代码质量指标——命名规范率92%、注释率85%、圈复杂度均值4.2(优秀)。<span style="color:#2196F3">● 贡献度：卓越 ★</span>', class: 'star-item' },
+            { text: '<strong>周雅婷 (后端开发)</strong> — 本周提交12次，新增210行代码，涉及<code>LabManageService.java</code>、<code>BookingHistoryDao.java</code>、<code>ConnectionPool.java</code>等5个文件。完成实验室信息管理CRUD和预约记录分页查询，优化了DAO层数据库连接管理。典型提交：<code>refactor: 优化DAO层数据库连接管理</code>。代码质量指标——命名规范率83%、注释率68%、圈复杂度均值5.1(良好)。<span style="color:var(--success)">● 贡献度：良好</span>', class: '' },
+            { text: '<strong>孙嘉禾 (前端开发)</strong> — 本周提交10次，新增180行代码，涉及<code>bookingCalendar.jsp</code>、<code>labList.jsp</code>、<code>calendar.js</code>等6个文件。完成预约日历组件(周视图)和实验室列表搜索页面，添加预约状态标识。典型提交：<code>feat: 完成预约日历组件(周视图)</code>。前端设计美观，日历组件交互流畅。<span style="color:var(--success)">● 贡献度：良好</span>', class: '' },
+            { text: '<strong>吴若晨 (测试)</strong> — 本周提交11次，新增195行代码(含测试代码)，涉及<code>BookingServiceTest.java</code>、<code>ConflictDetectionTest.java</code>、<code>api_test.json</code>等6个文件。编写BookingService完整单元测试(12个用例)，包含冲突检测边界条件测试，并整理Postman接口测试集合。典型提交：<code>test: 编写BookingService完整单元测试(12个用例)</code>。是全班唯一设立专职测试角色的团队。<span style="color:var(--success)">● 贡献度：良好</span>', class: '' }
           ]
+        },
+        {
+          title: '📈 代码质量总览',
+          type: 'quality_metrics',
+          content: '<div class="code-metrics-grid"><div class="code-metric-item"><div class="metric-val" style="color:#2196F3">85.8%</div><div class="metric-label">命名规范率</div></div><div class="code-metric-item"><div class="metric-val" style="color:var(--success)">72.5%</div><div class="metric-label">注释覆盖率</div></div><div class="code-metric-item"><div class="metric-val" style="color:#2196F3">4.2</div><div class="metric-label">圈复杂度均值</div></div></div><p style="font-size:13px;margin-top:8px;line-height:1.7;">全班代码质量最高的团队。赵天宇引入的策略模式使预约逻辑复杂度显著降低。吴若晨的12个单元测试用例使测试覆盖率达到35%，远超全班平均(8%)。团队Code Review机制运行良好，赵天宇本周为队友提供12条PR建议。</p>'
         },
         {
           title: '🏆 亮点表现',
           type: 'highlights',
-          content: '<ul class="suggest-list"><li><strong>孙磊表现卓越</strong> — 贡献占团队总量的46%，不仅完成自身任务，还主动帮助其他成员解决技术难题。代码审查记录显示他为队友的PR提供了12条建设性修改建议。建议在全班推广其代码规范。</li><li><strong>项目进度领先</strong> — 核心功能已完成85%，是全班进度最快的团队。</li></ul>'
+          content: '<ul class="suggest-list"><li><strong>赵天宇表现卓越</strong> — 贡献占团队总量的46%，不仅完成自身任务，还主动帮助其他成员解决技术难题。Code Review记录显示他为队友的PR提供了12条建设性修改建议。策略模式的引入是全班最佳设计实践。</li><li><strong>专职测试角色</strong> — 全班唯一设立测试角色的团队。吴若晨的12个单元测试用例和Postman接口测试文档为项目质量提供了坚实保障。</li><li><strong>项目进度领先</strong> — 核心功能已完成85%，是全班进度最快的团队。</li></ul>'
         },
         {
           title: '🎯 下周建议',
           type: 'suggestions',
-          content: '<ul class="suggest-list"><li><strong>知识分享</strong> — 建议组织孙磊向其他三位成员分享全栈开发经验，特别是预约冲突检测算法的设计思路，避免团队过度依赖单一成员。</li><li><strong>均衡贡献</strong> — 虽然团队健康，但孙磊贡献占比偏高(46%)。建议将部分新功能模块分配给其他成员主导开发，提升整体能力。</li></ul>'
+          content: '<ul class="suggest-list"><li><strong>知识分享</strong> — 建议组织赵天宇向其他三位成员分享全栈开发经验，特别是策略模式设计和Code Review技巧，避免团队过度依赖单一成员。</li><li><strong>均衡贡献</strong> — 虽然团队健康，但赵天宇贡献占比偏高(46%)。建议将部分新功能模块(如通知系统、导出功能)分配给周雅婷或孙嘉禾主导开发。</li><li><strong>扩展测试</strong> — 吴若晨可引入Mockito框架，编写更多隔离性更好的单元测试，目标覆盖率提升到50%。</li></ul>'
         }
       ],
       confidence: '96%'
     },
-    aiSuggest: '该团队整体优秀，但存在"孙磊依赖"风险。建议：(1) 让孙磊担任"技术导师"角色，定期分享经验；(2) 下一阶段由其他成员主导新模块开发；(3) 可安排孙磊帮助第5组等困难团队。',
+    aiSuggest: '该团队整体优秀，但存在"赵天宇依赖"风险(贡献占46%)。建议：(1) 让赵天宇担任"技术导师"角色，每周Code Review会议；(2) 下一阶段由周雅婷主导通知模块、孙嘉禾主导导出功能；(3) 可安排赵天宇帮助第5组等困难团队做一次技术分享。',
     reminderTemplates: {
-      '孙磊': '孙磊同学你好，你的表现非常出色！建议抽时间做一次技术分享给组内成员。',
-      '杨帆': '杨帆同学你好，DAO层工作完成不错，建议尝试了解Service层以拓展能力。',
-      '黄丽': '黄丽同学你好，前端界面很好，建议向孙磊学习全栈思维。',
-      '马超': '马超同学你好，Service层进展顺利，可以尝试主导下一阶段的新功能开发。'
-    }
+      '赵天宇': '赵天宇同学你好，你的表现非常出色！策略模式的设计是全班亮点。建议抽时间做一次技术分享给组内和全班同学。',
+      '周雅婷': '周雅婷同学你好，后端开发进展稳定。建议向赵天宇学习异常处理模式，下周尝试主导通知模块的开发。',
+      '孙嘉禾': '孙嘉禾同学你好，日历组件设计很好！建议学习JSTL标签库替代scriptlet，下周可尝试主导导出功能。',
+      '吴若晨': '吴若晨同学你好，12个单元测试是全班最多的！建议下周引入Mockito框架，编写更多隔离测试。'
+    },
+    historyWeeks: [
+      { week: '第7周 (2/24 - 3/2)', score: 80, summary: '项目启动。赵天宇搭建Spring MVC框架骨架，完成基础配置。其余成员开始学习框架使用和分模块开发。', highlight: null },
+      { week: '第8周 (3/3 - 3/9)', score: 84, summary: '核心功能开发。预约系统基础CRUD完成，前端页面框架搭建。吴若晨开始建立测试体系。', highlight: '吴若晨建立测试框架，编写首批5个单元测试' },
+      { week: '第9周 (3/10 - 3/16)', score: 88, summary: '功能深化阶段。预约冲突检测算法完成，管理员审批流程上线。赵天宇开始进行Code Review。', highlight: '赵天宇引入Code Review机制，代码质量提升显著' },
+      { week: '第10周 (3/17 - 3/21)', score: 91, summary: '本周引入策略模式重构Service层，代码质量全班最高。测试覆盖率从20%提升到35%。团队Code Review机制运行良好。', highlight: null }
+    ]
   },
   3: {
     num: 3,
     name: '图书管理系统',
-    members: ['张三', '李四', '王五', '赵六'],
+    members: ['马文博', '黄佳怡', '杨子涵', '徐瑞泽'],
     score: 72,
     status: 'watch',
     statusText: '🟡 关注',
@@ -1307,24 +1732,73 @@ const TEAMS = {
     week: '第10周 (3/10 - 3/16)',
     watched: true,
     memberData: [
-      { name: '张三', role: 'Controller层', roleClass: 'role-controller', color: 'c1', commits: 18, lines: 312, contribPct: 90, contribClass: 'good', cardClass: '', tag: '', commitsWeek: [3, 4, 2, 3, 3, 2, 1] },
-      { name: '李四', role: 'DAO层', roleClass: 'role-dao', color: 'c2', commits: 12, lines: 245, contribPct: 72, contribClass: 'good', cardClass: '', tag: '', commitsWeek: [2, 2, 1, 3, 2, 1, 1] },
-      { name: '王五', role: 'JSP前端', roleClass: 'role-jsp', color: 'c3', commits: 14, lines: 198, contribPct: 78, contribClass: 'good', cardClass: '', tag: '', commitsWeek: [2, 3, 2, 2, 2, 2, 1] },
-      { name: '赵六', role: '待分配', roleClass: 'role-unassigned', color: 'c4', commits: 3, lines: 68, contribPct: 18, contribClass: 'alert', cardClass: 'alert', tag: '<span class="alert-tag">⚠ 贡献不足</span>', commitsWeek: [0, 0, 0, 0, 0, 0, 3] }
+      { name: '马文博', role: 'Controller层', roleClass: 'role-controller', color: 'c1', commits: 18, lines: 312, contribPct: 90, contribClass: 'good', cardClass: '', tag: '',
+        commitsWeek: [3, 4, 2, 3, 3, 2, 1],
+        detailCommits: [
+          { hash: 'o6k78g1', msg: 'feat: 完成图书借阅和归还接口', time: '03-16 15:20' },
+          { hash: 'p9l01h4', msg: 'feat: 添加图书搜索(按书名/ISBN/作者)', time: '03-15 14:30' },
+          { hash: 'q2m34i7', msg: 'refactor: 抽取图书状态枚举类BookStatus', time: '03-14 11:00' },
+          { hash: 'r5n67j0', msg: 'feat: 实现借阅超期提醒接口', time: '03-13 16:45' },
+          { hash: 's8o90k3', msg: 'fix: 修复并发借阅导致库存为负的bug', time: '03-12 09:20' }
+        ],
+        detailFiles: ['BookController.java', 'BorrowController.java', 'UserController.java', 'BookSearchController.java', 'BookStatus.java', 'OverdueController.java', 'ResultVO.java', 'web.xml'],
+        detailMetrics: { added: 312, deleted: 48, avgCommitSize: 17 },
+        qualityScores: { naming: 85, exception: 72, comment: 68, layering: 91 },
+        aiAdvice: '核心开发骨干，代码结构清晰。建议：(1) BookController中有2个方法同时处理业务逻辑和数据访问，违反分层架构，需将业务逻辑下沉到Service层；(2) 主动带领徐瑞泽参与Service层开发，帮助其融入团队。'
+      },
+      { name: '黄佳怡', role: 'DAO层', roleClass: 'role-dao', color: 'c2', commits: 12, lines: 245, contribPct: 72, contribClass: 'good', cardClass: '', tag: '',
+        commitsWeek: [2, 2, 1, 3, 2, 1, 1],
+        detailCommits: [
+          { hash: 't1p23l6', msg: 'feat: 完成Book/User/Borrow三张核心表设计', time: '03-16 13:40' },
+          { hash: 'u4q56m9', msg: 'feat: 实现图书模糊查询和分页', time: '03-15 16:20' },
+          { hash: 'v7r89n2', msg: 'feat: 添加借阅记录DAO层增删改查', time: '03-14 10:30' },
+          { hash: 'w0s12o5', msg: 'optimize: 为Book表添加联合索引(title,author)', time: '03-12 14:10' },
+          { hash: 'x3t45p8', msg: 'fix: 修复数据库连接未关闭导致的连接泄漏', time: '03-11 11:45' }
+        ],
+        detailFiles: ['BookDao.java', 'UserDao.java', 'BorrowDao.java', 'db_init.sql', 'BaseDao.java', 'DatabaseUtil.java'],
+        detailMetrics: { added: 245, deleted: 35, avgCommitSize: 20 },
+        qualityScores: { naming: 82, exception: 70, comment: 65, layering: 88 },
+        aiAdvice: '数据库设计合理，SQL优化意识好。建议：(1) BaseDao中可封装通用的CRUD模板方法，减少代码重复；(2) 修复的连接泄漏问题值得肯定，建议引入try-with-resources语法确保资源释放；(3) 补充DAO方法的JavaDoc注释。'
+      },
+      { name: '杨子涵', role: 'JSP前端', roleClass: 'role-jsp', color: 'c3', commits: 14, lines: 198, contribPct: 78, contribClass: 'good', cardClass: '', tag: '',
+        commitsWeek: [2, 3, 2, 2, 2, 2, 1],
+        detailCommits: [
+          { hash: 'y6u78q1', msg: 'feat: 完成图书列表和详情页面', time: '03-16 14:50' },
+          { hash: 'z9v01r4', msg: 'feat: 实现登录和注册表单', time: '03-15 13:15' },
+          { hash: 'a2w34s7', msg: 'feat: 添加借阅历史查看页面', time: '03-14 16:30' },
+          { hash: 'b5x67t0', msg: 'style: 重构CSS为组件化结构', time: '03-13 10:20' },
+          { hash: 'c8y90u3', msg: 'fix: 修复图书列表分页导航逻辑', time: '03-11 15:40' }
+        ],
+        detailFiles: ['bookList.jsp', 'bookDetail.jsp', 'login.jsp', 'register.jsp', 'borrowHistory.jsp', 'style.css', 'header.jsp'],
+        detailMetrics: { added: 198, deleted: 30, avgCommitSize: 14 },
+        qualityScores: { naming: 78, exception: 55, comment: 60, layering: 82 },
+        aiAdvice: '前端页面完成度好，CSS组件化思路正确。注意：(1) bookList.jsp和login.jsp中有4处内嵌Java代码(scriptlet)，严重违反MVC分层，必须迁移到Controller层；(2) 表单缺少客户端验证(如邮箱格式、密码强度)；(3) 页面缺少CSRF防护。'
+      },
+      { name: '徐瑞泽', role: '待分配', roleClass: 'role-unassigned', color: 'c4', commits: 3, lines: 68, contribPct: 18, contribClass: 'alert', cardClass: 'alert', tag: '<span class="alert-tag">⚠ 贡献不足</span>',
+        commitsWeek: [0, 0, 0, 0, 0, 0, 3],
+        detailCommits: [
+          { hash: 'd1z23v6', msg: 'chore: 更新config.properties数据库配置', time: '03-16 23:15' },
+          { hash: 'e4a56w9', msg: 'chore: 修改web.xml添加过滤器配置', time: '03-16 22:50' },
+          { hash: 'f7b89x2', msg: 'chore: 添加.gitignore和README.md', time: '03-16 22:30' }
+        ],
+        detailFiles: ['config.properties', 'web.xml', '.gitignore'],
+        detailMetrics: { added: 68, deleted: 5, avgCommitSize: 22 },
+        qualityScores: { naming: 0, exception: 0, comment: 0, layering: 0 },
+        aiAdvice: '本周贡献严重不足(仅3次提交，且全部在周日深夜集中完成，均为配置文件修改，无任何业务代码)。该同学上周经教师约谈后有短暂改善，但本周再次回落。建议：(1) 必须尽快分配Service层开发任务；(2) 设立每日提交检查点；(3) 由马文博进行结对编程辅导。'
+      }
     ],
     totalCommits: 47,
     activeMembers: '4/4',
     addedLines: '+823',
-    deletedLines: '-156',
+    deletedLines: '-118',
     pie: {
       gradient: 'conic-gradient(#4472C4 0deg 108deg, #7c3aed 108deg 198deg, #059669 198deg 288deg, #f44336 288deg 306deg, #ff9800 306deg 360deg)',
       total: 823,
       items: [
-        { color: '#4472C4', label: 'Controller层', pct: '30%', highlight: false },
-        { color: '#7c3aed', label: 'DAO层', pct: '25%', highlight: false },
-        { color: '#059669', label: 'JSP前端', pct: '25%', highlight: false },
-        { color: '#f44336', label: 'Service层 ⚠', pct: '5%', highlight: true },
-        { color: '#ff9800', label: '配置文件', pct: '15%', highlight: false }
+        { color: '#4472C4', label: '马文博 (Controller)', pct: '38%', highlight: false },
+        { color: '#7c3aed', label: '黄佳怡 (DAO)', pct: '30%', highlight: false },
+        { color: '#059669', label: '杨子涵 (JSP)', pct: '24%', highlight: false },
+        { color: '#f44336', label: '徐瑞泽 (待分配) ⚠', pct: '8%', highlight: true }
       ]
     },
     trend: [
@@ -1333,8 +1807,8 @@ const TEAMS = {
       { value: 70, week: '第9周', color: 'linear-gradient(to top, #ff9800, #ffa726)' },
       { value: 72, week: '第10周', color: 'linear-gradient(to top, #4472C4, #6b9de8)' }
     ],
-    trendNote: '📈 质量评分连续4周上升 (+14分)，保持良好势头',
-    trendNoteColor: 'var(--success)',
+    trendNote: '📈 质量评分连续4周上升 (+14分)，但徐瑞泽参与度仍是隐患',
+    trendNoteColor: 'var(--warning)',
     report: {
       sections: [
         {
@@ -1342,47 +1816,60 @@ const TEAMS = {
           type: 'overview',
           stats: [
             { num: '47', label: '总提交次数' },
-            { num: '4/4', label: '活跃成员' },
+            { num: '3.5/4', label: '活跃成员' },
             { num: '+823', label: '新增代码行' },
-            { num: '-156', label: '删除代码行' },
-            { num: '72', label: '健康评分' }
+            { num: '-118', label: '删除代码行' },
+            { num: '72', label: '健康评分' },
+            { num: '76%', label: '命名规范率' },
+            { num: '0%', label: '测试覆盖率' }
           ]
         },
         {
           title: '👥 成员贡献分析',
           type: 'members',
           items: [
-            { text: '<strong>张三 (Controller层)</strong> — 本周提交18次，新增312行代码。主要修改文件：<code>BookController.java</code>、<code>UserController.java</code>、<code>BorrowController.java</code>。完成了图书借阅和归还的完整接口，代码结构清晰，注释规范。<span style="color:var(--success)">● 贡献度：优秀</span>', class: '' },
-            { text: '<strong>李四 (DAO层)</strong> — 本周提交12次，新增245行代码。主要修改文件：<code>BookDao.java</code>、<code>UserDao.java</code>、<code>db_init.sql</code>。完成了数据库表设计和基础CRUD操作，SQL语句优化良好。<span style="color:var(--success)">● 贡献度：良好</span>', class: '' },
-            { text: '<strong>王五 (JSP前端)</strong> — 本周提交14次，新增198行代码。主要修改文件：<code>bookList.jsp</code>、<code>login.jsp</code>、<code>style.css</code>。前端页面框架已搭建，但部分JSP中包含大量Java代码，建议分离到Controller层。<span style="color:var(--warning)">● 贡献度：良好（需改进）</span>', class: 'warning-item' },
-            { text: '<strong>赵六 (待分配)</strong> — 本周仅提交3次，新增68行代码，且集中在周日完成。修改文件：<code>config.properties</code>、<code>web.xml</code>。贡献明显低于团队平均水平，尚未承担任何核心模块开发任务。<span style="color:var(--danger)">● 贡献度：不足 ⚠</span>', class: 'danger-item' }
+            { text: '<strong>马文博 (Controller层)</strong> — 本周提交18次，新增312行代码。主要修改了<code>BookController.java</code>、<code>BorrowController.java</code>、<code>UserController.java</code>等8个文件。完成了图书借阅归还接口、搜索功能和超期提醒。修复了并发借阅导致库存为负的bug。典型提交：<code>feat: 完成图书借阅和归还接口</code>、<code>fix: 修复并发借阅导致库存为负的bug</code>。代码质量指标——命名规范率85%、注释率68%、圈复杂度均值5.8(良好)。但Controller中存在2处业务逻辑代码，违反分层架构。<span style="color:var(--success)">● 贡献度：优秀</span>', class: '' },
+            { text: '<strong>黄佳怡 (DAO层)</strong> — 本周提交12次，新增245行代码。主要修改了<code>BookDao.java</code>、<code>UserDao.java</code>、<code>BorrowDao.java</code>等6个文件。完成三张核心表设计(Book/User/Borrow)，实现模糊查询分页，并添加联合索引优化性能。修复了一处数据库连接泄漏。典型提交：<code>fix: 修复数据库连接未关闭导致的连接泄漏</code>。代码质量指标——命名规范率82%、注释率65%、圈复杂度均值4.0(良好)。<span style="color:var(--success)">● 贡献度：良好</span>', class: '' },
+            { text: '<strong>杨子涵 (JSP前端)</strong> — 本周提交14次，新增198行代码。主要修改了<code>bookList.jsp</code>、<code>login.jsp</code>、<code>style.css</code>等7个文件。完成图书列表、详情页和登录注册表单，CSS重构为组件化结构。但<code>bookList.jsp</code>和<code>login.jsp</code>中存在4处内嵌Java代码(scriptlet)，违反MVC分层原则。典型提交：<code>style: 重构CSS为组件化结构</code>。<span style="color:var(--warning)">● 贡献度：良好（需改进JSP规范）</span>', class: 'warning-item' },
+            { text: '<strong>徐瑞泽 (待分配)</strong> — 本周仅提交3次，新增68行代码，且全部集中在周日深夜(22:30-23:15)完成。修改文件仅为<code>config.properties</code>、<code>web.xml</code>、<code>.gitignore</code>三个配置文件，无任何业务代码。贡献仅占团队总量的8.3%，连续3周处于"踩线"状态。<span style="color:var(--danger)">● 贡献度：不足 ⚠</span>', class: 'danger-item' }
           ]
+        },
+        {
+          title: '📈 代码质量总览',
+          type: 'quality_metrics',
+          content: '<div class="code-metrics-grid"><div class="code-metric-item"><div class="metric-val" style="color:var(--warning)">76.3%</div><div class="metric-label">命名规范率</div></div><div class="code-metric-item"><div class="metric-val" style="color:var(--danger)">48.3%</div><div class="metric-label">注释覆盖率</div></div><div class="code-metric-item"><div class="metric-val" style="color:var(--warning)">5.8</div><div class="metric-label">圈复杂度均值</div></div></div><p style="font-size:13px;margin-top:8px;line-height:1.7;">代码质量中等偏上，但注释覆盖率(48.3%)远低于推荐标准(60%)。徐瑞泽未贡献任何业务代码，质量评分无法计算。Controller层存在业务逻辑代码，分层架构需要整改。测试覆盖率为0%，是主要短板。</p>'
         },
         {
           title: '⚠ 风险提示',
           type: 'risks',
-          content: '<ul class="risk-list"><li><strong>赵六贡献严重不足</strong> — 本周贡献仅占团队总量的8.3%，且提交时间集中在截止日前，存在"搭便车"风险。建议教师关注并进行一对一沟通。</li><li><strong>Service层无人负责</strong> — 当前项目缺少业务逻辑层（Service Layer），Controller直接调用DAO层，不符合MVC三层架构规范。建议尽快分配成员负责。</li><li><strong>测试覆盖率为0%</strong> — 目前项目无任何单元测试代码，随着功能增加，代码质量风险将持续上升。建议本周开始编写JUnit测试。</li></ul>'
+          content: '<ul class="risk-list"><li><strong>徐瑞泽贡献严重不足</strong> — 本周贡献仅占团队总量的8.3%，且提交全部集中在周日深夜(配置文件修改)，无任何业务代码。该同学第9周经教师约谈后短暂提升(提交量增200%)，但第10周再次回落。存在"搭便车"风险，需持续关注。</li><li><strong>Service层无人负责</strong> — 当前项目缺少业务逻辑层（Service Layer），Controller直接调用DAO层，不符合MVC三层架构规范。Controller中有2处业务逻辑代码需下沉。</li><li><strong>测试覆盖率为0%</strong> — 目前项目无任何单元测试代码，随着功能增加，代码质量风险将持续上升。</li></ul>'
         },
         {
           title: '🎯 下周建议',
           type: 'suggestions',
-          content: '<ul class="suggest-list"><li><strong>明确赵六职责</strong> — 建议将Service层开发任务分配给赵六，同时设定每日最低提交要求（至少2次commit），帮助其融入团队开发节奏。</li><li><strong>重构MVC架构</strong> — 当前Controller层存在业务逻辑代码，建议张三和赵六协作，将业务逻辑抽取到Service层，形成完整的Controller→Service→DAO调用链。</li><li><strong>启动测试计划</strong> — 建议李四为DAO层编写JUnit测试用例，目标覆盖核心CRUD方法，同时在<code>pom.xml</code>中配置JUnit依赖。</li></ul>'
+          content: '<ul class="suggest-list"><li><strong>徐瑞泽接手Service层</strong> — 将Service层开发任务分配给徐瑞泽，马文博进行结对编程辅导。每日检查提交记录，至少2次commit。如持续无改善需考虑成绩评定调整。</li><li><strong>重构MVC架构</strong> — 马文博将Controller中的业务逻辑抽取到Service层，徐瑞泽参与编写，形成完整的Controller→Service→DAO调用链。</li><li><strong>启动测试计划</strong> — 黄佳怡为DAO层编写JUnit测试用例，目标覆盖核心CRUD方法。</li><li><strong>消除前端scriptlet</strong> — 杨子涵将4处JSP内嵌Java代码迁移到Controller层。</li></ul>'
         }
       ],
       confidence: '92%'
     },
-    aiSuggest: '该团队存在两个核心问题：(1) 赵六参与度极低，建议尽快安排面谈，了解原因并分配明确任务；(2) Service层缺失导致架构不完整，需要重构。建议让张三带着赵六协作完成Service层，以此增强赵六的参与感。',
+    aiSuggest: '该团队核心问题：(1) 徐瑞泽参与度持续偏低，第9周约谈后短暂提升但本周回落；(2) Service层缺失导致架构不完整。建议安排马文博与徐瑞泽结对编程，以Service层开发为切入点，同时设立每日提交检查点。其余三人表现良好，团队总体趋势向上。',
     reminderTemplates: {
-      '张三': '张三同学你好，本周Controller层工作完成很好。建议下周帮助赵六熟悉Service层开发。',
-      '李四': '李四同学你好，DAO层进展顺利。建议下周开始编写JUnit测试用例。',
-      '王五': '王五同学你好，前端页面框架不错。注意将JSP中的Java代码移到Controller层。',
-      '赵六': '赵六同学你好，注意到你本周提交较少且集中在周日。希望了解是否遇到困难？下周请保持每天至少2次提交，建议承担Service层开发任务。'
-    }
+      '马文博': '马文博同学你好，本周Controller层工作完成很好。建议下周带着徐瑞泽进行结对编程，共同完成Service层开发。',
+      '黄佳怡': '黄佳怡同学你好，DAO层进展顺利，连接泄漏修复很及时。建议下周开始编写JUnit测试用例。',
+      '杨子涵': '杨子涵同学你好，前端页面CSS组件化思路很好。注意将JSP中4处内嵌Java代码移到Controller层。',
+      '徐瑞泽': '徐瑞泽同学你好，注意到你本周提交仅3次且集中在周日深夜，均为配置文件修改。下周请承担Service层开发任务，每天至少2次提交。如有困难请及时联系老师或马文博。'
+    },
+    historyWeeks: [
+      { week: '第7周 (2/24 - 3/2)', score: 58, summary: '项目启动较慢。马文博独自搭建项目骨架，其余成员参与度低。徐瑞泽本周0次提交，黄佳怡仅4次。', highlight: null },
+      { week: '第8周 (3/3 - 3/9)', score: 63, summary: '有所改善。黄佳怡完成数据库核心表设计，杨子涵开始搭建前端页面。徐瑞泽提交2次(配置文件)。', highlight: null },
+      { week: '第9周 (3/10 - 3/16)', score: 70, summary: '教师约谈徐瑞泽后效果明显。徐瑞泽提交量提升200%(从2次到6次)，开始参与简单的配置和文件整理工作。其余三人持续推进。', highlight: '第9周教师约谈后，徐瑞泽提交量提升200%' },
+      { week: '第10周 (3/17 - 3/21)', score: 72, summary: '整体微升，但徐瑞泽再次回落(仅3次提交，全部周日深夜)。马文博和黄佳怡表现稳定。架构问题(缺Service层)亟需解决。', highlight: '徐瑞泽约谈效果减退，需二次干预' }
+    ]
   },
   4: {
     num: 4,
     name: '校园二手交易平台',
-    members: ['林峰', '郑雪', '何涛', '胡敏'],
+    members: ['蔡欣然', '邓宇航', '罗晨曦', '韩雪薇'],
     score: 85,
     status: 'healthy',
     statusText: '🟢 健康',
@@ -1391,23 +1878,75 @@ const TEAMS = {
     week: '第10周 (3/10 - 3/16)',
     watched: false,
     memberData: [
-      { name: '林峰', role: 'Controller层', roleClass: 'role-controller', color: 'c1', commits: 16, lines: 290, contribPct: 85, contribClass: 'good', cardClass: '', tag: '', commitsWeek: [2, 3, 2, 3, 2, 2, 2] },
-      { name: '郑雪', role: 'JSP前端', roleClass: 'role-jsp', color: 'c2', commits: 14, lines: 260, contribPct: 78, contribClass: 'good', cardClass: '', tag: '', commitsWeek: [2, 2, 2, 2, 2, 2, 2] },
-      { name: '何涛', role: 'DAO层', roleClass: 'role-dao', color: 'c3', commits: 13, lines: 235, contribPct: 75, contribClass: 'good', cardClass: '', tag: '', commitsWeek: [2, 2, 1, 2, 2, 2, 2] },
-      { name: '胡敏', role: 'Service层', roleClass: 'role-service', color: 'c4', commits: 11, lines: 200, contribPct: 70, contribClass: 'good', cardClass: '', tag: '', commitsWeek: [1, 2, 2, 2, 1, 2, 1] }
+      { name: '蔡欣然', role: '后端开发', roleClass: 'role-backend', color: 'c1', commits: 16, lines: 290, contribPct: 85, contribClass: 'good', cardClass: '', tag: '',
+        commitsWeek: [2, 3, 2, 3, 2, 2, 2],
+        detailCommits: [
+          { hash: 'g0c12y5', msg: 'feat: 完成商品发布和编辑接口', time: '03-16 14:20' },
+          { hash: 'h3d45z8', msg: 'feat: 实现商品搜索和筛选功能', time: '03-15 16:30' },
+          { hash: 'i6e78a1', msg: 'feat: 添加交易状态管理(待付款/已付款/已完成)', time: '03-14 11:45' },
+          { hash: 'j9f01b4', msg: 'refactor: 统一Service层异常处理', time: '03-13 09:30' },
+          { hash: 'k2g34c7', msg: 'feat: 实现用户收藏夹功能', time: '03-12 15:20' }
+        ],
+        detailFiles: ['ProductController.java', 'ProductService.java', 'TradeService.java', 'TradeStatus.java', 'FavoriteService.java', 'ProductSearchService.java', 'ExceptionHandler.java'],
+        detailMetrics: { added: 290, deleted: 42, avgCommitSize: 18 },
+        qualityScores: { naming: 86, exception: 78, comment: 70, layering: 90 },
+        aiAdvice: '后端开发扎实，异常处理统一化做得好。建议：(1) ProductService中部分方法超过50行，可拆分子方法；(2) 交易状态管理建议使用状态机模式替代if-else；(3) 补充Service层JavaDoc注释。'
+      },
+      { name: '邓宇航', role: '前端开发', roleClass: 'role-frontend', color: 'c2', commits: 14, lines: 260, contribPct: 78, contribClass: 'good', cardClass: '', tag: '',
+        commitsWeek: [2, 2, 2, 2, 2, 2, 2],
+        detailCommits: [
+          { hash: 'l5h67d0', msg: 'feat: 完成商品列表页面(瀑布流布局)', time: '03-16 13:50' },
+          { hash: 'm8i90e3', msg: 'feat: 实现商品详情页和联系卖家交互', time: '03-15 15:10' },
+          { hash: 'n1j23f6', msg: 'feat: 添加用户中心和收藏夹页面', time: '03-14 10:30' },
+          { hash: 'o4k56g9', msg: 'style: 统一页面配色方案和组件样式', time: '03-13 14:20' },
+          { hash: 'p7l89h2', msg: 'feat: 实现商品图片轮播组件', time: '03-12 16:40' }
+        ],
+        detailFiles: ['productList.jsp', 'productDetail.jsp', 'userCenter.jsp', 'favorites.jsp', 'carousel.js', 'trade.css', 'common.css'],
+        detailMetrics: { added: 260, deleted: 30, avgCommitSize: 18 },
+        qualityScores: { naming: 82, exception: 62, comment: 65, layering: 85 },
+        aiAdvice: '前端设计能力强，瀑布流布局和图片轮播组件是亮点。建议：(1) 将JavaScript中的全局变量封装到命名空间中；(2) 表单提交缺少客户端验证，需添加；(3) 页面缺少loading状态和错误提示。'
+      },
+      { name: '罗晨曦', role: '数据库', roleClass: 'role-db', color: 'c3', commits: 13, lines: 235, contribPct: 75, contribClass: 'good', cardClass: '', tag: '',
+        commitsWeek: [2, 2, 1, 2, 2, 2, 2],
+        detailCommits: [
+          { hash: 'q0m12i5', msg: 'feat: 设计商品/用户/交易/收藏四张核心表', time: '03-16 11:30' },
+          { hash: 'r3n45j8', msg: 'feat: 实现商品DAO层完整CRUD', time: '03-15 14:20' },
+          { hash: 's6o78k1', msg: 'optimize: 添加全文索引优化商品搜索', time: '03-14 09:50' },
+          { hash: 't9p01l4', msg: 'feat: 编写数据初始化脚本(50条测试数据)', time: '03-13 11:15' },
+          { hash: 'u2q34m7', msg: 'feat: 实现交易记录分页查询', time: '03-12 15:30' }
+        ],
+        detailFiles: ['ProductDao.java', 'UserDao.java', 'TradeDao.java', 'FavoriteDao.java', 'db_init.sql', 'test_data.sql'],
+        detailMetrics: { added: 235, deleted: 28, avgCommitSize: 18 },
+        qualityScores: { naming: 80, exception: 65, comment: 62, layering: 88 },
+        aiAdvice: '数据库设计合理，全文索引优化意识好。建议：(1) DAO方法使用驼峰命名(camelCase)，与蔡欣然保持一致；(2) 交易表建议添加乐观锁版本号字段；(3) 测试数据脚本很实用，建议补充边界数据。'
+      },
+      { name: '韩雪薇', role: 'UI设计', roleClass: 'role-ui', color: 'c4', commits: 11, lines: 200, contribPct: 70, contribClass: 'good', cardClass: '', tag: '',
+        commitsWeek: [1, 2, 2, 2, 1, 2, 1],
+        detailCommits: [
+          { hash: 'v5r67n0', msg: 'style: 完成全站UI设计规范(颜色/字体/间距)', time: '03-16 15:30' },
+          { hash: 'w8s90o3', msg: 'feat: 设计并实现响应式导航栏', time: '03-15 13:20' },
+          { hash: 'x1t23p6', msg: 'style: 统一表单输入框和按钮组件样式', time: '03-14 10:45' },
+          { hash: 'y4u56q9', msg: 'feat: 添加商品卡片组件(含hover动效)', time: '03-13 16:10' },
+          { hash: 'z7v89r2', msg: 'fix: 修复移动端页面布局错位问题', time: '03-11 11:30' }
+        ],
+        detailFiles: ['variables.css', 'components.css', 'navbar.jsp', 'responsive.css', 'productCard.jsp', 'form.css', 'animation.css'],
+        detailMetrics: { added: 200, deleted: 25, avgCommitSize: 18 },
+        qualityScores: { naming: 78, exception: 50, comment: 58, layering: 82 },
+        aiAdvice: 'UI设计规范化做得好，全站风格统一。建议：(1) CSS变量(variables.css)的命名可以更语义化(如--btn-primary改为--color-primary)；(2) 部分组件样式使用了!important，建议通过提高选择器优先级替代；(3) 注释较少，建议为每个组件添加说明注释。'
+      }
     ],
     totalCommits: 54,
     activeMembers: '4/4',
     addedLines: '+985',
-    deletedLines: '-145',
+    deletedLines: '-125',
     pie: {
       gradient: 'conic-gradient(#4472C4 0deg 106deg, #059669 106deg 200deg, #7c3aed 200deg 286deg, #ff9800 286deg 360deg)',
       total: 985,
       items: [
-        { color: '#4472C4', label: 'Controller层', pct: '29%', highlight: false },
-        { color: '#059669', label: 'JSP前端', pct: '26%', highlight: false },
-        { color: '#7c3aed', label: 'DAO层', pct: '24%', highlight: false },
-        { color: '#ff9800', label: 'Service层', pct: '21%', highlight: false }
+        { color: '#4472C4', label: '蔡欣然 (后端)', pct: '29%', highlight: false },
+        { color: '#059669', label: '邓宇航 (前端)', pct: '26%', highlight: false },
+        { color: '#7c3aed', label: '罗晨曦 (数据库)', pct: '24%', highlight: false },
+        { color: '#ff9800', label: '韩雪薇 (UI)', pct: '21%', highlight: false }
       ]
     },
     trend: [
@@ -1416,7 +1955,7 @@ const TEAMS = {
       { value: 82, week: '第9周', color: 'linear-gradient(to top, #4caf50, #66bb6a)' },
       { value: 85, week: '第10周', color: 'linear-gradient(to top, #4472C4, #6b9de8)' }
     ],
-    trendNote: '📈 稳步提升，团队协作良好',
+    trendNote: '📈 稳步提升，团队协作和UI设计是亮点',
     trendNoteColor: 'var(--success)',
     report: {
       sections: [
@@ -1427,45 +1966,58 @@ const TEAMS = {
             { num: '54', label: '总提交次数' },
             { num: '4/4', label: '活跃成员' },
             { num: '+985', label: '新增代码行' },
-            { num: '-145', label: '删除代码行' },
-            { num: '85', label: '健康评分' }
+            { num: '-125', label: '删除代码行' },
+            { num: '85', label: '健康评分' },
+            { num: '81%', label: '命名规范率' },
+            { num: '12%', label: '注释覆盖率' }
           ]
         },
         {
           title: '👥 成员贡献分析',
           type: 'members',
           items: [
-            { text: '<strong>林峰 (Controller层)</strong> — 本周提交16次，新增290行代码。完成商品发布、搜索和交易接口。代码功能正确但命名风格与团队不一致。<span style="color:var(--success)">● 贡献度：优秀</span>', class: '' },
-            { text: '<strong>郑雪 (JSP前端)</strong> — 本周提交14次，新增260行代码。完成商品列表、详情页和用户中心页面，UI设计美观。<span style="color:var(--success)">● 贡献度：良好</span>', class: '' },
-            { text: '<strong>何涛 (DAO层)</strong> — 本周提交13次，新增235行代码。完成商品表、用户表和交易记录表，使用驼峰命名。<span style="color:var(--success)">● 贡献度：良好</span>', class: '' },
-            { text: '<strong>胡敏 (Service层)</strong> — 本周提交11次，新增200行代码。完成交易流程和商品管理业务逻辑，使用下划线命名。<span style="color:var(--warning)">● 贡献度：良好（代码风格需统一）</span>', class: 'warning-item' }
+            { text: '<strong>蔡欣然 (后端开发)</strong> — 本周提交16次，新增290行代码。修改了<code>ProductController.java</code>、<code>ProductService.java</code>、<code>TradeService.java</code>等7个文件。完成商品发布编辑接口、搜索筛选功能和交易状态管理，统一了Service层异常处理。典型提交：<code>feat: 添加交易状态管理(待付款/已付款/已完成)</code>、<code>refactor: 统一Service层异常处理</code>。代码质量指标——命名规范率86%、注释率70%、圈复杂度均值5.5(良好)。<span style="color:var(--success)">● 贡献度：优秀</span>', class: '' },
+            { text: '<strong>邓宇航 (前端开发)</strong> — 本周提交14次，新增260行代码。修改了<code>productList.jsp</code>、<code>productDetail.jsp</code>、<code>carousel.js</code>等7个文件。完成商品列表(瀑布流布局)、详情页、用户中心和图片轮播组件。典型提交：<code>feat: 完成商品列表页面(瀑布流布局)</code>。前端设计美观，交互体验好。<span style="color:var(--success)">● 贡献度：良好</span>', class: '' },
+            { text: '<strong>罗晨曦 (数据库)</strong> — 本周提交13次，新增235行代码。修改了<code>ProductDao.java</code>、<code>TradeDao.java</code>、<code>db_init.sql</code>等6个文件。设计四张核心表(商品/用户/交易/收藏)，添加全文索引优化搜索，编写50条测试数据。典型提交：<code>optimize: 添加全文索引优化商品搜索</code>。但部分DAO方法使用下划线命名，与团队风格不一致。<span style="color:var(--success)">● 贡献度：良好</span>', class: '' },
+            { text: '<strong>韩雪薇 (UI设计)</strong> — 本周提交11次，新增200行代码。修改了<code>variables.css</code>、<code>components.css</code>、<code>responsive.css</code>等7个文件。完成全站UI设计规范、响应式导航栏和商品卡片组件(含hover动效)。修复了移动端布局错位问题。典型提交：<code>style: 完成全站UI设计规范(颜色/字体/间距)</code>。<span style="color:var(--success)">● 贡献度：良好</span>', class: '' }
           ]
+        },
+        {
+          title: '📈 代码质量总览',
+          type: 'quality_metrics',
+          content: '<div class="code-metrics-grid"><div class="code-metric-item"><div class="metric-val" style="color:var(--success)">81.5%</div><div class="metric-label">命名规范率</div></div><div class="code-metric-item"><div class="metric-val" style="color:var(--danger)">63.8%</div><div class="metric-label">注释覆盖率</div></div><div class="code-metric-item"><div class="metric-val" style="color:var(--success)">5.0</div><div class="metric-label">圈复杂度均值</div></div></div><p style="font-size:13px;margin-top:8px;line-height:1.7;">代码质量良好。蔡欣然的异常处理统一化值得肯定。韩雪薇的UI设计规范使全站视觉一致性达到全班最佳。但存在命名风格不一致问题(蔡欣然和邓宇航使用驼峰，罗晨曦部分方法使用下划线)，需统一。</p>'
         },
         {
           title: '⚠ 风险提示',
           type: 'risks',
-          content: '<ul class="risk-list"><li><strong>代码风格不一致</strong> — 林峰和何涛使用驼峰命名(camelCase)，胡敏使用下划线命名(snake_case)，变量和方法命名风格混乱，影响代码可读性和维护性。建议统一为驼峰命名。</li></ul>'
+          content: '<ul class="risk-list"><li><strong>代码风格不一致</strong> — 蔡欣然和邓宇航使用驼峰命名(camelCase)，罗晨曦部分DAO方法使用下划线命名(snake_case)，影响代码可读性和维护性。建议统一为驼峰命名。</li></ul>'
         },
         {
           title: '🎯 下周建议',
           type: 'suggestions',
-          content: '<ul class="suggest-list"><li><strong>统一代码规范</strong> — 建议团队制定编码规范文档，统一命名风格为驼峰命名法(camelCase)，并对现有代码进行重构。</li><li><strong>添加代码注释</strong> — 部分Service层方法缺少JavaDoc注释，建议胡敏补充完善。</li><li><strong>图片上传功能</strong> — 作为二手交易平台，商品图片上传是核心功能，建议下周优先开发。</li></ul>'
+          content: '<ul class="suggest-list"><li><strong>统一代码规范</strong> — 建议团队制定编码规范文档(可参考韩雪薇的CSS规范做法)，统一命名风格为驼峰命名法(camelCase)。罗晨曦对现有DAO代码进行重构。</li><li><strong>商品图片上传</strong> — 二手交易平台的核心功能，建议下周由蔡欣然和邓宇航协作完成文件上传和图片压缩功能。</li><li><strong>提升注释率</strong> — 当前注释覆盖率63.8%，建议全员补充核心方法的JavaDoc注释，目标提升到70%以上。</li></ul>'
         }
       ],
       confidence: '94%'
     },
-    aiSuggest: '团队整体表现良好，唯一问题是代码风格不统一。建议：(1) 组织一次团队代码审查会议，统一命名规范；(2) 配置Checkstyle插件自动检查代码风格；(3) 下周重点完成图片上传等核心功能。',
+    aiSuggest: '团队整体表现良好，分工明确且UI设计是全班亮点。唯一问题是代码命名风格不统一。建议：(1) 组织团队代码审查会议，统一命名规范；(2) 配置Checkstyle插件自动检查代码风格；(3) 下周重点完成图片上传核心功能。',
     reminderTemplates: {
-      '林峰': '林峰同学你好，Controller层完成度很好。请注意统一团队代码命名风格为驼峰命名。',
-      '郑雪': '郑雪同学你好，前端页面设计美观，继续保持！',
-      '何涛': '何涛同学你好，DAO层稳定推进，不错。',
-      '胡敏': '胡敏同学你好，Service层逻辑正确。请将命名风格统一为驼峰命名法(camelCase)，与团队保持一致。'
-    }
+      '蔡欣然': '蔡欣然同学你好，后端开发扎实，异常处理统一化做得好。请注意和罗晨曦统一命名风格为驼峰命名。',
+      '邓宇航': '邓宇航同学你好，瀑布流布局和轮播组件做得很好！下周和蔡欣然协作完成图片上传功能。',
+      '罗晨曦': '罗晨曦同学你好，数据库设计和全文索引做得不错。请将DAO方法命名统一为驼峰命名法(camelCase)。',
+      '韩雪薇': '韩雪薇同学你好，UI设计规范是全班最好的！建议减少CSS中的!important使用，同时为组件添加注释。'
+    },
+    historyWeeks: [
+      { week: '第7周 (2/24 - 3/2)', score: 74, summary: '项目启动。蔡欣然搭建后端框架，韩雪薇进行UI设计调研。罗晨曦完成数据库ER图设计。', highlight: null },
+      { week: '第8周 (3/3 - 3/9)', score: 78, summary: '基础功能开发阶段。后端CRUD完成，前端页面框架搭建。韩雪薇完成设计稿并开始CSS开发。', highlight: null },
+      { week: '第9周 (3/10 - 3/16)', score: 82, summary: '功能细化。商品搜索和分页完成，前端添加交互动效。发现命名风格不一致问题。', highlight: '韩雪薇完成全站UI设计规范，视觉一致性提升' },
+      { week: '第10周 (3/17 - 3/21)', score: 85, summary: '交易状态管理、收藏夹功能完成。蔡欣然统一异常处理，韩雪薇完成响应式适配。命名风格问题待解决。', highlight: null }
+    ]
   },
   5: {
     num: 5,
     name: '课程评价系统',
-    members: ['徐杰', '蔡琳', '邓宇', '罗晨'],
+    members: ['高明远', '宋雨泽', '朱雅琳', '谢文轩'],
     score: 45,
     status: 'alert',
     statusText: '🔴 预警',
@@ -1474,23 +2026,62 @@ const TEAMS = {
     week: '第10周 (3/10 - 3/16)',
     watched: true,
     memberData: [
-      { name: '徐杰', role: '全栈开发', roleClass: 'role-full', color: 'c1', commits: 22, lines: 410, contribPct: 95, contribClass: 'warning', cardClass: '', tag: '<span class="alert-tag" style="background:var(--warning)">⚠ 负担过重</span>', commitsWeek: [3, 4, 3, 4, 3, 3, 2] },
-      { name: '蔡琳', role: 'JSP前端', roleClass: 'role-jsp', color: 'c2', commits: 4, lines: 75, contribPct: 25, contribClass: 'warning', cardClass: '', tag: '', commitsWeek: [0, 1, 0, 1, 0, 1, 1] },
-      { name: '邓宇', role: '待分配', roleClass: 'role-unassigned', color: 'c3', commits: 0, lines: 0, contribPct: 0, contribClass: 'alert', cardClass: 'alert', tag: '<span class="alert-tag">⚠ 2周无提交</span>', commitsWeek: [0, 0, 0, 0, 0, 0, 0] },
-      { name: '罗晨', role: '待分配', roleClass: 'role-unassigned', color: 'c4', commits: 0, lines: 0, contribPct: 0, contribClass: 'alert', cardClass: 'alert', tag: '<span class="alert-tag">⚠ 2周无提交</span>', commitsWeek: [0, 0, 0, 0, 0, 0, 0] }
+      { name: '高明远', role: '全栈开发', roleClass: 'role-full', color: 'c1', commits: 22, lines: 410, contribPct: 95, contribClass: 'warning', cardClass: '', tag: '<span class="alert-tag" style="background:var(--warning)">⚠ 负担过重</span>',
+        commitsWeek: [3, 4, 3, 4, 3, 3, 2],
+        detailCommits: [
+          { hash: 'a3b12c5', msg: 'feat: 完成课程评价提交接口(含评分和文字)', time: '03-16 23:40' },
+          { hash: 'd6e45f8', msg: 'feat: 实现教师查看评价统计页面', time: '03-15 22:10' },
+          { hash: 'g9h78i1', msg: 'feat: 添加评价数据DAO层完整CRUD', time: '03-14 21:30' },
+          { hash: 'j2k01l4', msg: 'feat: 搭建项目基础框架和配置', time: '03-13 20:45' },
+          { hash: 'm5n34o7', msg: 'fix: 修复评价重复提交bug', time: '03-12 19:20' }
+        ],
+        detailFiles: ['EvalController.java', 'EvalService.java', 'EvalDao.java', 'CourseDao.java', 'evalForm.jsp', 'evalStats.jsp', 'db_init.sql', 'web.xml'],
+        detailMetrics: { added: 410, deleted: 35, avgCommitSize: 19 },
+        qualityScores: { naming: 72, exception: 55, comment: 40, layering: 65 },
+        aiAdvice: '独自承担全部核心开发工作，能力值得肯定但代码质量因赶工下降明显。注意：(1) EvalController.java达到320行，严重违反单一职责原则，需拆分；(2) 提交时间集中在19:00-23:40，说明在课余时间独自加班；(3) 注释率仅40%，多处方法缺少注释；(4) Service层和DAO层边界模糊。建议：立即分摊工作给队友。'
+      },
+      { name: '宋雨泽', role: 'JSP前端', roleClass: 'role-jsp', color: 'c2', commits: 4, lines: 75, contribPct: 25, contribClass: 'warning', cardClass: '', tag: '',
+        commitsWeek: [0, 1, 0, 1, 0, 1, 1],
+        detailCommits: [
+          { hash: 'p8q67r0', msg: 'feat: 创建课程列表页面框架', time: '03-16 20:30' },
+          { hash: 's1t90u3', msg: 'feat: 添加简单的登录页面', time: '03-14 19:45' },
+          { hash: 'v4w23x6', msg: 'style: 添加基础CSS样式', time: '03-12 21:10' },
+          { hash: 'y7z56a9', msg: 'chore: 创建JSP目录结构', time: '03-10 15:20' }
+        ],
+        detailFiles: ['courseList.jsp', 'login.jsp', 'style.css', 'header.jsp'],
+        detailMetrics: { added: 75, deleted: 8, avgCommitSize: 18 },
+        qualityScores: { naming: 65, exception: 30, comment: 35, layering: 60 },
+        aiAdvice: '参与度偏低，每周仅隔天提交1次。代码内容较为基础(页面框架和简单样式)。建议：(1) 增加每日提交频率至至少2次；(2) 尝试独立完成一个完整功能模块(如评价列表页面)；(3) 主动与高明远沟通技术问题。'
+      },
+      { name: '朱雅琳', role: '待分配', roleClass: 'role-inactive', color: 'c3', commits: 0, lines: 0, contribPct: 0, contribClass: 'alert', cardClass: 'alert', tag: '<span class="alert-tag">⚠ 2周无提交</span>',
+        commitsWeek: [0, 0, 0, 0, 0, 0, 0],
+        detailCommits: [],
+        detailFiles: [],
+        detailMetrics: { added: 0, deleted: 0, avgCommitSize: 0 },
+        qualityScores: { naming: 0, exception: 0, comment: 0, layering: 0 },
+        aiAdvice: '连续2周零提交、零代码、零活动。Git记录显示最后一次提交在第8周(3/5)，内容为添加.gitignore文件。疑似已放弃项目参与。必须立即面谈了解原因——可能是技术困难、团队沟通障碍或个人原因。如无法恢复参与，需考虑调整分组或个人成绩评定。'
+      },
+      { name: '谢文轩', role: '待分配', roleClass: 'role-inactive', color: 'c4', commits: 0, lines: 0, contribPct: 0, contribClass: 'alert', cardClass: 'alert', tag: '<span class="alert-tag">⚠ 2周无提交</span>',
+        commitsWeek: [0, 0, 0, 0, 0, 0, 0],
+        detailCommits: [],
+        detailFiles: [],
+        detailMetrics: { added: 0, deleted: 0, avgCommitSize: 0 },
+        qualityScores: { naming: 0, exception: 0, comment: 0, layering: 0 },
+        aiAdvice: '连续2周零提交、零代码、零活动。Git记录显示最后一次提交在第8周(3/6)，内容为修改README.md文件。疑似已放弃项目参与。必须立即面谈了解原因。该同学与朱雅琳情况类似，可能存在系统性团队沟通问题。'
+      }
     ],
     totalCommits: 26,
     activeMembers: '2/4',
     addedLines: '+485',
-    deletedLines: '-30',
+    deletedLines: '-43',
     pie: {
       gradient: 'conic-gradient(#4472C4 0deg 306deg, #059669 306deg 360deg)',
       total: 485,
       items: [
-        { color: '#4472C4', label: '徐杰 (85%)', pct: '85%', highlight: false },
-        { color: '#059669', label: '蔡琳 (15%)', pct: '15%', highlight: false },
-        { color: '#f44336', label: '邓宇 (0%)', pct: '0%', highlight: true },
-        { color: '#9e9e9e', label: '罗晨 (0%)', pct: '0%', highlight: true }
+        { color: '#4472C4', label: '高明远 (85%)', pct: '85%', highlight: false },
+        { color: '#059669', label: '宋雨泽 (15%)', pct: '15%', highlight: false },
+        { color: '#f44336', label: '朱雅琳 (0%)', pct: '0%', highlight: true },
+        { color: '#9e9e9e', label: '谢文轩 (0%)', pct: '0%', highlight: true }
       ]
     },
     trend: [
@@ -1510,42 +2101,67 @@ const TEAMS = {
             { num: '26', label: '总提交次数' },
             { num: '2/4', label: '活跃成员' },
             { num: '+485', label: '新增代码行' },
-            { num: '-30', label: '删除代码行' },
-            { num: '45', label: '健康评分' }
+            { num: '-43', label: '删除代码行' },
+            { num: '45', label: '健康评分' },
+            { num: '68%', label: '命名规范率' },
+            { num: '0%', label: '测试覆盖率' }
           ]
         },
         {
           title: '👥 成员贡献分析',
           type: 'members',
           items: [
-            { text: '<strong>徐杰 (全栈开发)</strong> — 本周提交22次，新增410行代码，贡献占团队总量的85%。独自承担Controller、DAO和部分JSP开发工作。代码有赶工痕迹，注释不足，部分方法超过100行。<span style="color:var(--warning)">● 贡献度：过高（负担过重）⚠</span>', class: 'warning-item' },
-            { text: '<strong>蔡琳 (JSP前端)</strong> — 本周提交4次，新增75行代码。仅完成两个简单的JSP页面，提交频率低且不稳定，疑似缺乏主动性。<span style="color:var(--warning)">● 贡献度：不足</span>', class: 'warning-item' },
-            { text: '<strong>邓宇 (待分配)</strong> — 连续2周0次提交，0行代码。无任何Git活动记录。<span style="color:var(--danger)">● 贡献度：零 🚨</span>', class: 'danger-item' },
-            { text: '<strong>罗晨 (待分配)</strong> — 连续2周0次提交，0行代码。无任何Git活动记录。<span style="color:var(--danger)">● 贡献度：零 🚨</span>', class: 'danger-item' }
+            { text: '<strong>高明远 (全栈开发)</strong> — 本周提交22次，新增410行代码(占团队85%)。独自修改了<code>EvalController.java</code>、<code>EvalService.java</code>、<code>EvalDao.java</code>、<code>evalForm.jsp</code>等8个文件。一人完成了课程评价提交接口、教师评价统计页面、DAO层CRUD和项目框架搭建。提交时间集中在19:00-23:40(课余加班)。典型提交：<code>feat: 完成课程评价提交接口(含评分和文字)</code>。代码质量因赶工明显下降——<code>EvalController.java</code>达320行(违反单一职责)、注释率仅40%、Service/DAO层边界模糊。<span style="color:var(--warning)">● 贡献度：过高（负担过重）⚠</span>', class: 'warning-item' },
+            { text: '<strong>宋雨泽 (JSP前端)</strong> — 本周提交4次，新增75行代码(占团队15%)。修改了<code>courseList.jsp</code>、<code>login.jsp</code>、<code>style.css</code>等4个文件。仅完成课程列表页面框架和简单登录页面，内容较基础。提交频率低且不稳定(隔天1次)，疑似缺乏主动性。典型提交：<code>feat: 创建课程列表页面框架</code>。<span style="color:var(--warning)">● 贡献度：不足</span>', class: 'warning-item' },
+            { text: '<strong>朱雅琳 (待分配)</strong> — 连续2周0次提交，0行代码。Git记录显示最后活跃时间为<strong>3月5日(第8周)</strong>，内容为添加.gitignore文件。此后完全无任何活动记录。<span style="color:var(--danger)">● 贡献度：零 🚨</span>', class: 'danger-item' },
+            { text: '<strong>谢文轩 (待分配)</strong> — 连续2周0次提交，0行代码。Git记录显示最后活跃时间为<strong>3月6日(第8周)</strong>，内容为修改README.md文件。此后完全无任何活动记录。<span style="color:var(--danger)">● 贡献度：零 🚨</span>', class: 'danger-item' }
           ]
+        },
+        {
+          title: '⏰ 成员活跃时间线',
+          type: 'timeline_detail',
+          content: '<div style="background:#fff5f5;border-radius:8px;padding:14px;border:1px solid #fecaca;"><p style="font-size:13px;font-weight:600;color:#991b1b;margin-bottom:10px;">各成员最后提交时间：</p><div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;font-size:13px;"><div style="padding:8px;background:white;border-radius:6px;border-left:3px solid var(--warning);"><strong>高明远</strong><br>最后提交：03-16 23:40<br>本周每天活跃(19:00-23:40)</div><div style="padding:8px;background:white;border-radius:6px;border-left:3px solid var(--warning);"><strong>宋雨泽</strong><br>最后提交：03-16 20:30<br>本周隔天提交，频率低</div><div style="padding:8px;background:white;border-radius:6px;border-left:3px solid var(--danger);"><strong>朱雅琳</strong><br>最后提交：<span style="color:var(--danger);font-weight:700;">03-05(12天前)</span><br>⚠ 连续12天零活动</div><div style="padding:8px;background:white;border-radius:6px;border-left:3px solid var(--danger);"><strong>谢文轩</strong><br>最后提交：<span style="color:var(--danger);font-weight:700;">03-06(11天前)</span><br>⚠ 连续11天零活动</div></div></div>'
         },
         {
           title: '🚨 严重风险警告',
           type: 'risks',
-          content: '<ul class="risk-list"><li><strong>🚨 团队濒临瘫痪</strong> — 仅有1人（徐杰）在进行实质性开发工作，团队协作完全失效。若不立即干预，项目有极高的失败风险。</li><li><strong>🚨 邓宇、罗晨完全失联</strong> — 两位成员连续2周无任何提交记录，尚未分配任何开发任务，疑似已放弃项目。建议教师立即联系确认情况。</li><li><strong>⚠ 徐杰过度负担</strong> — 独自完成85%的工作量，代码质量因赶工而下降。长方法、缺少注释、无测试等问题正在积累技术债务。</li><li><strong>⚠ 项目进度严重滞后</strong> — 与其他团队相比，核心功能完成度仅30%，至少落后2周进度。</li></ul>'
+          content: '<ul class="risk-list"><li><strong>🚨 团队濒临瘫痪</strong> — 仅有1人（高明远）在进行实质性开发工作(85%代码量)，团队协作完全失效。若不立即干预，项目有极高的失败风险。健康评分已连续3周下降(-17分)。</li><li><strong>🚨 朱雅琳、谢文轩完全失联</strong> — 两位成员分别在3月5日和3月6日后再无任何Git活动，已超过11天。尚未分配任何开发任务，疑似已放弃项目。建议教师立即联系确认情况，同时检查课程群聊和邮件是否有回复。</li><li><strong>⚠ 高明远过度负担</strong> — 独自完成85%的工作量，提交时间集中在晚间19:00-23:40(明显在课余加班)。<code>EvalController.java</code>达320行，注释率仅40%，代码质量因赶工持续下降。</li><li><strong>⚠ 项目进度严重滞后</strong> — 与其他团队相比，核心功能完成度仅30%，至少落后2周进度。测试覆盖率为0%。</li></ul>'
         },
         {
           title: '🆘 紧急建议 — 需要教师立即介入',
           type: 'suggestions',
-          content: '<ul class="risk-list" style="background:#fff5f5"><li><strong>立即面谈邓宇和罗晨</strong> — 了解缺席原因，明确下周必须完成的最低任务量。若无法参与，需考虑调整分组或成绩评定方案。</li><li><strong>重新分配任务</strong> — 邓宇负责DAO层（数据库设计和CRUD），罗晨负责JSP前端页面，每人每天至少提交2次。</li><li><strong>设立每日检查点</strong> — 建议教师每天查看该团队的Git提交记录，连续2天无提交立即约谈。</li></ul><ul class="suggest-list"><li><strong>帮助徐杰减负</strong> — 将已完成的代码模块交由蔡琳维护，徐杰专注于核心业务逻辑和代码审查。</li></ul>'
+          content: '<ul class="risk-list" style="background:#fff5f5"><li><strong>立即面谈朱雅琳和谢文轩</strong> — 了解缺席原因(技术困难？团队沟通障碍？个人原因？)，明确下周必须完成的最低任务量。若无法参与，需考虑调整分组或成绩评定方案。已安排周三下午面谈。</li><li><strong>重新分配任务</strong> — 朱雅琳负责DAO层（数据库设计和CRUD），谢文轩负责JSP前端页面开发，每人每天至少提交2次。</li><li><strong>设立每日检查点</strong> — 建议教师每天查看该团队的Git提交记录，连续2天无提交立即约谈。</li></ul><ul class="suggest-list"><li><strong>帮助高明远减负</strong> — 将已完成的<code>evalForm.jsp</code>和<code>evalStats.jsp</code>交由宋雨泽维护和优化，高明远专注于核心业务逻辑和代码审查。拆分320行的EvalController为多个Controller。</li></ul>'
         }
       ],
       confidence: '98%'
     },
-    aiSuggest: '🚨 该团队处于高风险状态，需要教师立即干预。核心问题：(1) 邓宇和罗晨已2周未参与，必须面谈了解原因；(2) 徐杰一人承担85%工作，身心负担极大；(3) 项目进度落后全班至少2周。建议：立即安排面谈→重新分工→设立每日检查机制。',
+    aiSuggest: '🚨 该团队处于高风险状态，需要教师立即干预。核心问题：(1) 朱雅琳和谢文轩已分别11-12天未参与，必须面谈了解原因；(2) 高明远一人承担85%工作且提交集中在晚间加班，身心负担极大；(3) 项目进度落后全班至少2周。建议：立即安排面谈→重新分工→设立每日检查机制→帮助高明远减负。',
     reminderTemplates: {
-      '徐杰': '徐杰同学你好，老师看到你承担了大量工作非常辛苦。请不要一个人扛所有任务，下周老师会帮助协调团队分工。',
-      '蔡琳': '蔡琳同学你好，注意到你本周提交较少。请提高参与度，下周每天至少提交2次代码。有困难请及时联系老师。',
-      '邓宇': '邓宇同学你好，你已连续2周没有任何代码提交。请务必在明天之前回复确认情况，否则将影响平时成绩评定。周三下午请到办公室面谈。',
-      '罗晨': '罗晨同学你好，你已连续2周没有任何代码提交。请务必在明天之前回复确认情况，否则将影响平时成绩评定。周三下午请到办公室面谈。'
-    }
+      '高明远': '高明远同学你好，老师看到你独自承担了大量工作(85%)且经常加班到深夜，非常辛苦。请不要一个人扛所有任务，下周老师会帮助协调团队分工，把部分工作分给其他同学。',
+      '宋雨泽': '宋雨泽同学你好，注意到你本周提交较少(仅4次)。请提高参与度，下周每天至少提交2次代码。建议接手已有JSP页面的维护和功能扩展。有困难请及时联系老师。',
+      '朱雅琳': '朱雅琳同学你好，你已连续12天没有任何代码提交(最后活动3月5日)。请务必在明天之前回复确认情况，否则将影响平时成绩评定。周三下午2:00请到办公室面谈。',
+      '谢文轩': '谢文轩同学你好，你已连续11天没有任何代码提交(最后活动3月6日)。请务必在明天之前回复确认情况，否则将影响平时成绩评定。周三下午2:00请到办公室面谈。'
+    },
+    historyWeeks: [
+      { week: '第7周 (2/24 - 3/2)', score: 62, summary: '项目启动。高明远搭建框架并分配任务。四人均有提交，但朱雅琳和谢文轩仅提交配置文件。健康分尚可。', highlight: null },
+      { week: '第8周 (3/3 - 3/9)', score: 55, summary: '开始分化。高明远独自推进核心功能，宋雨泽偶尔提交前端页面。朱雅琳(3/5最后活动)和谢文轩(3/6最后活动)此后完全停止参与。', highlight: '朱雅琳3/5、谢文轩3/6后完全停止活动' },
+      { week: '第9周 (3/10 - 3/16)', score: 50, summary: '情况恶化。朱雅琳和谢文轩连续1周无提交。教师发送提醒邮件，未收到回复。高明远负担持续加重。', highlight: '教师发送提醒邮件，朱雅琳和谢文轩均未回复' },
+      { week: '第10周 (3/17 - 3/21)', score: 45, summary: '持续下滑。朱雅琳和谢文轩已连续2周零活动。高明远独自完成85%代码但质量下降(320行大文件、注释率40%)。已安排周三面谈。', highlight: '已安排3/19面谈朱雅琳和谢文轩，待跟进' }
+    ]
   }
 };
+
+// Intervention log data
+const INTERVENTIONS = [
+  { date: '2026-03-05', team: 3, student: '徐瑞泽', action: '发送提醒邮件 — 提醒注意提交频率和参与度', result: '3天后提交量提升200%(从2次到6次)', resultClass: 'result-success', dotColor: 'var(--success)' },
+  { date: '2026-03-08', team: 5, student: '朱雅琳+谢文轩', action: '发送课程群聊提醒 — 提醒尽快恢复代码提交', result: '未收到回复', resultClass: 'result-failed', dotColor: 'var(--danger)' },
+  { date: '2026-03-10', team: 3, student: '徐瑞泽', action: '办公室面谈 — 了解参与度低的原因，制定改善计划', result: '约谈后第9周提交量上升，但第10周回落', resultClass: 'result-pending', dotColor: 'var(--warning)' },
+  { date: '2026-03-12', team: 5, student: '高明远', action: '单独沟通 — 了解团队协作困难和个人负担情况', result: '高明远反映多次联系队友未果，感到孤立无援', resultClass: 'result-pending', dotColor: 'var(--warning)' },
+  { date: '2026-03-14', team: 5, student: '朱雅琳+谢文轩', action: '发送邮件(第二次) — 要求48小时内回复，否则影响成绩', result: '谢文轩回复称有个人困难，朱雅琳仍未回复', resultClass: 'result-pending', dotColor: 'var(--warning)' },
+  { date: '2026-03-15', team: 2, student: '赵天宇', action: '表扬邮件 — 肯定Code Review贡献和策略模式设计', result: '赵天宇表示愿意为全班做技术分享', resultClass: 'result-success', dotColor: 'var(--success)' },
+  { date: '2026-03-15', team: 3, student: '徐瑞泽', action: '发送提醒(第二次) — 提醒本周提交量再次下降', result: '待跟进', resultClass: 'result-pending', dotColor: 'var(--warning)' },
+  { date: '2026-03-19', team: 5, student: '朱雅琳+谢文轩', action: '安排面谈 — 周三下午2:00办公室面谈', result: '待跟进', resultClass: 'result-pending', dotColor: '#9e9e9e' }
+];
 
 // Current state
 let currentTeam = 3;
@@ -1578,18 +2194,16 @@ function renderSidebar() {
 }
 
 // ============================================================
-// TEAM OVERVIEW (member cards)
+// TEAM OVERVIEW (member cards - clickable for detail)
 // ============================================================
 function renderTeamOverview() {
   const team = TEAMS[currentTeam];
   const el = document.getElementById('teamOverview');
   const scoreColor = team.score >= 75 ? 'var(--success)' : team.score >= 60 ? 'var(--warning)' : 'var(--danger)';
   let membersHtml = '';
-  team.memberData.forEach(m => {
-    const linesColor = m.lines > 0 ? (m.contribPct >= 50 ? 'var(--success)' : m.contribPct >= 20 ? 'var(--success)' : 'var(--danger)') : 'var(--danger)';
-    const commitsColor = m.commits >= 10 ? '' : m.commits >= 5 ? '' : 'style="color:var(--danger)"';
+  team.memberData.forEach((m, idx) => {
     membersHtml += `
-      <div class="member-card ${m.cardClass}">
+      <div class="member-card ${m.cardClass}" onclick="openMemberDetail(${currentTeam}, ${idx})" title="点击查看代码质量详情">
         <div class="member-top">
           <div class="avatar ${m.color}">${m.name[0]}</div>
           <div class="member-info">
@@ -1627,7 +2241,95 @@ function renderTeamOverview() {
       </div>
     </div>
     <div class="member-cards">${membersHtml}</div>
+    <div style="text-align:center;margin-top:10px;font-size:12px;color:var(--text-secondary);">💡 点击成员卡片查看代码质量详情</div>
   `;
+}
+
+// ============================================================
+// MEMBER DETAIL MODAL
+// ============================================================
+function openMemberDetail(teamNum, memberIdx) {
+  const team = TEAMS[teamNum];
+  const m = team.memberData[memberIdx];
+
+  document.getElementById('modalTitle').textContent = `代码质量详情 — ${m.name} (${m.role})`;
+
+  let commitsHtml = '';
+  if (m.detailCommits && m.detailCommits.length > 0) {
+    m.detailCommits.forEach(c => {
+      commitsHtml += `<li><span class="commit-hash">${c.hash}</span><span style="flex:1;">${c.msg}</span><span class="commit-time">${c.time}</span></li>`;
+    });
+  } else {
+    commitsHtml = '<li style="color:var(--danger);border:none;">无提交记录</li>';
+  }
+
+  let filesHtml = '';
+  if (m.detailFiles && m.detailFiles.length > 0) {
+    m.detailFiles.forEach(f => {
+      filesHtml += `<span class="file-tag">${f}</span>`;
+    });
+  } else {
+    filesHtml = '<span style="color:var(--danger);">无文件变更</span>';
+  }
+
+  const qs = m.qualityScores || { naming: 0, exception: 0, comment: 0, layering: 0 };
+  const getColor = (v) => v >= 80 ? 'var(--success)' : v >= 60 ? 'var(--warning)' : 'var(--danger)';
+  const dm = m.detailMetrics || { added: 0, deleted: 0, avgCommitSize: 0 };
+
+  const content = `
+    <div class="detail-section">
+      <h4>📝 近5次提交记录</h4>
+      <ul class="detail-commits-list">${commitsHtml}</ul>
+    </div>
+    <div class="detail-section">
+      <h4>📂 本周变更文件</h4>
+      <div class="detail-files-list">${filesHtml}</div>
+    </div>
+    <div class="detail-section">
+      <h4>📊 代码量统计</h4>
+      <div style="display:flex;gap:24px;font-size:14px;">
+        <div><strong style="color:var(--success);">+${dm.added}</strong> <span style="color:var(--text-secondary);">新增行</span></div>
+        <div><strong style="color:var(--danger);">-${dm.deleted}</strong> <span style="color:var(--text-secondary);">删除行</span></div>
+        <div><strong style="color:var(--primary);">${dm.avgCommitSize}</strong> <span style="color:var(--text-secondary);">平均每次提交行数</span></div>
+      </div>
+    </div>
+    <div class="detail-section">
+      <h4>🎯 代码质量评分</h4>
+      <div class="quality-breakdown">
+        <div class="quality-item">
+          <span class="quality-item-label">命名规范</span>
+          <div class="quality-bar-bg"><div class="quality-bar-fill" style="width:${qs.naming}%;background:${getColor(qs.naming)}"></div></div>
+          <span class="quality-pct" style="color:${getColor(qs.naming)}">${qs.naming}%</span>
+        </div>
+        <div class="quality-item">
+          <span class="quality-item-label">异常处理</span>
+          <div class="quality-bar-bg"><div class="quality-bar-fill" style="width:${qs.exception}%;background:${getColor(qs.exception)}"></div></div>
+          <span class="quality-pct" style="color:${getColor(qs.exception)}">${qs.exception}%</span>
+        </div>
+        <div class="quality-item">
+          <span class="quality-item-label">注释覆盖</span>
+          <div class="quality-bar-bg"><div class="quality-bar-fill" style="width:${qs.comment}%;background:${getColor(qs.comment)}"></div></div>
+          <span class="quality-pct" style="color:${getColor(qs.comment)}">${qs.comment}%</span>
+        </div>
+        <div class="quality-item">
+          <span class="quality-item-label">分层合规</span>
+          <div class="quality-bar-bg"><div class="quality-bar-fill" style="width:${qs.layering}%;background:${getColor(qs.layering)}"></div></div>
+          <span class="quality-pct" style="color:${getColor(qs.layering)}">${qs.layering}%</span>
+        </div>
+      </div>
+    </div>
+    <div class="detail-section">
+      <h4>🤖 AI改进建议</h4>
+      <div class="ai-advice">${m.aiAdvice || '暂无建议'}</div>
+    </div>
+  `;
+
+  document.getElementById('modalContent').innerHTML = content;
+  document.getElementById('modalActions').innerHTML = `
+    <button class="modal-btn" onclick="closeModal()">关闭</button>
+    <button class="modal-btn primary" onclick="closeModal();openReminder('${m.name}')">📨 发送提醒</button>
+  `;
+  document.getElementById('modalOverlay').classList.add('show');
 }
 
 // ============================================================
@@ -1802,18 +2504,60 @@ function renderTeacherActions() {
 }
 
 // ============================================================
-// COMPARISON VIEW
+// HISTORY WEEKLY REPORTS VIEW
+// ============================================================
+function renderHistoryView() {
+  const team = TEAMS[currentTeam];
+  const el = document.getElementById('view-history');
+
+  if (!team.historyWeeks) {
+    el.innerHTML = '<p style="padding:40px;text-align:center;color:var(--text-secondary);">暂无历史周报数据</p>';
+    return;
+  }
+
+  let html = `
+    <div class="section-title animate-in delay-1"><span class="icon">📅</span> 历史周报 — 第${team.num}组 · ${team.name}</div>
+    <div style="display:flex;align-items:center;gap:16px;margin-bottom:20px;padding:16px;background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);">
+      <span style="font-size:13px;color:var(--text-secondary);">健康分趋势：</span>
+  `;
+  team.historyWeeks.forEach((hw, i) => {
+    const color = hw.score >= 75 ? 'var(--success)' : hw.score >= 60 ? 'var(--warning)' : 'var(--danger)';
+    const arrow = i > 0 ? (hw.score > team.historyWeeks[i-1].score ? ' ↑' : hw.score < team.historyWeeks[i-1].score ? ' ↓' : ' →') : '';
+    html += `<span style="font-size:14px;font-weight:700;color:${color};">${hw.score}${arrow}</span>`;
+    if (i < team.historyWeeks.length - 1) html += '<span style="color:var(--border);">→</span>';
+  });
+  html += '</div>';
+
+  team.historyWeeks.forEach((hw, i) => {
+    const scoreColor = hw.score >= 75 ? 'var(--success)' : hw.score >= 60 ? 'var(--warning)' : 'var(--danger)';
+    const isCurrent = i === team.historyWeeks.length - 1;
+    html += `
+      <div class="history-week-card animate-in" style="animation-delay:${0.05 + i * 0.05}s;${isCurrent ? 'border-color:var(--primary);background:#fafbfe;' : ''}">
+        <div class="history-week-header">
+          <div class="history-week-title">${hw.week} ${isCurrent ? '<span style="background:var(--primary);color:white;padding:2px 8px;border-radius:10px;font-size:11px;font-weight:600;margin-left:8px;">当前</span>' : ''}</div>
+          <div class="history-week-score" style="color:${scoreColor}">健康分：${hw.score}/100</div>
+        </div>
+        <div class="history-week-summary">${hw.summary}</div>
+        ${hw.highlight ? `<div class="history-week-highlight">💡 ${hw.highlight}</div>` : ''}
+      </div>
+    `;
+  });
+
+  el.innerHTML = html;
+}
+
+// ============================================================
+// COMPARISON VIEW (enriched)
 // ============================================================
 function renderComparisonView() {
   const el = document.getElementById('view-compare');
-
-  // Summary stats
   const allTeams = Object.values(TEAMS);
   const avgScore = (allTeams.reduce((s, t) => s + t.score, 0) / allTeams.length).toFixed(1);
   const watchTeams = allTeams.filter(t => t.score < 75).length;
   const allStudents = allTeams.flatMap(t => t.memberData);
   const watchStudents = allStudents.filter(m => m.contribPct < 30).length;
   const totalCommits = allTeams.reduce((s, t) => s + t.totalCommits, 0);
+  const totalLines = allTeams.reduce((s, t) => s + t.pie.total, 0);
 
   // Bar chart data
   let barChartHtml = '';
@@ -1830,21 +2574,59 @@ function renderComparisonView() {
     `;
   });
 
-  // Scatter plot data (code volume vs code quality approximation)
+  // Scatter plot with student name labels
   const scatterColors = { 1: '#4472C4', 2: '#7c3aed', 3: '#059669', 4: '#ff9800', 5: '#f44336' };
   let scatterHtml = '';
   allTeams.forEach(team => {
     team.memberData.forEach(m => {
-      // x = code lines (0-600 mapped to 0-100%), y = quality approximation based on contrib pct
       const xPct = Math.min(m.lines / 550 * 100, 98);
       const quality = m.commits === 0 ? 5 : Math.min(20 + m.contribPct * 0.7 + (m.commits > 10 ? 15 : 0), 95);
       const yPct = 100 - quality;
       scatterHtml += `
         <div class="scatter-point" style="left:${xPct}%;top:${yPct}%;background:${scatterColors[team.num]}" title="第${team.num}组 ${m.name}: 代码${m.lines}行, 质量${Math.round(quality)}">
           ${m.name[0]}
+          <span class="scatter-point-label">${m.name}</span>
         </div>
       `;
     });
+  });
+
+  // Risk ranking
+  let riskStudents = [];
+  allTeams.forEach(team => {
+    team.memberData.forEach(m => {
+      let riskScore = 0;
+      let riskFactors = [];
+      if (m.commits === 0) { riskScore += 50; riskFactors.push('零提交'); }
+      else if (m.commits < 5) { riskScore += 25; riskFactors.push('提交偏少'); }
+      if (m.contribPct < 20) { riskScore += 30; riskFactors.push('贡献不足'); }
+      else if (m.contribPct < 40) { riskScore += 15; riskFactors.push('贡献偏低'); }
+      if (m.contribPct > 90 && team.score < 60) { riskScore += 20; riskFactors.push('负担过重'); }
+      const qs = m.qualityScores || {};
+      if (qs.naming && qs.naming < 60) { riskScore += 10; riskFactors.push('命名不规范'); }
+      if (qs.comment && qs.comment < 50) { riskScore += 10; riskFactors.push('注释不足'); }
+      if (riskScore > 0) {
+        riskStudents.push({ name: m.name, team: team.num, riskScore, riskFactors, commits: m.commits, lines: m.lines });
+      }
+    });
+  });
+  riskStudents.sort((a, b) => b.riskScore - a.riskScore);
+
+  let riskTableHtml = '';
+  riskStudents.forEach((rs, i) => {
+    const riskClass = rs.riskScore >= 50 ? 'risk-high' : rs.riskScore >= 20 ? 'risk-medium' : 'risk-low';
+    const riskLabel = rs.riskScore >= 50 ? '高风险' : rs.riskScore >= 20 ? '中风险' : '低风险';
+    riskTableHtml += `
+      <tr>
+        <td style="font-weight:600;">${i + 1}</td>
+        <td>${rs.name}</td>
+        <td>第${rs.team}组</td>
+        <td><span class="risk-badge ${riskClass}">${riskLabel} (${rs.riskScore})</span></td>
+        <td>${rs.riskFactors.join('、')}</td>
+        <td style="text-align:center;">${rs.commits}</td>
+        <td style="text-align:center;">${rs.lines}</td>
+      </tr>
+    `;
   });
 
   el.innerHTML = `
@@ -1863,7 +2645,11 @@ function renderComparisonView() {
       </div>
       <div class="summary-stat-card">
         <div class="summary-stat-value" style="color:var(--success)">${totalCommits}</div>
-        <div class="summary-stat-label">全班总提交次数</div>
+        <div class="summary-stat-label">全班总提交数</div>
+      </div>
+      <div class="summary-stat-card">
+        <div class="summary-stat-value" style="color:var(--primary)">${totalLines.toLocaleString()}</div>
+        <div class="summary-stat-label">总代码行数</div>
       </div>
     </div>
 
@@ -1886,9 +2672,39 @@ function renderComparisonView() {
           <div class="scatter-axis-label" style="bottom:-24px;left:50%;transform:translateX(-50%);">代码量 →</div>
           <div class="scatter-axis-label" style="left:-40px;top:50%;transform:rotate(-90deg) translateX(-50%);transform-origin:left center;">代码质量 →</div>
         </div>
-        <div style="display:flex;gap:16px;margin-top:16px;flex-wrap:wrap;">
+        <div style="display:flex;gap:16px;margin-top:20px;flex-wrap:wrap;">
           ${Object.entries(scatterColors).map(([num, color]) => `<span style="font-size:12px;display:flex;align-items:center;gap:4px;"><span style="width:10px;height:10px;border-radius:50%;background:${color};display:inline-block;"></span>第${num}组</span>`).join('')}
         </div>
+      </div>
+    </div>
+
+    <div class="comparison-section animate-in delay-3">
+      <div class="viz-title">⚠ 风险预警排行</div>
+      <table class="risk-table">
+        <thead>
+          <tr>
+            <th style="width:40px;">#</th>
+            <th>姓名</th>
+            <th>所在组</th>
+            <th>风险等级</th>
+            <th>风险因素</th>
+            <th style="text-align:center;">提交数</th>
+            <th style="text-align:center;">代码行</th>
+          </tr>
+        </thead>
+        <tbody>${riskTableHtml}</tbody>
+      </table>
+    </div>
+
+    <div class="comparison-section animate-in delay-4">
+      <div class="viz-title">🌟 优秀实践案例</div>
+      <div class="best-practice-card">
+        <h4>🏆 第2组 · 实验室预约系统 — 全班最佳实践团队</h4>
+        <p>该团队的成功经验值得全班推广：(1) <strong>Code Review机制</strong>：赵天宇每周为队友PR提供10+条建设性建议，代码质量持续提升；(2) <strong>专职测试角色</strong>：全班唯一设立测试角色的团队，吴若晨编写12个单元测试，覆盖率35%远超全班平均8%；(3) <strong>设计模式应用</strong>：引入策略模式重构Service层，降低了代码复杂度；(4) <strong>持续改进</strong>：健康分从第7周的80分稳步提升到91分。</p>
+      </div>
+      <div class="best-practice-card">
+        <h4>💡 第1组 · 在线选课系统 — 全班最均衡团队</h4>
+        <p>四位成员贡献度差异仅10%(27%/27%/25%/21%)，说明分工合理、沟通顺畅。亮点：(1) 陈思远引入统一返回格式ResultVO，提升接口规范性；(2) 王浩然主动修复SQL注入风险，安全意识强；(3) 林雨桐抽象BaseService基类，架构设计合理。</p>
       </div>
     </div>
 
@@ -1902,6 +2718,7 @@ function renderComparisonView() {
             <th style="padding:10px 12px;text-align:left;font-weight:600;">成员</th>
             <th style="padding:10px 12px;text-align:center;font-weight:600;">健康分</th>
             <th style="padding:10px 12px;text-align:center;font-weight:600;">提交次数</th>
+            <th style="padding:10px 12px;text-align:center;font-weight:600;">代码行数</th>
             <th style="padding:10px 12px;text-align:center;font-weight:600;">活跃成员</th>
             <th style="padding:10px 12px;text-align:center;font-weight:600;">状态</th>
             <th style="padding:10px 12px;text-align:center;font-weight:600;">操作</th>
@@ -1919,6 +2736,7 @@ function renderComparisonView() {
                 <td style="padding:10px 12px;font-size:12px;color:var(--text-secondary);">${t.members.join(', ')}</td>
                 <td style="padding:10px 12px;text-align:center;${scoreStyle}">${t.score}</td>
                 <td style="padding:10px 12px;text-align:center;">${t.totalCommits}</td>
+                <td style="padding:10px 12px;text-align:center;">${t.pie.total}</td>
                 <td style="padding:10px 12px;text-align:center;${activeStyle}">${activeCount}/4</td>
                 <td style="padding:10px 12px;text-align:center;">${t.statusText}</td>
                 <td style="padding:10px 12px;text-align:center;"><button class="action-btn primary" style="font-size:11px;padding:4px 10px;" onclick="event.stopPropagation();selectTeam(${t.num})">查看详情</button></td>
@@ -1929,6 +2747,60 @@ function renderComparisonView() {
       </table>
     </div>
   `;
+}
+
+// ============================================================
+// INTERVENTION LOG VIEW
+// ============================================================
+function renderInterventionView() {
+  const el = document.getElementById('view-intervention');
+
+  let html = `
+    <div class="section-title animate-in delay-1"><span class="icon">📝</span> 教师干预记录</div>
+    <div class="intervention-log animate-in delay-2">
+  `;
+
+  INTERVENTIONS.forEach(item => {
+    html += `
+      <div class="intervention-item">
+        <div class="intervention-date">${item.date}</div>
+        <div class="intervention-dot" style="background:${item.dotColor};"></div>
+        <div class="intervention-content">
+          <strong>第${item.team}组 · ${item.student}</strong><br>
+          ${item.action}<br>
+          <span style="color:var(--text-secondary);font-size:12px;">结果：</span>
+          <span class="intervention-result ${item.resultClass}">${item.result}</span>
+        </div>
+      </div>
+    `;
+  });
+
+  html += `
+    </div>
+    <div class="comparison-section animate-in delay-3">
+      <div class="viz-title">📊 干预效果统计</div>
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px;">
+        <div style="text-align:center;padding:16px;background:#f8fafc;border-radius:8px;">
+          <div style="font-size:28px;font-weight:800;color:var(--primary);">${INTERVENTIONS.length}</div>
+          <div style="font-size:12px;color:var(--text-secondary);">总干预次数</div>
+        </div>
+        <div style="text-align:center;padding:16px;background:#f0fdf4;border-radius:8px;">
+          <div style="font-size:28px;font-weight:800;color:var(--success);">${INTERVENTIONS.filter(i => i.resultClass === 'result-success').length}</div>
+          <div style="font-size:12px;color:var(--text-secondary);">有效干预</div>
+        </div>
+        <div style="text-align:center;padding:16px;background:#fff3e0;border-radius:8px;">
+          <div style="font-size:28px;font-weight:800;color:var(--warning);">${INTERVENTIONS.filter(i => i.resultClass === 'result-pending').length}</div>
+          <div style="font-size:12px;color:var(--text-secondary);">待跟进</div>
+        </div>
+        <div style="text-align:center;padding:16px;background:#ffebee;border-radius:8px;">
+          <div style="font-size:28px;font-weight:800;color:var(--danger);">${INTERVENTIONS.filter(i => i.resultClass === 'result-failed').length}</div>
+          <div style="font-size:12px;color:var(--text-secondary);">未响应</div>
+        </div>
+      </div>
+    </div>
+  `;
+
+  el.innerHTML = html;
 }
 
 // ============================================================
@@ -1946,9 +2818,9 @@ function switchView(view) {
   document.querySelectorAll('.view-container').forEach(v => v.classList.remove('active'));
   document.getElementById('tab-' + view).classList.add('active');
   document.getElementById('view-' + view).classList.add('active');
-  if (view === 'compare') {
-    renderComparisonView();
-  }
+  if (view === 'compare') renderComparisonView();
+  if (view === 'history') renderHistoryView();
+  if (view === 'intervention') renderInterventionView();
 }
 
 function toggleWatch() {
@@ -1961,7 +2833,11 @@ function openReminder(memberName) {
   const team = TEAMS[currentTeam];
   const template = team.reminderTemplates[memberName] || `${memberName}同学你好，请注意项目进度和代码提交要求。`;
   document.getElementById('modalTitle').textContent = `发送提醒给 ${memberName}`;
-  document.getElementById('modalText').value = template;
+  document.getElementById('modalContent').innerHTML = `<textarea id="modalText">${template}</textarea>`;
+  document.getElementById('modalActions').innerHTML = `
+    <button class="modal-btn" onclick="closeModal()">取消</button>
+    <button class="modal-btn primary" onclick="sendReminder()">发送提醒</button>
+  `;
   document.getElementById('modalOverlay').classList.add('show');
 }
 
@@ -1970,14 +2846,24 @@ function openMeeting() {
   document.getElementById('modalTitle').textContent = `安排面谈 — 第${team.num}组`;
   const lowContrib = team.memberData.filter(m => m.contribPct < 30).map(m => m.name);
   const names = lowContrib.length > 0 ? lowContrib.join('、') : team.members.join('、');
-  document.getElementById('modalText').value = `面谈对象：${names}\n时间：本周三下午2:00\n地点：教师办公室\n\n面谈议题：\n1. 了解项目进展和个人困难\n2. 讨论任务分工和下周计划\n3. 设定改进目标和检查点`;
+  const text = `面谈对象：${names}\n时间：本周三下午2:00\n地点：教师办公室\n\n面谈议题：\n1. 了解项目进展和个人困难\n2. 讨论任务分工和下周计划\n3. 设定改进目标和检查点`;
+  document.getElementById('modalContent').innerHTML = `<textarea id="modalText">${text}</textarea>`;
+  document.getElementById('modalActions').innerHTML = `
+    <button class="modal-btn" onclick="closeModal()">取消</button>
+    <button class="modal-btn primary" onclick="sendReminder()">确认安排</button>
+  `;
   document.getElementById('modalOverlay').classList.add('show');
 }
 
 function openGroupChat() {
   const team = TEAMS[currentTeam];
   document.getElementById('modalTitle').textContent = `团队群聊提醒 — 第${team.num}组`;
-  document.getElementById('modalText').value = `第${team.num}组各位同学：\n\n本周团队健康评分为${team.score}分。请各位注意：\n1. 保持每天至少1次代码提交\n2. 及时在Git上同步进度\n3. 遇到困难请主动沟通\n\n下周将检查项目进展，请做好准备。\n\n— 范老师`;
+  const text = `第${team.num}组各位同学：\n\n本周团队健康评分为${team.score}分。请各位注意：\n1. 保持每天至少1次代码提交\n2. 及时在Git上同步进度\n3. 遇到困难请主动沟通\n\n下周将检查项目进展，请做好准备。\n\n— 范老师`;
+  document.getElementById('modalContent').innerHTML = `<textarea id="modalText">${text}</textarea>`;
+  document.getElementById('modalActions').innerHTML = `
+    <button class="modal-btn" onclick="closeModal()">取消</button>
+    <button class="modal-btn primary" onclick="sendReminder()">发送提醒</button>
+  `;
   document.getElementById('modalOverlay').classList.add('show');
 }
 
@@ -2021,9 +2907,9 @@ function renderAll() {
   renderReport();
   renderViz();
   renderTeacherActions();
-  if (currentView === 'compare') {
-    renderComparisonView();
-  }
+  if (currentView === 'compare') renderComparisonView();
+  if (currentView === 'history') renderHistoryView();
+  if (currentView === 'intervention') renderInterventionView();
 }
 
 // Initial render
