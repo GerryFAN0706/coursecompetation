@@ -170,16 +170,11 @@
     flex-direction: column;
     gap: 12px;
     margin-top: 16px;
+    opacity: 1;
   }
 
   .login-form.show {
     display: flex;
-    animation: formSlide 0.3s ease forwards;
-  }
-
-  @keyframes formSlide {
-    from { opacity: 0; transform: translateY(-10px); }
-    to { opacity: 1; transform: translateY(0); }
   }
 
   .login-form input {
