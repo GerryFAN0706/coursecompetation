@@ -2904,7 +2904,7 @@ const lectureData = [
   { num: 9, title: 'Filter/Listener', topics: ['Filter生命周期', 'FilterChain', '监听器类型', '应用场景'], chunks: 44, questions: ['Filter的doFilter方法中chain.doFilter()的作用？', 'Filter和Listener的区别？', '编码过滤器怎么实现？'] },
   { num: 10, title: 'MVC设计模式', topics: ['MVC原理', '三层架构', 'DAO模式', 'Service层'], chunks: 48, questions: ['MVC三层的职责分别是什么？', 'Controller和Service层的区别？', 'DAO层的作用是什么？'] },
   { num: 11, title: 'Spring MVC', topics: ['DispatcherServlet', '注解开发', '请求映射', '视图解析'], chunks: 55, questions: ['Spring MVC的请求处理流程？', '@RequestMapping注解怎么用？', 'DispatcherServlet的作用？'] },
-  { num: 12, title: 'MyBatis框架', topics: ['ORM概念', 'SQL映射', '动态SQL', '关联查询'], chunks: 50, questions: ['MyBatis的#{}和${}有什么区别？', '动态SQL的if标签怎么用？', 'MyBatis如何实现一对多查询？'] },
+  { num: 12, title: 'MyBatis框架', topics: ['ORM概念', 'SQL映射', '动态SQL', '关联查询'], chunks: 50, questions: ['MyBatis的#{}和\${}有什么区别？', '动态SQL的if标签怎么用？', 'MyBatis如何实现一对多查询？'] },
   { num: 13, title: 'Web安全基础', topics: ['SQL注入', 'XSS攻击', 'CSRF防护', '安全编码'], chunks: 46, questions: ['SQL注入的原理是什么？', '如何防御XSS攻击？', 'CSRF Token是怎么工作的？'] },
   { num: 14, title: '事务与连接池', topics: ['ACID特性', '事务控制', '连接池原理', 'Druid配置'], chunks: 42, questions: ['数据库事务的ACID特性？', 'JDBC如何实现事务控制？', '连接池的优势是什么？'] },
   { num: 15, title: '项目实战(上)', topics: ['需求分析', '架构设计', '用户模块', '登录认证'], chunks: 58, questions: ['如何实现用户登录状态保持？', '项目分层架构怎么设计？', '密码加密存储用什么方案？'] },
@@ -2919,7 +2919,7 @@ const questionRecords = [
   { time: '21:28', student: '刘诗琪', question: 'Spring MVC的@RequestMapping用法？', topic: 'Spring MVC', quality: 'high', score: '4.5' },
   { time: '21:15', student: '周雅婷', question: 'JDBC事务回滚的条件是什么？', topic: 'JDBC事务', quality: 'medium', score: '4.0' },
   { time: '21:08', student: '孙嘉禾', question: 'Cookie的Secure和HttpOnly属性区别？', topic: '会话管理', quality: 'high', score: '4.8' },
-  { time: '20:55', student: '吴若晨', question: 'MyBatis的#{}和${}有什么区别？', topic: 'MyBatis', quality: 'high', score: '4.9' },
+  { time: '20:55', student: '吴若晨', question: 'MyBatis的#{}和\${}有什么区别？', topic: 'MyBatis', quality: 'high', score: '4.9' },
   { time: '20:45', student: '郑思齐', question: 'XSS攻击的防御方法有哪些？', topic: 'Web安全', quality: 'medium', score: '3.8' },
   { time: '20:38', student: '马文博', question: 'MVC中Service层和DAO层的关系？', topic: 'MVC', quality: 'low', score: '3.2' },
   { time: '20:30', student: '黄佳怡', question: 'Session超时后如何跳转到登录页？', topic: '会话管理', quality: 'high', score: '4.7' },
@@ -3404,9 +3404,9 @@ Spring MVC简化了Web开发，是当前Java Web开发的主流框架！`,
 &bull; <strong>ORM框架</strong>：Java对象和数据库表之间的映射<br>
 &bull; <strong>SQL映射文件</strong>：将SQL语句写在XML中，与Java代码分离<br>
 &bull; <strong>动态SQL</strong>：根据条件动态生成SQL语句<br><br>
-<strong>#{}和${}的区别（高频面试题）：</strong><br>
+<strong>#{}和\${}的区别（高频面试题）：</strong><br>
 &bull; <span class="highlight">#{}</span>：预编译占位符，防止SQL注入，值会被单引号包裹<br>
-&bull; <span class="highlight">${}</span>：字符串替换，有SQL注入风险，用于表名/列名动态拼接<br><br>
+&bull; <span class="highlight">\${}</span>：字符串替换，有SQL注入风险，用于表名/列名动态拼接<br><br>
 <div class="code-block"><span class="cm">&lt;!-- #{} 安全的参数绑定 --&gt;</span>
 &lt;<span class="kw">select</span> id=<span class="str">"findById"</span> resultType=<span class="str">"User"</span>&gt;
   SELECT * FROM users WHERE id = <span class="fn">#{id}</span>
@@ -3441,7 +3441,7 @@ MyBatis相比纯JDBC大大简化了数据访问层的代码量！`,
 &bull; "MVC中Controller和Service的区别？"<br>
 &bull; "JDBC连接数据库的步骤？"<br>
 &bull; "JSTL的forEach标签怎么用？"<br>
-&bull; "MyBatis的#{}和${}区别？"<br><br>
+&bull; "MyBatis的#{}和\${}区别？"<br><br>
 我会结合课程具体内容给你详细解答！`,
     time: '14:25'
   }
