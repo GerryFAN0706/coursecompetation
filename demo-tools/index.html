@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI赋能Java Web教学创新工具套件</title>
+<style>
+  *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+  :root{
+    --blue:#4472C4;--blue-dark:#2c5aa0;--blue-light:#e8f0fe;
+    --cyan:#00d4ff;--green:#4caf50;--purple:#7c3aed;
+    --bg:#f5f7fb;--card-bg:#ffffff;--text:#1a1a2e;--text-secondary:#555;
+    --radius:16px;--shadow:0 4px 24px rgba(68,114,196,.12);
+  }
+  html{scroll-behavior:smooth}
+  body{
+    font-family:"Microsoft YaHei","PingFang SC","Helvetica Neue",Arial,sans-serif;
+    color:var(--text);background:var(--bg);line-height:1.7;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  /* ===== HERO ===== */
+  .hero{
+    position:relative;overflow:hidden;
+    background:linear-gradient(135deg,#1a3a6c 0%,#2c5aa0 35%,#4472C4 65%,#5b8fd9 100%);
+    color:#fff;text-align:center;
+    padding:80px 24px 72px;
+  }
+  .hero canvas{position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;opacity:.35}
+  .hero-content{position:relative;z-index:2;max-width:900px;margin:0 auto}
+  .hero h1{font-size:2.6rem;font-weight:700;letter-spacing:.04em;margin-bottom:12px;text-shadow:0 2px 12px rgba(0,0,0,.2)}
+  .hero .subtitle{
+    display:inline-block;
+    background:rgba(255,255,255,.15);backdrop-filter:blur(4px);
+    padding:6px 28px;border-radius:40px;font-size:1.05rem;
+    margin-bottom:28px;border:1px solid rgba(255,255,255,.2);
+  }
+  .hero .desc{
+    font-size:1.05rem;line-height:1.9;max-width:780px;margin:0 auto;
+    opacity:.92;
+  }
+
+  /* ===== COURSE INFO BAR ===== */
+  .info-bar{
+    display:flex;flex-wrap:wrap;justify-content:center;gap:0;
+    max-width:1100px;margin:-36px auto 0;position:relative;z-index:3;
+    background:#fff;border-radius:var(--radius);box-shadow:var(--shadow);
+    overflow:hidden;
+  }
+  .info-item{
+    flex:1 1 180px;text-align:center;padding:22px 16px;
+    border-right:1px solid #eee;transition:background .25s;
+  }
+  .info-item:last-child{border-right:none}
+  .info-item:hover{background:var(--blue-light)}
+  .info-item .label{font-size:.82rem;color:var(--text-secondary);margin-bottom:4px}
+  .info-item .value{font-size:1.15rem;font-weight:700;color:var(--blue)}
+
+  /* ===== SECTIONS ===== */
+  section{max-width:1200px;margin:0 auto;padding:56px 24px 0}
+  .section-title{
+    text-align:center;font-size:1.7rem;font-weight:700;margin-bottom:8px;
+    color:var(--text);
+  }
+  .section-subtitle{text-align:center;color:var(--text-secondary);margin-bottom:40px;font-size:.98rem}
+
+  /* ===== TOOL CARDS ===== */
+  .cards-grid{
+    display:grid;grid-template-columns:repeat(2,1fr);gap:28px;
+    max-width:1100px;margin:0 auto;
+  }
+  .tool-card{
+    position:relative;background:var(--card-bg);border-radius:var(--radius);
+    padding:32px 28px 28px;text-decoration:none;color:inherit;
+    display:flex;flex-direction:column;
+    transition:transform .3s cubic-bezier(.22,1,.36,1),box-shadow .3s ease;
+    border:2px solid transparent;
+    background-clip:padding-box;
+    overflow:hidden;
+  }
+  .tool-card::before{
+    content:'';position:absolute;inset:-2px;border-radius:calc(var(--radius) + 2px);
+    z-index:-1;opacity:.45;transition:opacity .3s;
+  }
+  .tool-card:hover{
+    transform:translateY(-6px);
+    box-shadow:0 12px 40px rgba(68,114,196,.18);
+  }
+  .tool-card:hover::before{opacity:1}
+  .tool-card[data-accent="blue"]::before{background:linear-gradient(135deg,#4472C4,#6fa3e8)}
+  .tool-card[data-accent="cyan"]::before{background:linear-gradient(135deg,#00b4d8,#00d4ff)}
+  .tool-card[data-accent="green"]::before{background:linear-gradient(135deg,#388e3c,#66bb6a)}
+  .tool-card[data-accent="purple"]::before{background:linear-gradient(135deg,#5b21b6,#a78bfa)}
+
+  .card-header{display:flex;align-items:center;gap:14px;margin-bottom:14px}
+  .card-icon{
+    width:52px;height:52px;border-radius:14px;display:flex;align-items:center;justify-content:center;
+    font-size:1.6rem;flex-shrink:0;
+  }
+  .tool-card[data-accent="blue"] .card-icon{background:#e8f0fe;color:#4472C4}
+  .tool-card[data-accent="cyan"] .card-icon{background:#e0f7fa;color:#00b4d8}
+  .tool-card[data-accent="green"] .card-icon{background:#e8f5e9;color:#388e3c}
+  .tool-card[data-accent="purple"] .card-icon{background:#ede9fe;color:#5b21b6}
+
+  .card-title{font-size:1.15rem;font-weight:700;line-height:1.4}
+  .card-desc{font-size:.92rem;color:var(--text-secondary);line-height:1.75;margin-bottom:16px;flex:1}
+  .card-tags{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px}
+  .tag{
+    font-size:.76rem;padding:3px 12px;border-radius:20px;
+    background:#f0f2f5;color:var(--text-secondary);
+  }
+  .tool-card[data-accent="blue"] .tag{background:#e8f0fe;color:#2c5aa0}
+  .tool-card[data-accent="cyan"] .tag{background:#e0f7fa;color:#0097a7}
+  .tool-card[data-accent="green"] .tag{background:#e8f5e9;color:#2e7d32}
+  .tool-card[data-accent="purple"] .tag{background:#ede9fe;color:#5b21b6}
+
+  .card-metric{
+    display:flex;align-items:center;gap:8px;
+    padding:10px 14px;border-radius:10px;
+    background:#f8f9fc;font-size:.88rem;
+  }
+  .card-metric .metric-icon{font-size:1rem}
+  .card-metric .metric-value{font-weight:700}
+  .tool-card[data-accent="blue"] .metric-value{color:#4472C4}
+  .tool-card[data-accent="cyan"] .metric-value{color:#00b4d8}
+  .tool-card[data-accent="green"] .metric-value{color:#388e3c}
+  .tool-card[data-accent="purple"] .metric-value{color:#5b21b6}
+
+  .card-arrow{
+    position:absolute;top:28px;right:24px;font-size:1.1rem;opacity:.3;
+    transition:opacity .3s,transform .3s;
+  }
+  .tool-card:hover .card-arrow{opacity:.7;transform:translateX(4px)}
+
+  /* ===== SCENARIO MATRIX ===== */
+  .matrix-wrap{overflow-x:auto}
+  .matrix-table{
+    width:100%;border-collapse:separate;border-spacing:0;
+    background:#fff;border-radius:var(--radius);overflow:hidden;
+    box-shadow:var(--shadow);
+  }
+  .matrix-table th,.matrix-table td{
+    padding:14px 16px;text-align:center;font-size:.9rem;
+    border-bottom:1px solid #eef1f6;
+  }
+  .matrix-table thead th{
+    background:linear-gradient(135deg,#2c5aa0,#4472C4);color:#fff;
+    font-weight:600;font-size:.88rem;
+  }
+  .matrix-table thead th:first-child{text-align:left;min-width:240px}
+  .matrix-table tbody tr:last-child td{border-bottom:none}
+  .matrix-table tbody tr:hover{background:#f8faff}
+  .matrix-table td:first-child{text-align:left;font-weight:500;color:var(--text)}
+  .dot{
+    display:inline-block;width:22px;height:22px;border-radius:50%;
+    line-height:22px;font-size:.75rem;color:#fff;
+  }
+  .dot.active-blue{background:#4472C4}
+  .dot.active-cyan{background:#00d4ff}
+  .dot.active-green{background:#4caf50}
+  .dot.active-purple{background:#7c3aed}
+  .dot.inactive{background:#e5e7eb;color:#bbb}
+
+  /* ===== TEACHING FLOW ===== */
+  .flow-container{
+    background:#fff;border-radius:var(--radius);box-shadow:var(--shadow);
+    padding:48px 32px 40px;overflow-x:auto;
+  }
+  .flow-track{
+    display:flex;align-items:flex-start;justify-content:center;
+    gap:0;min-width:860px;position:relative;
+  }
+  .flow-step{
+    display:flex;flex-direction:column;align-items:center;
+    width:170px;position:relative;flex-shrink:0;
+  }
+  .flow-circle{
+    width:64px;height:64px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+    font-size:1.5rem;color:#fff;position:relative;z-index:2;
+    box-shadow:0 4px 16px rgba(0,0,0,.12);
+  }
+  .flow-step:nth-child(1) .flow-circle{background:linear-gradient(135deg,#4472C4,#6fa3e8)}
+  .flow-step:nth-child(2) .flow-circle{background:linear-gradient(135deg,#00b4d8,#00d4ff)}
+  .flow-step:nth-child(3) .flow-circle{background:linear-gradient(135deg,#388e3c,#66bb6a)}
+  .flow-step:nth-child(4) .flow-circle{background:linear-gradient(135deg,#f59e0b,#fbbf24)}
+  .flow-step:nth-child(5) .flow-circle{background:linear-gradient(135deg,#7c3aed,#a78bfa)}
+
+  .flow-label{margin-top:14px;font-weight:700;font-size:.95rem;text-align:center}
+  .flow-detail{
+    margin-top:6px;font-size:.82rem;color:var(--text-secondary);
+    text-align:center;line-height:1.6;
+  }
+  .flow-connector{
+    flex-shrink:0;display:flex;align-items:center;height:64px;
+    color:#c0c8d8;font-size:1.3rem;padding:0 6px;
+  }
+  .flow-connector svg{width:40px;height:20px}
+
+  /* ===== FOOTER ===== */
+  .site-footer{
+    background:linear-gradient(135deg,#1a2a4a,#2c3e6b);color:rgba(255,255,255,.75);
+    margin-top:64px;padding:48px 24px 32px;text-align:center;
+  }
+  .badges{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-bottom:20px}
+  .badge{
+    font-size:.8rem;padding:5px 16px;border-radius:20px;
+    background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);
+    color:rgba(255,255,255,.85);
+  }
+  .footer-note{font-size:.88rem;margin-bottom:8px;line-height:1.7}
+  .footer-copy{font-size:.82rem;opacity:.55;margin-top:16px}
+
+  /* ===== RESPONSIVE ===== */
+  @media(max-width:900px){
+    .hero h1{font-size:1.8rem}
+    .cards-grid{grid-template-columns:1fr}
+    .info-bar{flex-direction:column}
+    .info-item{border-right:none;border-bottom:1px solid #eee}
+    .info-item:last-child{border-bottom:none}
+    .matrix-table{font-size:.82rem}
+    .matrix-table th,.matrix-table td{padding:10px 8px}
+  }
+  @media(max-width:600px){
+    .hero{padding:48px 16px 40px}
+    .hero h1{font-size:1.5rem}
+    section{padding:40px 16px 0}
+    .flow-container{padding:32px 16px}
+  }
+
+  /* ===== ANIMATIONS ===== */
+  @keyframes fadeInUp{
+    from{opacity:0;transform:translateY(28px)}
+    to{opacity:1;transform:translateY(0)}
+  }
+  .animate-in{animation:fadeInUp .6s ease-out both}
+  .delay-1{animation-delay:.1s}
+  .delay-2{animation-delay:.2s}
+  .delay-3{animation-delay:.3s}
+  .delay-4{animation-delay:.4s}
+</style>
+</head>
+<body>
+
+<!-- ===== HERO ===== -->
+<header class="hero">
+  <canvas id="heroCanvas"></canvas>
+  <div class="hero-content animate-in">
+    <h1>AI赋能Java Web教学创新工具套件</h1>
+    <div class="subtitle">第六届全国高校教师教学创新大赛 · 人工智能赛道</div>
+    <p class="desc">基于生成式AI技术构建的四位一体教学创新体系，覆盖课前智能预习、课中人机协同、课后数据驱动反馈全流程。本套件已在Java Web应用开发课程中实际应用，服务58名本科生，覆盖全部6个赛道要求的AI教学情境。</p>
+  </div>
+</header>
+
+<!-- ===== COURSE INFO BAR ===== -->
+<div class="info-bar animate-in delay-1">
+  <div class="info-item">
+    <div class="label">课程</div>
+    <div class="value">Java Web应用开发</div>
+  </div>
+  <div class="info-item">
+    <div class="label">学时</div>
+    <div class="value">32学时（理论24 + 实验8）</div>
+  </div>
+  <div class="info-item">
+    <div class="label">学生</div>
+    <div class="value">58人（实验组）</div>
+  </div>
+  <div class="info-item">
+    <div class="label">AI情境覆盖</div>
+    <div class="value">6 / 6</div>
+  </div>
+  <div class="info-item">
+    <div class="label">自建工具</div>
+    <div class="value">4个</div>
+  </div>
+</div>
+
+<!-- ===== TOOL CARDS ===== -->
+<section>
+  <h2 class="section-title">教学创新工具矩阵</h2>
+  <p class="section-subtitle">四大自研AI工具，覆盖教学全流程，点击进入演示</p>
+  <div class="cards-grid">
+
+    <!-- Card 1 -->
+    <a href="./webdev-assistant/index.html" class="tool-card animate-in delay-1" data-accent="blue">
+      <span class="card-arrow">&rarr;</span>
+      <div class="card-header">
+        <div class="card-icon"><span>&#129302;</span></div>
+        <div class="card-title">WebDev助教 · 课程教学智能体</div>
+      </div>
+      <div class="card-desc">基于RAG + DeepSeek的课程专属AI助教，支持24小时个性化问答、学情数据采集与薄弱点分析</div>
+      <div class="card-tags">
+        <span class="tag">教学智能体</span>
+        <span class="tag">学情分析</span>
+        <span class="tag">个性化支持</span>
+      </div>
+      <div class="card-metric">
+        <span class="metric-icon">&#128200;</span>
+        <span>关键指标：</span>
+        <span class="metric-value">课前42/58人主动提问</span>
+      </div>
+    </a>
+
+    <!-- Card 2 -->
+    <a href="./websec-challenge/index.html" class="tool-card animate-in delay-2" data-accent="cyan">
+      <span class="card-arrow">&rarr;</span>
+      <div class="card-header">
+        <div class="card-icon"><span>&#128737;&#65039;</span></div>
+        <div class="card-title">WebSec挑战 · 安全攻防闯关平台</div>
+      </div>
+      <div class="card-desc">AI动态生成安全漏洞代码，每人题目不同，自动判定修复结果，游戏化教学提升安全意识</div>
+      <div class="card-tags">
+        <span class="tag">游戏化教学</span>
+        <span class="tag">适配场景设计</span>
+        <span class="tag">自动评价</span>
+      </div>
+      <div class="card-metric">
+        <span class="metric-icon">&#128200;</span>
+        <span>关键指标：</span>
+        <span class="metric-value">SQL注入识别率 12.1%&rarr;89.7%</span>
+      </div>
+    </a>
+
+    <!-- Card 3 -->
+    <a href="./team-coach/index.html" class="tool-card animate-in delay-3" data-accent="green">
+      <span class="card-arrow">&rarr;</span>
+      <div class="card-header">
+        <div class="card-icon"><span>&#128101;</span></div>
+        <div class="card-title">TeamCoach · 团队项目AI教练</div>
+      </div>
+      <div class="card-desc">自动分析Git提交数据，生成团队贡献度报告，预警搭便车行为，促进工程化协作</div>
+      <div class="card-tags">
+        <span class="tag">数据驱动</span>
+        <span class="tag">团队评价</span>
+        <span class="tag">过程性监控</span>
+      </div>
+      <div class="card-metric">
+        <span class="metric-icon">&#128200;</span>
+        <span>关键指标：</span>
+        <span class="metric-value">教师审查时间减少63.7%</span>
+      </div>
+    </a>
+
+    <!-- Card 4 -->
+    <a href="./code-review-battle/index.html" class="tool-card animate-in delay-4" data-accent="purple">
+      <span class="card-arrow">&rarr;</span>
+      <div class="card-header">
+        <div class="card-icon"><span>&#9876;&#65039;</span></div>
+        <div class="card-title">Code Review Battle · AI代码评审对战</div>
+      </div>
+      <div class="card-desc">学生 vs AI同时审查代码，对比发现差异，培养批判性思维，理解人机协同最佳模式</div>
+      <div class="card-tags">
+        <span class="tag">师生机协同</span>
+        <span class="tag">批判性思维</span>
+        <span class="tag">多维评价</span>
+      </div>
+      <div class="card-metric">
+        <span class="metric-icon">&#128200;</span>
+        <span>关键指标：</span>
+        <span class="metric-value">代码质量评分提升30%</span>
+      </div>
+    </a>
+
+  </div>
+</section>
+
+<!-- ===== AI SCENARIOS MATRIX ===== -->
+<section>
+  <h2 class="section-title">AI教学情境覆盖矩阵</h2>
+  <p class="section-subtitle">四大工具完整覆盖赛道要求的全部6个AI教学情境</p>
+  <div class="matrix-wrap">
+    <table class="matrix-table">
+      <thead>
+        <tr>
+          <th>AI教学情境</th>
+          <th>WebDev助教</th>
+          <th>WebSec挑战</th>
+          <th>TeamCoach</th>
+          <th>Code Review</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>&#9312; 学情数据采集与分析</td>
+          <td><span class="dot active-blue">&#10003;</span></td>
+          <td><span class="dot active-cyan">&#10003;</span></td>
+          <td><span class="dot inactive">&ndash;</span></td>
+          <td><span class="dot inactive">&ndash;</span></td>
+        </tr>
+        <tr>
+          <td>&#9313; 数字资源整合与运用</td>
+          <td><span class="dot active-blue">&#10003;</span></td>
+          <td><span class="dot active-cyan">&#10003;</span></td>
+          <td><span class="dot inactive">&ndash;</span></td>
+          <td><span class="dot inactive">&ndash;</span></td>
+        </tr>
+        <tr>
+          <td>&#9314; 适配的教学场景设计</td>
+          <td><span class="dot inactive">&ndash;</span></td>
+          <td><span class="dot active-cyan">&#10003;</span></td>
+          <td><span class="dot active-green">&#10003;</span></td>
+          <td><span class="dot inactive">&ndash;</span></td>
+        </tr>
+        <tr>
+          <td>&#9315; 多维智能评价反馈</td>
+          <td><span class="dot inactive">&ndash;</span></td>
+          <td><span class="dot active-cyan">&#10003;</span></td>
+          <td><span class="dot active-green">&#10003;</span></td>
+          <td><span class="dot active-purple">&#10003;</span></td>
+        </tr>
+        <tr>
+          <td>&#9316; 师生机协同教学</td>
+          <td><span class="dot active-blue">&#10003;</span></td>
+          <td><span class="dot inactive">&ndash;</span></td>
+          <td><span class="dot inactive">&ndash;</span></td>
+          <td><span class="dot active-purple">&#10003;</span></td>
+        </tr>
+        <tr>
+          <td>&#9317; 个性化学习支持</td>
+          <td><span class="dot active-blue">&#10003;</span></td>
+          <td><span class="dot inactive">&ndash;</span></td>
+          <td><span class="dot active-green">&#10003;</span></td>
+          <td><span class="dot inactive">&ndash;</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ===== TEACHING FLOW ===== -->
+<section>
+  <h2 class="section-title">教学流程与工具嵌入</h2>
+  <p class="section-subtitle">AI工具无缝嵌入"课前-课中-课后-反馈-调整"五阶段教学闭环</p>
+  <div class="flow-container">
+    <div class="flow-track">
+
+      <div class="flow-step">
+        <div class="flow-circle">&#128218;</div>
+        <div class="flow-label">课前</div>
+        <div class="flow-detail">智能体预习问答<br>个性化学习路径</div>
+      </div>
+
+      <div class="flow-connector">
+        <svg viewBox="0 0 40 20"><path d="M4 10 L30 10" stroke="#c0c8d8" stroke-width="2.5" fill="none"/><polygon points="30,5 38,10 30,15" fill="#c0c8d8"/></svg>
+      </div>
+
+      <div class="flow-step">
+        <div class="flow-circle">&#9876;&#65039;</div>
+        <div class="flow-label">课中</div>
+        <div class="flow-detail">攻防闯关实训<br>代码评审对战</div>
+      </div>
+
+      <div class="flow-connector">
+        <svg viewBox="0 0 40 20"><path d="M4 10 L30 10" stroke="#c0c8d8" stroke-width="2.5" fill="none"/><polygon points="30,5 38,10 30,15" fill="#c0c8d8"/></svg>
+      </div>
+
+      <div class="flow-step">
+        <div class="flow-circle">&#128202;</div>
+        <div class="flow-label">课后</div>
+        <div class="flow-detail">项目AI教练<br>团队周报分析</div>
+      </div>
+
+      <div class="flow-connector">
+        <svg viewBox="0 0 40 20"><path d="M4 10 L30 10" stroke="#c0c8d8" stroke-width="2.5" fill="none"/><polygon points="30,5 38,10 30,15" fill="#c0c8d8"/></svg>
+      </div>
+
+      <div class="flow-step">
+        <div class="flow-circle">&#128201;</div>
+        <div class="flow-label">数据反馈</div>
+        <div class="flow-detail">学情分析汇总<br>薄弱点精准追踪</div>
+      </div>
+
+      <div class="flow-connector">
+        <svg viewBox="0 0 40 20"><path d="M4 10 L30 10" stroke="#c0c8d8" stroke-width="2.5" fill="none"/><polygon points="30,5 38,10 30,15" fill="#c0c8d8"/></svg>
+      </div>
+
+      <div class="flow-step">
+        <div class="flow-circle">&#128260;</div>
+        <div class="flow-label">下次课调整</div>
+        <div class="flow-detail">智能体个性化推送<br>动态难度适配</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer class="site-footer">
+  <div class="badges">
+    <span class="badge">DeepSeek API</span>
+    <span class="badge">通义千问</span>
+    <span class="badge">RAG Pipeline</span>
+    <span class="badge">ChromaDB</span>
+    <span class="badge">Git Analytics</span>
+    <span class="badge">MOSS查重</span>
+    <span class="badge">JUnit自动测试</span>
+  </div>
+  <p class="footer-note">本套件全部基于国产大模型构建，支持校内私有化部署</p>
+  <div class="footer-copy">XXX大学 · XXX学院 · Java Web应用开发课程组</div>
+</footer>
+
+<!-- ===== SCRIPTS ===== -->
+<script>
+// ---- Hero particle animation ----
+(function(){
+  const canvas = document.getElementById('heroCanvas');
+  if(!canvas) return;
+  const ctx = canvas.getContext('2d');
+  let w, h, particles = [];
+  const COUNT = 60;
+
+  function resize(){
+    const rect = canvas.parentElement.getBoundingClientRect();
+    w = canvas.width = rect.width;
+    h = canvas.height = rect.height;
+  }
+
+  function Particle(){
+    this.x = Math.random() * w;
+    this.y = Math.random() * h;
+    this.vx = (Math.random() - .5) * .4;
+    this.vy = (Math.random() - .5) * .4;
+    this.r = Math.random() * 2 + 1;
+  }
+
+  function init(){
+    resize();
+    particles = [];
+    for(let i = 0; i < COUNT; i++) particles.push(new Particle());
+  }
+
+  function draw(){
+    ctx.clearRect(0, 0, w, h);
+    // draw connections
+    for(let i = 0; i < particles.length; i++){
+      for(let j = i + 1; j < particles.length; j++){
+        const dx = particles[i].x - particles[j].x;
+        const dy = particles[i].y - particles[j].y;
+        const dist = Math.sqrt(dx*dx + dy*dy);
+        if(dist < 120){
+          ctx.beginPath();
+          ctx.moveTo(particles[i].x, particles[i].y);
+          ctx.lineTo(particles[j].x, particles[j].y);
+          ctx.strokeStyle = 'rgba(255,255,255,' + (1 - dist/120) * .25 + ')';
+          ctx.lineWidth = .6;
+          ctx.stroke();
+        }
+      }
+    }
+    // draw dots
+    for(const p of particles){
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+      ctx.fillStyle = 'rgba(255,255,255,.55)';
+      ctx.fill();
+      p.x += p.vx;
+      p.y += p.vy;
+      if(p.x < 0 || p.x > w) p.vx *= -1;
+      if(p.y < 0 || p.y > h) p.vy *= -1;
+    }
+    requestAnimationFrame(draw);
+  }
+
+  init();
+  draw();
+  window.addEventListener('resize', function(){
+    resize();
+    // reposition particles within new bounds
+    for(const p of particles){
+      if(p.x > w) p.x = Math.random() * w;
+      if(p.y > h) p.y = Math.random() * h;
+    }
+  });
+})();
+
+// ---- Scroll-triggered fade-in for sections ----
+(function(){
+  const observer = new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+      if(entry.isIntersecting){
+        entry.target.style.opacity = '1';
+        entry.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, {threshold: 0.1});
+
+  document.querySelectorAll('section').forEach(function(el){
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(30px)';
+    el.style.transition = 'opacity .6s ease-out, transform .6s ease-out';
+    observer.observe(el);
+  });
+})();
+</script>
+
+</body>
+</html>
