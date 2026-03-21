@@ -72,125 +72,125 @@ anonSafe: true
 
 <div class="info-box blue">
   <span class="icon">ℹ️</span>
-  <div>下表展示每一讲的教学主题、AI应用场景和使用工具。高亮行为课堂实录对应讲次。</div>
+  <div>下表展示每一讲的教学主题、AI融合应用场景和使用工具。五维AI融合创新贯穿整个16讲教学周期，而非仅在个别讲次中应用。</div>
 </div>
 
 <table class="lecture-table">
 <thead>
-<tr><th>讲次</th><th>教学主题</th><th>AI应用场景</th><th>工具</th><th>环节</th></tr>
+<tr><th>讲次</th><th>教学主题</th><th>AI融合应用场景</th><th>工具/融合维度</th><th>环节</th></tr>
 </thead>
 <tbody>
 <tr>
   <td>第1讲</td>
   <td>Web核心脉络</td>
-  <td>AI生成HTTP请求/响应示例，学生对比手写 vs AI生成</td>
-  <td><span class="ai-tag">ChatGPT</span> <span class="ai-tag">文心一言</span></td>
-  <td>概念演示</td>
+  <td>智能助教推送预习问题，AI生成HTTP示例供学生对比</td>
+  <td><span class="ai-tag">智能助教</span> <span class="ai-tag">资料重构</span></td>
+  <td>课前预习·概念演示</td>
 </tr>
 <tr>
   <td>第2讲</td>
   <td>第一个Servlet</td>
-  <td>Cursor辅助补全Servlet骨架代码，学生理解自动生成与手写差异</td>
-  <td><span class="ai-tag">Cursor</span></td>
-  <td>编码实践</td>
+  <td>AI生成个性化Servlet实验任务（一人一题），Cursor辅助补全骨架</td>
+  <td><span class="ai-tag">资料重构</span> <span class="ai-tag">Cursor</span></td>
+  <td>个性化实验·编码实践</td>
 </tr>
 <tr>
   <td>第3讲</td>
   <td>JSP核心技术</td>
-  <td>AI生成JSP页面模板，学生识别其中的安全隐患(XSS)</td>
-  <td><span class="ai-tag">Cursor</span></td>
-  <td>实验设计</td>
+  <td>编程挑战：AI生成含XSS隐患的JSP代码，学生识别并修复</td>
+  <td><span class="ai-tag">编程挑战</span> <span class="ai-tag">Cursor</span></td>
+  <td>安全挑战·实验设计</td>
 </tr>
 <tr>
   <td>第4讲</td>
   <td>EL与JSTL</td>
-  <td>AI对比scriptlet vs EL表达式写法优劣，引导规范化</td>
-  <td><span class="ai-tag">ChatGPT</span> <span class="ai-tag">通义千问</span></td>
-  <td>知识对照</td>
+  <td>智能助教答疑EL语法困惑，AI对比scriptlet vs EL写法优劣</td>
+  <td><span class="ai-tag">智能助教</span> <span class="ai-tag">资料重构</span></td>
+  <td>知识对照·课后答疑</td>
 </tr>
 <tr>
   <td>第5讲</td>
   <td>会话管理核心技术</td>
-  <td>AI分析Session固定攻击风险，模拟安全场景</td>
-  <td><span class="ai-tag">Claude</span></td>
-  <td>安全审查</td>
+  <td>编程挑战：AI模拟Session固定攻击场景，学生修复漏洞</td>
+  <td><span class="ai-tag">编程挑战</span> <span class="ai-tag">智能助教</span></td>
+  <td>安全挑战·课后答疑</td>
 </tr>
 <tr>
   <td>第6讲</td>
   <td>JDBC数据库连接</td>
-  <td>Cursor生成DAO代码 + AI检查SQL注入漏洞</td>
-  <td><span class="ai-tag">Cursor</span> <span class="ai-tag">Claude</span></td>
-  <td>代码生成·安全审查</td>
+  <td>编程挑战：AI生成含SQL注入的DAO代码，人机对抗审查修复方案</td>
+  <td><span class="ai-tag">编程挑战</span> <span class="ai-tag">人机对抗</span> <span class="ai-tag">Cursor</span></td>
+  <td>安全挑战·代码审查</td>
 </tr>
 <tr>
   <td>第7讲</td>
   <td>JavaBean基础概念</td>
-  <td>AI自动生成JavaBean并解释命名规范</td>
-  <td><span class="ai-tag">Cursor</span></td>
-  <td>编码效率</td>
+  <td>AI生成个性化JavaBean实验，智能助教解答命名规范困惑</td>
+  <td><span class="ai-tag">资料重构</span> <span class="ai-tag">智能助教</span></td>
+  <td>个性化实验·课后答疑</td>
 </tr>
 <tr>
   <td>第8讲</td>
   <td>JavaBean实践应用</td>
-  <td>AI辅助重构冗余代码，提取JavaBean组件</td>
-  <td><span class="ai-tag">Cursor</span></td>
-  <td>代码重构</td>
+  <td>人机对抗：学生vs AI审查重构代码质量，TeamCoach启动团队项目追踪</td>
+  <td><span class="ai-tag">人机对抗</span> <span class="ai-tag">TeamCoach</span></td>
+  <td>代码审查·团队启动</td>
 </tr>
 <tr>
   <td>第9讲</td>
   <td>MVC设计模式</td>
-  <td>AI生成MVC架构图与分层建议</td>
-  <td><span class="ai-tag">ChatGPT</span> <span class="ai-tag">DeepSeek</span></td>
-  <td>概念理解</td>
+  <td>AI生成MVC架构图，编程挑战：修复分层混乱的代码</td>
+  <td><span class="ai-tag">资料重构</span> <span class="ai-tag">编程挑战</span></td>
+  <td>概念理解·架构挑战</td>
 </tr>
 <tr>
   <td>第10讲</td>
   <td>MVC综合实战</td>
-  <td>Cursor辅助调试MVC项目，AI定位分层错误</td>
-  <td><span class="ai-tag">Cursor</span></td>
-  <td>调试排查</td>
+  <td>TeamCoach生成团队周报，人机对抗审查MVC项目代码</td>
+  <td><span class="ai-tag">TeamCoach</span> <span class="ai-tag">人机对抗</span> <span class="ai-tag">Cursor</span></td>
+  <td>团队评价·代码审查</td>
 </tr>
 <tr>
   <td>第11讲</td>
   <td>Filter过滤器</td>
-  <td>AI生成Filter配置建议，审查过滤器链合理性</td>
-  <td><span class="ai-tag">Claude</span></td>
-  <td>设计审查</td>
+  <td>编程挑战：AI生成缺少Filter的请求链，学生补全权限控制</td>
+  <td><span class="ai-tag">编程挑战</span> <span class="ai-tag">智能助教</span></td>
+  <td>安全挑战·设计审查</td>
 </tr>
 <tr>
   <td>第12讲</td>
   <td>Listener监听器</td>
-  <td>AI对比不同Listener适用场景，辅助选型决策</td>
-  <td><span class="ai-tag">ChatGPT</span> <span class="ai-tag">文心一言</span></td>
-  <td>知识对比</td>
+  <td>智能助教对比Listener适用场景，AI生成个性化实验任务</td>
+  <td><span class="ai-tag">智能助教</span> <span class="ai-tag">资料重构</span></td>
+  <td>知识对比·个性化实验</td>
 </tr>
 <tr>
   <td>第13讲</td>
   <td>三层架构与DAO重构</td>
-  <td>AI生成分层代码骨架并审查架构合规性</td>
-  <td><span class="ai-tag">Cursor</span></td>
-  <td>架构设计</td>
+  <td>人机对抗审查架构合规性，TeamCoach追踪团队项目重构进度</td>
+  <td><span class="ai-tag">人机对抗</span> <span class="ai-tag">TeamCoach</span> <span class="ai-tag">Cursor</span></td>
+  <td>架构审查·团队评价</td>
 </tr>
 <tr>
   <td>第14讲</td>
   <td>数据库事务与连接池</td>
-  <td>AI分析事务隔离级别差异与死锁风险</td>
-  <td><span class="ai-tag">Claude</span> <span class="ai-tag">DeepSeek</span></td>
-  <td>概念辨析</td>
+  <td>编程挑战：AI生成含死锁风险的事务代码，智能助教辅助概念辨析</td>
+  <td><span class="ai-tag">编程挑战</span> <span class="ai-tag">智能助教</span></td>
+  <td>编程挑战·概念辨析</td>
 </tr>
-<tr class="highlight-row">
-  <td><strong>第15讲</strong></td>
-  <td><strong>用户认证与权限控制</strong></td>
-  <td><strong>AI辅助分组代码审查 + 知识点对照 + 测试验证</strong></td>
-  <td><span class="ai-tag">智能助教</span> <span class="ai-tag">编程挑战</span> <span class="ai-tag">人机对抗</span> <span class="ai-tag">TeamCoach</span></td>
-  <td><strong>课堂核心案例</strong></td>
+<tr>
+  <td>第15讲</td>
+  <td>用户认证与权限控制</td>
+  <td>五维融合全展现：智能助教数据导入+编程挑战闯关+人机对抗审查+TeamCoach周报</td>
+  <td><span class="ai-tag">智能助教</span> <span class="ai-tag">编程挑战</span> <span class="ai-tag">人机对抗</span> <span class="ai-tag">TeamCoach</span> <span class="ai-tag">资料重构</span></td>
+  <td>全维度融合</td>
 </tr>
 <tr>
   <td>第16讲</td>
   <td>工程化与部署实战</td>
-  <td>AI生成部署脚本与配置，检查生产环境安全设置</td>
-  <td><span class="ai-tag">Cursor</span></td>
-  <td>工程实践</td>
+  <td>TeamCoach最终团队评价报告，人机对抗审查部署安全配置</td>
+  <td><span class="ai-tag">TeamCoach</span> <span class="ai-tag">人机对抗</span> <span class="ai-tag">Cursor</span></td>
+  <td>团队总评·工程实践</td>
 </tr>
 </tbody>
 </table>

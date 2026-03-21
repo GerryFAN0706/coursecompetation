@@ -185,37 +185,6 @@ features:
 
 <div class="section-divider"></div>
 
-## 课堂落地实证：第15讲 45分钟全展现
-
-<div class="info-box emerald">
-  <span class="icon">💡</span>
-  <div><strong>从"能登录"到"能守住后台"</strong> — 在一节45分钟的课堂中，自然融入智能助教数据导入、安全编程挑战、人机对抗审查、协作修复验证。不是拼凑，是有机融合。</div>
-</div>
-
-<div class="summary-grid">
-  <div class="summary-card stagger-1">
-    <div class="summary-icon">📊</div>
-    <h3>0-5' 数据导入</h3>
-    <p>智能助教学情热力图 + TeamCoach周报 → 数据驱动课堂重点</p>
-  </div>
-  <div class="summary-card stagger-2">
-    <div class="summary-icon">🎮</div>
-    <h3>5-20' 安全挑战</h3>
-    <p>AI为每人生成不同漏洞代码 → 闯关+排行榜+教师据数据即时干预</p>
-  </div>
-  <div class="summary-card stagger-3">
-    <div class="summary-icon">⚔️</div>
-    <h3>20-35' 人机对抗</h3>
-    <p>学生vs AI审查同一段代码 → 对比盲区 → 辩论 → 认识AI边界</p>
-  </div>
-</div>
-
-<p style="text-align:center;margin:20px 0;">
-  <a href="/coursecompetation/cases/lesson-15/" style="display:inline-block;padding:10px 28px;background:linear-gradient(135deg,#2563eb,#0891b2);color:white;border-radius:999px;font-weight:600;text-decoration:none;box-shadow:0 4px 14px rgba(37,99,235,0.2);transition:all 0.3s;">查看完整45分钟案例 →</a>
-</p>
-
-<div class="section-divider"></div>
-
 ## 关键成效数据
 
 <div class="metric-hero">

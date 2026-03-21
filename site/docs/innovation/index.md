@@ -34,8 +34,8 @@ anonSafe: true
     <div class="label">协同角色（AI·教师·学生）</div>
   </div>
   <div class="metric-hero-card">
-    <div class="num amber">45min</div>
-    <div class="label">单节课堂落地验证</div>
+    <div class="num amber">16</div>
+    <div class="label">讲次全覆盖</div>
   </div>
 </div>
 

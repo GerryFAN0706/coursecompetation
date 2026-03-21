@@ -220,22 +220,3 @@ anonSafe: true
   </div>
 </div>
 
-<div class="section-divider"></div>
-
-## 支撑材料接入状态
-
-<SamplePlaceholderBoard />
-
-## 命名契约与资料索引
-
-<div class="info-box blue">
-  <span class="icon">📋</span>
-  <div>所有教学资料采用统一命名规则，便于评审快速追溯与交叉验证。</div>
-</div>
-
-| 类别 | 前缀 | 示例 | 存放位置 |
-|---|---|---|---|
-| 截图资料 | `Sxx_` | `S01_login_test.png` | `/assets/evidence/` |
-| 课程文档 | `Dxx_` | `D01_教学大纲.pdf` | `/assets/docs/` |
-| 数据图表 | `Cxx_` | `C01_scores.json` | `/assets/data/` |
-| 学生样本 | `EV-Sxx` | `EV-S01_feedback.pdf` | `/assets/evidence/student/` |

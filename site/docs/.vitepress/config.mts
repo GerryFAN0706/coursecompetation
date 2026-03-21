@@ -93,9 +93,7 @@ export default defineConfig({
       ]
     },
 
-    socialLinks: [
-      { icon: "github", link: "https://github.com/gerryfan0706/coursecompetation" }
-    ],
+    socialLinks: [],
 
     footer: {
       message: "第六届全国高校教师教学创新大赛 · 人工智能赛道 · 成果展示",
