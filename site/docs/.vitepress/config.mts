@@ -26,7 +26,7 @@ export default defineConfig({
       {
         text: "教学创新",
         items: [
-          { text: "AI教学创新设计", link: "/innovation/" },
+          { text: "AI融合创新设计", link: "/innovation/" },
           { text: "核心案例：第15讲", link: "/cases/lesson-15/" },
           { text: "课程概览（16讲）", link: "/course/" }
         ]
@@ -58,7 +58,12 @@ export default defineConfig({
           text: "教学创新设计",
           collapsed: false,
           items: [
-            { text: "AI教学创新设计", link: "/innovation/" },
+            { text: "AI融合创新设计", link: "/innovation/" },
+            { text: "智能助教", link: "/innovation/#智能助教" },
+            { text: "AI自适应编程挑战", link: "/innovation/#ai自适应编程挑战与学情分析" },
+            { text: "团队协作教练", link: "/innovation/#团队协作教练-teamcoach" },
+            { text: "人机对抗", link: "/innovation/#人机对抗-code-review-battle" },
+            { text: "AI辅助教学资料重构", link: "/innovation/#ai辅助教学资料重构" },
             { text: "核心案例：第15讲", link: "/cases/lesson-15/" },
             { text: "课程概览（16讲）", link: "/course/" }
           ]

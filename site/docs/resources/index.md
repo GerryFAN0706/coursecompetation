@@ -31,6 +31,38 @@ anonSafe: true
   </div>
 </div>
 
+<div class="section-divider"></div>
+
+## AI融合创新资源
+
+<div class="summary-grid">
+  <div class="summary-card">
+    <div class="summary-icon">🤖</div>
+    <h3>智能助教资源</h3>
+    <p>Agent系统提示词、RAG知识库配置、预习引导模板、学情热力图样例</p>
+  </div>
+  <div class="summary-card">
+    <div class="summary-icon">🎮</div>
+    <h3>编程挑战资源</h3>
+    <p>挑战关卡描述、自动评判规则、排行榜配置、跨讲次题目模板</p>
+  </div>
+  <div class="summary-card">
+    <div class="summary-icon">👥</div>
+    <h3>TeamCoach资源</h3>
+    <p>Git分析脚本、贡献度评分算法、周报模板、搭便车预警规则</p>
+  </div>
+  <div class="summary-card">
+    <div class="summary-icon">⚔️</div>
+    <h3>人机对抗资源</h3>
+    <p>对战规则说明、评分维度模板、辩论引导框架、结果对比表</p>
+  </div>
+  <div class="summary-card">
+    <div class="summary-icon">📝</div>
+    <h3>教学资料重构资源</h3>
+    <p>个性化实验设计生成提示词、PPT生成工作流、分层任务模板</p>
+  </div>
+</div>
+
 ## 快速入口
 
 <div class="summary-grid">

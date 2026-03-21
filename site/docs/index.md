@@ -1,54 +1,54 @@
 ---
 layout: home
 title: 首页
-description: 第六届全国高校教师教学创新大赛 · 人工智能赛道 · Java Web应用开发课程AI教学创新成果展示
-lastUpdated: 2026-03-17
+description: 第六届全国高校教师教学创新大赛 · 人工智能赛道 · Java Web应用开发课程AI融合创新成果展示
+lastUpdated: 2026-03-21
 evidenceLevel: public
 anonSafe: true
 hero:
   name: "第六届全国高校教师教学创新大赛"
   text: "AI赋能Java Web应用开发课程"
-  tagline: "人工智能赛道 · 问题驱动 · 人机协同 · 数据闭环"
+  tagline: "人工智能赛道 · 五维AI融合创新 · 六大情境全覆盖 · 数据闭环"
   actions:
     - theme: brand
-      text: "创新设计总览 →"
+      text: "AI融合创新设计 →"
       link: /innovation/
     - theme: alt
       text: "评审快速路径"
       link: /review-path/
   image:
     src: /assets/svg/hero-constellation.svg
-    alt: AI教学创新
+    alt: AI融合创新
 
 features:
-  - icon: "🎯"
-    title: AI个性化任务设计
-    details: 基于学情分层的"一人一题"机制，同知识点、异场景、分层次。代码相似度从45%降至<5%，从源头解决抄袭问题。
-    link: /innovation/
-    linkText: 查看设计思路
   - icon: "🤖"
-    title: 人机协同代码审查
-    details: 学生使用AI诊断代码缺陷，教师引导知识点纠偏，形成"诊断→修复→验证"的深度实践闭环。
-    link: /cases/lesson-15/
-    linkText: 查看核心案例
+    title: 智能助教
+    details: 课程专属RAG智能体，24h个性化问答，学情热力图驱动教学决策。课外学习不再无助，教师课前即知全班薄弱点。
+    link: /innovation/#智能助教
+    linkText: 查看设计方案
+  - icon: "🎮"
+    title: AI自适应编程挑战
+    details: AI为每人动态生成不同挑战题目，自适应难度，天然防抄袭。排行榜+实时数据大屏，游戏化激发学习热情。
+    link: /innovation/#ai自适应编程挑战与学情分析
+    linkText: 查看挑战设计
+  - icon: "👥"
+    title: 团队协作教练 TeamCoach
+    details: 基于Git数据的AI团队分析，贡献度可视化，搭便车预警。用数据而非主观判断评价团队，过程性评价取代结果导向。
+    link: /innovation/#团队协作教练-teamcoach
+    linkText: 查看教练机制
+  - icon: "⚔️"
+    title: 人机对抗 Code Review Battle
+    details: 学生与AI同台审查代码，对比发现各自盲区。培养批判性思维，认识AI能力边界，理解人机协同才是最优解。
+    link: /innovation/#人机对抗-code-review-battle
+    linkText: 查看对抗设计
+  - icon: "📝"
+    title: AI辅助教学资料重构
+    details: 个性化实验设计生成器实现"一人一题"，AI课程PPT生成将备课时间从4小时缩至40分钟。教师从重复劳动中解放。
+    link: /innovation/#ai辅助教学资料重构
+    linkText: 查看资料重构
   - icon: "📊"
-    title: 数据驱动反馈与干预
-    details: 四维评价体系（功能·知识·规范·安全），教师审查时间减少67%，代码综合质量提升35%。
-    link: /results/
-    linkText: 查看成效数据
-  - icon: "🔄"
-    title: 课前-课中-课后闭环
-    details: AI贯穿学情分析、任务生成、课堂审查、智能反馈、精准干预全过程，形成可验证的教学改进循环。
-    link: /innovation/
-    linkText: 查看教学闭环
-  - icon: "🛡️"
-    title: 规范使用与学术诚信
-    details: AI是"辅助者"而非"替代者"。明确使用边界、教师审核机制、防滥用措施，确保学生真正掌握知识。
-    link: /about/
-    linkText: 查看使用规范
-  - icon: "🚀"
-    title: 可复制推广模式
-    details: 提示词模板、生成流程、评价框架全部开源。三步迁移法，适用于所有编程实践类课程。
+    title: 数据闭环与可复制推广
+    details: 五维创新均产生教学数据，形成可验证的改进循环。提示词模板、工具框架全部开源，适用于所有编程实践类课程。
     link: /promotion/
     linkText: 查看推广方案
 ---
@@ -67,12 +67,12 @@ features:
     <div class="label">代码高相似率下降</div>
   </div>
   <div class="metric-hero-card stagger-3">
-    <div class="num emerald">89%</div>
-    <div class="label">SQL注入防护意识</div>
+    <div class="num emerald">5</div>
+    <div class="label">AI融合创新维度</div>
   </div>
   <div class="metric-hero-card stagger-4">
-    <div class="num amber">67%</div>
-    <div class="label">教师审查时间减少</div>
+    <div class="num amber">6/6</div>
+    <div class="label">教学情境全覆盖</div>
   </div>
 </div>
 
@@ -83,33 +83,33 @@ features:
 
 <div class="section-divider"></div>
 
-## AI赋能教学闭环
+## 五维AI融合创新闭环
 
 <div class="flow-grid">
   <div class="flow-card stagger-1">
     <div class="step-num">1</div>
-    <h4>学情分析</h4>
-    <p>AI辅助历史数据分析<br/>学生能力三级分层</p>
+    <h4>智能助教</h4>
+    <p>24h课程问答<br/>学情热力图<br/>数据驱动教学决策</p>
   </div>
   <div class="flow-card stagger-2">
     <div class="step-num">2</div>
-    <h4>个性化出题</h4>
-    <p>AI生成一人一题<br/>配套实验手册与测试</p>
+    <h4>编程挑战</h4>
+    <p>AI一人一题<br/>自适应难度<br/>实时数据大屏</p>
   </div>
   <div class="flow-card stagger-3">
     <div class="step-num">3</div>
-    <h4>课堂AI审查</h4>
-    <p>分组代码诊断<br/>教师知识点纠偏</p>
+    <h4>人机对抗</h4>
+    <p>人vs AI代码审查<br/>批判性思维培养<br/>认识AI边界</p>
   </div>
   <div class="flow-card stagger-4">
     <div class="step-num">4</div>
-    <h4>智能反馈</h4>
-    <p>AI生成个性化报告<br/>学生二次迭代修改</p>
+    <h4>团队教练 + 资料重构</h4>
+    <p>Git贡献分析·AI周报<br/>一人一题·PPT生成<br/>教师端全面赋能</p>
   </div>
 </div>
 
 <div class="diagram-shell">
-  <img src="/assets/svg/loop-cycle.svg" alt="课前课中课后AI教学闭环图" />
+  <img src="/assets/svg/loop-cycle.svg" alt="五维AI融合创新教学闭环图" />
 </div>
 
 <div class="section-divider"></div>
@@ -118,24 +118,24 @@ features:
 
 <div class="info-box emerald">
   <span class="icon">💡</span>
-  <div><strong>从"能登录"到"能守住后台"</strong> — 通过一个存在认证与授权缺陷的Java Web工程，组织学生完成"AI辅助诊断 → 知识点对照 → 代码修复 → 角色验证"的完整实践闭环。</div>
+  <div><strong>从"能登录"到"能守住后台"</strong> — 在45分钟内展现智能助教数据驱动导入、AI自适应安全挑战、人机对抗代码审查、协作修复与验证的完整教学闭环。</div>
 </div>
 
 <div class="summary-grid">
   <div class="summary-card stagger-1">
-    <div class="summary-icon">🔍</div>
-    <h3>A组：认证审查</h3>
-    <p>检查LoginServlet、LogoutServlet，关注Session保存与注销规范性</p>
+    <div class="summary-icon">📊</div>
+    <h3>阶段一：数据导入</h3>
+    <p>智能助教学情数据+TeamCoach周报，用数据驱动课堂重点设定</p>
   </div>
   <div class="summary-card stagger-2">
-    <div class="summary-icon">🔐</div>
-    <h3>B组：授权审查</h3>
-    <p>检查RoleBasedAuthFilter，关注ADMIN/USER角色控制与越权访问</p>
+    <div class="summary-icon">🎮</div>
+    <h3>阶段二：安全挑战</h3>
+    <p>AI为每人生成不同安全漏洞代码，闯关+排行榜+实时数据大屏</p>
   </div>
   <div class="summary-card stagger-3">
-    <div class="summary-icon">🖥️</div>
-    <h3>C组：视图一致性</h3>
-    <p>检查JSP菜单渲染，关注前端入口与后端权限控制是否一致</p>
+    <div class="summary-icon">⚔️</div>
+    <h3>阶段三：人机对抗</h3>
+    <p>学生vs AI同台审查代码，对比盲区，辩论AI建议的采纳与拒绝</p>
   </div>
 </div>
 
@@ -151,12 +151,12 @@ features:
   <div class="flow-card">
     <div class="step-num">5'</div>
     <h4>五分钟路径</h4>
-    <p><a href="/coursecompetation/innovation/">创新设计</a> → <a href="/coursecompetation/cases/lesson-15/">核心案例</a> → <a href="/coursecompetation/results/">成效数据</a></p>
+    <p><a href="/coursecompetation/innovation/">融合创新设计</a> → <a href="/coursecompetation/cases/lesson-15/">核心案例</a> → <a href="/coursecompetation/results/">成效数据</a></p>
   </div>
   <div class="flow-card">
     <div class="step-num">15'</div>
     <h4>十五分钟路径</h4>
-    <p><a href="/coursecompetation/course/">课程概览</a> → <a href="/coursecompetation/innovation/">创新设计</a> → <a href="/coursecompetation/cases/lesson-15/">核心案例</a> → <a href="/coursecompetation/results/">成效数据</a> → <a href="/coursecompetation/resources/">教学资源</a> → <a href="/coursecompetation/promotion/">推广复用</a></p>
+    <p><a href="/coursecompetation/course/">课程概览</a> → <a href="/coursecompetation/innovation/">融合创新</a> → <a href="/coursecompetation/cases/lesson-15/">核心案例</a> → <a href="/coursecompetation/results/">成效数据</a> → <a href="/coursecompetation/resources/">教学资源</a> → <a href="/coursecompetation/promotion/">推广复用</a></p>
   </div>
   <div class="flow-card">
     <div class="step-num">∞</div>
@@ -170,9 +170,10 @@ features:
 ## 教学工具链
 
 <div class="metrics-strip">
-  <div class="metric-box"><div class="metric-value">🧠</div><div>Claude / GPT-4<br/><small>任务生成·代码审查</small></div></div>
-  <div class="metric-box"><div class="metric-value">🇨🇳</div><div>文心一言 / 通义千问 / DeepSeek<br/><small>国产大模型·备选方案</small></div></div>
+  <div class="metric-box"><div class="metric-value">🤖</div><div>智能助教<br/><small>RAG课程智能体</small></div></div>
+  <div class="metric-box"><div class="metric-value">🎮</div><div>编程挑战平台<br/><small>AI自适应出题</small></div></div>
+  <div class="metric-box"><div class="metric-value">👥</div><div>TeamCoach<br/><small>Git团队分析</small></div></div>
+  <div class="metric-box"><div class="metric-value">🧠</div><div>Claude / GPT-4 / DeepSeek<br/><small>任务生成·代码审查</small></div></div>
   <div class="metric-box"><div class="metric-value">⌨️</div><div>Cursor IDE<br/><small>课堂AI编程助手</small></div></div>
-  <div class="metric-box"><div class="metric-value">🧪</div><div>JUnit 5<br/><small>自动化测试验证</small></div></div>
   <div class="metric-box"><div class="metric-value">📦</div><div>Git / Gitea<br/><small>代码管理·版本追踪</small></div></div>
 </div>

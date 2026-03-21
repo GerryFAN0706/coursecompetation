@@ -1,0 +1,123 @@
+<svg width="800" height="320" viewBox="0 0 800 320" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="tv2-bg" x1="0" y1="0" x2="800" y2="320">
+      <stop stop-color="#F0F7FF"/>
+      <stop offset="0.5" stop-color="#F8FBFF"/>
+      <stop offset="1" stop-color="#F5F0FF"/>
+    </linearGradient>
+    <filter id="tv2-s" x="-10%" y="-10%" width="120%" height="130%">
+      <feDropShadow dx="0" dy="2" stdDeviation="5" flood-color="#1E293B" flood-opacity="0.08"/>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="800" height="320" rx="18" fill="url(#tv2-bg)"/>
+
+  <!-- Title -->
+  <text x="400" y="30" text-anchor="middle" font-size="15" font-weight="700" fill="#1E293B" font-family="Inter, system-ui, sans-serif">45 分钟课堂时间轴 — 第15讲重构设计</text>
+
+  <!--
+    Layout: timeline bar at y=155, height=14 (center of 320)
+    Cards above: bottom at y=140 => card top at y=140-76=64
+    Cards below: top at y=183
+
+    Timeline x: 50 to 750 = 700px for 45min
+    Per-minute = 700/45 = 15.556px
+
+    Phase 1:  0-5   =>  5min =>  77.8px   x: 50    to 127.8    center: 88.9
+    Phase 2:  5-20  => 15min => 233.3px   x: 127.8 to 361.1    center: 244.4
+    Phase 3: 20-35  => 15min => 233.3px   x: 361.1 to 594.4    center: 477.8
+    Phase 4: 35-42  =>  7min => 108.9px   x: 594.4 to 703.3    center: 648.9
+    Phase 5: 42-45  =>  3min =>  46.7px   x: 703.3 to 750.0    center: 726.7
+  -->
+
+  <!-- Time tick labels above the bar -->
+  <text x="50"    y="138" text-anchor="middle" font-size="10" font-weight="600" fill="#94A3B8" font-family="Inter, system-ui, sans-serif">0'</text>
+  <text x="127.8" y="138" text-anchor="middle" font-size="10" font-weight="600" fill="#94A3B8" font-family="Inter, system-ui, sans-serif">5'</text>
+  <text x="361.1" y="138" text-anchor="middle" font-size="10" font-weight="600" fill="#94A3B8" font-family="Inter, system-ui, sans-serif">20'</text>
+  <text x="594.4" y="138" text-anchor="middle" font-size="10" font-weight="600" fill="#94A3B8" font-family="Inter, system-ui, sans-serif">35'</text>
+  <text x="703.3" y="138" text-anchor="middle" font-size="10" font-weight="600" fill="#94A3B8" font-family="Inter, system-ui, sans-serif">42'</text>
+  <text x="750"   y="138" text-anchor="middle" font-size="10" font-weight="600" fill="#94A3B8" font-family="Inter, system-ui, sans-serif">45'</text>
+
+  <!-- Time tick marks -->
+  <line x1="50"    y1="142" x2="50"    y2="155" stroke="#CBD5E1" stroke-width="1"/>
+  <line x1="127.8" y1="142" x2="127.8" y2="155" stroke="#CBD5E1" stroke-width="1"/>
+  <line x1="361.1" y1="142" x2="361.1" y2="155" stroke="#CBD5E1" stroke-width="1"/>
+  <line x1="594.4" y1="142" x2="594.4" y2="155" stroke="#CBD5E1" stroke-width="1"/>
+  <line x1="703.3" y1="142" x2="703.3" y2="155" stroke="#CBD5E1" stroke-width="1"/>
+  <line x1="750"   y1="142" x2="750"   y2="155" stroke="#CBD5E1" stroke-width="1"/>
+
+  <!-- Main timeline track -->
+  <rect x="50" y="155" width="700" height="14" rx="7" fill="#E2E8F0" opacity="0.5"/>
+
+  <!-- Phase colored segments -->
+  <!-- Phase 1: 0-5min  blue -->
+  <rect x="50" y="155" width="77.8" height="14" rx="7" fill="#2563EB"/>
+  <!-- Phase 2: 5-20min  cyan (left edge square to butt against phase 1) -->
+  <rect x="127.8" y="155" width="233.3" height="14" fill="#0891B2"/>
+  <!-- Phase 3: 20-35min  amber -->
+  <rect x="361.1" y="155" width="233.3" height="14" fill="#D97706"/>
+  <!-- Phase 4: 35-42min  emerald -->
+  <rect x="594.4" y="155" width="108.9" height="14" fill="#059669"/>
+  <!-- Phase 5: 42-45min  slate (right end rounded) -->
+  <rect x="703.3" y="155" width="46.7" height="14" fill="#64748B"/>
+  <rect x="736" y="155" width="14" height="14" rx="7" fill="#64748B"/>
+
+  <!-- ═══ CARDS ABOVE TIMELINE (Phases 1, 3, 5) ═══ -->
+
+  <!-- Phase 1 card: center 88.9, card width 130 => x=23.9 -->
+  <line x1="88.9" y1="155" x2="88.9" y2="118" stroke="#2563EB" stroke-width="1.5" stroke-dasharray="3 2" stroke-opacity="0.4"/>
+  <g filter="url(#tv2-s)">
+    <rect x="23.9" y="42" width="130" height="72" rx="11" fill="white" stroke="#DBEAFE" stroke-width="1"/>
+    <rect x="23.9" y="42" width="130" height="3.5" rx="2" fill="#2563EB"/>
+  </g>
+  <text x="88.9" y="64" text-anchor="middle" font-size="10" font-weight="700" fill="#2563EB" font-family="Inter, system-ui, sans-serif">0 - 5 分钟</text>
+  <text x="88.9" y="82" text-anchor="middle" font-size="12" font-weight="600" fill="#1E3A5F" font-family="Inter, system-ui, sans-serif">数据驱动导入</text>
+  <text x="88.9" y="100" text-anchor="middle" font-size="9.5" fill="#64748B" font-family="Inter, system-ui, sans-serif">智能助教+TeamCoach</text>
+
+  <!-- Phase 3 card: center 477.8, card width 140 => x=407.8 -->
+  <line x1="477.8" y1="155" x2="477.8" y2="118" stroke="#D97706" stroke-width="1.5" stroke-dasharray="3 2" stroke-opacity="0.4"/>
+  <g filter="url(#tv2-s)">
+    <rect x="407.8" y="42" width="140" height="72" rx="11" fill="white" stroke="#FEF3C7" stroke-width="1"/>
+    <rect x="407.8" y="42" width="140" height="3.5" rx="2" fill="#D97706"/>
+  </g>
+  <text x="477.8" y="64" text-anchor="middle" font-size="10" font-weight="700" fill="#D97706" font-family="Inter, system-ui, sans-serif">20 - 35 分钟</text>
+  <text x="477.8" y="82" text-anchor="middle" font-size="12" font-weight="600" fill="#78350F" font-family="Inter, system-ui, sans-serif">人机对抗审查</text>
+  <text x="477.8" y="100" text-anchor="middle" font-size="9.5" fill="#64748B" font-family="Inter, system-ui, sans-serif">Code Review Battle</text>
+
+  <!-- Phase 5 card: center 726.7, card width 110 => x=671.7 -->
+  <line x1="726.7" y1="155" x2="726.7" y2="118" stroke="#64748B" stroke-width="1.5" stroke-dasharray="3 2" stroke-opacity="0.4"/>
+  <g filter="url(#tv2-s)">
+    <rect x="671.7" y="42" width="110" height="72" rx="11" fill="white" stroke="#E2E8F0" stroke-width="1"/>
+    <rect x="671.7" y="42" width="110" height="3.5" rx="2" fill="#64748B"/>
+  </g>
+  <text x="726.7" y="64" text-anchor="middle" font-size="10" font-weight="700" fill="#64748B" font-family="Inter, system-ui, sans-serif">42 - 45 分钟</text>
+  <text x="726.7" y="82" text-anchor="middle" font-size="12" font-weight="600" fill="#334155" font-family="Inter, system-ui, sans-serif">总结反思</text>
+  <text x="726.7" y="100" text-anchor="middle" font-size="9.5" fill="#64748B" font-family="Inter, system-ui, sans-serif">数据回顾</text>
+
+  <!-- ═══ CARDS BELOW TIMELINE (Phases 2, 4) ═══ -->
+
+  <!-- Phase 2 card: center 244.4, card width 140 => x=174.4 -->
+  <line x1="244.4" y1="169" x2="244.4" y2="194" stroke="#0891B2" stroke-width="1.5" stroke-dasharray="3 2" stroke-opacity="0.4"/>
+  <g filter="url(#tv2-s)">
+    <rect x="174.4" y="194" width="140" height="72" rx="11" fill="white" stroke="#CCFBF1" stroke-width="1"/>
+    <rect x="174.4" y="262.5" width="140" height="3.5" rx="2" fill="#0891B2"/>
+  </g>
+  <text x="244.4" y="216" text-anchor="middle" font-size="10" font-weight="700" fill="#0891B2" font-family="Inter, system-ui, sans-serif">5 - 20 分钟</text>
+  <text x="244.4" y="234" text-anchor="middle" font-size="12" font-weight="600" fill="#134E4A" font-family="Inter, system-ui, sans-serif">安全编程挑战</text>
+  <text x="244.4" y="252" text-anchor="middle" font-size="9.5" fill="#64748B" font-family="Inter, system-ui, sans-serif">AI自适应出题</text>
+
+  <!-- Phase 4 card: center 648.9, card width 130 => x=583.9 -->
+  <line x1="648.9" y1="169" x2="648.9" y2="194" stroke="#059669" stroke-width="1.5" stroke-dasharray="3 2" stroke-opacity="0.4"/>
+  <g filter="url(#tv2-s)">
+    <rect x="583.9" y="194" width="130" height="72" rx="11" fill="white" stroke="#D1FAE5" stroke-width="1"/>
+    <rect x="583.9" y="262.5" width="130" height="3.5" rx="2" fill="#059669"/>
+  </g>
+  <text x="648.9" y="216" text-anchor="middle" font-size="10" font-weight="700" fill="#059669" font-family="Inter, system-ui, sans-serif">35 - 42 分钟</text>
+  <text x="648.9" y="234" text-anchor="middle" font-size="12" font-weight="600" fill="#14532D" font-family="Inter, system-ui, sans-serif">修复与验证</text>
+  <text x="648.9" y="252" text-anchor="middle" font-size="9.5" fill="#64748B" font-family="Inter, system-ui, sans-serif">协作修复+测试</text>
+
+  <!-- Bottom summary bar -->
+  <rect x="100" y="282" width="600" height="30" rx="15" fill="white" stroke="#E2E8F0" stroke-width="1" filter="url(#tv2-s)"/>
+  <text x="400" y="302" text-anchor="middle" font-size="11" font-weight="600" fill="#475569" font-family="Inter, system-ui, sans-serif">数据导入 → 编程挑战 → 人机对抗 → 修复验证 → 总结反思</text>
+</svg>

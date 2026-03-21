@@ -12,11 +12,16 @@ anonSafe: true
 
 ## 项目定位
 
+<div class="info-box emerald">
+  <span class="icon">🔑</span>
+  <div><strong>核心理念：五维AI融合创新</strong>——通过智能助教、AI辅助教学资料重构、编程挑战平台、人机对抗、TeamCoach协作分析五个维度，构建覆盖课前-课中-课后全链路的AI赋能教学闭环。</div>
+</div>
+
 <div class="summary-grid">
   <div class="summary-card">
     <div class="summary-icon">🎯</div>
     <h3>目标</h3>
-    <p>将AI从"工具展示"升级为"教学闭环能力"，实现从课前设计到课后干预的可验证的改革</p>
+    <p>以五维AI融合创新将AI从"单点工具展示"升级为"系统化教学闭环能力"，覆盖全部六大教学情境</p>
   </div>
   <div class="summary-card">
     <div class="summary-icon">📐</div>

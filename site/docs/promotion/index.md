@@ -64,28 +64,38 @@ anonSafe: true
 
 <div class="section-divider"></div>
 
-## 三步迁移法
+## 五步渐进式迁移法
 
 <div class="info-box emerald">
   <span class="icon">🚀</span>
-  <div>任何编程实践类课程均可通过以下三步完成AI教学模式迁移。每步独立可验证，无需一次性全面改造。</div>
+  <div>基于五维AI融合创新，任何编程实践类课程均可通过以下五步渐进式完成AI教学模式迁移。每步独立可验证，按门槛从低到高逐步采纳。</div>
 </div>
 
 <div class="flow-grid">
   <div class="flow-card">
     <div class="step-num">1</div>
-    <h4>选痛点·建案例</h4>
-    <p>选一个高频教学痛点（如抄袭、批改慢），围绕它建立一个"问题版案例"工程。让学生诊断而非从零开发。</p>
+    <h4>部署智能助教</h4>
+    <p>最低门槛起步——搭建课程知识库RAG聊天机器人，提供24小时答疑与课前学情采集，无需改变现有教学流程。</p>
   </div>
   <div class="flow-card">
     <div class="step-num">2</div>
-    <h4>接AI·建闭环</h4>
-    <p>引入AI辅助审查与测试清单，形成"诊断→修复→验证"的课堂验证闭环。教师编写提示词模板控制AI输出边界。</p>
+    <h4>接入AI辅助教学资料重构</h4>
+    <p>利用AI生成一人一题差异化任务与自动PPT课件，实现教学资源个性化生产，大幅降低备课负担。</p>
   </div>
   <div class="flow-card">
     <div class="step-num">3</div>
-    <h4>记数据·做干预</h4>
-    <p>接入数据记录与反馈模板，形成课后干预机制。AI生成个性化报告，教师基于共性分析调整下一轮教学。</p>
+    <h4>引入编程挑战平台</h4>
+    <p>搭建自适应编程挑战平台，实现自动出题、实时评分与难度匹配。需要平台部署但可复用开源方案。</p>
+  </div>
+  <div class="flow-card">
+    <div class="step-num">4</div>
+    <h4>开展人机对抗</h4>
+    <p>课堂引入Code Review Battle，学生与AI同步审查代码后对比结果。可从简单的手动对比起步，逐步系统化。</p>
+  </div>
+  <div class="flow-card">
+    <div class="step-num">5</div>
+    <h4>接入TeamCoach协作分析</h4>
+    <p>将TeamCoach连接Git基础设施，自动追踪团队项目中的个人贡献度与协作质量。需要团队项目课程支撑。</p>
   </div>
 </div>
 
@@ -125,36 +135,41 @@ anonSafe: true
 
 ## 输出成果与复用资产
 
+<div class="info-box blue">
+  <span class="icon">📦</span>
+  <div>以下资产按五维AI融合创新维度组织，每个维度均提供可直接复用的工具与模板。</div>
+</div>
+
 <div class="summary-grid">
   <div class="summary-card">
-    <div class="summary-icon">🧠</div>
-    <h3>提示词模板库</h3>
-    <p>10条经过验证的AI提示词，覆盖课前-课中-课后全流程</p>
+    <div class="summary-icon">🤖</div>
+    <h3>维度一：智能助教资源</h3>
+    <p>RAG知识库搭建指南 + 课程问答提示词模板 + 学情采集数据面板模板</p>
   </div>
   <div class="summary-card">
     <div class="summary-icon">📋</div>
-    <h3>分层任务生成流程</h3>
-    <p>学情分析 → 分层 → 一人一题生成的完整工作流</p>
+    <h3>维度二：AI辅助教学资料重构</h3>
+    <p>一人一题生成工作流 + PPT自动生成模板 + 分层任务设计方案</p>
   </div>
   <div class="summary-card">
-    <div class="summary-icon">🧪</div>
-    <h3>测试清单与反馈模板</h3>
-    <p>三套验证清单 + 四维评价Rubric + 个性化报告模板</p>
+    <div class="summary-icon">⚡</div>
+    <h3>维度三：编程挑战平台</h3>
+    <p>自适应出题引擎配置 + 四维自动评分Rubric + 实时排行榜方案</p>
   </div>
   <div class="summary-card">
-    <div class="summary-icon">📄</div>
-    <h3>课堂实录与执行方案</h3>
-    <p>45分钟逐分钟脚本 + 教学设计文档</p>
+    <div class="summary-icon">🥊</div>
+    <h3>维度四：人机对抗</h3>
+    <p>Code Review Battle课堂脚本 + 人机对比评价模板 + 45分钟执行方案</p>
+  </div>
+  <div class="summary-card">
+    <div class="summary-icon">👥</div>
+    <h3>维度五：TeamCoach协作分析</h3>
+    <p>Git贡献度追踪配置 + 团队协作评价Rubric + 个人贡献报告模板</p>
   </div>
   <div class="summary-card">
     <div class="summary-icon">🌐</div>
-    <h3>课程展示网站</h3>
-    <p>本网站全部源码开源，可直接Fork用于其他课程展示</p>
-  </div>
-  <div class="summary-card">
-    <div class="summary-icon">📊</div>
-    <h3>成效数据采集框架</h3>
-    <p>准实验设计方案 + 数据采集模板 + 分析口径说明</p>
+    <h3>通用资产</h3>
+    <p>课程展示网站源码（可Fork）+ 准实验设计方案 + 成效数据采集框架</p>
   </div>
 </div>
 

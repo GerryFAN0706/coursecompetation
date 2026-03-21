@@ -182,7 +182,7 @@ anonSafe: true
   <td><strong>第15讲</strong></td>
   <td><strong>用户认证与权限控制</strong></td>
   <td><strong>AI辅助分组代码审查 + 知识点对照 + 测试验证</strong></td>
-  <td><span class="ai-tag">Cursor</span> <span class="ai-tag">Claude</span></td>
+  <td><span class="ai-tag">智能助教</span> <span class="ai-tag">编程挑战</span> <span class="ai-tag">人机对抗</span> <span class="ai-tag">TeamCoach</span></td>
   <td><strong>课堂核心案例</strong></td>
 </tr>
 <tr>
@@ -201,32 +201,32 @@ anonSafe: true
   <div class="pain-card" style="border-color: var(--c-blue-200); background: linear-gradient(160deg, var(--c-blue-50), white);">
     <span class="badge" style="background: var(--c-blue-50); color: var(--c-blue-700);">✅ 已覆盖</span>
     <h3>学情数据采集与分析</h3>
-    <p>课前学情分层、历史成绩分析、薄弱点识别</p>
+    <p>智能助教采集课前问答数据 + 编程挑战平台记录实时编码行为 + TeamCoach追踪团队协作贡献度</p>
   </div>
   <div class="pain-card" style="border-color: var(--c-blue-200); background: linear-gradient(160deg, var(--c-blue-50), white);">
     <span class="badge" style="background: var(--c-blue-50); color: var(--c-blue-700);">✅ 已覆盖</span>
     <h3>数字资源整合与运用</h3>
-    <p>AI辅助课件制作、题目生成、资源库建设</p>
+    <p>智能助教RAG知识库整合课程资源 + 编程挑战平台题库自动生成 + AI辅助PPT与教学资料重构</p>
   </div>
   <div class="pain-card" style="border-color: var(--c-blue-200); background: linear-gradient(160deg, var(--c-blue-50), white);">
     <span class="badge" style="background: var(--c-blue-50); color: var(--c-blue-700);">✅ 已覆盖</span>
     <h3>适配的教学场景设计</h3>
-    <p>一人一题分层任务、差异化业务场景设计</p>
+    <p>编程挑战平台自适应难度匹配 + 一人一题差异化业务场景生成 + 分层脚手架设计</p>
   </div>
   <div class="pain-card" style="border-color: var(--c-blue-200); background: linear-gradient(160deg, var(--c-blue-50), white);">
     <span class="badge" style="background: var(--c-blue-50); color: var(--c-blue-700);">✅ 已覆盖</span>
     <h3>多维智能评价反馈</h3>
-    <p>功能·知识·规范·安全四维AI辅助评价体系</p>
+    <p>编程挑战平台四维自动评分 + TeamCoach团队贡献度分析 + 人机对抗成绩对比评价</p>
   </div>
   <div class="pain-card" style="border-color: var(--c-blue-200); background: linear-gradient(160deg, var(--c-blue-50), white);">
     <span class="badge" style="background: var(--c-blue-50); color: var(--c-blue-700);">✅ 已覆盖</span>
     <h3>师生机协同教学</h3>
-    <p>课堂AI辅助代码审查、教师纠偏、学生验证</p>
+    <p>智能助教实时答疑辅助教学 + 人机对抗（Code Review Battle）直接体现师生机三方协同</p>
   </div>
   <div class="pain-card" style="border-color: var(--c-blue-200); background: linear-gradient(160deg, var(--c-blue-50), white);">
     <span class="badge" style="background: var(--c-blue-50); color: var(--c-blue-700);">✅ 已覆盖</span>
     <h3>个性化学习支持</h3>
-    <p>AI反馈报告、个性化学习建议、分层拓展任务</p>
+    <p>智能助教24小时个性化答疑 + 编程挑战平台自适应难度推荐 + 分层拓展任务定制</p>
   </div>
 </div>
 

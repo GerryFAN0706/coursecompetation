@@ -1,0 +1,154 @@
+<svg width="800" height="500" viewBox="0 0 800 500" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="fd-bg" x1="0" y1="0" x2="800" y2="500">
+      <stop stop-color="#f8fafc"/>
+      <stop offset="0.5" stop-color="#f0f9ff"/>
+      <stop offset="1" stop-color="#f8fafc"/>
+    </linearGradient>
+    <linearGradient id="fd-center" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#2563EB"/>
+      <stop offset="1" stop-color="#0891B2"/>
+    </linearGradient>
+    <linearGradient id="fd-blue" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#2563EB"/>
+      <stop offset="1" stop-color="#3B82F6"/>
+    </linearGradient>
+    <linearGradient id="fd-cyan" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#0891B2"/>
+      <stop offset="1" stop-color="#06B6D4"/>
+    </linearGradient>
+    <linearGradient id="fd-emerald" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#059669"/>
+      <stop offset="1" stop-color="#10B981"/>
+    </linearGradient>
+    <linearGradient id="fd-amber" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#D97706"/>
+      <stop offset="1" stop-color="#F59E0B"/>
+    </linearGradient>
+    <linearGradient id="fd-purple" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#7C3AED"/>
+      <stop offset="1" stop-color="#8B5CF6"/>
+    </linearGradient>
+    <filter id="fd-shadow" x="-6%" y="-6%" width="112%" height="120%">
+      <feDropShadow dx="0" dy="4" stdDeviation="8" flood-color="#1E40AF" flood-opacity="0.10"/>
+    </filter>
+    <filter id="fd-center-glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="2" stdDeviation="12" flood-color="#2563EB" flood-opacity="0.18"/>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="800" height="500" rx="20" fill="url(#fd-bg)"/>
+
+  <!-- Decorative rings -->
+  <circle cx="400" cy="268" r="200" stroke="#2563EB" stroke-opacity="0.04" stroke-width="1.5" fill="none"/>
+  <circle cx="400" cy="268" r="160" stroke="#0891B2" stroke-opacity="0.05" stroke-width="1" fill="none"/>
+  <circle cx="400" cy="268" r="120" stroke="#059669" stroke-opacity="0.04" stroke-width="1" fill="none"/>
+
+  <!-- Title -->
+  <text x="400" y="36" text-anchor="middle" font-size="22" font-weight="700" fill="#1E3A5F" font-family="Inter, system-ui, sans-serif">五维AI融合创新体系</text>
+
+  <!-- ═══════════ CONNECTING LINES (drawn first, behind boxes) ═══════════ -->
+
+  <!-- 1 (top center) → 2 (top right) -->
+  <path d="M460 105 Q530 110 580 155" stroke="#2563EB" stroke-width="1.8" stroke-opacity="0.25" fill="none"/>
+  <polygon points="576,148 585,158 573,157" fill="#0891B2" opacity="0.4"/>
+
+  <!-- 2 (top right) → 3 (bottom right) -->
+  <path d="M635 235 Q640 290 605 335" stroke="#0891B2" stroke-width="1.8" stroke-opacity="0.25" fill="none"/>
+  <polygon points="610,329 603,340 600,328" fill="#059669" opacity="0.4"/>
+
+  <!-- 3 (bottom right) → 4 (bottom left) -->
+  <path d="M510 380 Q400 415 290 380" stroke="#059669" stroke-width="1.8" stroke-opacity="0.25" fill="none"/>
+  <polygon points="296,384 285,378 295,373" fill="#D97706" opacity="0.4"/>
+
+  <!-- 4 (bottom left) → 5 (top left) -->
+  <path d="M165 335 Q155 290 165 235" stroke="#D97706" stroke-width="1.8" stroke-opacity="0.25" fill="none"/>
+  <polygon points="162,241 168,229 172,242" fill="#7C3AED" opacity="0.4"/>
+
+  <!-- 5 (top left) → 1 (top center) -->
+  <path d="M220 155 Q270 110 340 105" stroke="#7C3AED" stroke-width="1.8" stroke-opacity="0.25" fill="none"/>
+  <polygon points="334,100 345,103 336,110" fill="#2563EB" opacity="0.4"/>
+
+  <!-- ═══════════ SPOKES: each box to center ═══════════ -->
+  <line x1="400" y1="130" x2="400" y2="222" stroke="#2563EB" stroke-width="1.2" stroke-opacity="0.18" stroke-dasharray="4 3"/>
+  <line x1="608" y1="198" x2="448" y2="248" stroke="#0891B2" stroke-width="1.2" stroke-opacity="0.18" stroke-dasharray="4 3"/>
+  <line x1="560" y1="372" x2="440" y2="298" stroke="#059669" stroke-width="1.2" stroke-opacity="0.18" stroke-dasharray="4 3"/>
+  <line x1="240" y1="372" x2="360" y2="298" stroke="#D97706" stroke-width="1.2" stroke-opacity="0.18" stroke-dasharray="4 3"/>
+  <line x1="192" y1="198" x2="352" y2="248" stroke="#7C3AED" stroke-width="1.2" stroke-opacity="0.18" stroke-dasharray="4 3"/>
+
+  <!-- ═══════════ CENTER CIRCLE: 数据闭环 ═══════════ -->
+  <g filter="url(#fd-center-glow)">
+    <circle cx="400" cy="268" r="48" fill="url(#fd-center)"/>
+  </g>
+  <circle cx="400" cy="268" r="48" stroke="white" stroke-width="2" stroke-opacity="0.3" fill="none"/>
+  <circle cx="400" cy="268" r="40" stroke="white" stroke-width="1" stroke-opacity="0.15" fill="none"/>
+  <text x="400" y="262" text-anchor="middle" font-size="15" font-weight="700" fill="white" font-family="Inter, system-ui, sans-serif">数据</text>
+  <text x="400" y="282" text-anchor="middle" font-size="15" font-weight="700" fill="white" font-family="Inter, system-ui, sans-serif">闭环</text>
+
+  <!-- Rotating arrows around center (decorative cycle indicator) -->
+  <path d="M400 216 A52 52 0 0 1 452 268" stroke="white" stroke-width="1.5" stroke-opacity="0.2" fill="none"/>
+  <path d="M452 268 A52 52 0 0 1 400 320" stroke="white" stroke-width="1.5" stroke-opacity="0.2" fill="none"/>
+  <path d="M400 320 A52 52 0 0 1 348 268" stroke="white" stroke-width="1.5" stroke-opacity="0.2" fill="none"/>
+  <path d="M348 268 A52 52 0 0 1 400 216" stroke="white" stroke-width="1.5" stroke-opacity="0.2" fill="none"/>
+
+  <!-- ═══════════ DIMENSION 1: 智能助教 (top center) ═══════════ -->
+  <g filter="url(#fd-shadow)">
+    <rect x="315" y="62" width="170" height="72" rx="14" fill="white" stroke="#DBEAFE" stroke-width="1.5"/>
+    <rect x="315" y="62" width="170" height="5" rx="2.5" fill="url(#fd-blue)"/>
+  </g>
+  <circle cx="340" cy="92" r="11" fill="#2563EB" opacity="0.12"/>
+  <text x="340" y="96" text-anchor="middle" font-size="11" fill="#2563EB" font-family="Inter, system-ui, sans-serif">1</text>
+  <text x="360" y="95" font-size="16" font-weight="700" fill="#1E3A5F" font-family="Inter, system-ui, sans-serif">智能助教</text>
+  <text x="335" y="118" font-size="11" fill="#64748B" font-family="Inter, system-ui, sans-serif">AI实时答疑与辅导</text>
+
+  <!-- ═══════════ DIMENSION 2: 编程挑战 (top right) ═══════════ -->
+  <g filter="url(#fd-shadow)">
+    <rect x="548" y="155" width="170" height="72" rx="14" fill="white" stroke="#CCFBF1" stroke-width="1.5"/>
+    <rect x="548" y="155" width="170" height="5" rx="2.5" fill="url(#fd-cyan)"/>
+  </g>
+  <circle cx="573" cy="185" r="11" fill="#0891B2" opacity="0.12"/>
+  <text x="573" y="189" text-anchor="middle" font-size="11" fill="#0891B2" font-family="Inter, system-ui, sans-serif">2</text>
+  <text x="593" y="188" font-size="16" font-weight="700" fill="#134E4A" font-family="Inter, system-ui, sans-serif">编程挑战</text>
+  <text x="568" y="211" font-size="11" fill="#64748B" font-family="Inter, system-ui, sans-serif">分层任务一人一题</text>
+
+  <!-- ═══════════ DIMENSION 3: 团队教练 (bottom right) ═══════════ -->
+  <g filter="url(#fd-shadow)">
+    <rect x="510" y="340" width="170" height="72" rx="14" fill="white" stroke="#D1FAE5" stroke-width="1.5"/>
+    <rect x="510" y="340" width="170" height="5" rx="2.5" fill="url(#fd-emerald)"/>
+  </g>
+  <circle cx="535" cy="370" r="11" fill="#059669" opacity="0.12"/>
+  <text x="535" y="374" text-anchor="middle" font-size="11" fill="#059669" font-family="Inter, system-ui, sans-serif">3</text>
+  <text x="555" y="373" font-size="16" font-weight="700" fill="#064E3B" font-family="Inter, system-ui, sans-serif">团队教练</text>
+  <text x="530" y="396" font-size="11" fill="#64748B" font-family="Inter, system-ui, sans-serif">AI协作与项目指导</text>
+
+  <!-- ═══════════ DIMENSION 4: 人机对抗 (bottom left) ═══════════ -->
+  <g filter="url(#fd-shadow)">
+    <rect x="120" y="340" width="170" height="72" rx="14" fill="white" stroke="#FEF3C7" stroke-width="1.5"/>
+    <rect x="120" y="340" width="170" height="5" rx="2.5" fill="url(#fd-amber)"/>
+  </g>
+  <circle cx="145" cy="370" r="11" fill="#D97706" opacity="0.12"/>
+  <text x="145" y="374" text-anchor="middle" font-size="11" fill="#D97706" font-family="Inter, system-ui, sans-serif">4</text>
+  <text x="165" y="373" font-size="16" font-weight="700" fill="#78350F" font-family="Inter, system-ui, sans-serif">人机对抗</text>
+  <text x="140" y="396" font-size="11" fill="#64748B" font-family="Inter, system-ui, sans-serif">学生挑战AI代码审查</text>
+
+  <!-- ═══════════ DIMENSION 5: 资料重构 (top left) ═══════════ -->
+  <g filter="url(#fd-shadow)">
+    <rect x="82" y="155" width="170" height="72" rx="14" fill="white" stroke="#EDE9FE" stroke-width="1.5"/>
+    <rect x="82" y="155" width="170" height="5" rx="2.5" fill="url(#fd-purple)"/>
+  </g>
+  <circle cx="107" cy="185" r="11" fill="#7C3AED" opacity="0.12"/>
+  <text x="107" y="189" text-anchor="middle" font-size="11" fill="#7C3AED" font-family="Inter, system-ui, sans-serif">5</text>
+  <text x="127" y="188" font-size="16" font-weight="700" fill="#3B0764" font-family="Inter, system-ui, sans-serif">资料重构</text>
+  <text x="102" y="211" font-size="11" fill="#64748B" font-family="Inter, system-ui, sans-serif">AI驱动教学资源更新</text>
+
+  <!-- ═══════════ BOTTOM LABEL BAR ═══════════ -->
+  <rect x="240" y="452" width="320" height="34" rx="17" fill="url(#fd-center)" opacity="0.9"/>
+  <text x="400" y="474" text-anchor="middle" font-size="14" font-weight="600" fill="white" font-family="Inter, system-ui, sans-serif">五维联动 · 数据驱动 · 持续进化</text>
+
+  <!-- Subtle corner decorations -->
+  <circle cx="40" cy="460" r="30" fill="#7C3AED" opacity="0.03"/>
+  <circle cx="760" cy="460" r="30" fill="#059669" opacity="0.03"/>
+  <circle cx="40" cy="40" r="25" fill="#2563EB" opacity="0.03"/>
+  <circle cx="760" cy="40" r="25" fill="#0891B2" opacity="0.03"/>
+</svg>

@@ -122,12 +122,12 @@ anonSafe: true
 <tr>
   <td><strong>AI应用是否覆盖2+教学情境</strong></td>
   <td><a href="/coursecompetation/course/">课程概览</a></td>
-  <td>六大教学情境全覆盖，16讲AI应用映射表</td>
+  <td>五维AI融合创新覆盖全部六大教学情境，16讲AI应用映射表</td>
 </tr>
 <tr>
   <td><strong>是否体现人机协同教学</strong></td>
   <td><a href="/coursecompetation/cases/lesson-15/">核心案例</a></td>
-  <td>AI诊断→学生判断→教师纠偏→系统验证四步闭环</td>
+  <td>人机对抗（Code Review Battle）直接体现师生机三方协同，AI诊断→学生判断→教师纠偏→系统验证四步闭环</td>
 </tr>
 <tr>
   <td><strong>是否有可验证成效</strong></td>
@@ -135,9 +135,14 @@ anonSafe: true
   <td>准实验设计(N=120)、四维量化对比、统计口径说明</td>
 </tr>
 <tr>
+  <td><strong>是否有系统化AI工具链</strong></td>
+  <td><a href="/coursecompetation/innovation/">AI教学创新设计</a></td>
+  <td>五维融合创新（智能助教 + 资料重构 + 编程挑战 + 人机对抗 + TeamCoach）形成完整教学闭环</td>
+</tr>
+<tr>
   <td><strong>是否具备可复制推广价值</strong></td>
   <td><a href="/coursecompetation/promotion/">推广与复用</a></td>
-  <td>三步迁移法、5门适配课程分析、开源资产清单</td>
+  <td>五步渐进式迁移法、5门适配课程分析、五维资产清单</td>
 </tr>
 <tr>
   <td><strong>是否有完整支撑材料</strong></td>
