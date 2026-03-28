@@ -175,9 +175,8 @@ flowchart TD
 
 ## 资源与成果入口
 
-1. [AI提示词与测试清单](/assets/docs/D06_AI提示词与测试清单.pdf)
-2. [问题版工程README](/assets/docs/D07_问题版工程README.pdf)
-3. [成效与数据](/results/)
+1. [AI提示词库](/resources/prompts/)
+2. [成效与数据](/results/)
 
 ## 评审结论点
 

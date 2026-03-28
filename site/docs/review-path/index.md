@@ -147,7 +147,7 @@ anonSafe: true
 <tr>
   <td><strong>是否有完整支撑材料</strong></td>
   <td><a href="/coursecompetation/resources/">教学资源</a></td>
-  <td>D01-D07文档、10条提示词、3套测试清单、8份学生样本</td>
+  <td>10条提示词、3套测试清单、8份学生样本</td>
 </tr>
 </tbody>
 </table>
@@ -157,18 +157,6 @@ anonSafe: true
 ## 一键资料速览
 
 <div class="summary-grid">
-  <div class="summary-card">
-    <div class="summary-icon">📄</div>
-    <h3>D01 教学大纲</h3>
-    <p>48学时课程顶层设计</p>
-    <p><a href="/coursecompetation/assets/docs/D01_教学大纲.pdf">下载PDF →</a></p>
-  </div>
-  <div class="summary-card">
-    <div class="summary-icon">📄</div>
-    <h3>D02 教学设计</h3>
-    <p>第15讲完整教案</p>
-    <p><a href="/coursecompetation/assets/docs/D02_第十五讲教学设计.pdf">下载PDF →</a></p>
-  </div>
   <div class="summary-card">
     <div class="summary-icon">🧠</div>
     <h3>AI提示词库</h3>
