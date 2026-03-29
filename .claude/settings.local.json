@@ -5,7 +5,9 @@
       "Bash(for f:*)",
       "Bash(do echo:*)",
       "Read(//c/Users/Administrator/Documents/cursor workplace/coursecompetation/**)",
-      "Bash(done)"
+      "Bash(done)",
+      "mcp__Claude_Preview__preview_start",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:8090/)"
     ]
   }
 }
