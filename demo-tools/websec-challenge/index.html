@@ -1787,12 +1787,426 @@ body {
   90% { opacity: 0.15; }
   100% { transform: translateY(-10vh) rotate(720deg); opacity: 0; }
 }
+
+/* ========== SCREEN SYSTEM ========== */
+.screen { display: none; }
+.screen.active { display: block; }
+
+/* ========== LOGIN SCREEN ========== */
+.login-screen {
+  min-height: 100vh;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 10;
+}
+.login-screen.active { display: flex; }
+
+.login-container {
+  text-align: center;
+  width: 700px;
+  max-width: 90vw;
+  animation: fadeInUp 0.6s ease;
+}
+
+.login-logo {
+  width: 72px; height: 72px;
+  background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple));
+  border-radius: 18px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 36px; font-weight: bold; color: #fff;
+  margin: 0 auto 20px;
+  box-shadow: 0 0 40px rgba(0,212,255,0.3);
+}
+
+.login-title {
+  font-size: 28px; font-weight: 700;
+  background: linear-gradient(90deg, var(--accent-cyan), #fff, var(--accent-purple));
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  margin-bottom: 8px;
+}
+
+.login-subtitle {
+  font-size: 13px; color: var(--text-secondary); margin-bottom: 36px;
+}
+
+.login-cards {
+  display: flex; gap: 20px; justify-content: center;
+}
+
+.login-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 28px 24px;
+  width: 300px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-align: center;
+}
+
+.login-card:hover {
+  border-color: var(--accent-cyan);
+  transform: translateY(-4px);
+  box-shadow: 0 8px 30px rgba(0,212,255,0.15);
+}
+
+.login-card.teacher:hover {
+  border-color: var(--accent-purple);
+  box-shadow: 0 8px 30px rgba(168,85,247,0.15);
+}
+
+.login-card-icon { font-size: 42px; margin-bottom: 12px; }
+.login-card-title { font-size: 18px; font-weight: 700; margin-bottom: 6px; }
+.login-card-desc { font-size: 12px; color: var(--text-secondary); margin-bottom: 16px; line-height: 1.5; }
+
+.login-form {
+  display: none;
+  flex-direction: column;
+  gap: 8px;
+  text-align: left;
+  margin-top: 12px;
+  padding-top: 16px;
+  border-top: 1px solid var(--border);
+}
+
+.login-form.show { display: flex; }
+
+.login-form label {
+  font-size: 11px; color: var(--text-dim); font-weight: 600;
+  text-transform: uppercase; letter-spacing: 1px;
+}
+
+.login-form input {
+  background: rgba(0,0,0,0.3);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 10px 14px;
+  color: var(--text-primary);
+  font-size: 14px;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.login-form input:focus { border-color: var(--accent-cyan); }
+
+.login-enter-btn {
+  margin-top: 8px;
+  background: linear-gradient(135deg, var(--accent-cyan), #0099cc);
+  color: #fff; font-weight: 700;
+  padding: 11px 0; border: none; border-radius: 8px;
+  font-size: 14px; cursor: pointer;
+  transition: all 0.3s;
+}
+
+.login-enter-btn:hover {
+  box-shadow: 0 0 20px rgba(0,212,255,0.4);
+  transform: translateY(-1px);
+}
+
+.login-enter-btn.teacher-btn {
+  background: linear-gradient(135deg, var(--accent-purple), #7c3aed);
+}
+
+.login-enter-btn.teacher-btn:hover {
+  box-shadow: 0 0 20px rgba(168,85,247,0.4);
+}
+
+.login-footer {
+  margin-top: 32px; font-size: 11px; color: var(--text-dim);
+}
+
+/* ========== LOGOUT BUTTON ========== */
+.logout-btn {
+  background: none;
+  border: 1px solid var(--border);
+  color: var(--text-secondary);
+  padding: 6px 14px;
+  border-radius: 6px;
+  font-size: 12px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.logout-btn:hover {
+  border-color: var(--accent-red);
+  color: var(--accent-red);
+}
+
+/* ========== TEACHER DASHBOARD ========== */
+.teacher-dashboard {
+  display: none;
+  flex-direction: column;
+  min-height: calc(100vh - 72px);
+  padding: 24px 32px;
+  overflow-y: auto;
+}
+
+.teacher-dashboard.active { display: flex; }
+
+.td-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.td-title {
+  font-size: 20px; font-weight: 700;
+  color: var(--text-primary);
+}
+
+.td-date {
+  font-size: 13px; color: var(--text-secondary);
+}
+
+.td-filter-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.td-filter-btn {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid var(--border);
+  color: var(--text-secondary);
+  padding: 7px 18px;
+  border-radius: 20px;
+  font-size: 13px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.td-filter-btn:hover {
+  border-color: var(--accent-cyan);
+  color: var(--text-primary);
+}
+
+.td-filter-btn.active {
+  background: rgba(0,212,255,0.12);
+  border-color: var(--accent-cyan);
+  color: var(--accent-cyan);
+  font-weight: 600;
+}
+
+.td-filter-count {
+  margin-left: auto;
+  font-size: 13px;
+  color: var(--text-dim);
+}
+
+.td-stats-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+  margin-bottom: 24px;
+}
+
+.td-stat-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 18px 20px;
+  text-align: center;
+}
+
+.td-stat-val {
+  font-size: 28px; font-weight: 700;
+  font-family: 'Consolas', monospace;
+  margin-bottom: 4px;
+}
+
+.td-stat-label {
+  font-size: 12px; color: var(--text-secondary);
+}
+
+.td-section-title {
+  font-size: 14px; font-weight: 600;
+  color: var(--text-secondary);
+  margin-bottom: 14px;
+  display: flex; align-items: center; gap: 8px;
+}
+
+.td-test-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.td-test-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 18px 22px;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  transition: all 0.2s;
+  cursor: default;
+  position: relative;
+  overflow: hidden;
+}
+
+.td-test-card::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 4px;
+  background: var(--accent-cyan);
+  border-radius: 2px;
+}
+
+.td-test-card.live::before { background: var(--accent-green); }
+.td-test-card.ended::before { background: var(--text-dim); }
+
+.td-test-card:hover {
+  border-color: rgba(0,212,255,0.3);
+  background: rgba(22,33,62,0.8);
+}
+
+.td-test-icon {
+  width: 44px; height: 44px;
+  border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 22px;
+  background: rgba(0,212,255,0.08);
+  flex-shrink: 0;
+}
+
+.td-test-info { flex: 1; min-width: 0; }
+
+.td-test-name {
+  font-size: 15px; font-weight: 600;
+  margin-bottom: 4px;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+
+.td-test-meta {
+  display: flex; align-items: center; gap: 12px;
+  font-size: 12px; color: var(--text-dim);
+}
+
+.td-test-badge {
+  padding: 3px 10px;
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.td-test-badge.live {
+  background: rgba(0,255,136,0.12);
+  border: 1px solid rgba(0,255,136,0.3);
+  color: var(--accent-green);
+}
+
+.td-test-badge.ended {
+  background: rgba(148,163,184,0.1);
+  border: 1px solid rgba(148,163,184,0.2);
+  color: var(--text-dim);
+}
+
+.td-test-stats {
+  display: flex; gap: 20px; align-items: center; flex-shrink: 0;
+}
+
+.td-test-stat {
+  text-align: center;
+}
+
+.td-test-stat-val {
+  font-size: 16px; font-weight: 700;
+  font-family: 'Consolas', monospace;
+}
+
+.td-test-stat-label {
+  font-size: 10px; color: var(--text-dim);
+}
+
+.td-test-action {
+  background: rgba(0,212,255,0.08);
+  border: 1px solid rgba(0,212,255,0.25);
+  color: var(--accent-cyan);
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.td-test-action:hover {
+  background: rgba(0,212,255,0.15);
+  border-color: var(--accent-cyan);
+  box-shadow: 0 0 12px rgba(0,212,255,0.2);
+}
+
+/* Switch view button */
+.switch-view-btn {
+  background: none;
+  border: 1px solid var(--border);
+  color: var(--text-secondary);
+  padding: 6px 14px;
+  border-radius: 6px;
+  font-size: 12px;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: none;
+}
+.switch-view-btn:hover {
+  border-color: var(--accent-cyan);
+  color: var(--accent-cyan);
+}
 </style>
 </head>
 <body>
 
 <!-- Background Particles -->
 <div class="particles" id="particles"></div>
+
+<!-- ==================== LOGIN SCREEN ==================== -->
+<div class="screen login-screen active" id="loginScreen">
+  <div class="login-container">
+    <div class="login-logo">WS</div>
+    <div class="login-title">WebSec挑战 &middot; AI安全攻防闯关平台</div>
+    <div class="login-subtitle">每人题目不同 &middot; AI动态生成 &middot; 自动判定 &middot; 实时排行</div>
+
+    <div class="login-cards">
+      <div class="login-card student" id="loginStudentCard">
+        <div class="login-card-icon">&#x1F9D1;&#x200D;&#x1F393;</div>
+        <div class="login-card-title">学生入口</div>
+        <div class="login-card-desc">进入安全攻防闯关挑战<br>AI为你生成个性化漏洞代码</div>
+        <div class="login-form" id="studentLoginForm">
+          <label>学号</label>
+          <input type="text" id="stuLoginId" value="2023010115" placeholder="请输入学号" />
+          <label>姓名</label>
+          <input type="text" id="stuLoginName" value="陈思远" placeholder="请输入姓名" />
+          <button class="login-enter-btn" onclick="enterAs('student')">&#9654; 进入挑战</button>
+        </div>
+      </div>
+
+      <div class="login-card teacher" id="loginTeacherCard">
+        <div class="login-card-icon">&#x1F468;&#x200D;&#x1F3EB;</div>
+        <div class="login-card-title">教师入口</div>
+        <div class="login-card-desc">查看测试管理看板<br>实时监控学生闯关数据</div>
+        <div class="login-form" id="teacherLoginForm">
+          <label>工号</label>
+          <input type="text" id="tchLoginId" value="T001" placeholder="请输入工号" />
+          <label>姓名</label>
+          <input type="text" id="tchLoginName" value="教师" placeholder="请输入姓名" />
+          <button class="login-enter-btn teacher-btn" onclick="enterAs('teacher')">&#128202; 进入管理</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="login-footer">Java Web应用开发课程 &middot; AI教学创新演示平台 &middot; 2025-2026学年</div>
+  </div>
+</div>
+
+<!-- ==================== APP SCREEN (Student View) ==================== -->
+<div class="screen" id="appScreen">
 
 <!-- Header -->
 <header class="header">
@@ -1811,16 +2225,19 @@ body {
     <div class="header-badge" style="border-color: rgba(168,85,247,0.3); color: var(--accent-purple);">
       AI引擎 v2.3
     </div>
-    <div class="user-info">
-      <div class="avatar">陈</div>
+    <div class="user-info" id="headerUserInfo">
+      <div class="avatar" id="headerAvatar">陈</div>
       <div>
-        <div class="user-name">陈思远</div>
-        <div class="user-role">软件工程 2023级 | 2023010115</div>
+        <div class="user-name" id="headerUserName">陈思远</div>
+        <div class="user-role" id="headerUserRole">软件工程 2023级 | 2023010115</div>
       </div>
     </div>
+    <button class="switch-view-btn" id="switchViewBtn" onclick="switchTeacherView()">&#128065; 切换到学生视图</button>
+    <button class="logout-btn" onclick="logout()">&#8592; 退出登录</button>
   </div>
 </header>
 
+<div id="studentContent">
 <!-- Lesson Tab Bar -->
 <div class="lesson-tab-bar">
   <div class="lesson-tab" id="lessonTab14" onclick="switchLesson(14)">
@@ -2149,7 +2566,236 @@ body {
   </div>
 </div>
 
+</div><!-- /studentContent -->
+
+<!-- ==================== TEACHER DASHBOARD ==================== -->
+<div class="teacher-dashboard" id="teacherDashboard">
+
+  <div class="td-header">
+    <div class="td-title">&#128202; 测试管理看板</div>
+    <div class="td-date" id="tdDate"></div>
+  </div>
+
+  <div class="td-filter-bar">
+    <button class="td-filter-btn active" onclick="filterTests('today', this)">今天</button>
+    <button class="td-filter-btn" onclick="filterTests('yesterday', this)">昨天</button>
+    <button class="td-filter-btn" onclick="filterTests('week', this)">本周</button>
+    <button class="td-filter-btn" onclick="filterTests('all', this)">全部</button>
+    <span class="td-filter-count" id="tdFilterCount"></span>
+  </div>
+
+  <div class="td-stats-row" id="tdStatsRow">
+    <div class="td-stat-card">
+      <div class="td-stat-val" style="color:var(--accent-cyan);" id="tdStatTests">3</div>
+      <div class="td-stat-label">今日测试数</div>
+    </div>
+    <div class="td-stat-card">
+      <div class="td-stat-val" style="color:var(--accent-green);" id="tdStatStudents">48/58</div>
+      <div class="td-stat-label">参与学生</div>
+    </div>
+    <div class="td-stat-card">
+      <div class="td-stat-val" style="color:var(--accent-orange);" id="tdStatPassRate">67.3%</div>
+      <div class="td-stat-label">平均通过率</div>
+    </div>
+    <div class="td-stat-card">
+      <div class="td-stat-val" style="color:var(--accent-purple);" id="tdStatQuestions">156</div>
+      <div class="td-stat-label">AI生成题目数</div>
+    </div>
+  </div>
+
+  <div class="td-section-title">&#128203; 测试列表 <span id="tdListCount" style="color:var(--text-dim);font-weight:400;"></span></div>
+  <div class="td-test-list" id="tdTestList">
+    <!-- Populated by JS -->
+  </div>
+
+</div><!-- /teacherDashboard -->
+
+</div><!-- /appScreen -->
+
 <script>
+// ========== LOGIN & SCREEN SWITCHING ==========
+let currentRole = null;
+let isPreviewingStudent = false;
+let currentFilter = 'today';
+
+// Login card expand
+document.getElementById('loginStudentCard').addEventListener('click', function(e) {
+  if (e.target.closest('.login-form')) return;
+  document.getElementById('studentLoginForm').classList.toggle('show');
+  document.getElementById('teacherLoginForm').classList.remove('show');
+});
+document.getElementById('loginTeacherCard').addEventListener('click', function(e) {
+  if (e.target.closest('.login-form')) return;
+  document.getElementById('teacherLoginForm').classList.toggle('show');
+  document.getElementById('studentLoginForm').classList.remove('show');
+});
+
+function enterAs(role) {
+  currentRole = role;
+  document.getElementById('loginScreen').classList.remove('active');
+  document.getElementById('appScreen').classList.add('active');
+
+  if (role === 'student') {
+    const name = document.getElementById('stuLoginName').value || '陈思远';
+    document.getElementById('headerAvatar').textContent = name[0];
+    document.getElementById('headerUserName').textContent = name;
+    document.getElementById('headerUserRole').textContent = '软件工程 2023级 | ' + (document.getElementById('stuLoginId').value || '2023010115');
+    document.getElementById('studentContent').style.display = 'block';
+    document.getElementById('teacherDashboard').style.display = 'none';
+    document.getElementById('switchViewBtn').style.display = 'none';
+  } else {
+    const name = document.getElementById('tchLoginName').value || '教师';
+    document.getElementById('headerAvatar').textContent = name[0];
+    document.getElementById('headerAvatar').style.background = 'linear-gradient(135deg, var(--accent-purple), #7c3aed)';
+    document.getElementById('headerUserName').textContent = name;
+    document.getElementById('headerUserRole').textContent = '教师 | 工号 ' + (document.getElementById('tchLoginId').value || 'T001');
+    document.getElementById('studentContent').style.display = 'none';
+    document.getElementById('teacherDashboard').style.display = 'flex';
+    document.getElementById('switchViewBtn').style.display = 'inline-flex';
+    document.getElementById('switchViewBtn').innerHTML = '&#128065; 切换到学生视图';
+    isPreviewingStudent = false;
+    initTeacherDashboard();
+  }
+}
+
+function logout() {
+  currentRole = null;
+  isPreviewingStudent = false;
+  document.getElementById('appScreen').classList.remove('active');
+  document.getElementById('loginScreen').classList.add('active');
+  document.getElementById('studentContent').style.display = 'none';
+  document.getElementById('teacherDashboard').style.display = 'none';
+  document.getElementById('switchViewBtn').style.display = 'none';
+  document.getElementById('headerAvatar').style.background = '';
+}
+
+function switchTeacherView() {
+  if (!isPreviewingStudent) {
+    isPreviewingStudent = true;
+    document.getElementById('teacherDashboard').style.display = 'none';
+    document.getElementById('studentContent').style.display = 'block';
+    document.getElementById('switchViewBtn').innerHTML = '&#128202; 返回教师看板';
+  } else {
+    isPreviewingStudent = false;
+    document.getElementById('studentContent').style.display = 'none';
+    document.getElementById('teacherDashboard').style.display = 'flex';
+    document.getElementById('switchViewBtn').innerHTML = '&#128065; 切换到学生视图';
+  }
+}
+
+// ========== TEACHER DASHBOARD DATA ==========
+const testSessions = [
+  // Today
+  { id: 1, name: '第十五讲 用户认证与权限控制 - 安全攻防闯关', lesson: 15, date: '2026-03-29', time: '14:00', status: 'live', students: 48, total: 58, passRate: 67.3, avgTime: '08:42', questions: 52 },
+  { id: 2, name: '第十五讲 用户认证与权限控制 - 课前预习测试', lesson: 15, date: '2026-03-29', time: '08:30', status: 'ended', students: 55, total: 58, passRate: 72.1, avgTime: '06:18', questions: 38 },
+  { id: 3, name: '第十四讲 数据库事务与连接池 - 补测', lesson: 14, date: '2026-03-29', time: '10:15', status: 'ended', students: 12, total: 58, passRate: 83.3, avgTime: '05:40', questions: 15 },
+  // Yesterday
+  { id: 4, name: '第十四讲 数据库事务与连接池 - 安全攻防闯关', lesson: 14, date: '2026-03-28', time: '14:00', status: 'ended', students: 52, total: 58, passRate: 61.5, avgTime: '09:15', questions: 48 },
+  { id: 5, name: '第十四讲 数据库事务与连接池 - 课前预习测试', lesson: 14, date: '2026-03-28', time: '08:30', status: 'ended', students: 54, total: 58, passRate: 68.2, avgTime: '07:02', questions: 35 },
+  // This week
+  { id: 6, name: '第十三讲 JDBC高级操作 - 安全攻防闯关', lesson: 13, date: '2026-03-27', time: '14:00', status: 'ended', students: 50, total: 58, passRate: 73.8, avgTime: '07:55', questions: 44 },
+  { id: 7, name: '第十三讲 JDBC高级操作 - 课前预习测试', lesson: 13, date: '2026-03-27', time: '08:30', status: 'ended', students: 53, total: 58, passRate: 78.4, avgTime: '06:30', questions: 32 },
+  { id: 8, name: '第十二讲 数据库连接与CRUD - 安全攻防闯关', lesson: 12, date: '2026-03-25', time: '14:00', status: 'ended', students: 49, total: 58, passRate: 65.2, avgTime: '09:50', questions: 50 },
+  { id: 9, name: '第十二讲 数据库连接与CRUD - 课前预习测试', lesson: 12, date: '2026-03-25', time: '08:30', status: 'ended', students: 56, total: 58, passRate: 81.0, avgTime: '05:45', questions: 28 },
+  // Previous weeks
+  { id: 10, name: '第十一讲 JSP与EL表达式 - 安全攻防闯关', lesson: 11, date: '2026-03-22', time: '14:00', status: 'ended', students: 47, total: 58, passRate: 70.5, avgTime: '08:20', questions: 42 },
+  { id: 11, name: '第十一讲 JSP与EL表达式 - 课前预习测试', lesson: 11, date: '2026-03-22', time: '08:30', status: 'ended', students: 51, total: 58, passRate: 76.3, avgTime: '06:55', questions: 30 },
+  { id: 12, name: '第十讲 Servlet高级特性 - 安全攻防闯关', lesson: 10, date: '2026-03-20', time: '14:00', status: 'ended', students: 46, total: 58, passRate: 58.7, avgTime: '10:30', questions: 55 },
+  { id: 13, name: '第九讲 请求与响应处理 - 安全攻防闯关', lesson: 9, date: '2026-03-18', time: '14:00', status: 'ended', students: 45, total: 58, passRate: 62.1, avgTime: '09:40', questions: 47 },
+  { id: 14, name: '第九讲 请求与响应处理 - 课前预习测试', lesson: 9, date: '2026-03-18', time: '08:30', status: 'ended', students: 50, total: 58, passRate: 74.0, avgTime: '06:10', questions: 26 },
+  { id: 15, name: '第八讲 Servlet基础 - 安全攻防闯关', lesson: 8, date: '2026-03-15', time: '14:00', status: 'ended', students: 44, total: 58, passRate: 55.3, avgTime: '11:05', questions: 58 },
+  { id: 16, name: '第八讲 Servlet基础 - 课前预习测试', lesson: 8, date: '2026-03-15', time: '08:30', status: 'ended', students: 48, total: 58, passRate: 69.8, avgTime: '07:15', questions: 22 },
+];
+
+const lessonIcons = { 8: '&#128187;', 9: '&#128228;', 10: '&#9881;', 11: '&#128196;', 12: '&#128451;', 13: '&#128450;', 14: '&#128218;', 15: '&#128272;' };
+
+function getFilteredTests(filter) {
+  const today = '2026-03-29';
+  const yesterday = '2026-03-28';
+  if (filter === 'today') return testSessions.filter(t => t.date === today);
+  if (filter === 'yesterday') return testSessions.filter(t => t.date === yesterday);
+  if (filter === 'week') return testSessions.filter(t => t.date >= '2026-03-23');
+  return testSessions;
+}
+
+function renderTestList(tests) {
+  const el = document.getElementById('tdTestList');
+  if (tests.length === 0) {
+    el.innerHTML = '<div style="text-align:center;color:var(--text-dim);padding:40px;">暂无测试记录</div>';
+    return;
+  }
+  el.innerHTML = tests.map(t => `
+    <div class="td-test-card ${t.status}">
+      <div class="td-test-icon">${lessonIcons[t.lesson] || '&#128218;'}</div>
+      <div class="td-test-info">
+        <div class="td-test-name">${t.name}</div>
+        <div class="td-test-meta">
+          <span>&#128197; ${t.date}</span>
+          <span>&#128336; ${t.time}</span>
+          <span>Lesson ${t.lesson}</span>
+          <span class="td-test-badge ${t.status}">${t.status === 'live' ? '&#9679; 进行中' : '已结束'}</span>
+        </div>
+      </div>
+      <div class="td-test-stats">
+        <div class="td-test-stat">
+          <div class="td-test-stat-val" style="color:var(--accent-green);">${t.students}/${t.total}</div>
+          <div class="td-test-stat-label">参与人数</div>
+        </div>
+        <div class="td-test-stat">
+          <div class="td-test-stat-val" style="color:${t.passRate >= 70 ? 'var(--accent-cyan)' : 'var(--accent-orange)'};">${t.passRate}%</div>
+          <div class="td-test-stat-label">通过率</div>
+        </div>
+        <div class="td-test-stat">
+          <div class="td-test-stat-val" style="color:var(--text-primary);">${t.avgTime}</div>
+          <div class="td-test-stat-label">平均用时</div>
+        </div>
+      </div>
+      <button class="td-test-action" onclick="viewTestDetail(${t.id})">查看详情 &#8594;</button>
+    </div>
+  `).join('');
+}
+
+function filterTests(filter, btnEl) {
+  currentFilter = filter;
+  document.querySelectorAll('.td-filter-btn').forEach(b => b.classList.remove('active'));
+  if (btnEl) btnEl.classList.add('active');
+  const tests = getFilteredTests(filter);
+  renderTestList(tests);
+
+  const labels = { today: '今日', yesterday: '昨日', week: '本周', all: '全部' };
+  document.getElementById('tdFilterCount').textContent = labels[filter] + '共 ' + tests.length + ' 场测试';
+  document.getElementById('tdListCount').textContent = '(' + tests.length + ' 场)';
+
+  // Update stats based on filter
+  const totalStudents = new Set();
+  let totalPassRate = 0;
+  let totalQ = 0;
+  tests.forEach(t => { for (let i = 0; i < t.students; i++) totalStudents.add(t.id + '-' + i); totalPassRate += t.passRate; totalQ += t.questions; });
+  document.getElementById('tdStatTests').textContent = tests.length;
+  if (tests.length > 0) {
+    document.getElementById('tdStatStudents').textContent = Math.max(...tests.map(t => t.students)) + '/' + 58;
+    document.getElementById('tdStatPassRate').textContent = (totalPassRate / tests.length).toFixed(1) + '%';
+  } else {
+    document.getElementById('tdStatStudents').textContent = '0/58';
+    document.getElementById('tdStatPassRate').textContent = '--';
+  }
+  document.getElementById('tdStatQuestions').textContent = totalQ;
+}
+
+function viewTestDetail(testId) {
+  // Switch to student content view to show the existing dashboard/leaderboard
+  isPreviewingStudent = true;
+  document.getElementById('teacherDashboard').style.display = 'none';
+  document.getElementById('studentContent').style.display = 'block';
+  document.getElementById('switchViewBtn').innerHTML = '&#128202; 返回教师看板';
+}
+
+function initTeacherDashboard() {
+  const now = new Date();
+  document.getElementById('tdDate').textContent = '2026年3月29日 星期日';
+  filterTests('today', document.querySelector('.td-filter-btn.active'));
+}
+
 // ========== LESSON STATE ==========
 let currentLesson = 15;
 let currentL15Level = 2; // which level is displayed (1-5), default: level 2 (interactive)
