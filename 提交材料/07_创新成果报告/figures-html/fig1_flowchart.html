@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: "Source Han Sans CN", "Microsoft YaHei", "PingFang SC", sans-serif;
+    background: #fff;
+    display: flex; justify-content: center;
+    padding: 24px;
+    color: #1e293b;
+  }
+  .container { width: 960px; }
+  .fig-title {
+    text-align: center; font-size: 18px; font-weight: 800;
+    color: #1e293b; margin-bottom: 2px; letter-spacing: 0.5px;
+  }
+  .fig-subtitle {
+    text-align: center; font-size: 13px; color: #94a3b8; margin-bottom: 14px;
+  }
+
+  /* ── 5-phase flow ── */
+  .flow { display: flex; align-items: stretch; gap: 0; }
+
+  .phase-card {
+    flex: 1; border-radius: 10px; overflow: hidden;
+    border: 1.5px solid #e2e8f0;
+    display: flex; flex-direction: column;
+  }
+  .phase-header {
+    padding: 8px 6px; text-align: center;
+    color: #fff; font-size: 14px; font-weight: 800; letter-spacing: 1px;
+  }
+  .ph1 .phase-header { background: #3b82f6; }
+  .ph2 .phase-header { background: #8b5cf6; }
+  .ph3 .phase-header { background: #1e293b; }
+  .ph4 .phase-header { background: #f59e0b; }
+  .ph5 .phase-header { background: #10b981; }
+
+  .phase-body {
+    flex: 1; padding: 10px 10px;
+    background: #fafbfe;
+    display: flex; flex-direction: column; justify-content: space-between;
+  }
+  .phase-main {
+    font-size: 13px; font-weight: 700; color: #1e293b;
+    text-align: center; line-height: 1.5; margin-bottom: 6px;
+  }
+  .phase-desc {
+    font-size: 12px; color: #64748b; text-align: center;
+    line-height: 1.5; margin-bottom: 6px;
+  }
+  .phase-tools {
+    display: flex; flex-wrap: wrap; justify-content: center; gap: 3px;
+  }
+  .tool-badge {
+    display: inline-block; padding: 1px 6px; border-radius: 10px;
+    font-size: 11px; font-weight: 700;
+  }
+  .tb-w { background: #dbeafe; color: #1d4ed8; }
+  .tb-s { background: #fee2e2; color: #b91c1c; }
+  .tb-t { background: #d1fae5; color: #065f46; }
+  .tb-c { background: #ede9fe; color: #6d28d9; }
+  .tb-r { background: #fef3c7; color: #92400e; }
+  .tb-g { background: #f1f5f9; color: #475569; }
+
+  .phase-scenario {
+    margin-top: 6px; text-align: center;
+  }
+  .scenario-chip {
+    display: inline-block; font-size: 10px; font-weight: 600;
+    background: #f1f5f9; color: #475569; padding: 2px 8px;
+    border-radius: 10px; border: 1px solid #e2e8f0;
+  }
+
+  .arrow {
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0; width: 22px; font-size: 20px; color: #94a3b8;
+  }
+
+  /* ── feedback loop ── */
+  .loop-bar {
+    display: flex; align-items: center; justify-content: center;
+    margin-top: 10px; padding: 7px 14px;
+    border: 2px solid #ef4444; border-radius: 10px;
+    background: #fef2f2;
+  }
+  .loop-text {
+    font-size: 14px; color: #dc2626; font-weight: 800; text-align: center;
+  }
+
+  /* ── roles ── */
+  .role-bar {
+    display: flex; gap: 0; margin-top: 10px; border-radius: 6px; overflow: hidden;
+  }
+  .role {
+    flex: 1; text-align: center; padding: 7px 6px;
+    font-size: 13px; font-weight: 700; color: #fff;
+  }
+  .role-teacher { background: #1e293b; }
+  .role-student { background: #10b981; }
+  .role-ai { background: #8b5cf6; }
+  .role-label { font-size: 11px; font-weight: 400; opacity: 0.8; display: block; margin-top: 2px; }
+
+  /* ── scenario coverage ── */
+  .scenario-bar {
+    display: flex; gap: 6px; margin-top: 10px; justify-content: center; flex-wrap: wrap;
+  }
+  .sc-tag {
+    font-size: 11px; font-weight: 700; padding: 3px 10px;
+    border-radius: 10px; border: 1.5px solid;
+  }
+  .sc1 { background: #eff6ff; border-color: #93c5fd; color: #1d4ed8; }
+  .sc2 { background: #f5f3ff; border-color: #c4b5fd; color: #6d28d9; }
+  .sc3 { background: #f0fdf4; border-color: #86efac; color: #065f46; }
+  .sc4 { background: #fffbeb; border-color: #fde68a; color: #92400e; }
+  .sc5 { background: #fef2f2; border-color: #fca5a5; color: #991b1b; }
+  .sc6 { background: #f0fdfa; border-color: #5eead4; color: #115e59; }
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="fig-title">AI赋能教学全流程闭环架构</div>
+  <div class="fig-subtitle">五阶段数据驱动闭环 &mdash; 覆盖全部六大AI教学情境</div>
+
+  <div class="flow">
+    <!-- Phase 1 -->
+    <div class="phase-card ph1">
+      <div class="phase-header">课前 &middot; 学情分层</div>
+      <div class="phase-body">
+        <div class="phase-main">AI学情数据<br>采集与分析</div>
+        <div class="phase-desc">WebDev助教推送预习问题，自动采集知识薄弱点热力图</div>
+        <div class="phase-tools">
+          <span class="tool-badge tb-w">WebDev助教</span>
+        </div>
+        <div class="phase-scenario"><span class="scenario-chip">情境1: 学情采集</span></div>
+      </div>
+    </div>
+
+    <div class="arrow">&rarr;</div>
+
+    <!-- Phase 2 -->
+    <div class="phase-card ph2">
+      <div class="phase-header">课前 &middot; 个性化出题</div>
+      <div class="phase-body">
+        <div class="phase-main">AI差异化<br>任务生成</div>
+        <div class="phase-desc">按A/B/C三层生成一人一题，MOSS相似度45%&rarr;4.7%</div>
+        <div class="phase-tools">
+          <span class="tool-badge tb-r">资料重构</span>
+        </div>
+        <div class="phase-scenario"><span class="scenario-chip">情境2: 个性化支持</span></div>
+      </div>
+    </div>
+
+    <div class="arrow">&rarr;</div>
+
+    <!-- Phase 3 -->
+    <div class="phase-card ph3">
+      <div class="phase-header">课中 &middot; 人机协同</div>
+      <div class="phase-body">
+        <div class="phase-main">师生机<br>三方协同教学</div>
+        <div class="phase-desc">WebSec攻防闯关 + Code Review Battle人机对抗审查</div>
+        <div class="phase-tools">
+          <span class="tool-badge tb-s">WebSec</span>
+          <span class="tool-badge tb-c">Code Review</span>
+        </div>
+        <div class="phase-scenario"><span class="scenario-chip">情境3: 人机协同</span></div>
+      </div>
+    </div>
+
+    <div class="arrow">&rarr;</div>
+
+    <!-- Phase 4 -->
+    <div class="phase-card ph4">
+      <div class="phase-header">课后 &middot; AI评价</div>
+      <div class="phase-body">
+        <div class="phase-main">多维智能<br>评价反馈</div>
+        <div class="phase-desc">功能30% + 知识30% + 规范20% + 安全20% 四维AI审查</div>
+        <div class="phase-tools">
+          <span class="tool-badge tb-t">TeamCoach</span>
+          <span class="tool-badge tb-g">AI审查</span>
+        </div>
+        <div class="phase-scenario"><span class="scenario-chip">情境4: 多维评价</span></div>
+      </div>
+    </div>
+
+    <div class="arrow">&rarr;</div>
+
+    <!-- Phase 5 -->
+    <div class="phase-card ph5">
+      <div class="phase-header">精准干预 &middot; 迭代</div>
+      <div class="phase-body">
+        <div class="phase-main">数据驱动<br>教学决策</div>
+        <div class="phase-desc">共性问题汇总，精准调整下一讲教学重点与难度</div>
+        <div class="phase-tools">
+          <span class="tool-badge tb-w">WebDev</span>
+          <span class="tool-badge tb-g">教师面板</span>
+        </div>
+        <div class="phase-scenario"><span class="scenario-chip">情境5+6: 资源&middot;场景</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Feedback loop -->
+  <div class="loop-bar">
+    <div class="loop-text">&#x21BB; 数据闭环反馈：课后数据 &rarr; 教师面板 &rarr; 下一讲课前精准调整 &rarr; 持续迭代优化</div>
+  </div>
+
+  <!-- Roles -->
+  <div class="role-bar">
+    <div class="role role-teacher">教 师<span class="role-label">审核决策者 &middot; 设计 &middot; 引导 &middot; 干预</span></div>
+    <div class="role role-student">学 生<span class="role-label">理解判断者 &middot; 实践 &middot; 辩论 &middot; 修改</span></div>
+    <div class="role role-ai">AI 工具<span class="role-label">辅助执行者 &middot; 出题 &middot; 审查 &middot; 追踪</span></div>
+  </div>
+
+  <!-- 6 scenarios coverage -->
+  <div class="scenario-bar">
+    <span class="sc-tag sc1">1 学情采集</span>
+    <span class="sc-tag sc2">2 个性化支持</span>
+    <span class="sc-tag sc3">3 人机协同</span>
+    <span class="sc-tag sc4">4 多维评价</span>
+    <span class="sc-tag sc5">5 数字资源</span>
+    <span class="sc-tag sc6">6 场景设计</span>
+  </div>
+</div>
+</body>
+</html>
