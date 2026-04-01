@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: "Source Han Sans CN", "Microsoft YaHei", "PingFang SC", sans-serif;
+    background: #fff;
+    display: flex; justify-content: center;
+    padding: 24px;
+    color: #1e293b;
+  }
+  .container { width: 960px; }
+  .fig-title {
+    text-align: center; font-size: 17px; font-weight: 800;
+    color: #1e293b; margin-bottom: 2px; letter-spacing: 0.5px;
+  }
+  .fig-subtitle {
+    text-align: center; font-size: 12.5px; color: #94a3b8; margin-bottom: 14px;
+  }
+
+  .layout {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    grid-template-rows: 1fr auto 1fr;
+    gap: 8px;
+    align-items: stretch;
+  }
+
+  /* Center hub */
+  .center-hub {
+    grid-column: 2; grid-row: 2;
+    width: 130px; height: 130px; border-radius: 50%;
+    background: #1e293b;
+    color: #fff;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    align-self: center; justify-self: center;
+  }
+  .hub-title { font-size: 15px; font-weight: 700; letter-spacing: 3px; }
+  .hub-sub { font-size: 10px; opacity: 0.6; margin-top: 4px; text-align: center; line-height: 1.5; }
+
+  /* Connector lines */
+  .conn-h {
+    display: flex; align-items: center; justify-content: center;
+    color: #cbd5e1; font-size: 20px;
+  }
+  .conn-v {
+    display: flex; align-items: center; justify-content: center;
+    color: #cbd5e1; font-size: 20px;
+    writing-mode: vertical-lr;
+  }
+  .conn-tl { grid-column: 2; grid-row: 1; }
+  .conn-bl { grid-column: 2; grid-row: 3; }
+
+  /* Quadrant cards */
+  .quad {
+    border-radius: 10px; padding: 14px 12px;
+    border: 1.5px solid #e2e8f0;
+  }
+  .q-tl { grid-column: 1; grid-row: 1; }
+  .q-tr { grid-column: 3; grid-row: 1; }
+  .q-bl { grid-column: 1; grid-row: 3; }
+  .q-br { grid-column: 3; grid-row: 3; }
+
+  .q-tl { background: #f8fafc; border-color: #bfdbfe; }
+  .q-tr { background: #fffbeb; border-color: #fde68a; }
+  .q-bl { background: #f0fdf4; border-color: #bbf7d0; }
+  .q-br { background: #fdf2f8; border-color: #fbcfe8; }
+
+  .q-header { display: flex; align-items: center; gap: 8px; margin-bottom: 6px; }
+  .q-icon {
+    width: 34px; height: 34px; border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 15px; color: #fff; font-weight: 700;
+  }
+  .qi-blue { background: #3b82f6; }
+  .qi-amber { background: #f59e0b; }
+  .qi-green { background: #10b981; }
+  .qi-pink { background: #ec4899; }
+
+  .q-title { font-size: 14px; font-weight: 800; color: #1e293b; }
+  .q-carrier { font-size: 12px; color: #94a3b8; margin-top: 1px; }
+  .q-carrier b { color: #334155; font-weight: 700; }
+
+  .q-desc {
+    font-size: 12px; color: #475569; line-height: 1.6;
+    border-top: 1px solid rgba(0,0,0,0.06);
+    padding-top: 6px; margin-top: 2px;
+  }
+
+  .q-evidence {
+    display: inline-block;
+    background: rgba(0,0,0,0.05);
+    font-size: 11.5px; color: #1e293b;
+    padding: 2px 8px; border-radius: 10px;
+    margin-top: 6px; font-weight: 700;
+  }
+
+  /* Middle connectors - horizontal arrows between quads and center */
+  .mid-left {
+    grid-column: 1; grid-row: 2;
+    display: flex; align-items: center; justify-content: flex-end;
+    padding-right: 4px; color: #cbd5e1; font-size: 20px;
+  }
+  .mid-right {
+    grid-column: 3; grid-row: 2;
+    display: flex; align-items: center; justify-content: flex-start;
+    padding-left: 4px; color: #cbd5e1; font-size: 20px;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="fig-title">课程思政融合四维度模型</div>
+  <div class="fig-subtitle">"润物无声"式思政融入 — 依托五维AI工具在教学实践中自然渗透价值引领</div>
+
+  <div class="layout">
+    <!-- Top Left: 社会责任 -->
+    <div class="quad q-tl">
+      <div class="q-header">
+        <div class="q-icon qi-blue">安</div>
+        <div>
+          <div class="q-title">安全编码 → 社会责任感</div>
+          <div class="q-carrier">教学载体：<b>WebSec 安全攻防闯关</b></div>
+        </div>
+      </div>
+      <div class="q-desc">以真实数据泄露事件为切入点，学生在闯关中亲手修复SQL注入、越权访问等漏洞，深刻体会"每一行代码背后都连接着真实用户的数据安全"</div>
+      <div class="q-evidence">78.4% 学生认同安全编码的社会责任</div>
+    </div>
+
+    <!-- Top connector -->
+    <div class="conn-tl" style="min-height:20px"></div>
+
+    <!-- Top Right: AI伦理 -->
+    <div class="quad q-tr">
+      <div class="q-header">
+        <div class="q-icon qi-amber">伦</div>
+        <div>
+          <div class="q-title">人机对抗 → AI伦理观</div>
+          <div class="q-carrier">教学载体：<b>Code Review Battle 人机对战</b></div>
+        </div>
+      </div>
+      <div class="q-desc">三轮对战中学生亲历"AI也会犯错"，引发对AI能力边界、算法偏见、决策责任的深层思考——技术是工具，人是决策者</div>
+      <div class="q-evidence">83.4% 建立"批判性判断AI"素养</div>
+    </div>
+
+    <!-- Middle row -->
+    <div class="mid-left">←</div>
+    <div class="center-hub">
+      <div class="hub-title">立德树人</div>
+      <div class="hub-sub">价值塑造<br>知识传授<br>能力培养</div>
+    </div>
+    <div class="mid-right">→</div>
+
+    <!-- Bottom Left: 工匠精神 -->
+    <div class="quad q-bl">
+      <div class="q-header">
+        <div class="q-icon qi-green">匠</div>
+        <div>
+          <div class="q-title">代码质量 → 工匠精神</div>
+          <div class="q-carrier">教学载体：<b>四维AI评价体系</b></div>
+        </div>
+      </div>
+      <div class="q-desc">从"能运行就行"到功能+知识+规范+安全四维评价，AI审查引导学生追求"好读、好维护、够安全"的代码品质</div>
+      <div class="q-evidence">分层架构合规率 38.1%→79.3%</div>
+    </div>
+
+    <!-- Bottom connector -->
+    <div class="conn-bl" style="min-height:20px"></div>
+
+    <!-- Bottom Right: 技术自主 -->
+    <div class="quad q-br">
+      <div class="q-header">
+        <div class="q-icon qi-pink">自</div>
+        <div>
+          <div class="q-title">国产大模型 → 技术自主可控</div>
+          <div class="q-carrier">教学载体：<b>五维工具全栈国产化</b></div>
+        </div>
+      </div>
+      <div class="q-desc">全部采用DeepSeek/通义千问，部署于校内服务器。学生切实体验国产模型专业能力，增强技术自信与数据主权意识</div>
+      <div class="q-evidence">数据全程校内存储，不流向境外</div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

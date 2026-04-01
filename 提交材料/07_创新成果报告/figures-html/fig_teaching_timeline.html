@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: "Source Han Sans CN", "Microsoft YaHei", "PingFang SC", sans-serif;
+    background: #fff;
+    display: flex; justify-content: center;
+    padding: 24px;
+    color: #1e293b;
+  }
+  .container { width: 960px; }
+  .fig-title {
+    text-align: center; font-size: 17px; font-weight: 800;
+    color: #1e293b; margin-bottom: 2px; letter-spacing: 0.5px;
+  }
+  .fig-subtitle {
+    text-align: center; font-size: 12.5px; color: #94a3b8; margin-bottom: 12px;
+  }
+
+  .phases { display: flex; gap: 4px; }
+  .phase { flex: 1; display: flex; flex-direction: column; }
+
+  .phase-header {
+    text-align: center; padding: 9px 8px; border-radius: 8px 8px 0 0;
+    color: #fff; font-weight: 800; font-size: 15px; letter-spacing: 2px;
+  }
+  .ph-pre .phase-header { background: #3b82f6; }
+  .ph-in .phase-header  { background: #1e293b; }
+  .ph-post .phase-header { background: #10b981; }
+
+  .phase-body {
+    border: 1.5px solid #e2e8f0; border-top: none;
+    border-radius: 0 0 8px 8px;
+    padding: 10px 10px;
+    flex: 1;
+    background: #fafbfe;
+  }
+
+  .step {
+    display: flex; align-items: flex-start; gap: 7px;
+    margin-bottom: 8px;
+  }
+  .step:last-child { margin-bottom: 0; }
+  .step-num {
+    width: 22px; height: 22px; border-radius: 50%; flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 11px; color: #fff; font-weight: 700; margin-top: 1px;
+  }
+  .ph-pre .step-num { background: #3b82f6; }
+  .ph-in .step-num  { background: #1e293b; }
+  .ph-post .step-num { background: #10b981; }
+
+  .step-content { flex: 1; }
+  .step-title { font-size: 13px; font-weight: 800; color: #1e293b; margin-bottom: 1px; }
+  .step-desc { font-size: 11.5px; color: #475569; line-height: 1.5; }
+
+  .tool-badge {
+    display: inline-block; padding: 1px 6px; border-radius: 10px;
+    font-size: 10.5px; font-weight: 700; margin-top: 2px; margin-right: 2px;
+  }
+  .tb-w { background: #dbeafe; color: #1d4ed8; }
+  .tb-s { background: #fee2e2; color: #b91c1c; }
+  .tb-t { background: #d1fae5; color: #065f46; }
+  .tb-c { background: #ede9fe; color: #6d28d9; }
+  .tb-r { background: #fef3c7; color: #92400e; }
+
+  .data-chip {
+    display: inline-block; background: #f1f5f9; color: #334155;
+    font-size: 10.5px; padding: 1px 6px; border-radius: 10px;
+    font-weight: 700; margin-top: 2px;
+    border: 1px solid #e2e8f0;
+  }
+
+  .arrow-between {
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0; width: 16px; font-size: 18px; color: #cbd5e1;
+    align-self: center;
+  }
+
+  .loop-bar {
+    display: flex; align-items: center; justify-content: center;
+    margin-top: 10px; padding: 7px 14px;
+    border: 1.5px dashed #94a3b8; border-radius: 8px;
+    background: #f8fafc;
+  }
+  .loop-text {
+    font-size: 12.5px; color: #334155; font-weight: 700; text-align: center;
+  }
+
+  .role-bar {
+    display: flex; gap: 0; margin-top: 10px; border-radius: 6px; overflow: hidden;
+  }
+  .role {
+    flex: 1; text-align: center; padding: 7px 6px;
+    font-size: 13px; font-weight: 700; color: #fff;
+  }
+  .role-teacher { background: #1e293b; }
+  .role-student { background: #10b981; }
+  .role-ai { background: #8b5cf6; }
+  .role-label { font-size: 9.5px; font-weight: 400; opacity: 0.8; display: block; margin-top: 2px; }
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="fig-title">课前—课中—课后 AI赋能教学全流程闭环</div>
+  <div class="fig-subtitle">以第15讲"用户认证与权限控制"为核心案例</div>
+
+  <div class="phases">
+    <!-- 课前 -->
+    <div class="phase ph-pre">
+      <div class="phase-header">课 前</div>
+      <div class="phase-body">
+        <div class="step">
+          <div class="step-num">1</div>
+          <div class="step-content">
+            <div class="step-title">学情数据采集</div>
+            <div class="step-desc">WebDev助教推送预习引导问题，自动采集学生知识薄弱点</div>
+            <span class="tool-badge tb-w">WebDev助教</span>
+            <span class="data-chip">42/58人参与</span>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <div class="step-content">
+            <div class="step-title">数据驱动备课</div>
+            <div class="step-desc">教师查看学情热力图，调整课堂重点为Session安全+角色权限</div>
+            <span class="data-chip">TOP3热点识别</span>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <div class="step-content">
+            <div class="step-title">个性化任务生成</div>
+            <div class="step-desc">AI按A/B/C三层生成差异化实验任务，一人一题</div>
+            <span class="tool-badge tb-r">资料重构</span>
+            <span class="data-chip">58份独立任务</span>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">4</div>
+          <div class="step-content">
+            <div class="step-title">团队状态预警</div>
+            <div class="step-desc">TeamCoach生成团队周报，标记风险成员</div>
+            <span class="tool-badge tb-t">TeamCoach</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="arrow-between">→</div>
+
+    <!-- 课中 -->
+    <div class="phase ph-in">
+      <div class="phase-header">课 中（45min）</div>
+      <div class="phase-body">
+        <div class="step">
+          <div class="step-num">5</div>
+          <div class="step-content">
+            <div class="step-title">数据驱动导入（5min）</div>
+            <div class="step-desc">展示学情数据+TeamCoach周报，以真实漏洞事件引入</div>
+            <span class="tool-badge tb-w">WebDev</span>
+            <span class="tool-badge tb-t">TeamCoach</span>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">6</div>
+          <div class="step-content">
+            <div class="step-title">WebSec攻防闯关（15min）</div>
+            <div class="step-desc">5级安全闯关，实时大屏驱动教师即时干预</div>
+            <span class="tool-badge tb-s">WebSec挑战</span>
+            <span class="data-chip">第2关40%→82%</span>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">7</div>
+          <div class="step-content">
+            <div class="step-title">Code Review Battle（15min）</div>
+            <div class="step-desc">人工审查→AI审查→对比辩论，三轮人机对抗</div>
+            <span class="tool-badge tb-c">Code Review</span>
+            <span class="data-chip">培养批判思维</span>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">8</div>
+          <div class="step-content">
+            <div class="step-title">修复验证+总结（10min）</div>
+            <div class="step-desc">学生修复代码，JUnit自动验证，多维数据回顾</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="arrow-between">→</div>
+
+    <!-- 课后 -->
+    <div class="phase ph-post">
+      <div class="phase-header">课 后</div>
+      <div class="phase-body">
+        <div class="step">
+          <div class="step-num">9</div>
+          <div class="step-content">
+            <div class="step-title">代码提交与AI审查</div>
+            <div class="step-desc">学生push至Gitea，AI进行四维审查（功能30%+知识30%+规范20%+安全20%）</div>
+            <span class="data-chip">四维评价</span>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">10</div>
+          <div class="step-content">
+            <div class="step-title">教师复核+反馈</div>
+            <div class="step-desc">教师审核AI评分（修正约10%误判），48h内发放个性化报告</div>
+            <span class="data-chip">32.8min→11.9min</span>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">11</div>
+          <div class="step-content">
+            <div class="step-title">学生二次迭代</div>
+            <div class="step-desc">依据反馈报告修改代码，WebDev助教24h辅导</div>
+            <span class="tool-badge tb-w">WebDev助教</span>
+            <span class="data-chip">高峰21-23时</span>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">12</div>
+          <div class="step-content">
+            <div class="step-title">数据回流下一讲</div>
+            <div class="step-desc">共性问题汇总，精准干预下次课教学重点</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="loop-bar">
+    <div class="loop-text">↻ 数据闭环：课后数据 → 教师面板 → 下一讲课前精准调整 → 持续迭代优化</div>
+  </div>
+
+  <div class="role-bar">
+    <div class="role role-teacher">教 师<span class="role-label">设计 · 引导 · 干预 · 总结</span></div>
+    <div class="role role-student">学 生<span class="role-label">理解 · 判断 · 修改 · 辩论</span></div>
+    <div class="role role-ai">AI 工具<span class="role-label">出题 · 审查 · 追踪 · 答疑</span></div>
+  </div>
+</div>
+</body>
+</html>

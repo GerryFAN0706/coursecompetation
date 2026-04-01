@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: "Source Han Sans CN", "Microsoft YaHei", "PingFang SC", sans-serif;
+    background: #fff;
+    display: flex; justify-content: center; align-items: flex-start;
+    padding: 24px;
+    color: #1e293b;
+  }
+  .container { width: 960px; }
+  .fig-title {
+    text-align: center; font-size: 17px; font-weight: 800;
+    color: #1e293b; margin-bottom: 2px; letter-spacing: 0.5px;
+  }
+  .fig-subtitle {
+    text-align: center; font-size: 12.5px; color: #94a3b8; margin-bottom: 12px;
+    letter-spacing: 0.3px;
+  }
+
+  .matrix { width: 100%; border-collapse: separate; border-spacing: 0; border-radius: 8px; overflow: hidden; }
+  .matrix th, .matrix td {
+    padding: 8px 6px; text-align: center; font-size: 13px; vertical-align: middle;
+  }
+  .matrix thead th {
+    background: #1e293b; color: #f1f5f9; font-weight: 700; font-size: 13px;
+    padding: 9px 6px; border-bottom: 2px solid #334155;
+    letter-spacing: 0.5px;
+  }
+  .matrix thead th:first-child {
+    background: #0f172a; width: 138px; text-align: left; padding-left: 10px;
+  }
+  .matrix tbody th {
+    background: #f8fafc; font-weight: 700; color: #334155;
+    text-align: left; padding-left: 10px; font-size: 13px; line-height: 1.4;
+    border-bottom: 1px solid #e2e8f0;
+  }
+  .matrix tbody td {
+    border-bottom: 1px solid #f1f5f9; background: #fff;
+  }
+  .matrix tbody tr:hover td { background: #f8fafc; }
+
+  .dot {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 28px; height: 28px; border-radius: 50%; font-size: 13px;
+  }
+  .primary { background: #1e293b; color: #fff; }
+  .secondary { background: #cbd5e1; color: #334155; }
+  .empty { color: #e2e8f0; font-size: 16px; }
+
+  .tool-chip {
+    display: inline-flex; align-items: center; gap: 4px;
+    font-size: 12.5px; font-weight: 700; letter-spacing: 0.3px;
+  }
+  .tool-dot {
+    width: 9px; height: 9px; border-radius: 50%; flex-shrink: 0;
+  }
+  .td-w { background: #3b82f6; }
+  .td-s { background: #ef4444; }
+  .td-t { background: #10b981; }
+  .td-c { background: #8b5cf6; }
+  .td-r { background: #f59e0b; }
+
+  .problem-tag {
+    display: inline-block; background: #fef3c7; color: #92400e;
+    font-size: 11px; padding: 1px 6px; border-radius: 10px; margin-top: 2px;
+    font-weight: 600;
+  }
+  .data-tag {
+    display: block; font-size: 11px; color: #475569; margin-top: 2px; font-weight: 600;
+  }
+
+  .legend {
+    display: flex; justify-content: center; gap: 24px;
+    margin-top: 10px; font-size: 12px; color: #64748b;
+  }
+  .legend-item { display: flex; align-items: center; gap: 6px; }
+  .legend-dot {
+    width: 16px; height: 16px; border-radius: 50%;
+    display: inline-flex; align-items: center; justify-content: center; font-size: 10px;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="fig-title">五维AI工具与六大教学问题映射矩阵</div>
+  <div class="fig-subtitle">Five-Dimensional AI Tool System × Six Teaching Challenges Mapping</div>
+  <table class="matrix">
+    <thead>
+      <tr>
+        <th>教学问题</th>
+        <th><span class="tool-chip"><span class="tool-dot td-w"></span>WebDev 智能助教</span></th>
+        <th><span class="tool-chip"><span class="tool-dot td-s"></span>WebSec 攻防闯关</span></th>
+        <th><span class="tool-chip"><span class="tool-dot td-t"></span>TeamCoach 团队教练</span></th>
+        <th><span class="tool-chip"><span class="tool-dot td-c"></span>Code Review 人机对战</span></th>
+        <th><span class="tool-chip"><span class="tool-dot td-r"></span>资料重构 一人一题</span></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th>P1 实验同质化<br>代码高度相似<br><span class="problem-tag">MOSS 45.2%</span></th>
+        <td><span class="dot empty">—</span></td>
+        <td><span class="dot secondary">●</span><span class="data-tag">AI个性化出题</span></td>
+        <td><span class="dot empty">—</span></td>
+        <td><span class="dot empty">—</span></td>
+        <td><span class="dot primary">★</span><span class="data-tag">45%→4.7%</span></td>
+      </tr>
+      <tr>
+        <th>P2 教师反馈<br>滞后2-3周<br><span class="problem-tag">32.8min/份</span></th>
+        <td><span class="dot secondary">●</span><span class="data-tag">即时答疑</span></td>
+        <td><span class="dot empty">—</span></td>
+        <td><span class="dot empty">—</span></td>
+        <td><span class="dot secondary">●</span><span class="data-tag">AI预审</span></td>
+        <td><span class="dot primary">★</span><span class="data-tag">−63.7%</span></td>
+      </tr>
+      <tr>
+        <th>P3 评价维度单一<br>安全规范被忽视<br><span class="problem-tag">SQL注入56.5%</span></th>
+        <td><span class="dot empty">—</span></td>
+        <td><span class="dot primary">★</span><span class="data-tag">攻防实训</span></td>
+        <td><span class="dot empty">—</span></td>
+        <td><span class="dot primary">★</span><span class="data-tag">四维评审</span></td>
+        <td><span class="dot empty">—</span></td>
+      </tr>
+      <tr>
+        <th>P4 团队搭便车<br>无法客观监控<br><span class="problem-tag">主观判断</span></th>
+        <td><span class="dot empty">—</span></td>
+        <td><span class="dot empty">—</span></td>
+        <td><span class="dot primary">★</span><span class="data-tag">Gini 0.38→0.21</span></td>
+        <td><span class="dot empty">—</span></td>
+        <td><span class="dot empty">—</span></td>
+      </tr>
+      <tr>
+        <th>P5 盲信AI输出<br>缺乏批判思维<br><span class="problem-tag">仅16.7%批判</span></th>
+        <td><span class="dot empty">—</span></td>
+        <td><span class="dot secondary">●</span><span class="data-tag">验证安全知识</span></td>
+        <td><span class="dot empty">—</span></td>
+        <td><span class="dot primary">★</span><span class="data-tag">误报识别12%→43%</span></td>
+        <td><span class="dot empty">—</span></td>
+      </tr>
+      <tr>
+        <th>P6 备课重复低效<br>个性化资源匮乏<br><span class="problem-tag">4h/讲PPT</span></th>
+        <td><span class="dot secondary">●</span><span class="data-tag">知识库复用</span></td>
+        <td><span class="dot empty">—</span></td>
+        <td><span class="dot empty">—</span></td>
+        <td><span class="dot empty">—</span></td>
+        <td><span class="dot primary">★</span><span class="data-tag">4h→30min</span></td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="legend">
+    <div class="legend-item"><span class="legend-dot primary" style="color:#fff;font-size:10px">★</span> 核心解决工具</div>
+    <div class="legend-item"><span class="legend-dot secondary">●</span> 辅助支撑工具</div>
+    <div class="legend-item"><span style="color:#cbd5e1;font-size:14px">—</span> 不直接相关</div>
+  </div>
+</div>
+</body>
+</html>

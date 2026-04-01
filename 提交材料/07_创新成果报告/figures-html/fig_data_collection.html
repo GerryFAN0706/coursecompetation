@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: "Source Han Sans CN", "Microsoft YaHei", "PingFang SC", sans-serif;
+    background: #fff;
+    display: flex; justify-content: center;
+    padding: 24px;
+    color: #1e293b;
+  }
+  .container { width: 960px; }
+  .fig-title {
+    text-align: center; font-size: 17px; font-weight: 800;
+    color: #1e293b; margin-bottom: 2px; letter-spacing: 0.5px;
+  }
+  .fig-subtitle {
+    text-align: center; font-size: 12.5px; color: #94a3b8; margin-bottom: 12px;
+  }
+
+  .panorama { display: flex; gap: 8px; }
+
+  .data-col {
+    flex: 1; border-radius: 10px; overflow: hidden;
+    border: 1.5px solid #e2e8f0;
+    display: flex; flex-direction: column;
+  }
+  .col-header {
+    padding: 9px 10px; color: #fff; text-align: center;
+    font-size: 14px; font-weight: 800; letter-spacing: 1px;
+  }
+  .ch-process { background: #3b82f6; }
+  .ch-result { background: #1e293b; }
+  .ch-attitude { background: #10b981; }
+
+  .col-body {
+    flex: 1; padding: 8px 6px;
+    display: flex; flex-direction: column; gap: 4px;
+    background: #fafbfe;
+  }
+
+  .source {
+    background: #fff; border-radius: 6px; padding: 6px 8px;
+    border: 1px solid #f1f5f9;
+    display: flex; align-items: flex-start; gap: 6px;
+  }
+  .source-icon {
+    width: 24px; height: 24px; border-radius: 6px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 11px; color: #fff; flex-shrink: 0; font-weight: 700;
+  }
+  .si-w { background: #3b82f6; }
+  .si-s { background: #ef4444; }
+  .si-t { background: #10b981; }
+  .si-c { background: #8b5cf6; }
+  .si-r { background: #f59e0b; }
+  .si-gray { background: #94a3b8; }
+  .si-teal { background: #0d9488; }
+
+  .source-content { flex: 1; }
+  .source-name { font-size: 12px; font-weight: 800; color: #1e293b; }
+  .source-desc { font-size: 11px; color: #64748b; margin-top: 1px; line-height: 1.4; }
+  .source-freq {
+    display: inline-block; font-size: 10px; background: #f1f5f9; color: #475569;
+    padding: 1px 5px; border-radius: 10px; margin-top: 2px; font-weight: 600;
+    border: 1px solid #e2e8f0;
+  }
+  .source-new {
+    display: inline-block; font-size: 10px; background: #fef3c7; color: #92400e;
+    padding: 1px 5px; border-radius: 10px; margin-left: 3px; font-weight: 700;
+  }
+
+  .flow-arrow {
+    text-align: center; margin: 8px 0 4px;
+    font-size: 12px; color: #94a3b8; font-weight: 700;
+    letter-spacing: 1px;
+  }
+
+  .analysis-section { display: flex; gap: 8px; }
+  .analysis-card {
+    flex: 1; background: #f8fafc; border-radius: 8px;
+    border: 1.5px solid #e2e8f0; padding: 10px;
+    text-align: center;
+  }
+  .ac-icon {
+    width: 36px; height: 36px; border-radius: 8px;
+    display: inline-flex; align-items: center; justify-content: center;
+    font-size: 13px; color: #fff; font-weight: 700; margin-bottom: 6px;
+  }
+  .ac-blue { background: #3b82f6; }
+  .ac-green { background: #10b981; }
+  .ac-purple { background: #8b5cf6; }
+
+  .ac-label { font-size: 13px; color: #1e293b; font-weight: 800; margin-bottom: 3px; }
+  .ac-desc { font-size: 11px; color: #64748b; line-height: 1.5; font-weight: 600; }
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="fig-title">多源数据采集与三层学习分析体系</div>
+  <div class="fig-subtitle">覆盖"过程 + 结果 + 态度"三个维度的全方位数据驱动教学</div>
+
+  <div class="panorama">
+    <!-- 过程性数据 -->
+    <div class="data-col">
+      <div class="col-header ch-process">过程性数据</div>
+      <div class="col-body">
+        <div class="source">
+          <div class="source-icon si-w">W</div>
+          <div class="source-content">
+            <div class="source-name">WebDev助教交互日志</div>
+            <div class="source-desc">提问记录、知识薄弱点、高频问题</div>
+            <span class="source-freq">持续采集</span><span class="source-new">自研</span>
+          </div>
+        </div>
+        <div class="source">
+          <div class="source-icon si-s">S</div>
+          <div class="source-content">
+            <div class="source-name">WebSec闯关追踪</div>
+            <div class="source-desc">通过率、用时、修复方案、重试次数</div>
+            <span class="source-freq">每次闯关</span><span class="source-new">自研</span>
+          </div>
+        </div>
+        <div class="source">
+          <div class="source-icon si-t">T</div>
+          <div class="source-content">
+            <div class="source-name">TeamCoach贡献分析</div>
+            <div class="source-desc">代码行数、提交频率、文件分布</div>
+            <span class="source-freq">每周汇总</span><span class="source-new">自研</span>
+          </div>
+        </div>
+        <div class="source">
+          <div class="source-icon si-c">C</div>
+          <div class="source-content">
+            <div class="source-name">Code Review Battle</div>
+            <div class="source-desc">人工vs AI发现数、误报识别率</div>
+            <span class="source-freq">每次对战</span><span class="source-new">自研</span>
+          </div>
+        </div>
+        <div class="source">
+          <div class="source-icon si-gray">G</div>
+          <div class="source-content">
+            <div class="source-name">Gitea提交日志</div>
+            <div class="source-desc">编译状态、提交时间线、代码diff</div>
+            <span class="source-freq">每次提交</span>
+          </div>
+        </div>
+        <div class="source">
+          <div class="source-icon si-gray">L</div>
+          <div class="source-content">
+            <div class="source-name">课堂观察日志</div>
+            <div class="source-desc">AI使用频率、提示词质量</div>
+            <span class="source-freq">每次课</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 结果性数据 -->
+    <div class="data-col">
+      <div class="col-header ch-result">结果性数据</div>
+      <div class="col-body">
+        <div class="source">
+          <div class="source-icon si-r">A</div>
+          <div class="source-content">
+            <div class="source-name">AI四维审查评分</div>
+            <div class="source-desc">功能30% + 知识30% + 规范20% + 安全20%</div>
+            <span class="source-freq">每批作业</span><span class="source-new">自研</span>
+          </div>
+        </div>
+        <div class="source">
+          <div class="source-icon si-gray">M</div>
+          <div class="source-content">
+            <div class="source-name">MOSS相似度检测</div>
+            <div class="source-desc">全量配对代码相似度</div>
+            <span class="source-freq">每批作业</span>
+          </div>
+        </div>
+        <div class="source">
+          <div class="source-icon si-gray">J</div>
+          <div class="source-content">
+            <div class="source-name">JUnit自动化测试</div>
+            <div class="source-desc">测试用例通过率</div>
+            <span class="source-freq">每次提交</span>
+          </div>
+        </div>
+        <div class="source">
+          <div class="source-icon si-teal">E</div>
+          <div class="source-content">
+            <div class="source-name">期末实操考试</div>
+            <div class="source-desc">综合能力评估</div>
+            <span class="source-freq">学期末</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 态度性数据 -->
+    <div class="data-col">
+      <div class="col-header ch-attitude">态度性数据</div>
+      <div class="col-body">
+        <div class="source">
+          <div class="source-icon si-teal">Q</div>
+          <div class="source-content">
+            <div class="source-name">期末问卷调查</div>
+            <div class="source-desc">满意度、功能评价、能力自评、开放反馈</div>
+            <span class="source-freq">学期末 N=54</span>
+          </div>
+        </div>
+        <div class="source">
+          <div class="source-icon si-teal">R</div>
+          <div class="source-content">
+            <div class="source-name">AI使用反思日志</div>
+            <div class="source-desc">学生对AI协作的认知变化</div>
+            <span class="source-freq">关键节点</span>
+          </div>
+        </div>
+        <div class="source">
+          <div class="source-icon si-teal">D</div>
+          <div class="source-content">
+            <div class="source-name">教学督导评价</div>
+            <div class="source-desc">外部专家课堂观察记录</div>
+            <span class="source-freq">每学期</span>
+          </div>
+        </div>
+        <div class="source">
+          <div class="source-icon si-teal">P</div>
+          <div class="source-content">
+            <div class="source-name">同行听课记录</div>
+            <div class="source-desc">同行教师评价反馈</div>
+            <span class="source-freq">每学期</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="flow-arrow">↓ 三层分析 ↓</div>
+
+  <div class="analysis-section">
+    <div class="analysis-card">
+      <div class="ac-icon ac-blue">个</div>
+      <div class="ac-label">个体层分析</div>
+      <div class="ac-desc">知识-能力画像<br>14次作业四维得分曲线<br>个性化薄弱点识别</div>
+    </div>
+    <div class="analysis-card">
+      <div class="ac-icon ac-green">班</div>
+      <div class="ac-label">班级层分析</div>
+      <div class="ac-desc">共性问题频率排序<br>实时大屏即时干预<br>数据驱动教学决策</div>
+    </div>
+    <div class="analysis-card">
+      <div class="ac-icon ac-purple">纵</div>
+      <div class="ac-label">学期纵向分析</div>
+      <div class="ac-desc">关键能力成长曲线<br>四时间点追踪<br>教学干预时间效应</div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

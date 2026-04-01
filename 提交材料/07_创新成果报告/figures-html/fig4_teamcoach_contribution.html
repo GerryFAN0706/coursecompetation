@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: "Source Han Sans CN", "Microsoft YaHei", "PingFang SC", sans-serif;
+    background: #fff;
+    display: flex; justify-content: center;
+    padding: 24px;
+    color: #1e293b;
+  }
+  .container { width: 960px; }
+  .fig-title {
+    text-align: center; font-size: 18px; font-weight: 800;
+    color: #1e293b; margin-bottom: 2px; letter-spacing: 0.5px;
+  }
+  .fig-subtitle {
+    text-align: center; font-size: 13px; color: #94a3b8; margin-bottom: 12px;
+  }
+
+  .legend {
+    display: flex; justify-content: center; gap: 18px; margin-bottom: 12px;
+  }
+  .legend-item {
+    display: flex; align-items: center; gap: 6px;
+    font-size: 13px; color: #64748b; font-weight: 600;
+  }
+  .legend-swatch { width: 14px; height: 14px; border-radius: 3px; }
+  .lg-green { background: #10b981; }
+  .lg-amber { background: #f59e0b; }
+  .lg-red { background: #ef4444; }
+
+  .teams { display: flex; flex-direction: column; gap: 10px; }
+
+  .team-row {
+    display: flex; align-items: center; gap: 10px;
+  }
+  .team-label {
+    width: 60px; text-align: right; flex-shrink: 0;
+    font-size: 14px; font-weight: 700; color: #334155;
+  }
+  .team-bars { flex: 1; display: flex; flex-direction: column; gap: 4px; }
+
+  .member-bar {
+    display: flex; align-items: center; gap: 8px;
+  }
+  .member-name {
+    width: 48px; text-align: right; flex-shrink: 0;
+    font-size: 12px; color: #94a3b8; font-weight: 500;
+  }
+  .member-track {
+    flex: 1; height: 22px; background: #f1f5f9; border-radius: 4px;
+    position: relative; overflow: hidden;
+    display: flex; align-items: center;
+  }
+  .member-fill {
+    height: 100%; border-radius: 4px;
+    display: flex; align-items: center; justify-content: flex-end;
+    padding-right: 6px;
+    font-size: 12px; font-weight: 800; color: #fff;
+    min-width: 28px;
+  }
+  .mf-green { background: #10b981; }
+  .mf-amber { background: #f59e0b; }
+  .mf-red { background: #ef4444; }
+  .team-status {
+    width: 110px; flex-shrink: 0; text-align: center;
+    font-size: 12px; font-weight: 700;
+    padding: 4px 8px; border-radius: 10px;
+  }
+  .ts-ok { background: #f0fdf4; color: #065f46; border: 1px solid #bbf7d0; }
+  .ts-warn { background: #fef3c7; color: #92400e; border: 1px solid #fde68a; }
+  .ts-danger { background: #fef2f2; color: #991b1b; border: 1px solid #fca5a5; }
+
+  .divider { height: 1px; background: #f1f5f9; }
+
+  .ref-lines {
+    display: flex; align-items: center; gap: 12px;
+    margin-top: 16px; padding: 10px 14px;
+    background: #f8fafc; border-radius: 8px; border: 1.5px solid #e2e8f0;
+  }
+  .ref-line {
+    display: flex; align-items: center; gap: 6px;
+    font-size: 11px; color: #475569; font-weight: 600;
+  }
+  .ref-dash {
+    width: 20px; height: 2px; border-radius: 1px;
+  }
+  .rd-red { background: #ef4444; border-top: 2px dashed #ef4444; height: 0; }
+  .rd-green { background: #10b981; border-top: 2px dotted #10b981; height: 0; }
+
+  .gini-box {
+    display: flex; justify-content: center; gap: 14px;
+    margin-top: 10px;
+  }
+  .gini-item {
+    background: #f8fafc; border: 1.5px solid #e2e8f0; border-radius: 8px;
+    padding: 8px 18px; text-align: center;
+  }
+  .gini-value { font-size: 22px; font-weight: 800; color: #1e293b; }
+  .gini-label { font-size: 12px; color: #94a3b8; margin-top: 2px; font-weight: 500; }
+  .gini-change { font-size: 12px; font-weight: 700; color: #10b981; margin-top: 1px; }
+
+  .note {
+    text-align: center; font-size: 12px; color: #94a3b8;
+    margin-top: 10px; line-height: 1.5;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="fig-title">TeamCoach团队贡献度均衡化分布</div>
+  <div class="fig-subtitle">基于Git提交数据的团队成员贡献度分析 | 公平线=25% | 警戒线=15%</div>
+
+  <div class="legend">
+    <div class="legend-item"><div class="legend-swatch lg-green"></div> &ge;25% 均衡</div>
+    <div class="legend-item"><div class="legend-swatch lg-amber"></div> 15-25% 偏低</div>
+    <div class="legend-item"><div class="legend-swatch lg-red"></div> &lt;15% 警戒</div>
+  </div>
+
+  <div class="teams">
+    <!-- Team 1 -->
+    <div class="team-row">
+      <div class="team-label">第1组</div>
+      <div class="team-bars">
+        <div class="member-bar"><div class="member-name">成员A</div><div class="member-track"><div class="member-fill mf-green" style="width:50.9%">28%</div></div></div>
+        <div class="member-bar"><div class="member-name">成员B</div><div class="member-track"><div class="member-fill mf-green" style="width:47.3%">26%</div></div></div>
+        <div class="member-bar"><div class="member-name">成员C</div><div class="member-track"><div class="member-fill mf-green" style="width:43.6%">24%</div></div></div>
+        <div class="member-bar"><div class="member-name">成员D</div><div class="member-track"><div class="member-fill mf-amber" style="width:40%">22%</div></div></div>
+      </div>
+      <div class="team-status ts-ok">均衡</div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- Team 2 -->
+    <div class="team-row">
+      <div class="team-label">第2组</div>
+      <div class="team-bars">
+        <div class="member-bar"><div class="member-name">成员A</div><div class="member-track"><div class="member-fill mf-green" style="width:63.6%">35%</div></div></div>
+        <div class="member-bar"><div class="member-name">成员B</div><div class="member-track"><div class="member-fill mf-amber" style="width:41.8%">23%</div></div></div>
+        <div class="member-bar"><div class="member-name">成员C</div><div class="member-track"><div class="member-fill mf-amber" style="width:40%">22%</div></div></div>
+        <div class="member-bar"><div class="member-name">成员D</div><div class="member-track"><div class="member-fill mf-amber" style="width:36.4%">20%</div></div></div>
+      </div>
+      <div class="team-status ts-warn">轻度集中</div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- Team 3 -->
+    <div class="team-row">
+      <div class="team-label">第3组</div>
+      <div class="team-bars">
+        <div class="member-bar"><div class="member-name">成员A</div><div class="member-track"><div class="member-fill mf-green" style="width:69.1%">38%</div></div></div>
+        <div class="member-bar"><div class="member-name">成员B</div><div class="member-track"><div class="member-fill mf-green" style="width:54.5%">30%</div></div></div>
+        <div class="member-bar"><div class="member-name">成员C</div><div class="member-track"><div class="member-fill mf-green" style="width:47.3%">26%</div></div></div>
+        <div class="member-bar"><div class="member-name">成员D</div><div class="member-track"><div class="member-fill mf-red" style="width:10.9%">6%</div></div></div>
+      </div>
+      <div class="team-status ts-danger">搭便车预警!</div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- Team 4 -->
+    <div class="team-row">
+      <div class="team-label">第4组</div>
+      <div class="team-bars">
+        <div class="member-bar"><div class="member-name">成员A</div><div class="member-track"><div class="member-fill mf-green" style="width:50.9%">28%</div></div></div>
+        <div class="member-bar"><div class="member-name">成员B</div><div class="member-track"><div class="member-fill mf-green" style="width:45.5%">25%</div></div></div>
+        <div class="member-bar"><div class="member-name">成员C</div><div class="member-track"><div class="member-fill mf-green" style="width:50.9%">28%</div></div></div>
+        <div class="member-bar"><div class="member-name">成员D</div><div class="member-track"><div class="member-fill mf-amber" style="width:36.4%">20%</div></div></div>
+      </div>
+      <div class="team-status ts-ok">均衡</div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- Team 5 -->
+    <div class="team-row">
+      <div class="team-label">第5组</div>
+      <div class="team-bars">
+        <div class="member-bar"><div class="member-name">成员A</div><div class="member-track"><div class="member-fill mf-green" style="width:100%">55%</div></div></div>
+        <div class="member-bar"><div class="member-name">成员B</div><div class="member-track"><div class="member-fill mf-green" style="width:45.5%">25%</div></div></div>
+        <div class="member-bar"><div class="member-name">成员C</div><div class="member-track"><div class="member-fill mf-red" style="width:21.8%">12%</div></div></div>
+        <div class="member-bar"><div class="member-name">成员D</div><div class="member-track"><div class="member-fill mf-red" style="width:14.5%">8%</div></div></div>
+      </div>
+      <div class="team-status ts-danger">一人独揽!</div>
+    </div>
+  </div>
+
+  <div class="gini-box">
+    <div class="gini-item">
+      <div class="gini-value">0.38</div>
+      <div class="gini-label">干预前基尼系数</div>
+    </div>
+    <div class="gini-item">
+      <div class="gini-value" style="color:#10b981">0.21</div>
+      <div class="gini-label">干预后基尼系数</div>
+      <div class="gini-change">&darr; 44.7%</div>
+    </div>
+    <div class="gini-item">
+      <div class="gini-value">3/4</div>
+      <div class="gini-label">预警学生成功转变</div>
+    </div>
+  </div>
+
+  <div class="note">数据来源：Gitea仓库提交日志 + TeamCoach自动分析 | 贡献度 = 代码行数(40%) + 提交频率(30%) + 文件分布(30%)</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: "Source Han Sans CN", "Microsoft YaHei", "PingFang SC", sans-serif;
+    background: #fff;
+    display: flex; justify-content: center;
+    padding: 24px;
+    color: #1e293b;
+  }
+  .container { width: 960px; }
+  .fig-title {
+    text-align: center; font-size: 17px; font-weight: 800;
+    color: #1e293b; margin-bottom: 2px; letter-spacing: 0.5px;
+  }
+  .fig-subtitle {
+    text-align: center; font-size: 12.5px; color: #94a3b8; margin-bottom: 12px;
+  }
+
+  .modes { display: flex; gap: 8px; margin-bottom: 12px; }
+  .mode {
+    flex: 1; border-radius: 10px; overflow: hidden;
+    border: 1.5px solid #e2e8f0;
+  }
+  .mode-header {
+    padding: 9px 12px; color: #fff;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .mh1 { background: #3b82f6; }
+  .mh2 { background: #8b5cf6; }
+  .mh3 { background: #10b981; }
+
+  .mode-num {
+    width: 24px; height: 24px; border-radius: 50%;
+    background: rgba(255,255,255,0.2);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 13px; font-weight: 800;
+  }
+  .mode-title { font-size: 14px; font-weight: 800; }
+
+  .mode-body { padding: 10px 12px; background: #fff; }
+
+  .mode-core {
+    background: #f8fafc; border-radius: 6px; padding: 8px 10px;
+    margin-bottom: 8px; border-left: 3px solid;
+  }
+  .mc1 { border-color: #3b82f6; }
+  .mc2 { border-color: #8b5cf6; }
+  .mc3 { border-color: #10b981; }
+
+  .mode-core-label { font-size: 11px; color: #94a3b8; font-weight: 700; margin-bottom: 2px; letter-spacing: 0.5px; }
+  .mode-core-text { font-size: 12.5px; color: #334155; line-height: 1.5; font-weight: 600; }
+
+  .adapt-title {
+    font-size: 12px; font-weight: 800; color: #475569;
+    margin-bottom: 4px; letter-spacing: 0.3px;
+  }
+  .adapt-list { list-style: none; }
+  .adapt-list li {
+    font-size: 12px; color: #475569; padding: 3px 0;
+    border-bottom: 1px solid #f1f5f9;
+    display: flex; align-items: flex-start; gap: 5px;
+    line-height: 1.5;
+  }
+  .adapt-list li:last-child { border-bottom: none; }
+  .adapt-arrow { color: #cbd5e1; flex-shrink: 0; }
+  .adapt-course { font-weight: 700; color: #1e293b; }
+
+  .threshold-bar {
+    display: flex; gap: 10px; background: #f8fafc; border-radius: 10px;
+    padding: 12px 14px; align-items: center;
+    border: 1.5px solid #e2e8f0;
+  }
+  .tb-icon {
+    width: 40px; height: 40px; border-radius: 8px;
+    background: #1e293b; color: #fff;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 14px; font-weight: 700; flex-shrink: 0;
+  }
+  .tb-content { flex: 1; }
+  .tb-title { font-size: 14px; font-weight: 800; color: #1e293b; margin-bottom: 6px; }
+  .tb-items { display: flex; gap: 8px; flex-wrap: wrap; }
+  .tb-item {
+    background: #fff; border: 1.5px solid #e2e8f0; border-radius: 8px;
+    padding: 6px 12px; text-align: center;
+  }
+  .tb-value { font-size: 20px; font-weight: 800; color: #1e293b; }
+  .tb-label { font-size: 11px; color: #64748b; margin-top: 1px; font-weight: 600; }
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="fig-title">"五维工具 + 三模式"可复制推广路径</div>
+  <div class="fig-subtitle">核心依赖仅为 LLM API + 基本Web开发能力，普通高校均可实施</div>
+
+  <div class="modes">
+    <div class="mode">
+      <div class="mode-header mh1">
+        <div class="mode-num">1</div>
+        <div class="mode-title">个性化任务设计</div>
+      </div>
+      <div class="mode-body">
+        <div class="mode-core mc1">
+          <div class="mode-core-label">核心做法</div>
+          <div class="mode-core-text">教师提供知识点清单 + 出题约束模板 → AI批量生成差异化题目 → 一人一题分发</div>
+        </div>
+        <div class="adapt-title">适配示例</div>
+        <ul class="adapt-list">
+          <li><span class="adapt-arrow">→</span><span class="adapt-course">数据结构</span> 不同数据场景的算法实现</li>
+          <li><span class="adapt-arrow">→</span><span class="adapt-course">操作系统</span> 不同调度策略参数</li>
+          <li><span class="adapt-arrow">→</span><span class="adapt-course">数据库原理</span> 不同业务领域ER图</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="mode">
+      <div class="mode-header mh2">
+        <div class="mode-num">2</div>
+        <div class="mode-title">知识对照式代码审查</div>
+      </div>
+      <div class="mode-body">
+        <div class="mode-core mc2">
+          <div class="mode-core-label">核心做法</div>
+          <div class="mode-core-text">AI按五段式结构输出：问题位置 → 风险说明 → 知识点对应 → 修改建议 → 验证方式</div>
+        </div>
+        <div class="adapt-title">适配示例</div>
+        <ul class="adapt-list">
+          <li><span class="adapt-arrow">→</span><span class="adapt-course">网络安全</span> 漏洞分析 + 防御知识映射</li>
+          <li><span class="adapt-arrow">→</span><span class="adapt-course">软件工程</span> 设计模式 + 架构审查</li>
+          <li><span class="adapt-arrow">→</span><span class="adapt-course">Python编程</span> 替换知识点列表即可复用</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="mode">
+      <div class="mode-header mh3">
+        <div class="mode-num">3</div>
+        <div class="mode-title">数据驱动多维评价</div>
+      </div>
+      <div class="mode-body">
+        <div class="mode-core mc3">
+          <div class="mode-core-label">核心做法</div>
+          <div class="mode-core-text">四维AI评分（可按课程调整维度）+ L1/L2/L3三级量化 + 过程性数据叠加</div>
+        </div>
+        <div class="adapt-title">适配示例</div>
+        <ul class="adapt-list">
+          <li><span class="adapt-arrow">→</span><span class="adapt-course">数据结构</span> 功能+效率+规范+边界处理</li>
+          <li><span class="adapt-arrow">→</span><span class="adapt-course">软件工程</span> 需求+架构+测试+文档</li>
+          <li><span class="adapt-arrow">→</span><span class="adapt-course">C/C++</span> 功能+内存安全+性能+规范</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="threshold-bar">
+    <div class="tb-icon">低</div>
+    <div class="tb-content">
+      <div class="tb-title">推广门槛与成本</div>
+      <div class="tb-items">
+        <div class="tb-item">
+          <div class="tb-value">&lt;500<span style="font-size:11px">元</span></div>
+          <div class="tb-label">全学期运行总成本</div>
+        </div>
+        <div class="tb-item">
+          <div class="tb-value">2-3<span style="font-size:11px">周</span></div>
+          <div class="tb-label">首次部署时间</div>
+        </div>
+        <div class="tb-item">
+          <div class="tb-value">0</div>
+          <div class="tb-label">GPU服务器需求</div>
+        </div>
+        <div class="tb-item">
+          <div class="tb-value">2<span style="font-size:11px">h</span></div>
+          <div class="tb-label">教师入门培训</div>
+        </div>
+        <div class="tb-item">
+          <div class="tb-value">&#x2714;</div>
+          <div class="tb-label">源码已开放共享</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

@@ -7,7 +7,12 @@
       "Read(//c/Users/Administrator/Documents/cursor workplace/coursecompetation/**)",
       "Bash(done)",
       "mcp__Claude_Preview__preview_start",
-      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:8090/)"
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:8090/)",
+      "Bash(node -e \":*)",
+      "Bash(gh api:*)",
+      "WebFetch(domain:javaweb-ai-teaching.github.io)",
+      "Bash(grep -oE \".{0,30}\\(TYUST|tyust\\).{0,30}\" 'C:/Users/Administrator/Documents/cursor workplace/coursecompetation/site/docs/.vitepress/dist/innovation/index.html')",
+      "Bash(python3 -c \":*)"
     ]
   }
 }

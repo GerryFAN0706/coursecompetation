@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: "Source Han Sans CN", "Microsoft YaHei", "PingFang SC", sans-serif;
+    background: #fff;
+    display: flex; justify-content: center;
+    padding: 24px;
+    color: #1e293b;
+  }
+  .container { width: 960px; }
+  .fig-title {
+    text-align: center; font-size: 18px; font-weight: 800;
+    color: #1e293b; margin-bottom: 2px; letter-spacing: 0.5px;
+  }
+  .fig-subtitle {
+    text-align: center; font-size: 13px; color: #94a3b8; margin-bottom: 12px;
+  }
+
+  .hub {
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 10px;
+  }
+  .hub-circle {
+    width: 120px; height: 120px; border-radius: 50%;
+    background: #1e293b; color: #fff;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+  }
+  .hub-title { font-size: 18px; font-weight: 800; letter-spacing: 3px; }
+  .hub-sub { font-size: 12px; opacity: 0.6; margin-top: 3px; text-align: center; line-height: 1.5; }
+
+  .tools-ring {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 8px;
+    margin-bottom: 8px;
+  }
+
+  .tool-card {
+    border-radius: 10px; overflow: hidden;
+    border: 1.5px solid #e2e8f0;
+    position: relative;
+  }
+  .tool-card::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  }
+  .tc-w::before { background: #3b82f6; }
+  .tc-s::before { background: #ef4444; }
+  .tc-t::before { background: #10b981; }
+  .tc-c::before { background: #8b5cf6; }
+  .tc-r::before { background: #f59e0b; }
+
+  .tool-header {
+    display: flex; align-items: center; gap: 8px;
+    padding: 10px 12px 0;
+  }
+  .tool-icon {
+    width: 34px; height: 34px; border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 14px; color: #fff; font-weight: 700; flex-shrink: 0;
+  }
+  .ti-w { background: #3b82f6; }
+  .ti-s { background: #ef4444; }
+  .ti-t { background: #10b981; }
+  .ti-c { background: #8b5cf6; }
+  .ti-r { background: #f59e0b; }
+
+  .tool-name { font-size: 14px; font-weight: 800; color: #1e293b; }
+  .tool-role { font-size: 12px; color: #94a3b8; margin-top: 1px; }
+
+  .tool-body { padding: 6px 12px 10px; }
+  .tool-features {
+    display: flex; flex-wrap: wrap; gap: 4px; margin-bottom: 6px;
+  }
+  .feature-chip {
+    font-size: 11px; padding: 2px 7px; border-radius: 10px;
+    background: #f1f5f9; color: #475569; font-weight: 600;
+    border: 1px solid #e2e8f0;
+  }
+  .tool-phase {
+    display: inline-block; font-size: 11px; font-weight: 700;
+    padding: 1px 7px; border-radius: 10px; color: #fff;
+  }
+  .tp-w { background: #3b82f6; }
+  .tp-s { background: #ef4444; }
+  .tp-t { background: #10b981; }
+  .tp-c { background: #8b5cf6; }
+  .tp-r { background: #f59e0b; }
+
+  .tools-bottom {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    margin-bottom: 8px;
+  }
+
+  .flow-bar {
+    display: flex; align-items: center; justify-content: center;
+    padding: 7px 14px;
+    border: 1.5px dashed #94a3b8; border-radius: 8px;
+    background: #f8fafc; margin-bottom: 8px;
+  }
+  .flow-text { font-size: 13px; color: #475569; font-weight: 700; text-align: center; }
+
+  .role-bar {
+    display: flex; gap: 0; border-radius: 6px; overflow: hidden;
+  }
+  .role {
+    flex: 1; text-align: center; padding: 7px 6px;
+    font-size: 13px; font-weight: 700; color: #fff;
+  }
+  .role-teacher { background: #1e293b; }
+  .role-student { background: #10b981; }
+  .role-ai { background: #8b5cf6; }
+  .role-label { font-size: 11px; font-weight: 400; opacity: 0.8; display: block; margin-top: 2px; }
+
+  .coverage-badge {
+    text-align: center; margin-top: 8px;
+    font-size: 13px; color: #10b981; font-weight: 700;
+  }
+  .coverage-badge span {
+    background: #f0fdf4; padding: 5px 18px; border-radius: 20px;
+    display: inline-block; border: 1.5px solid #bbf7d0;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="fig-title">五维AI融合创新教学工具体系架构</div>
+  <div class="fig-subtitle">五维工具协同 + 数据闭环驱动 + 覆盖全部六大AI教学情境</div>
+
+  <div class="hub">
+    <div class="hub-circle">
+      <div class="hub-title">五维融合</div>
+      <div class="hub-sub">数据闭环<br>教学全流程</div>
+    </div>
+  </div>
+
+  <div class="tools-ring">
+    <!-- WebDev -->
+    <div class="tool-card tc-w">
+      <div class="tool-header">
+        <div class="tool-icon ti-w">W</div>
+        <div><div class="tool-name">维度一：WebDev 智能助教</div><div class="tool-role">RAG课程教学智能体</div></div>
+      </div>
+      <div class="tool-body">
+        <div class="tool-features">
+          <span class="feature-chip">学情采集</span>
+          <span class="feature-chip">24h问答</span>
+          <span class="feature-chip">预习引导</span>
+        </div>
+        <span class="tool-phase tp-w">课前 + 课后</span>
+      </div>
+    </div>
+
+    <!-- WebSec -->
+    <div class="tool-card tc-s">
+      <div class="tool-header">
+        <div class="tool-icon ti-s">S</div>
+        <div><div class="tool-name">维度二：WebSec 攻防闯关</div><div class="tool-role">AI驱动安全训练平台</div></div>
+      </div>
+      <div class="tool-body">
+        <div class="tool-features">
+          <span class="feature-chip">游戏化训练</span>
+          <span class="feature-chip">自适应难度</span>
+          <span class="feature-chip">实时大屏</span>
+        </div>
+        <span class="tool-phase tp-s">课中</span>
+      </div>
+    </div>
+
+    <!-- TeamCoach -->
+    <div class="tool-card tc-t">
+      <div class="tool-header">
+        <div class="tool-icon ti-t">T</div>
+        <div><div class="tool-name">维度三：TeamCoach 团队教练</div><div class="tool-role">Git数据驱动协作监控</div></div>
+      </div>
+      <div class="tool-body">
+        <div class="tool-features">
+          <span class="feature-chip">贡献度追踪</span>
+          <span class="feature-chip">搭便车预警</span>
+          <span class="feature-chip">AI周报</span>
+        </div>
+        <span class="tool-phase tp-t">课后</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="tools-bottom">
+    <!-- Code Review Battle -->
+    <div class="tool-card tc-c">
+      <div class="tool-header">
+        <div class="tool-icon ti-c">C</div>
+        <div><div class="tool-name">维度四：Code Review Battle</div><div class="tool-role">人机对抗代码审查</div></div>
+      </div>
+      <div class="tool-body">
+        <div class="tool-features">
+          <span class="feature-chip">人机同台审查</span>
+          <span class="feature-chip">批判性思维</span>
+          <span class="feature-chip">对抗辩论</span>
+        </div>
+        <span class="tool-phase tp-c">课中</span>
+      </div>
+    </div>
+
+    <!-- 资料重构 -->
+    <div class="tool-card tc-r">
+      <div class="tool-header">
+        <div class="tool-icon ti-r">R</div>
+        <div><div class="tool-name">维度五：AI辅助教学资料重构</div><div class="tool-role">个性化出题 + AI课件生成</div></div>
+      </div>
+      <div class="tool-body">
+        <div class="tool-features">
+          <span class="feature-chip">一人一题</span>
+          <span class="feature-chip">分层任务</span>
+          <span class="feature-chip">AI课件生成</span>
+        </div>
+        <span class="tool-phase tp-r">课前</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="flow-bar">
+    <div class="flow-text">&#x21BB; 数据闭环：课前学情采集 &rarr; 课中人机协同 &rarr; 课后AI评价 &rarr; 精准干预下一讲 &rarr; 持续迭代</div>
+  </div>
+
+  <div class="role-bar">
+    <div class="role role-teacher">教 师<span class="role-label">审核 &middot; 决策 &middot; 引导 &middot; 干预</span></div>
+    <div class="role role-student">学 生<span class="role-label">理解 &middot; 判断 &middot; 修改 &middot; 辩论</span></div>
+    <div class="role role-ai">AI 工具<span class="role-label">出题 &middot; 审查 &middot; 追踪 &middot; 答疑</span></div>
+  </div>
+
+  <div class="coverage-badge"><span>&#x2714; 五维融合覆盖全部六大AI教学情境：学情采集 &middot; 数字资源 &middot; 场景设计 &middot; 多维评价 &middot; 人机协同 &middot; 个性化支持</span></div>
+</div>
+</body>
+</html>

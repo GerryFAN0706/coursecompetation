@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: "Source Han Sans CN", "Microsoft YaHei", "PingFang SC", sans-serif;
+    background: #fff;
+    display: flex; justify-content: center;
+    padding: 24px;
+    color: #1e293b;
+  }
+  .container { width: 960px; }
+  .fig-title {
+    text-align: center; font-size: 17px; font-weight: 800;
+    color: #1e293b; margin-bottom: 2px; letter-spacing: 0.5px;
+  }
+  .fig-subtitle {
+    text-align: center; font-size: 12.5px; color: #94a3b8; margin-bottom: 12px;
+  }
+  .semester-tag {
+    display: inline-block; font-size: 11px; background: #f1f5f9; color: #475569;
+    padding: 1px 7px; border-radius: 10px; font-weight: 700;
+    border: 1px solid #e2e8f0;
+  }
+
+  .dashboard { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+
+  .card {
+    border: 1.5px solid #e2e8f0; border-radius: 10px;
+    padding: 12px 12px; background: #fff; position: relative; overflow: hidden;
+  }
+  .card::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  }
+  .card-w::before { background: #3b82f6; }
+  .card-s::before { background: #ef4444; }
+  .card-t::before { background: #10b981; }
+  .card-c::before { background: #8b5cf6; }
+  .card-r::before { background: #f59e0b; }
+
+  .card-header { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
+  .card-icon {
+    width: 30px; height: 30px; border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 13px; color: #fff; font-weight: 700;
+  }
+  .ci-w { background: #3b82f6; }
+  .ci-s { background: #ef4444; }
+  .ci-t { background: #10b981; }
+  .ci-c { background: #8b5cf6; }
+  .ci-r { background: #f59e0b; }
+
+  .card-name { font-size: 14px; font-weight: 800; color: #1e293b; }
+  .card-role { font-size: 11px; color: #94a3b8; margin-top: 1px; }
+
+  .metrics { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+  .metric {
+    background: #f8fafc; border-radius: 6px; padding: 7px 8px; text-align: center;
+    border: 1px solid #f1f5f9;
+  }
+  .metric-value { font-size: 22px; font-weight: 800; line-height: 1.2; color: #1e293b; }
+  .metric-label { font-size: 11px; color: #64748b; margin-top: 1px; font-weight: 600; }
+  .metric-change { font-size: 10.5px; font-weight: 700; margin-top: 1px; }
+  .mc-up { color: #10b981; }
+  .mc-down { color: #ef4444; }
+  .mc-neutral { color: #94a3b8; }
+
+  .card-full { grid-column: 1 / -1; }
+  .metrics-3 { grid-template-columns: 1fr 1fr 1fr; }
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="fig-title">五维AI工具运行数据仪表盘</div>
+  <div class="fig-subtitle">2025秋学期实际运行数据 <span class="semester-tag">N=58</span></div>
+
+  <div class="dashboard">
+    <!-- WebDev -->
+    <div class="card card-w">
+      <div class="card-header">
+        <div class="card-icon ci-w">W</div>
+        <div><div class="card-name">WebDev 智能助教</div><div class="card-role">RAG课程教学智能体</div></div>
+      </div>
+      <div class="metrics">
+        <div class="metric">
+          <div class="metric-value">8,347</div>
+          <div class="metric-label">累计交互次数</div>
+        </div>
+        <div class="metric">
+          <div class="metric-value">143.9</div>
+          <div class="metric-label">人均交互次数</div>
+        </div>
+        <div class="metric">
+          <div class="metric-value">72.4%</div>
+          <div class="metric-label">课前预习参与率</div>
+          <div class="metric-change mc-up">↑ 从约30%提升</div>
+        </div>
+        <div class="metric">
+          <div class="metric-value">47.3%</div>
+          <div class="metric-label">晚间使用占比</div>
+          <div class="metric-change mc-neutral">21:00-23:00高峰</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- WebSec -->
+    <div class="card card-s">
+      <div class="card-header">
+        <div class="card-icon ci-s">S</div>
+        <div><div class="card-name">WebSec 攻防闯关</div><div class="card-role">AI驱动安全训练平台</div></div>
+      </div>
+      <div class="metrics">
+        <div class="metric">
+          <div class="metric-value">2,784</div>
+          <div class="metric-label">累计闯关提交</div>
+        </div>
+        <div class="metric">
+          <div class="metric-value">6</div>
+          <div class="metric-label">课堂闯关次数</div>
+        </div>
+        <div class="metric">
+          <div class="metric-value">94%</div>
+          <div class="metric-label">SQL注入关通过率</div>
+          <div class="metric-change mc-up">↑ 从71%提升</div>
+        </div>
+        <div class="metric">
+          <div class="metric-value">82%</div>
+          <div class="metric-label">越权关干预后通过</div>
+          <div class="metric-change mc-up">↑ 干预前仅40%</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TeamCoach -->
+    <div class="card card-t">
+      <div class="card-header">
+        <div class="card-icon ci-t">T</div>
+        <div><div class="card-name">TeamCoach 团队教练</div><div class="card-role">Git数据驱动协作监控</div></div>
+      </div>
+      <div class="metrics">
+        <div class="metric">
+          <div class="metric-value">0.21</div>
+          <div class="metric-label">贡献度基尼系数</div>
+          <div class="metric-change mc-up">↓ 从0.38下降</div>
+        </div>
+        <div class="metric">
+          <div class="metric-value">3/4</div>
+          <div class="metric-label">预警学生成功转变</div>
+        </div>
+        <div class="metric">
+          <div class="metric-value">10</div>
+          <div class="metric-label">团队持续监控数</div>
+        </div>
+        <div class="metric">
+          <div class="metric-value">−12.3<span style="font-size:12px">pp</span></div>
+          <div class="metric-label">贡献标准差降幅</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Code Review Battle -->
+    <div class="card card-c">
+      <div class="card-header">
+        <div class="card-icon ci-c">C</div>
+        <div><div class="card-name">Code Review Battle</div><div class="card-role">人机对抗代码审查</div></div>
+      </div>
+      <div class="metrics">
+        <div class="metric">
+          <div class="metric-value">8</div>
+          <div class="metric-label">学期对战次数</div>
+        </div>
+        <div class="metric">
+          <div class="metric-value">35%</div>
+          <div class="metric-label">学生胜出场次比</div>
+        </div>
+        <div class="metric">
+          <div class="metric-value">43%</div>
+          <div class="metric-label">AI误报识别率</div>
+          <div class="metric-change mc-up">↑ 从12%提升</div>
+        </div>
+        <div class="metric">
+          <div class="metric-value">11</div>
+          <div class="metric-label">学生发现AI遗漏数</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 资料重构 (full width) -->
+    <div class="card card-r card-full">
+      <div class="card-header">
+        <div class="card-icon ci-r">R</div>
+        <div><div class="card-name">AI辅助教学资料重构</div><div class="card-role">个性化出题 + AI课件生成</div></div>
+      </div>
+      <div class="metrics metrics-3">
+        <div class="metric">
+          <div class="metric-value">812</div>
+          <div class="metric-label">生成独立实验任务</div>
+          <div class="metric-change mc-neutral">14批 × 58人</div>
+        </div>
+        <div class="metric">
+          <div class="metric-value">4.7%</div>
+          <div class="metric-label">MOSS代码相似度</div>
+          <div class="metric-change mc-up">↓ 从45.2%下降</div>
+        </div>
+        <div class="metric">
+          <div class="metric-value">30<span style="font-size:12px">min</span></div>
+          <div class="metric-label">单讲PPT制作时间</div>
+          <div class="metric-change mc-up">↓ 从4小时缩短</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

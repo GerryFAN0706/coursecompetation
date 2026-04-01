@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: "Source Han Sans CN", "Microsoft YaHei", "PingFang SC", sans-serif;
+    background: #fff;
+    display: flex; justify-content: center;
+    padding: 24px;
+    color: #1e293b;
+  }
+  .container { width: 960px; }
+  .fig-title {
+    text-align: center; font-size: 17px; font-weight: 800;
+    color: #1e293b; margin-bottom: 2px; letter-spacing: 0.5px;
+  }
+  .fig-subtitle {
+    text-align: center; font-size: 12.5px; color: #94a3b8; margin-bottom: 12px;
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 8px;
+  }
+
+  .scenario {
+    border-radius: 10px; overflow: hidden;
+    border: 1.5px solid #e2e8f0;
+  }
+  .sc-header {
+    padding: 8px 10px; color: #fff;
+    display: flex; align-items: center; gap: 6px;
+  }
+  .sc-num {
+    width: 22px; height: 22px; border-radius: 50%;
+    background: rgba(255,255,255,0.2);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 12px; font-weight: 800; flex-shrink: 0;
+  }
+  .sc-title { font-size: 13.5px; font-weight: 800; }
+
+  .sh1 { background: #3b82f6; }
+  .sh2 { background: #8b5cf6; }
+  .sh3 { background: #1e293b; }
+  .sh4 { background: #f59e0b; }
+  .sh5 { background: #10b981; }
+  .sh6 { background: #0d9488; }
+
+  .sc-body { padding: 8px 10px; background: #fff; }
+
+  .sc-tools {
+    display: flex; flex-wrap: wrap; gap: 3px; margin-bottom: 5px;
+  }
+  .sc-tool {
+    font-size: 10.5px; font-weight: 700; padding: 1px 6px; border-radius: 10px;
+  }
+  .st-w { background: #dbeafe; color: #1d4ed8; }
+  .st-s { background: #fee2e2; color: #b91c1c; }
+  .st-t { background: #d1fae5; color: #065f46; }
+  .st-c { background: #ede9fe; color: #6d28d9; }
+  .st-r { background: #fef3c7; color: #92400e; }
+
+  .sc-desc {
+    font-size: 12px; color: #475569; line-height: 1.5; font-weight: 500;
+  }
+
+  .req-badge {
+    text-align: center; margin-top: 10px;
+    font-size: 13px; color: #10b981; font-weight: 800;
+  }
+  .req-badge span {
+    background: #f0fdf4; padding: 5px 18px; border-radius: 20px;
+    display: inline-block;
+    border: 1.5px solid #bbf7d0;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="fig-title">六大AI教学情境全覆盖</div>
+  <div class="fig-subtitle">竞赛要求"至少包括2个情境" — 本课程实现全部六大情境的深度覆盖</div>
+
+  <div class="grid">
+    <div class="scenario">
+      <div class="sc-header sh1"><div class="sc-num">1</div><div class="sc-title">学情数据采集与分析</div></div>
+      <div class="sc-body">
+        <div class="sc-tools">
+          <span class="sc-tool st-w">WebDev助教</span>
+          <span class="sc-tool st-s">WebSec挑战</span>
+          <span class="sc-tool st-t">TeamCoach</span>
+        </div>
+        <div class="sc-desc">课前预习交互采集知识薄弱点热力图；闯关数据追踪安全能力成长；Git提交分析追踪团队协作过程</div>
+      </div>
+    </div>
+
+    <div class="scenario">
+      <div class="sc-header sh2"><div class="sc-num">2</div><div class="sc-title">个性化学习支持</div></div>
+      <div class="sc-body">
+        <div class="sc-tools">
+          <span class="sc-tool st-w">WebDev助教</span>
+          <span class="sc-tool st-s">WebSec挑战</span>
+          <span class="sc-tool st-r">资料重构</span>
+        </div>
+        <div class="sc-desc">24小时个性化问答；AI为每人生成不同漏洞代码（自适应难度）；一人一题三级难度差异化任务</div>
+      </div>
+    </div>
+
+    <div class="scenario">
+      <div class="sc-header sh3"><div class="sc-num">3</div><div class="sc-title">师生机协同教学</div></div>
+      <div class="sc-body">
+        <div class="sc-tools">
+          <span class="sc-tool st-w">WebDev助教</span>
+          <span class="sc-tool st-s">WebSec挑战</span>
+          <span class="sc-tool st-c">Code Review</span>
+        </div>
+        <div class="sc-desc">AI担任助教角色；AI出题+学生解题+教师干预三方协同；人机对抗深化安全理解</div>
+      </div>
+    </div>
+
+    <div class="scenario">
+      <div class="sc-header sh4"><div class="sc-num">4</div><div class="sc-title">多维智能评价反馈</div></div>
+      <div class="sc-body">
+        <div class="sc-tools">
+          <span class="sc-tool st-c">Code Review</span>
+          <span class="sc-tool st-s">WebSec挑战</span>
+          <span class="sc-tool st-t">TeamCoach</span>
+        </div>
+        <div class="sc-desc">功能+知识+规范+安全四维AI评分；闯关数据评价安全实操；贡献度报告评价团队协作</div>
+      </div>
+    </div>
+
+    <div class="scenario">
+      <div class="sc-header sh5"><div class="sc-num">5</div><div class="sc-title">数字资源整合与运用</div></div>
+      <div class="sc-body">
+        <div class="sc-tools">
+          <span class="sc-tool st-w">WebDev助教</span>
+          <span class="sc-tool st-s">WebSec挑战</span>
+        </div>
+        <div class="sc-desc">基于RAG整合全部16讲课程资源构建知识库；AI动态生成安全漏洞题库</div>
+      </div>
+    </div>
+
+    <div class="scenario">
+      <div class="sc-header sh6"><div class="sc-num">6</div><div class="sc-title">适配的教学场景设计</div></div>
+      <div class="sc-body">
+        <div class="sc-tools">
+          <span class="sc-tool st-s">WebSec挑战</span>
+          <span class="sc-tool st-c">Code Review</span>
+          <span class="sc-tool st-t">TeamCoach</span>
+        </div>
+        <div class="sc-desc">游戏化攻防闯关场景；人机对抗代码审查场景；数据驱动个性化项目指导场景</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="req-badge"><span>&#x2714; 竞赛要求 ≥2 个情境，本课程实现 6/6 全覆盖</span></div>
+</div>
+</body>
+</html>

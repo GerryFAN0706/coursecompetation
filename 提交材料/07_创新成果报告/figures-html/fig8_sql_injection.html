@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: "Source Han Sans CN", "Microsoft YaHei", "PingFang SC", sans-serif;
+    background: #fff;
+    display: flex; justify-content: center;
+    padding: 24px;
+    color: #1e293b;
+  }
+  .container { width: 960px; }
+  .fig-title {
+    text-align: center; font-size: 18px; font-weight: 800;
+    color: #1e293b; margin-bottom: 2px; letter-spacing: 0.5px;
+  }
+  .fig-subtitle {
+    text-align: center; font-size: 13px; color: #94a3b8; margin-bottom: 14px;
+  }
+
+  .legend {
+    display: flex; justify-content: center; gap: 20px; margin-bottom: 14px;
+  }
+  .legend-item {
+    display: flex; align-items: center; gap: 6px;
+    font-size: 13px; color: #64748b; font-weight: 600;
+  }
+  .legend-swatch { width: 24px; height: 3px; border-radius: 2px; }
+  .ls-recog { background: #3b82f6; }
+  .ls-apply { background: #10b981; }
+
+  .chart-area {
+    position: relative; width: 100%; height: 300px;
+    margin-bottom: 10px;
+  }
+
+  svg.line-chart { width: 100%; height: 100%; }
+
+  .timeline {
+    display: flex; gap: 0; margin-bottom: 16px;
+  }
+  .time-point {
+    flex: 1; text-align: center; position: relative;
+  }
+  .tp-header {
+    font-size: 15px; font-weight: 800; color: #1e293b;
+    margin-bottom: 3px;
+  }
+  .tp-sub { font-size: 12px; color: #94a3b8; font-weight: 500; }
+  .tp-values { margin-top: 8px; }
+  .tp-val {
+    font-size: 13px; font-weight: 700; margin-bottom: 2px;
+  }
+  .tp-val-recog { color: #3b82f6; }
+  .tp-val-apply { color: #10b981; }
+
+  .tp-card {
+    background: #f8fafc; border: 1.5px solid #e2e8f0;
+    border-radius: 8px; padding: 10px 8px; margin: 0 3px;
+  }
+
+  .key-jump {
+    display: flex; align-items: center; justify-content: center;
+    margin-top: 10px; padding: 7px 14px;
+    background: #fef2f2; border: 1.5px solid #fca5a5; border-radius: 8px;
+  }
+  .key-jump-text {
+    font-size: 14px; font-weight: 700; color: #dc2626; text-align: center;
+  }
+
+  .progress-section { margin-top: 12px; }
+  .progress-label {
+    font-size: 13px; font-weight: 700; color: #475569;
+    margin-bottom: 6px;
+  }
+  .progress-row {
+    display: flex; align-items: center; gap: 8px; margin-bottom: 6px;
+  }
+  .progress-name {
+    width: 200px; text-align: right; flex-shrink: 0;
+    font-size: 13px; color: #64748b; font-weight: 600;
+  }
+  .progress-track {
+    flex: 1; height: 24px; background: #f1f5f9; border-radius: 4px;
+    overflow: hidden; display: flex; align-items: center; position: relative;
+  }
+  .progress-fill {
+    height: 100%; border-radius: 4px;
+    display: flex; align-items: center;
+    font-size: 12px; font-weight: 800; color: #fff;
+    padding-left: 8px; padding-right: 8px;
+    justify-content: space-between;
+    position: relative;
+  }
+  .pf-recog { background: #3b82f6; }
+  .pf-apply { background: #10b981; }
+
+  .progress-markers {
+    position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+    display: flex; align-items: center;
+  }
+  .progress-dot {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: #fff; border: 2px solid;
+    position: absolute;
+  }
+
+  .note {
+    text-align: center; font-size: 12px; color: #94a3b8;
+    margin-top: 10px; line-height: 1.5;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="fig-title">SQL注入安全意识四时间点纵向追踪</div>
+  <div class="fig-subtitle">N=58 | 四个关键教学节点的能力变化追踪</div>
+
+  <div class="legend">
+    <div class="legend-item"><div class="legend-swatch ls-recog"></div> 识别率（能发现SQL注入风险）</div>
+    <div class="legend-item"><div class="legend-swatch ls-apply"></div> 应用率（正确使用PreparedStatement）</div>
+  </div>
+
+  <div class="timeline">
+    <div class="time-point">
+      <div class="tp-card">
+        <div class="tp-header">第1周</div>
+        <div class="tp-sub">学期初摸底</div>
+        <div class="tp-values">
+          <div class="tp-val tp-val-recog">识别 12.1%</div>
+          <div class="tp-val tp-val-apply">应用 5.2%</div>
+        </div>
+      </div>
+    </div>
+    <div class="time-point">
+      <div class="tp-card">
+        <div class="tp-header">第6周</div>
+        <div class="tp-sub">JDBC讲授后</div>
+        <div class="tp-values">
+          <div class="tp-val tp-val-recog">识别 45.2%</div>
+          <div class="tp-val tp-val-apply">应用 38.0%</div>
+        </div>
+      </div>
+    </div>
+    <div class="time-point">
+      <div class="tp-card" style="border-color: #fca5a5; background: #fef2f2;">
+        <div class="tp-header">第11周</div>
+        <div class="tp-sub">AI辅助审查后</div>
+        <div class="tp-values">
+          <div class="tp-val tp-val-recog">识别 79.3%</div>
+          <div class="tp-val tp-val-apply">应用 74.1%</div>
+        </div>
+      </div>
+    </div>
+    <div class="time-point">
+      <div class="tp-card">
+        <div class="tp-header">第16周</div>
+        <div class="tp-sub">期末考核</div>
+        <div class="tp-values">
+          <div class="tp-val tp-val-recog">识别 89.7%</div>
+          <div class="tp-val tp-val-apply">应用 86.2%</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="progress-section">
+    <div class="progress-label">识别率成长轨迹</div>
+    <div class="progress-row">
+      <div class="progress-name">识别率（发现SQL注入风险）</div>
+      <div class="progress-track">
+        <div class="progress-fill pf-recog" style="width:89.7%">
+          <span>12.1%</span>
+          <span>89.7%</span>
+        </div>
+      </div>
+    </div>
+    <div class="progress-label">应用率成长轨迹</div>
+    <div class="progress-row">
+      <div class="progress-name">应用率（PreparedStatement）</div>
+      <div class="progress-track">
+        <div class="progress-fill pf-apply" style="width:86.2%">
+          <span>5.2%</span>
+          <span>86.2%</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="key-jump">
+    <div class="key-jump-text">关键跳升：第6周&rarr;第11周 识别率 +34.1pp &mdash; AI审查中展示真实攻击示例，学生安全意识显著提升</div>
+  </div>
+
+  <div class="note">数据来源：四次安全知识测试 + 代码审查结果 | 识别率与应用率差距逐步收窄，表明"知行合一"效果显著</div>
+</div>
+</body>
+</html>
