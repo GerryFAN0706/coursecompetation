@@ -84,11 +84,11 @@ anonSafe: true
   <div>
     <strong>在线演示：</strong>以下四个融合创新维度均有交互式原型演示，展示工具在真实教学场景中的界面与交互流程（演示用途，非生产系统）。
     <br/>
-    <a href="https://gerryfan0706.github.io/coursecompetation/demo-tools/webdev-assistant/">智能助教 Demo</a> ·
-    <a href="https://gerryfan0706.github.io/coursecompetation/demo-tools/websec-challenge/">编程挑战 Demo</a> ·
-    <a href="https://gerryfan0706.github.io/coursecompetation/demo-tools/team-coach/">团队教练 Demo</a> ·
-    <a href="https://gerryfan0706.github.io/coursecompetation/demo-tools/code-review-battle/">人机对抗 Demo</a> ·
-    <a href="https://gerryfan0706.github.io/coursecompetation/demo-tools/">工具套件总览</a>
+    <a href="https://javaweb-ai-teaching.github.io/coursecompetation/demo-tools/webdev-assistant/">智能助教 Demo</a> ·
+    <a href="https://javaweb-ai-teaching.github.io/coursecompetation/demo-tools/websec-challenge/">编程挑战 Demo</a> ·
+    <a href="https://javaweb-ai-teaching.github.io/coursecompetation/demo-tools/team-coach/">团队教练 Demo</a> ·
+    <a href="https://javaweb-ai-teaching.github.io/coursecompetation/demo-tools/code-review-battle/">人机对抗 Demo</a> ·
+    <a href="https://javaweb-ai-teaching.github.io/coursecompetation/demo-tools/">工具套件总览</a>
   </div>
 </div>
 
@@ -137,7 +137,7 @@ anonSafe: true
 - 自然产生丰富的学情数据，支撑"数据驱动"叙事
 - 使用国产大模型（DeepSeek/通义千问），体现自主可控
 
-> 🖥️ **[查看智能助教交互演示 →](https://gerryfan0706.github.io/coursecompetation/demo-tools/webdev-assistant/)**（原型Demo，展示界面与交互流程）
+> 🖥️ **[查看智能助教交互演示 →](https://javaweb-ai-teaching.github.io/coursecompetation/demo-tools/webdev-assistant/)**（原型Demo，展示界面与交互流程）
 
 <div class="section-divider"></div>
 
@@ -198,7 +198,7 @@ anonSafe: true
 - **实时数据大屏**——教师可据数据即时干预共性薄弱点
 - 产出丰富的过程数据（通过率、用时、薄弱知识点分布）
 
-> 🖥️ **[查看编程挑战交互演示 →](https://gerryfan0706.github.io/coursecompetation/demo-tools/websec-challenge/)**（原型Demo，展示闯关界面与自动判定流程）
+> 🖥️ **[查看编程挑战交互演示 →](https://javaweb-ai-teaching.github.io/coursecompetation/demo-tools/websec-challenge/)**（原型Demo，展示闯关界面与自动判定流程）
 
 <div class="section-divider"></div>
 
@@ -257,7 +257,7 @@ AI充当团队的"项目教练"——自动分析每位成员的Git贡献，生�
 - **过程性评价**取代"只看最终成果"的传统模式
 - 教师基于周报数据精准干预——哪个组有风险、哪个成员需关注
 
-> 🖥️ **[查看团队教练交互演示 →](https://gerryfan0706.github.io/coursecompetation/demo-tools/team-coach/)**（原型Demo，展示Git分析与AI周报界面）
+> 🖥️ **[查看团队教练交互演示 →](https://javaweb-ai-teaching.github.io/coursecompetation/demo-tools/team-coach/)**（原型Demo，展示Git分析与AI周报界面）
 
 <div class="section-divider"></div>
 
@@ -338,7 +338,7 @@ AI充当团队的"项目教练"——自动分析每位成员的Git贡献，生�
 - "人机协同"的最佳诠释：不是人用AI，而是人和AI各有优势
 - 学生发现AI遗漏了一个漏洞 → 建立信心 → 教师总结"AI不是万能的"
 
-> 🖥️ **[查看人机对抗交互演示 →](https://gerryfan0706.github.io/coursecompetation/demo-tools/code-review-battle/)**（原型Demo，展示对战流程与对比界面）
+> 🖥️ **[查看人机对抗交互演示 →](https://javaweb-ai-teaching.github.io/coursecompetation/demo-tools/code-review-battle/)**（原型Demo，展示对战流程与对比界面）
 
 <div class="section-divider"></div>
 

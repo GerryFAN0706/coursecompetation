@@ -190,7 +190,7 @@
 | S16 | DeepSeek控制台 | 登录API管理后台，截取调用量统计页面 |
 | S17 | MOSS平台 | 运行一次作业的相似度检测，截取结果热力图 |
 | S18 | Gitea平台 | 打开课程仓库页面，展示按学号的分支列表 |
-| S19 | 浏览器 | 打开课程网站首页 https://gerryfan0706.github.io/coursecompetation/ |
+| S19 | 浏览器 | 打开课程网站首页 https://javaweb-ai-teaching.github.io/coursecompetation/ |
 | S20 | 浏览器 | 打开提示词库页面 /resources/prompts/ |
 | S29 | 问卷星 | 导出问卷结果汇总页面 |
 | S30 | 教务系统 | 导出2024秋/2025秋评教数据对比 |

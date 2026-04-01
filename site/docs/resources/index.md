@@ -73,30 +73,30 @@ anonSafe: true
     <div class="summary-icon">🤖</div>
     <h3>智能助教 Demo</h3>
     <p>RAG课程智能体的聊天界面、预习引导、学情热力图展示。</p>
-    <p><a href="https://gerryfan0706.github.io/coursecompetation/demo-tools/webdev-assistant/">打开演示 →</a></p>
+    <p><a href="https://javaweb-ai-teaching.github.io/coursecompetation/demo-tools/webdev-assistant/">打开演示 →</a></p>
   </div>
   <div class="summary-card">
     <div class="summary-icon">🎮</div>
     <h3>编程挑战 Demo</h3>
     <p>安全漏洞闯关界面、代码编辑器、自动判定与排行榜展示。</p>
-    <p><a href="https://gerryfan0706.github.io/coursecompetation/demo-tools/websec-challenge/">打开演示 →</a></p>
+    <p><a href="https://javaweb-ai-teaching.github.io/coursecompetation/demo-tools/websec-challenge/">打开演示 →</a></p>
   </div>
   <div class="summary-card">
     <div class="summary-icon">👥</div>
     <h3>团队教练 Demo</h3>
     <p>Git贡献分析看板、AI周报生成、搭便车预警界面展示。</p>
-    <p><a href="https://gerryfan0706.github.io/coursecompetation/demo-tools/team-coach/">打开演示 →</a></p>
+    <p><a href="https://javaweb-ai-teaching.github.io/coursecompetation/demo-tools/team-coach/">打开演示 →</a></p>
   </div>
   <div class="summary-card">
     <div class="summary-icon">⚔️</div>
     <h3>人机对抗 Demo</h3>
     <p>人vs AI代码审查对战流程、结果对比、辩论界面展示。</p>
-    <p><a href="https://gerryfan0706.github.io/coursecompetation/demo-tools/code-review-battle/">打开演示 →</a></p>
+    <p><a href="https://javaweb-ai-teaching.github.io/coursecompetation/demo-tools/code-review-battle/">打开演示 →</a></p>
   </div>
 </div>
 
 <p style="text-align:center;margin:10px 0;">
-  <a href="https://gerryfan0706.github.io/coursecompetation/demo-tools/" style="display:inline-block;padding:8px 24px;background:linear-gradient(135deg,#2563eb,#0891b2);color:white;border-radius:999px;font-weight:600;text-decoration:none;box-shadow:0 4px 14px rgba(37,99,235,0.2);transition:all 0.3s;">查看全部工具演示 →</a>
+  <a href="https://javaweb-ai-teaching.github.io/coursecompetation/demo-tools/" style="display:inline-block;padding:8px 24px;background:linear-gradient(135deg,#2563eb,#0891b2);color:white;border-radius:999px;font-weight:600;text-decoration:none;box-shadow:0 4px 14px rgba(37,99,235,0.2);transition:all 0.3s;">查看全部工具演示 →</a>
 </p>
 
 <div class="section-divider"></div>

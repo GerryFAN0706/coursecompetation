@@ -2,7 +2,7 @@
 
 > 语言：全站使用 **中文**，技术术语保留英文（如 Authentication、RBAC、Filter）
 > 技术栈建议：基于现有 GitHub Pages + Jekyll/Hugo，或 VitePress/Docusaurus
-> 部署：GitHub Pages（已有 gerryfan0706.github.io 基础）
+> 部署：GitHub Pages（已有 javaweb-ai-teaching.github.io 基础）
 
 ---
 
