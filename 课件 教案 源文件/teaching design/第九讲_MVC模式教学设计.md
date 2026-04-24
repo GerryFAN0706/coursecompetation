@@ -1,7 +1,7 @@
 # 第七讲教学设计：MVC模式—构建专业的Web应用架构 (20分钟)
 
 ## 课程信息
-- **课程名称**: Java Web应用开发 (Java Web Application Development)
+- **课程名称**: Web应用开发 (Java Web Application Development)
 - **教学方式**: 双语教学（英文授课，关键术语中英文对照）
 - **教学主题**: MVC模式：实现关注点分离
 - **授课时长**: 20分钟

@@ -9,7 +9,7 @@
     "source": "website.md",
     "sourceId": "SRC-WEB-01",
     "method": "按统一评分量表统计作业得分均值并进行前后对比。",
-    "sampleScope": "Java Web应用开发参赛班级，覆盖课堂任务与课后提交。",
+    "sampleScope": "Web应用开发参赛班级，覆盖课堂任务与课后提交。",
     "timeWindow": "2025-09 至 2026-01",
     "evidencePath": "/results/",
     "notes": "提交前将补充评分量表附件编号。"

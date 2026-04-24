@@ -1,7 +1,7 @@
 # 第四讲教学设计：告别脚本—EL与JSTL的优雅之道 (20分钟)
 
 ## 课程信息
-- **课程名称**: Java Web应用开发 (Java Web Application Development)
+- **课程名称**: Web应用开发 (Java Web Application Development)
 - **教学方式**: 双语教学（英文授课，关键术语中英文对照）
 - **教学主题**: 告别脚本：EL与JSTL的优雅之道
 - **授课时长**: 20分钟

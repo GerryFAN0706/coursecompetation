@@ -106,7 +106,7 @@ anonSafe: true
 <div class="innovation-grid">
   <div class="pain-card" style="border-color: var(--c-emerald-200); background: linear-gradient(160deg, var(--c-emerald-50), white);">
     <span class="badge" style="background: var(--c-emerald-50); color: var(--c-emerald-700);">✅ 已验证</span>
-    <h3>Java Web应用开发</h3>
+    <h3>Web应用开发</h3>
     <p>本课程，已完成全流程验证。16讲AI应用映射、完整提示词库、量化成效数据。</p>
   </div>
   <div class="pain-card" style="border-color: var(--c-blue-200); background: linear-gradient(160deg, var(--c-blue-50), white);">

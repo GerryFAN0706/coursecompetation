@@ -1,12 +1,12 @@
 ---
 title: 课程概览
-description: Java Web应用开发课程16讲完整安排与AI应用映射。
+description: Web应用开发课程16讲完整安排与AI应用映射。
 lastUpdated: 2026-03-17
 evidenceLevel: public
 anonSafe: true
 ---
 
-# 课程概览：Java Web应用开发
+# 课程概览：Web应用开发
 
 ## 课程基本信息
 
@@ -14,7 +14,7 @@ anonSafe: true
   <div class="summary-card">
     <div class="summary-icon">📚</div>
     <h3>课程名称</h3>
-    <p>Java Web应用开发</p>
+    <p>Web应用开发</p>
   </div>
   <div class="summary-card">
     <div class="summary-icon">🎓</div>

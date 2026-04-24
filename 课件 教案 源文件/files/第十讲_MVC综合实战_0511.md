@@ -4,7 +4,7 @@ size: 16:9
 theme: am_blue
 paginate: true
 headingDivider: [2,3]
-footer: \ *Java Web应用开发 (Java Web Application Development)* *XXX学院*
+footer: \ *Web应用开发 (Java Web Application Development)* *XXX学院*
 style: |
   section.cover_d footer {
     left: 75%;

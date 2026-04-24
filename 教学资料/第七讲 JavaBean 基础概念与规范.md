@@ -1,7 +1,7 @@
 # JavaBean 教学设计 - 组件一：JavaBean 基础概念与规范 (20分钟)
 
 ## 课程信息
-- **课程名称**: Java Web应用开发 (Java Web Application Development)
+- **课程名称**: Web应用开发 (Java Web Application Development)
 - **教学方式**: 双语教学（英文授课，关键术语中英文对照）
 - **教学主题**: JavaBean 基础概念与规范
 - **授课时长**: 20分钟

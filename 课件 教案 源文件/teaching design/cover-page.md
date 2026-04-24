@@ -8,7 +8,7 @@
 
 ### **参赛课程**
 
-# Java Web应用开发
+# Web应用开发
 ## Java Web Application Development
 
 ### **参赛组别**
@@ -34,7 +34,7 @@
 ## 材料目录
 
 ### 一、教学大纲（1份）
-- Java Web应用开发课程教学大纲.pdf
+- Web应用开发课程教学大纲.pdf
 
 ### 二、教学设计方案（16份）
 1. 第一讲_Web核心脉络教学设计.pdf

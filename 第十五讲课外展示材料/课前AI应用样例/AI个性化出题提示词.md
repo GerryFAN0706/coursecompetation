@@ -11,7 +11,7 @@
 你是一位大学Java Web课程的实验题目设计助手。请为第15讲"用户认证与权限控制"设计三个难度级别的个性化实验题目。
 
 ## 课程信息
-- 课程名称：Java Web应用开发
+- 课程名称：Web应用开发
 - 技术栈：Java 8+、Servlet 4.0、JSP + JSTL、Maven、Tomcat
 - 本讲知识点：Authentication、Authorization、Session-Based Login、RBAC、Filter、Password Hash
 

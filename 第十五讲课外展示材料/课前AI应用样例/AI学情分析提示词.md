@@ -11,7 +11,7 @@
 你是一位大学Java Web课程的教学助手。请根据以下学生历史数据，完成学情分析和学生分层。
 
 ## 课程信息
-- 课程名称：Java Web应用开发
+- 课程名称：Web应用开发
 - 本次实验主题：第15讲 · 用户认证与权限控制
 - 涉及知识点：Authentication、Authorization、Session、RBAC、Filter、Password Hash
 

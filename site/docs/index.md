@@ -1,13 +1,13 @@
 ---
 layout: home
 title: 首页
-description: 第六届全国高校教师教学创新大赛 · 人工智能赛道 · Java Web应用开发课程AI融合创新成果展示
+description: 第六届全国高校教师教学创新大赛 · 人工智能赛道 · Web应用开发课程AI融合创新成果展示
 lastUpdated: 2026-03-21
 evidenceLevel: public
 anonSafe: true
 hero:
   name: "第六届全国高校教师教学创新大赛"
-  text: "AI赋能Java Web应用开发课程"
+  text: "AI赋能Web应用开发课程"
   tagline: "人工智能赛道 · 问题驱动 · 五维AI融合创新 · 数据闭环"
   actions:
     - theme: brand

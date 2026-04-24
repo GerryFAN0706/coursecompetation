@@ -138,12 +138,12 @@ headingDivider: [2,3]  # 让##和###自动分页
 
 **错误写法**：
 ```yaml
-footer: *Java Web应用开发* *学院*     ← 缺少 \ 
+footer: *Web应用开发* *学院*     ← 缺少 \ 
 ```
 
 **正确写法** ✅:
 ```yaml
-footer: \ *Java Web应用开发* *学院*   ← 必须有 \ 开头
+footer: \ *Web应用开发* *学院*   ← 必须有 \ 开头
 ```
 
 ### ❌ 错误8：内容过长页面使用彩色背景
@@ -407,12 +407,12 @@ headingDivider: [2,3]
 
 **页脚 - 修改前**：
 ```yaml
-footer: \ *XXX* *Java Web应用开发* *XXX大学*
+footer: \ *XXX* *Web应用开发* *XXX大学*
 ```
 
 **页脚 - 修改后**：
 ```yaml
-footer: *Java Web应用开发 (Java Web Application Development)* *XXX学院*
+footer: *Web应用开发 (Java Web Application Development)* *XXX学院*
 ```
 
 **结束页 - 删除**：
@@ -439,7 +439,7 @@ size: 16:9
 theme: am_blue
 paginate: true
 headingDivider: [2,3]
-footer: *Java Web应用开发* *XXX学院*
+footer: *Web应用开发* *XXX学院*
 style: |
   section {
     font-size: 28px;  /* 原默认25px → 28px */
